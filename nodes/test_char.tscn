@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c2jjj7eugpm6"]
+
+[ext_resource type="Script" uid="uid://btywnd38u3csx" path="res://nodes/test_char.gd" id="1_wja41"]
+[ext_resource type="Texture2D" uid="uid://dml2d8skg150f" path="res://database/sprites/gemini-2.5-flash-image_Create_a_2D_stylized_game_character_for_a_side-scrolling_game._The_character_is_-0-removebg-preview.png" id="2_ww6lk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jka67"]
+radius = 0.9472656
+height = 3.2434082
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1979044320]
+script = ExtResource("1_wja41")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1954264140]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 0, 0, 0)
+billboard = 1
+alpha_cut = 1
+texture = ExtResource("2_ww6lk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1570110460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10907745, -0.051635742, 0)
+shape = SubResource("CapsuleShape3D_jka67")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=420893802]
+transform = Transform3D(1, 0, 0, 0, 0.774216, 0.6329215, 0, -0.6329215, 0.774216, 0, 4.275836, 4.6379366)

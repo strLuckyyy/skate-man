@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://djb40k26kbs3d"]
+
+[ext_resource type="Texture2D" uid="uid://c1c6r7to0jlqu" path="res://icon.svg" id="1_50ct6"]
+[ext_resource type="PackedScene" uid="uid://c2jjj7eugpm6" path="res://nodes/test_char.tscn" id="2_hb2xm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r3fl7"]
+size = Vector3(1.2996826, 1.2703857, 0.07080078)
+
+[node name="Node3D" type="Node3D" unique_id=2013207729]
+
+[node name="chao-teste" type="StaticBody3D" parent="." unique_id=855871603]
+transform = Transform3D(25.05, 0, 0, 0, -1.0949702e-06, -25.05, 0, 25.05, -1.0949702e-06, 0, -0.33404946, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chao-teste" unique_id=447584432]
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="Sprite3D" type="Sprite3D" parent="chao-teste" unique_id=992690702]
+alpha_cut = 1
+texture = ExtResource("1_50ct6")
+
+[node name="CharacterBody3D" parent="." unique_id=1979044320 instance=ExtResource("2_hb2xm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2984893, 1.5153394)
+
+[node name="CharacterBody3D2" parent="." unique_id=945293850 instance=ExtResource("2_hb2xm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2984893, -2.4450276)
