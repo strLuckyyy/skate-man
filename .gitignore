@@ -1,4 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-*.vscode/
+.vscode/
+.zip
+/.vscode
+tccfiles/
+tccfiles/diagram/index.html
