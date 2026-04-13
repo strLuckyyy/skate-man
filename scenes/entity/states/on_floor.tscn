@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://vth0uvrk2ot0"]
+
+[ext_resource type="Script" uid="uid://bkrwft4whjhod" path="res://scripts/states/on_floor.gd" id="1_bj238"]
+
+[node name="OnFloor" type="Node" unique_id=1711899762]
+script = ExtResource("1_bj238")
+metadata/_custom_type_script = "uid://bp7lau4uhmya"

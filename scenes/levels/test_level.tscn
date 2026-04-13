@@ -21,3 +21,15 @@ shape = SubResource("RectangleShape2D_fr1um")
 position = Vector2(-1.999939, 17.999996)
 scale = Vector2(14.3125, 0.42187494)
 texture = ExtResource("2_yautc")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1838429333]
+position = Vector2(1662, 795)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1690829954]
+position = Vector2(171, 75)
+shape = SubResource("RectangleShape2D_fr1um")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D" unique_id=1034897099]
+position = Vector2(-1.999939, 17.999996)
+scale = Vector2(14.3125, 0.42187494)
+texture = ExtResource("2_yautc")

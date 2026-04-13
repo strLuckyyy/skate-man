@@ -2,13 +2,20 @@
 
 [ext_resource type="Script" uid="uid://np8qfc4fv6o2" path="res://scripts/entity/player.gd" id="1_gdab3"]
 [ext_resource type="Texture2D" uid="uid://dml2d8skg150f" path="res://assets/sprites/player_placeholder.png" id="2_gdab3"]
+[ext_resource type="Resource" uid="uid://c2fdlh2l6d24e" path="res://data/characters/player_stats.tres" id="2_tgyl1"]
+[ext_resource type="PackedScene" uid="uid://doupuo3063m4v" path="res://scenes/entity/states/state_machine.tscn" id="4_poj5f"]
+[ext_resource type="PackedScene" uid="uid://cqkvj2bnifc5g" path="res://scenes/equipament/hand_truck.tscn" id="5_4y4uh"]
+[ext_resource type="Resource" uid="uid://d0s5e065br70w" path="res://data/equipaments/hand_truck.tres" id="7_j8jve"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tgyl1"]
 radius = 28.62
 height = 138.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1685539226 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1685539226 node_paths=PackedStringArray("state_machine", "equipment") groups=["player"]]
 script = ExtResource("1_gdab3")
+stats = ExtResource("2_tgyl1")
+state_machine = NodePath("StateMachine")
+equipment = NodePath("HandTruck")
 metadata/_custom_type_script = "uid://b3eclwv828dgu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=319709459]
@@ -19,3 +26,22 @@ scale = Vector2(0.28, 0.28)
 texture = ExtResource("2_gdab3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1819264127]
+
+[node name="StateMachine" parent="." unique_id=465131188 instance=ExtResource("4_poj5f")]
+
+[node name="HandTruck" parent="." unique_id=681827533 node_paths=PackedStringArray("character", "state_machine") instance=ExtResource("5_4y4uh")]
+character = NodePath("..")
+state_machine = NodePath("../StateMachine")
+data = ExtResource("7_j8jve")
+
+[node name="Slide" parent="HandTruck" index="0" unique_id=1004796751]
+allowed_states_ids = Array[int]([2])
+
+[node name="Flip" parent="HandTruck" index="1" unique_id=1797236268]
+allowed_states_ids = Array[int]([1])
+
+[node name="Spin" parent="HandTruck" index="2" unique_id=1101366855]
+allowed_states_ids = Array[int]([0])
+
+[editable path="StateMachine"]
+[editable path="HandTruck"]

@@ -2,22 +2,19 @@ class_name Player
 extends BaseCharacter
 
 
-func _physics_process(delta: float) -> void:
-	super._physics_process(delta)
+func apply_movement() -> Vector2:
+	direction = Input.get_axis("move_left", "move_right")
 	
-	input_handler()
-	move_and_slide()
-
-
-func input_handler():
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-
-func move() -> void:
-	direction.x = Input.get_axis("move_left", "move_right")
+	var target_speed = direction * equipment.data.max_speed
 	
-	if direction.x != 0:
-		velocity.x = direction.x * MAX_SIMPLE_SPEED
+	if direction != 0.:
+		velocity.x = lerp(velocity.x, float(target_speed), equipment.data.acceleration)
 	else:
-		velocity.x = move_toward(velocity.x, 0, MAX_SIMPLE_SPEED)
+		velocity.x = lerp(velocity.x, 0.0, equipment.data.friction)
+	
+	return velocity
+
+
+func apply_jump() -> void:
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = equipment.data.jump_velocity

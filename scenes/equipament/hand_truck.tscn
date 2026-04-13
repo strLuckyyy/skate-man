@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cqkvj2bnifc5g"]
+
+[ext_resource type="Script" uid="uid://bh551yfjpbmsn" path="res://scripts/equipament/hand_truck.gd" id="1_b5kup"]
+[ext_resource type="Script" uid="uid://cxy5m0t31igvd" path="res://scripts/maneuver/hand_truck/ht_slide.gd" id="2_gvi3c"]
+[ext_resource type="Script" uid="uid://ca4bqwaveu4oh" path="res://scripts/maneuver/hand_truck/ht_flip.gd" id="3_cyg8x"]
+[ext_resource type="Script" uid="uid://dj658fc8ldrd5" path="res://scripts/maneuver/hand_truck/ht_spin.gd" id="4_1ay0g"]
+
+[node name="HandTruck" type="Node2D" unique_id=681827533]
+script = ExtResource("1_b5kup")
+
+[node name="Slide" type="Node2D" parent="." unique_id=1004796751]
+script = ExtResource("2_gvi3c")
+
+[node name="Flip" type="Node2D" parent="." unique_id=1797236268]
+script = ExtResource("3_cyg8x")
+
+[node name="Spin" type="Node2D" parent="." unique_id=1101366855]
+script = ExtResource("4_1ay0g")

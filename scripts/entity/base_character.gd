@@ -1,29 +1,37 @@
 class_name BaseCharacter
 extends CharacterBody2D
 
-## Indica a velocidade máxima conquistada levando em consideração o boost
-const MAX_ABSOLUTE_SPEED: float = 800.
-## Indica a velocidade máxima consquistada sem considerar o boost
-const MAX_SIMPLE_SPEED:   float = 300.
-const ACCELERATION:       float = .25
-const FRICTION:           float = .05
+@export var stats: StatsData
+@export var state_machine: StateMachine
+@export var equipment: BaseEquipament
 
-## Indica o máximo de boost acumulável
-const MAX_BOST_AMOUNT:    int = 15
-## Indica a quantidade acumulada de boost atual
-var current_boost_amount: int = 0
+var direction: float = 0.
+var fall_current_time: float = 0.
 
-var direction: Vector2 = Vector2.ZERO
 
-const JUMP_VELOCITY = -400.0
+func _ready() -> void:
+	state_machine.set_state(Utils.StateID.ON_FLOOR)
 
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	move()
+		
+		fall_current_time += delta
+		if fall_current_time < stats.falling_timeout:
+			state_machine.set_state(Utils.StateID.ON_AIR)
+		else:
+			state_machine.set_state(Utils.StateID.FALLING)
+	else:
+		state_machine.set_state(Utils.StateID.ON_FLOOR)
+		fall_current_time = 0.
+	
+	move_and_slide()
 
 
-## função abstrata: movimento
-func move() -> void:
+func apply_movement() -> Vector2:
+	return Vector2.ZERO
+
+
+func apply_jump() -> void:
 	pass

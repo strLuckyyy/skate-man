@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://m5l5wrqw4dd5"]
+
+[ext_resource type="Script" uid="uid://djrro6c24n48u" path="res://scripts/states/on_air.gd" id="1_3nl8h"]
+
+[node name="OnAir" type="Node" unique_id=376559626]
+script = ExtResource("1_3nl8h")
+metadata/_custom_type_script = "uid://bp7lau4uhmya"

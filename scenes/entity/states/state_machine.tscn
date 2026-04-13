@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://doupuo3063m4v"]
+
+[ext_resource type="Script" uid="uid://elk7syqm3gwp" path="res://scripts/states/state_machine.gd" id="1_x8x3h"]
+[ext_resource type="PackedScene" uid="uid://bwa6qlwxvw7eg" path="res://scenes/entity/states/falling.tscn" id="2_bo8iy"]
+[ext_resource type="PackedScene" uid="uid://m5l5wrqw4dd5" path="res://scenes/entity/states/on_air.tscn" id="3_a8rf4"]
+[ext_resource type="PackedScene" uid="uid://vth0uvrk2ot0" path="res://scenes/entity/states/on_floor.tscn" id="4_p3frc"]
+
+[node name="StateMachine" type="Node2D" unique_id=465131188]
+script = ExtResource("1_x8x3h")
+
+[node name="Falling" parent="." unique_id=1049306800 instance=ExtResource("2_bo8iy")]
+id = 3
+
+[node name="OnAir" parent="." unique_id=376559626 instance=ExtResource("3_a8rf4")]
+id = 1
+
+[node name="OnFloor" parent="." unique_id=1711899762 instance=ExtResource("4_p3frc")]

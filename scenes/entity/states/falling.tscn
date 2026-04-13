@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bwa6qlwxvw7eg"]
+
+[ext_resource type="Script" uid="uid://bcdxwanblc70k" path="res://scripts/states/falling.gd" id="1_hncbn"]
+
+[node name="Falling" type="Node" unique_id=1049306800]
+script = ExtResource("1_hncbn")
+metadata/_custom_type_script = "uid://bp7lau4uhmya"
