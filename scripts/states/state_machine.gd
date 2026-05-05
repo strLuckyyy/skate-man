@@ -15,6 +15,7 @@ func set_state(state_id: Utils.StateID):
 	print("[SM] %s → %s" % [from, to])
 
 	if current_state: current_state.exit()
+	
 	for i: State in states:
 		if i.id == state_id:
 			current_state = i

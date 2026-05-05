@@ -8,11 +8,14 @@
 [node name="HandTruck" type="Node2D" unique_id=681827533]
 script = ExtResource("1_b5kup")
 
-[node name="Slide" type="Node2D" parent="." unique_id=1004796751]
+[node name="Slide" type="Node2D" parent="." unique_id=1528254635]
 script = ExtResource("2_gvi3c")
+metadata/_custom_type_script = "uid://dv8flf5uaxao6"
 
-[node name="Flip" type="Node2D" parent="." unique_id=1797236268]
+[node name="Flip" type="Node2D" parent="." unique_id=1860156975]
 script = ExtResource("3_cyg8x")
+metadata/_custom_type_script = "uid://dv8flf5uaxao6"
 
-[node name="Spin" type="Node2D" parent="." unique_id=1101366855]
+[node name="Spin" type="Node2D" parent="." unique_id=1945643059]
 script = ExtResource("4_1ay0g")
+metadata/_custom_type_script = "uid://dv8flf5uaxao6"

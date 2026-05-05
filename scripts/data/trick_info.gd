@@ -6,8 +6,10 @@ var score_points: int
 var is_sustained: bool = false
 var balance_difficulty: float = 1.0
 var combo_recipe: Array[Utils.Direction]
+var state_allowed: Array[Utils.StateID]
 var need_hold: bool = false
 var method_name: Callable
+var cd_timeout: float
 
 func _init(
 	_id: int, 
@@ -15,26 +17,17 @@ func _init(
 	_is_sustained: bool,
 	_balance_difficulty: float,
 	_combo_recipe: Array[Utils.Direction],
+	_states: Array[Utils.StateID],
 	_need_hold: bool,
-	_method: Callable
+	_method: Callable,
+	cd: float = 1.
 ) -> void:
 	action_id = _id
 	score_points = _score_points
 	is_sustained = _is_sustained
 	balance_difficulty = _balance_difficulty
+	state_allowed = _states
 	combo_recipe = _combo_recipe
 	need_hold = _need_hold
 	method_name = _method
-
-
-func debug_print():
-	print(str(
-		action_id, ", ",
-		score_points, ", ",
-		is_sustained, ", ",
-		balance_difficulty, ", ",
-		combo_recipe, ", ",
-		need_hold, ", ",
-		method_name.get_method()
-		)
-	)
+	cd_timeout = cd

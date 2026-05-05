@@ -4,5 +4,5 @@
 .vscode/
 .zip
 /.vscode
-tccfiles/
-tccfiles/diagram/index.html
+*tccfiles/
+.idea

@@ -14,4 +14,5 @@ extends Resource
 @export var boost_friction: float     = .25
 
 @export_group("Jump")
-@export var jump_velocity: float         = -450.
+@export var jump_velocity: float      = -450.
+@export var falling_timeout: float    = 2.0

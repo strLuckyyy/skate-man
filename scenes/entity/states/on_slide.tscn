@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://je1a3lwu0xb5"]
+
+[ext_resource type="Script" uid="uid://dvrv77e6hvb7w" path="res://scripts/states/on_sliding.gd" id="1_dkbey"]
+
+[node name="OnSlide" type="Node" unique_id=2070810001]
+script = ExtResource("1_dkbey")
+metadata/_custom_type_script = "uid://bp7lau4uhmya"

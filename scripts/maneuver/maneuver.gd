@@ -1,14 +1,9 @@
 class_name Maneuver
 extends Node2D
 
-@export var allowed_states_ids: Array[Utils.StateID]
+var character: BaseCharacter
 var maneuvers: Array[TrickInfo]
 var maneuver_trie: Trie
-
-
-func _ready() -> void:
-	pass
-
 
 func print_manouver():
 	for i in maneuvers:

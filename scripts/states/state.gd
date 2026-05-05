@@ -17,16 +17,25 @@ func exit() -> void:
 	pass
 
 
-func update(_delta: float) -> void:
+func update(delta: float) -> void:
 	pass
 
 
 func process_input(dir: Utils.Direction) -> void:
+	if character.sprite.flip_h == true:
+		if dir == Utils.Direction.RIGHT: dir = Utils.Direction.LEFT
+		elif dir == Utils.Direction.LEFT: dir = Utils.Direction.RIGHT
+	
 	if current_node.children.has(dir):
 		current_node = current_node.children[dir]
-		if current_node.action.is_valid():
-			current_node.action.call()
-			reset_combo()
+		if character.can_maneuver:
+			if current_node.action.is_valid():
+				current_node.action.call()
+				
+				character.can_maneuver = false
+				character.maneuver_timeout = current_node.cd
+				
+				reset_combo()
 	else:
 		reset_combo()
 

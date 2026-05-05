@@ -7,16 +7,14 @@ extends Node
 
 
 func _ready() -> void:
+	await owner.ready
 	var maneuver_nodes: Array[Maneuver]
+	var state_allowed = []
 	maneuver_nodes.assign(get_children())
 	
-	for m in maneuver_nodes:
-		for state in state_machine.states:
-			if state.id in m.allowed_state_ids:
-				for trick in m.maneuvers:
-					state.combo_trie.insert(trick.combo_recipe, trick.method_name)
-
-
-func on_direction_received(input_dir: Utils.Direction) -> void:
-	if state_machine.current_state:
-		state_machine.current_state.process_input(input_dir)
+	for m:Maneuver in maneuver_nodes:
+		m.character = character
+		for trick in m.maneuvers:
+			for state:State in state_machine.states:
+				if state.id in trick.state_allowed:
+					state.combo_trie.insert(trick.combo_recipe, trick.method_name, trick.cd_timeout)

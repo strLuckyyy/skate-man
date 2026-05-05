@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4bflolxhqv4a" path="res://scenes/entity/player.tscn" id="1_jbqir"]
 [ext_resource type="Texture2D" uid="uid://c1c6r7to0jlqu" path="res://icon.svg" id="2_yautc"]
+[ext_resource type="PackedScene" uid="uid://clnt2g5hl2vtp" path="res://scenes/scenary/slide_area.tscn" id="3_fr1um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr1um"]
 size = Vector2(1846, 20)
@@ -33,3 +34,6 @@ shape = SubResource("RectangleShape2D_fr1um")
 position = Vector2(-1.999939, 17.999996)
 scale = Vector2(14.3125, 0.42187494)
 texture = ExtResource("2_yautc")
+
+[node name="SlideArea" parent="." unique_id=959687679 instance=ExtResource("3_fr1um")]
+position = Vector2(335, -15)
