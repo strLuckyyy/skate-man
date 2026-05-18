@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://2m4wwoeypn7o"]
+
+[ext_resource type="Script" uid="uid://wtypxs5dvrg1" path="res://characters/c.equipment/hand_truck/tricks/flip_front.gd" id="1_jette"]
+[ext_resource type="Resource" uid="uid://di8obq3dg4vnx" path="res://characters/c.equipment/hand_truck/tricks_data/flip_front.tres" id="2_uubqk"]
+
+[node name="FlipFront" type="Node2D" unique_id=2088985283]
+script = ExtResource("1_jette")
+trick_data = ExtResource("2_uubqk")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

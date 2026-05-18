@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrickData" format=3 uid="uid://cdc2dcklm4gsw"]
+
+[ext_resource type="Script" uid="uid://dpgg0shxlo7xl" path="res://data/trick_data.gd" id="1_hxlge"]
+
+[resource]
+script = ExtResource("1_hxlge")
+trick_name = "OneWheel"
+sequence = Array[int]([1, 2])
+state_available = Array[int]([2])
+metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

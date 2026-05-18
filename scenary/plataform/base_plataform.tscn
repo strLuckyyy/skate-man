@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://83ogmy6xlbvv"]
+
+[ext_resource type="Script" uid="uid://bkj00gm61xjf" path="res://scenary/plataform/base_plataform.gd" id="1_x7ek1"]
+[ext_resource type="PackedScene" uid="uid://m8sff6t4xjdo" path="res://scenary/plataform/waiting_area/waiting_area.tscn" id="2_7g22i"]
+
+[node name="BasePlataform" type="Path2D" unique_id=705089617]
+script = ExtResource("1_x7ek1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=527806504]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D" unique_id=298879429]
+remote_path = NodePath("../../AnimatableBody2D")
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="PathFollow2D" unique_id=1823628580]
+remote_path = NodePath("../../WaitingArea")
+update_rotation = false
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=92778484]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1771229665]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=473667595]
+
+[node name="WaitingArea" parent="." unique_id=12035457 instance=ExtResource("2_7g22i")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1255810193]
+
+[editable path="WaitingArea"]

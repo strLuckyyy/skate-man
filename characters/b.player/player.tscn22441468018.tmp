@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://tkoi6wuvdx3s"]
+
+[ext_resource type="PackedScene" uid="uid://cugtsy8diq3wy" path="res://characters/character.tscn" id="1_wo8oy"]
+[ext_resource type="Script" uid="uid://btr4pws8cw5t4" path="res://characters/b.player/player.gd" id="2_dyllp"]
+[ext_resource type="Texture2D" uid="uid://dml2d8skg150f" path="res://assets/sprites/player_placeholder.png" id="3_gom2c"]
+[ext_resource type="Script" uid="uid://mop13y4ovkd0" path="res://characters/a.controllers/player_controller.gd" id="4_1f1u2"]
+[ext_resource type="PackedScene" uid="uid://cc4jikaqqcx1d" path="res://characters/c.equipment/input_buffer.tscn" id="4_iai5m"]
+[ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/c.equipment/hand_truck/hand_truck_data.tres" id="5_sh2bi"]
+[ext_resource type="PackedScene" uid="uid://c3ssg8nmo6d8w" path="res://characters/d.fsm/state_machine.tscn" id="5_ymscc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f1u2"]
+radius = 80.0
+height = 344.0
+
+[node name="Character" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
+script = ExtResource("2_dyllp")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1747011181]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_gom2c")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=367863434]
+shape = SubResource("CapsuleShape2D_1f1u2")
+
+[node name="InputBuffer" parent="." index="2" unique_id=69867716 instance=ExtResource("4_iai5m")]
+
+[node name="StateMachine" parent="." index="3" unique_id=1335913820 instance=ExtResource("5_ymscc")]
+
+[node name="EquipmentManager" parent="." index="5" unique_id=2011998462]
+default_equipment = ExtResource("5_sh2bi")
+
+[node name="Controller" parent="." index="6" unique_id=697335465 node_paths=PackedStringArray("player")]
+script = ExtResource("4_1f1u2")
+player = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="." index="9" unique_id=404592596]
+offset = Vector2(0, -260)
+zoom = Vector2(0.43, 0.43)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="CoyoteTimer" parent="." index="10" unique_id=1701698893]
+one_shot = true

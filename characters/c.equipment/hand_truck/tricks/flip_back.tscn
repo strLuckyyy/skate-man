@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://om2lbbnjmpjo"]
+
+[ext_resource type="Script" uid="uid://la6t46vsnron" path="res://characters/c.equipment/hand_truck/tricks/flip_back.gd" id="1_8ihkw"]
+[ext_resource type="Resource" uid="uid://cusompu2i45uh" path="res://characters/c.equipment/hand_truck/tricks_data/flip_back.tres" id="2_ajqw1"]
+
+[node name="FlipBack" type="Node2D" unique_id=1242450168]
+script = ExtResource("1_8ihkw")
+trick_data = ExtResource("2_ajqw1")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

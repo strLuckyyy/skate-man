@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrickData" format=3 uid="uid://cusompu2i45uh"]
+
+[ext_resource type="Script" uid="uid://dpgg0shxlo7xl" path="res://data/trick_data.gd" id="1_ofedm"]
+
+[resource]
+script = ExtResource("1_ofedm")
+trick_name = "Back Flip"
+sequence = Array[int]([1, 3])
+state_available = Array[int]([3, 4])
+metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

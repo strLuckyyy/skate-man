@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ry0psp5l68jg"]
+
+[ext_resource type="Script" uid="uid://06yu7sjidto3" path="res://characters/c.equipment/hand_truck/tricks/grind_point.gd" id="1_meg8r"]
+[ext_resource type="Resource" uid="uid://bidjji4hibdg0" path="res://characters/c.equipment/hand_truck/tricks_data/grind_point.tres" id="2_t0s8r"]
+
+[node name="GrindPoint" type="Node2D" unique_id=1807880757]
+script = ExtResource("1_meg8r")
+trick_data = ExtResource("2_t0s8r")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

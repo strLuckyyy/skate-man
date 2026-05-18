@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dnysra1iotque"]
+
+[ext_resource type="Script" uid="uid://des0oae01i10k" path="res://characters/c.equipment/hand_truck/tricks/spin_back.gd" id="1_ojx18"]
+[ext_resource type="Resource" uid="uid://d3xlunculcddt" path="res://characters/c.equipment/hand_truck/tricks_data/spin_back.tres" id="2_7xbu6"]
+
+[node name="SpinBack" type="Node2D" unique_id=1213763223]
+script = ExtResource("1_ojx18")
+trick_data = ExtResource("2_7xbu6")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

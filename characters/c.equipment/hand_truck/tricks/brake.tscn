@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://nq607u7hflua"]
+
+[ext_resource type="Script" uid="uid://cys4s2cky4y41" path="res://characters/c.equipment/hand_truck/tricks/brake.gd" id="1_u4q74"]
+[ext_resource type="Resource" uid="uid://0n3fbyk8p3g6" path="res://characters/c.equipment/hand_truck/tricks_data/brake.tres" id="2_3ks33"]
+
+[node name="Brake" type="Node2D" unique_id=303016933]
+script = ExtResource("1_u4q74")
+trick_data = ExtResource("2_3ks33")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrickData" format=3 uid="uid://ce5l0qx4e05fd"]
+
+[ext_resource type="Script" uid="uid://dpgg0shxlo7xl" path="res://data/trick_data.gd" id="1_kefpy"]
+
+[resource]
+script = ExtResource("1_kefpy")
+trick_name = "JumpAndWalk"
+sequence = Array[int]([0, 2, 1])
+state_available = Array[int]([3, 4])
+metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

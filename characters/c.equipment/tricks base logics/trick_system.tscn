@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ekofyepjq8d7"]
+
+[ext_resource type="Script" uid="uid://xtrfeehorb7t" path="res://characters/c.equipment/tricks base logics/trick_system.gd" id="1_x063h"]
+
+[node name="TrickSystem" type="Node2D" unique_id=33422410]
+script = ExtResource("1_x063h")

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentData" format=3 uid="uid://dn0510bauquu0"]
+
+[ext_resource type="Script" uid="uid://fsgq8yal7w87" path="res://data/equipment_data.gd" id="1_yvt1b"]
+[ext_resource type="PackedScene" uid="uid://nq607u7hflua" path="res://characters/c.equipment/hand_truck/tricks/brake.tscn" id="2_4he1p"]
+[ext_resource type="PackedScene" uid="uid://om2lbbnjmpjo" path="res://characters/c.equipment/hand_truck/tricks/flip_back.tscn" id="2_ulgfo"]
+[ext_resource type="PackedScene" uid="uid://2m4wwoeypn7o" path="res://characters/c.equipment/hand_truck/tricks/flip_front.tscn" id="3_fhugi"]
+[ext_resource type="PackedScene" uid="uid://biufwjdx1sxy1" path="res://characters/c.equipment/hand_truck/tricks/grind_lateral.tscn" id="4_v0uly"]
+[ext_resource type="PackedScene" uid="uid://cig51qibmpjn3" path="res://characters/c.equipment/hand_truck/tricks/grind_normal.tscn" id="5_74rsu"]
+[ext_resource type="PackedScene" uid="uid://ry0psp5l68jg" path="res://characters/c.equipment/hand_truck/tricks/grind_point.tscn" id="6_mxdh8"]
+[ext_resource type="PackedScene" uid="uid://dnysra1iotque" path="res://characters/c.equipment/hand_truck/tricks/spin_back.tscn" id="7_4he1p"]
+[ext_resource type="PackedScene" uid="uid://dym2pjb7qrgit" path="res://characters/c.equipment/hand_truck/tricks/spin_floor.tscn" id="8_m0oau"]
+[ext_resource type="PackedScene" uid="uid://2bgv7yyl62xh" path="res://characters/c.equipment/hand_truck/tricks/jump_and_walk.tscn" id="8_xwglu"]
+[ext_resource type="PackedScene" uid="uid://3arsx7wmlqd2" path="res://characters/c.equipment/hand_truck/tricks/one_wheel.tscn" id="9_giy3b"]
+[ext_resource type="PackedScene" uid="uid://bjij3ki8bnbcp" path="res://characters/c.equipment/hand_truck/tricks/spin_front.tscn" id="9_xwglu"]
+[ext_resource type="PackedScene" uid="uid://0m3r7lq5wgk4" path="res://characters/c.equipment/hand_truck/tricks/surf.tscn" id="13_kdxh2"]
+
+[resource]
+script = ExtResource("1_yvt1b")
+tricks = Array[PackedScene]([ExtResource("2_4he1p"), ExtResource("2_ulgfo"), ExtResource("3_fhugi"), ExtResource("4_v0uly"), ExtResource("5_74rsu"), ExtResource("6_mxdh8"), ExtResource("8_xwglu"), ExtResource("9_giy3b"), ExtResource("7_4he1p"), ExtResource("8_m0oau"), ExtResource("9_xwglu"), ExtResource("13_kdxh2")])
+metadata/_custom_type_script = "uid://fsgq8yal7w87"

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://m8sff6t4xjdo"]
+
+[ext_resource type="Script" uid="uid://cdk6e5glrolk4" path="res://scenary/plataform/waiting_area/waiting_area.gd" id="1_38knl"]
+
+[node name="WaitingArea" type="Area2D" unique_id=12035457]
+script = ExtResource("1_38knl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1386168499]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

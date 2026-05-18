@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrickData" format=3 uid="uid://ddlud45n8ywdp"]
+
+[ext_resource type="Script" uid="uid://dpgg0shxlo7xl" path="res://data/trick_data.gd" id="1_bcp06"]
+
+[resource]
+script = ExtResource("1_bcp06")
+trick_name = "Surf"
+sequence = Array[int]([2])
+state_available = Array[int]([3, 4])
+metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://3arsx7wmlqd2"]
+
+[ext_resource type="Script" uid="uid://dqidicmvqibve" path="res://characters/c.equipment/hand_truck/tricks/one_wheel.gd" id="1_45qmg"]
+[ext_resource type="Resource" uid="uid://cdc2dcklm4gsw" path="res://characters/c.equipment/hand_truck/tricks_data/one_wheel.tres" id="2_cqii0"]
+
+[node name="OneWheel" type="Node2D" unique_id=448206635]
+script = ExtResource("1_45qmg")
+trick_data = ExtResource("2_cqii0")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

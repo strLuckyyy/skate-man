@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bjij3ki8bnbcp"]
+
+[ext_resource type="Script" uid="uid://cmyjy41y2ausc" path="res://characters/c.equipment/hand_truck/tricks/spin_front.gd" id="1_81ea8"]
+[ext_resource type="Resource" uid="uid://cgqyj4rjx0f8m" path="res://characters/c.equipment/hand_truck/tricks_data/spin_front.tres" id="2_ku34w"]
+
+[node name="SpinFront" type="Node2D" unique_id=1791297318]
+script = ExtResource("1_81ea8")
+trick_data = ExtResource("2_ku34w")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

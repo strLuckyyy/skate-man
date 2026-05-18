@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dkje7f8xayr4l"]
+
+[ext_resource type="Script" uid="uid://dglwfssel016e" path="res://scenary/grind_area/grind_area.gd" id="1_emrlx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emrlx"]
+
+[node name="GrindArea" type="Area2D" unique_id=787362715]
+script = ExtResource("1_emrlx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1726410716]
+shape = SubResource("RectangleShape2D_emrlx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

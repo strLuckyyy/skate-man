@@ -1,0 +1,109 @@
+{
+	"categories": [
+		{
+			"uuid": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"title": "Task",
+			"color": "569eff"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "8e1e7304-8210-4e99-ad06-42f9a4ea26e2",
+			"title": "Todo",
+			"tasks": [
+				"34027d8f-8bc8-4d92-8062-309f6acab61e"
+			]
+		},
+		{
+			"uuid": "5e5b0a7a-e2c1-4814-a6cf-23ac3b273700",
+			"title": "Doing",
+			"tasks": [
+				"6a8b22f5-9a91-4217-aac7-0f2eddd7b15d",
+				"6fcef24f-b066-4148-b66b-8f9a710df211"
+			]
+		},
+		{
+			"uuid": "5a9d5c8c-5f47-4623-b5f5-a0fc353d4f94",
+			"title": "Done",
+			"tasks": [
+				"25ccc8ca-6fcf-4d7f-acc2-db50be76e29a",
+				"7f07e52f-5bc5-41b0-91e4-e595f1836758",
+				"9b5e72c5-83ca-4304-bdae-7cf6ff62918b"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "9b5e72c5-83ca-4304-bdae-7cf6ff62918b",
+			"title": "TrickSystem",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "34027d8f-8bc8-4d92-8062-309f6acab61e",
+			"title": "TricksLogic",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "25ccc8ca-6fcf-4d7f-acc2-db50be76e29a",
+			"title": "Comunication to can Trick",
+			"description": "Flow:                                                        InputBuffer -arr[dir]-> Player -connect with-> TrickSystem (build context and check if can do some trick) -call-> Trick.execute()",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": [
+				{
+					"details": "InputBuffer",
+					"done": true
+				},
+				{
+					"details": "StateMachine (build context)",
+					"done": true
+				},
+				{
+					"details": "TrickSystem",
+					"done": true
+				},
+				{
+					"details": "Trick",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "7f07e52f-5bc5-41b0-91e4-e595f1836758",
+			"title": "Re-plain the FSM",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "6fcef24f-b066-4148-b66b-8f9a710df211",
+			"title": "build gdd",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "6a8b22f5-9a91-4217-aac7-0f2eddd7b15d",
+			"title": "create a nootbook llm to document the project",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"8e1e7304-8210-4e99-ad06-42f9a4ea26e2"
+			],
+			[
+				"5e5b0a7a-e2c1-4814-a6cf-23ac3b273700"
+			],
+			[
+				"5a9d5c8c-5f47-4623-b5f5-a0fc353d4f94"
+			]
+		]
+	}
+}

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://2bgv7yyl62xh"]
+
+[ext_resource type="Script" uid="uid://dw068t6dqiid0" path="res://characters/c.equipment/hand_truck/tricks/jump_and_walk.gd" id="1_256un"]
+[ext_resource type="Resource" uid="uid://ce5l0qx4e05fd" path="res://characters/c.equipment/hand_truck/tricks_data/jump_and_walk.tres" id="2_glnfa"]
+
+[node name="JumpAndWalk" type="Node2D" unique_id=1121516914]
+script = ExtResource("1_256un")
+trick_data = ExtResource("2_glnfa")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

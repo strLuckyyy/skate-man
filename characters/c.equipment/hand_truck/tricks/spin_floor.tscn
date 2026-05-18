@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dym2pjb7qrgit"]
+
+[ext_resource type="Script" uid="uid://1u81rs68to7l" path="res://characters/c.equipment/hand_truck/tricks/spin_floor.gd" id="1_ql6ff"]
+[ext_resource type="Resource" uid="uid://domjokg1q48d3" path="res://characters/c.equipment/hand_truck/tricks_data/spin_floor.tres" id="2_gyui5"]
+
+[node name="SpinFloor" type="Node2D" unique_id=1188903737]
+script = ExtResource("1_ql6ff")
+trick_data = ExtResource("2_gyui5")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://d2jq8ya2vskgm"]
+
+[ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://scenary/plataform/base_plataform.tscn" id="1_ethqj"]
+[ext_resource type="Script" uid="uid://bcnvemb404lqk" path="res://scenary/plataform/elevator_plataform.gd" id="2_m66go"]
+[ext_resource type="Texture2D" uid="uid://c1c6r7to0jlqu" path="res://icon.svg" id="3_wlxt7"]
+
+[sub_resource type="Curve2D" id="Curve2D_wlxt7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -65, 0, 0, 0, 0, 0, -515)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ethqj"]
+size = Vector2(123, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx8pk"]
+size = Vector2(13, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlxt7"]
+size = Vector2(122, 119)
+
+[sub_resource type="Animation" id="Animation_wlxt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkm1i"]
+_data = {
+&"RESET": SubResource("Animation_wlxt7")
+}
+
+[sub_resource type="Animation" id="Animation_sjf3v"]
+resource_name = "move_down"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, -2),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gkh8i"]
+resource_name = "move"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.99),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15ewi"]
+_data = {
+&"move_down": SubResource("Animation_sjf3v"),
+&"move_up": SubResource("Animation_gkh8i")
+}
+
+[node name="BasePlataform" unique_id=705089617 instance=ExtResource("1_ethqj")]
+curve = SubResource("Curve2D_wlxt7")
+script = ExtResource("2_m66go")
+
+[node name="PathFollow2D" parent="." index="0" unique_id=527806504]
+position = Vector2(0, -65)
+rotation = -1.5707964
+
+[node name="RemoteTransform2D" parent="PathFollow2D" index="0" unique_id=298879429]
+update_rotation = false
+
+[node name="AnimatableBody2D" parent="." index="1" unique_id=92778484]
+position = Vector2(0, -65)
+
+[node name="Sprite2D" parent="AnimatableBody2D" index="0" unique_id=1771229665]
+texture = ExtResource("3_wlxt7")
+
+[node name="CollisionShape2D" parent="AnimatableBody2D" index="1" unique_id=473667595]
+position = Vector2(0.5, 59)
+shape = SubResource("RectangleShape2D_ethqj")
+
+[node name="ElevatorDoor" type="CollisionShape2D" parent="AnimatableBody2D" index="2" unique_id=1595129574]
+position = Vector2(64.5, -5.5)
+shape = SubResource("RectangleShape2D_kx8pk")
+
+[node name="Timer" type="Timer" parent="AnimatableBody2D" index="3" unique_id=37263180]
+
+[node name="WaitingArea" parent="." index="2" unique_id=12035457]
+position = Vector2(0, -65)
+
+[node name="CollisionShape2D" parent="WaitingArea" index="0" unique_id=1386168499]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_wlxt7")
+debug_color = Color(0.688169, 0.49958372, 7.70092e-07, 0.41960785)
+
+[node name="AnimationPlayer" parent="." index="3" unique_id=1255810193]
+libraries/ = SubResource("AnimationLibrary_qkm1i")
+libraries/elevator = SubResource("AnimationLibrary_15ewi")
+
+[connection signal="timeout" from="AnimatableBody2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="WaitingArea"]
