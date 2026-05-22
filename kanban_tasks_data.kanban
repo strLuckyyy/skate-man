@@ -11,15 +11,22 @@
 			"uuid": "8e1e7304-8210-4e99-ad06-42f9a4ea26e2",
 			"title": "Todo",
 			"tasks": [
-				"34027d8f-8bc8-4d92-8062-309f6acab61e"
+				"fc9ff3e4-4525-455f-b46d-9fcd89fc4931",
+				"50ae1214-249c-49b9-bf74-dede27e155a0",
+				"5930292f-2b7f-49f4-a0a4-230268fd7715",
+				"edfe50e8-e509-4258-910c-389c1d709d12",
+				"40dffa44-b936-4ad8-a2fa-5727ae0f6743",
+				"c177efe7-ecee-40d0-b388-4ce1fca61b22"
 			]
 		},
 		{
 			"uuid": "5e5b0a7a-e2c1-4814-a6cf-23ac3b273700",
 			"title": "Doing",
 			"tasks": [
-				"6a8b22f5-9a91-4217-aac7-0f2eddd7b15d",
-				"6fcef24f-b066-4148-b66b-8f9a710df211"
+				"0746792c-e43a-4b7b-a1c1-2732fe846e41",
+				"34027d8f-8bc8-4d92-8062-309f6acab61e",
+				"6db5473d-322b-43b1-b6d0-54f8b7d94498",
+				"9f071770-97fd-4fba-a459-4a963c5f8a99"
 			]
 		},
 		{
@@ -79,15 +86,71 @@
 			"steps": []
 		},
 		{
-			"uuid": "6fcef24f-b066-4148-b66b-8f9a710df211",
-			"title": "build gdd",
+			"uuid": "0746792c-e43a-4b7b-a1c1-2732fe846e41",
+			"title": "GrindArea",
 			"description": "",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []
 		},
 		{
-			"uuid": "6a8b22f5-9a91-4217-aac7-0f2eddd7b15d",
-			"title": "create a nootbook llm to document the project",
+			"uuid": "fc9ff3e4-4525-455f-b46d-9fcd89fc4931",
+			"title": "OpponentAI",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "5930292f-2b7f-49f4-a0a4-230268fd7715",
+			"title": "LevelSystem",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "edfe50e8-e509-4258-910c-389c1d709d12",
+			"title": "MenuSystem",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "40dffa44-b936-4ad8-a2fa-5727ae0f6743",
+			"title": "HUDSystem",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "50ae1214-249c-49b9-bf74-dede27e155a0",
+			"title": "OpponentTrickLogic",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "6db5473d-322b-43b1-b6d0-54f8b7d94498",
+			"title": "ReactSystem",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "c177efe7-ecee-40d0-b388-4ce1fca61b22",
+			"title": "Build Level 1",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "2666e0a6-30e2-4978-925e-c8610b43c016",
+			"title": "New task",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "9f071770-97fd-4fba-a459-4a963c5f8a99",
+			"title": "BoostSystem",
 			"description": "",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []

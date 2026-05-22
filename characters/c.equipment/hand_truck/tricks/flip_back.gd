@@ -1,5 +1,5 @@
 class_name BackFlip
 extends BaseTrick
 
-func execute(context: TrickContext) -> void: #TODO: Back Flip Logic.
-	print("executing backflip", context)
+func execute(_context: TrickContext) -> void:
+	super.execute(_context)

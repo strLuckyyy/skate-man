@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*uid://b3pkltpeb0apa"
+EventBus="*uid://dl24x3t2r5j6y"
+SignalLens="*uid://85rkx60vm7a7"
 
 [dotnet]
 
@@ -26,7 +28,7 @@ project/assembly_name="SkateMan"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg", "res://addons/project_statistics/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotSignalChecker/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/project_statistics/plugin.cfg", "res://addons/signal_lens/plugin.cfg")
 
 [global_group]
 
@@ -87,6 +89,7 @@ right={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

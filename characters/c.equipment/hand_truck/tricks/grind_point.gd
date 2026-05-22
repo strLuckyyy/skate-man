@@ -1,5 +1,5 @@
 class_name PointGrind
-extends BaseTrick
+extends GrindTrick
 
-func execute(context: TrickContext) -> void: #TODO: point grind Logic.
-	print("executing point grind", context)
+func execute(_context: TrickContext) -> void:
+	super.execute(_context)

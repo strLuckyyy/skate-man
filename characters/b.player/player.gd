@@ -1,105 +1,58 @@
 class_name Player
-extends CharacterBody2D
+extends BaseCharacter
 
-@onready var input_buffer: InputBuffer = $InputBuffer
-@onready var state_machine: StateMachine = $StateMachine
-@onready var trick_system: TrickSystem = $TrickSystem
-@onready var equipment: EquipmentManager = $EquipmentManager
-@onready var controller: PlayerController = $Controller
+var input_buffer: InputBuffer
+var state_machine: StateMachine
 
-# --- Blocking State ---
-## When true, all the controllers (input and automatic) is disabled.
-## The extern node set the pos by global_position.
-var is_locked: bool = false
-
-# --- Animation flags ---
-var is_waiting: bool = false
-var is_caught: bool = false
-
-# --- Gameplay flags ---
-var can_jump: bool = true
-var can_grind: bool = false
-var can_move: bool = true
-
-var _is_jumping: bool = false
-var _jumped: int = 0
-var _is_moving: bool = false
-
-var _is_grinding: bool = false
 
 # ---------------------------------------------------------------------------
-# Getters
+# Life cycle
 # ---------------------------------------------------------------------------
-
-
-func is_jumping() -> bool:
-	return _is_jumping
-
-
-func is_grinding() -> bool:
-	return _is_grinding
-
-
-func is_moving() -> bool:
-	return _is_moving
-
-
-func reset_jump() -> void:
-	_jumped = 0
-
-# ---------------------------------------------------------------------------
-# Life cicle
-# ---------------------------------------------------------------------------
-
 
 func _ready() -> void:
+	input_buffer  = find_child("InputBuffer")      as InputBuffer
+	state_machine = find_child("StateMachine")     as StateMachine
+	trick_system  = find_child("TrickSystem")      as TrickSystem
+	equipment     = find_child("EquipmentManager") as EquipmentManager
+	controller    = find_child("Controller")       as PlayerController
+	foot_ref      = find_child("FootPosition")     as CollisionShape2D
+
 	GameManager.player = self
 	state_machine.setup(self)
-	equipment.equipment_changed.connect(trick_system.on_equipment_changed)
 
-	#auto movement
-	#controller.set_auto_move_right(equipment.current_equipment.max_speed)
+	# --- EventBus connections ---
+	EventBus.grind_started.connect(_is_on_grinding)
+	EventBus.player_lock_requested.connect(on_lock_character)
+	EventBus.player_unlock_requested.connect(on_unlock_character)
+	EventBus.platform_lock_character.connect(on_lock_character)
+	EventBus.platform_unlock_character.connect(on_unlock_character)
 
 
 func _physics_process(delta: float) -> void:
 	if is_locked:
 		move_and_slide()
 		return
-
+	
 	_apply_gravity(delta)
 	_update_moving_state()
-
-	trick_system.process(input_buffer, can_grind, state_machine.get_current_state_id())
-
+	
+	trick_system.process(
+		state_machine.get_current_state_id(),
+		can_grind,
+		_current_grindable
+	)
+	
 	_calculate_velocity()
 	move_and_slide()
-
-	if abs(velocity.x) > 1.:
-		_is_moving = true
-	else:
-		_is_moving = false
+	
+	if _is_grinding and _current_grindable != null:
+		global_position = _current_grindable.get_grind_position()
+		velocity        = Vector2.ZERO
 
 
 # ---------------------------------------------------------------------------
 # Movement
 # ---------------------------------------------------------------------------
-
-
-func _calculate_velocity() -> void:
-	_apply_movement()
-	_apply_jump()
-
-
-func _apply_gravity(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else:
-		_is_jumping = false
-
-
-func _update_moving_state() -> void:
-	_is_moving = abs(velocity.x) > 1.0
-
 
 func _apply_movement() -> void:
 	if not can_move:
@@ -114,30 +67,42 @@ func _apply_movement() -> void:
 
 func _apply_jump() -> void:
 	if Input.is_action_just_pressed("jump") and can_jump and _jumped == 0:
-		velocity.y = controller.apply_jump(equipment.current_equipment)
-		_jumped += 1
+		velocity.y  = controller.apply_jump(equipment.current_equipment)
+		_jumped    += 1
 		_is_jumping = true
 
 
-func on_lock_player(_body: CharacterBody2D) -> void:
+# ---------------------------------------------------------------------------
+# Lock / Unlock
+# ---------------------------------------------------------------------------
+
+func on_lock_character(_body: BaseCharacter) -> void:
 	if _body != self:
 		return
 	is_locked = true
-	velocity = Vector2.ZERO
+	velocity  = Vector2.ZERO
 	controller.clear_auto_move()
 
 
-func on_unlock_player() -> void:
+func on_unlock_character() -> void:
 	is_locked = false
-	#controller.set_auto_move_right(equipment.current_equipment.max_speed)
 
 # ---------------------------------------------------------------------------
-# Callbacks de gameplay (mantidos do código original)
+# Gameplay callbacks
 # ---------------------------------------------------------------------------
 
 func player_caught() -> void:
 	state_machine.transition_to(Global.StateID.CAUGHT)
 
 
-func on_grinding_area(_can_grind: bool, _area: GrindArea) -> void:
-	can_grind = _can_grind
+func _is_on_grinding(grindable: ObjectGrindable) -> void:
+	var state := state_machine.get_current_state_id()
+	
+	if _jumped == 0: return
+	if grindable == null: return
+	if state != Global.StateID.ON_AIR and state != Global.StateID.ON_FALLING: return
+	if not grindable.is_foot_aligned(get_foot_position()): return
+	if not grindable.can_accept_speed(abs(velocity.x)): return
+	
+	_current_grindable = grindable
+	start_grind()

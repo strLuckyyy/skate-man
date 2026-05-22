@@ -1,13 +1,13 @@
 class_name WaitingArea
 extends Area2D
 
-signal player_entered(body: CharacterBody2D)
-signal player_exited(body: CharacterBody2D)
+signal character_entered(body: BaseCharacter)
+signal character_exited(body: BaseCharacter)
 
 func _on_body_entered(body: Node2D):
-	if body is not CharacterBody2D: return
-	player_entered.emit(body)
+	if body is not BaseCharacter: return
+	character_entered.emit(body)
 
 func _on_body_exited(body: Node2D) -> void:
-	if body is not CharacterBody2D: return
-	player_exited.emit(body)
+	if body is not BaseCharacter: return
+	character_exited.emit(body)

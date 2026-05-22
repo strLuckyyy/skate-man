@@ -1,23 +1,44 @@
 class_name BaseTrick
 extends Node2D
 
-#may be changed to a more specific node type later on
-
 @export var trick_data: TrickData
+var _state_available:   Array[Global.StateID]
+var is_grind_trick:     bool = false
+var cd_timer:           Timer
+
+func _ready() -> void:
+	_state_available = trick_data.state_available.duplicate()
+	if trick_data.conditional_state_available.size() > 0:
+		_state_available.append_array(trick_data.conditional_state_available.duplicate())
+	
+	cd_timer           = Timer.new()
+	cd_timer.wait_time = trick_data.cd
+	cd_timer.one_shot  = true
+	
+	add_child(cd_timer)
+	cd_timer.timeout.connect(_on_cd_timer_timeout)
 
 
 func can_execute(context: TrickContext) -> bool:
-	var state_available := trick_data.state_available.duplicate()
-	if context.get_grind_opportunity():
-		state_available.append_array(trick_data.conditional_state_available.duplicate())
-
-	var state_match = context.get_state_id() in state_available
-	var input_match = match_input(context.get_input_buffer())
-
-	return state_match && input_match
+	var state_id    := context.get_state_id()
+	var state_match := state_id in _state_available
+	var input_match := match_input(context.get_input_buffer())
+	
+	if not cd_timer.is_stopped():
+		return false
+	
+	if not (state_match and input_match):
+		return false
+	
+	if is_grind_trick in _state_available:
+		if not context.get_grind_opportunity():
+			return false
+	
+	return true
 
 
 func execute(_context: TrickContext) -> void:
+	if cd_timer.is_stopped(): cd_timer.start()
 	print("executing ", self.name, " logic.")
 	pass
 
@@ -25,16 +46,15 @@ func execute(_context: TrickContext) -> void:
 ##Checks if the current input buffer matches the trick's required input sequence.
 func match_input(buffer: Array[Global.Direction]) -> bool:
 	var sequence = trick_data.sequence
-	var continue_count: int = 0
-
 	if buffer.size() < sequence.size():
 		return false
 	
-	for i in range(sequence.size()):
-		var buf_val = buffer[buffer.size() - sequence.size() + i]
-		if int(buf_val) != int(sequence[i]):
-			if continue_count == 1:
-				continue_count += 1
-				continue
+	var offset = buffer.size() - sequence.size()
+	for i in sequence.size():
+		if buffer[offset + i] != sequence[i]:
 			return false
 	return true
+
+
+func _on_cd_timer_timeout() -> void:
+	print("can execute ",  trick_data.trick_name, " again.")

@@ -8,7 +8,7 @@ func _init() -> void:
 
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
-func enter(character: CharacterBody2D, payload = null) -> void:
+func enter(character: BaseCharacter, payload = null) -> void:
 	self.character = character
 	character.can_jump = true
 

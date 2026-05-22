@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b0p82k5dcrryy"]
+
+[ext_resource type="Script" uid="uid://laoouoid78s" path="res://system/trie_navigator.gd" id="1_ycagr"]
+
+[node name="TrieNavigator" type="Node2D" unique_id=2057733963]
+script = ExtResource("1_ycagr")

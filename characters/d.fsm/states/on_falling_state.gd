@@ -1,3 +1,7 @@
+## OnFallingState — mirrors the grind-detection change from OnAirState.
+##
+## Forwards _current_grindable as transition payload so OnGridingState
+## receives the ObjectGrindable reference when grinding starts mid-fall.
 class_name OnFallingState
 extends BaseState
 
@@ -8,17 +12,19 @@ func _init() -> void:
 
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
-func enter(character: CharacterBody2D, payload = null) -> void:
-	self.character = character
+func enter(character: BaseCharacter, payload = null) -> void:
+	self.character     = character
 	character.can_jump = false
 
 
-func update(_delta: float) -> void:	
+func update(_delta: float) -> void:
+	# ── Grind detection (same pattern as OnAirState) ──────────────────────
 	if character.is_grinding():
-		emit_signal("transition_requested", Global.StateID.ON_GRIDING)
-	
+		emit_signal("transition_requested", Global.StateID.ON_GRIDING, character._current_grindable)
+		return
+
 	if character.is_on_floor():
-		emit_signal("transition_requested", Global.StateID.ON_FLOOR)
+		emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
 
 
 func exit() -> void:

@@ -1,6 +1,11 @@
 class_name TrickFailState
 extends BaseState
 
+
+const RECOUVER_TIMEOUT:    float = 0.8
+var current_recouver_time: float = 0.
+
+
 func _init() -> void:
 	state_id = Global.StateID.TRICK_FAIL
 
@@ -8,13 +13,12 @@ func _init() -> void:
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
 func enter(character: CharacterBody2D, payload = null) -> void:
-	print("trick fail")
 	character.velocity = Vector2.ZERO
 
 
 func update(_delta: float) -> void:
-	print("rising")
+	pass
 
 
 func exit() -> void:
-	pass
+	print("")

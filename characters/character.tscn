@@ -12,6 +12,9 @@
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367863434]
 
+[node name="FootPosition" type="CollisionShape2D" parent="." unique_id=922820172]
+disabled = true
+
 [node name="TrickSystem" parent="." unique_id=33422410 instance=ExtResource("4_ke030")]
 
 [node name="EquipmentManager" parent="." unique_id=2011998462 instance=ExtResource("2_3fwhk")]

@@ -2,10 +2,8 @@ class_name EquipmentManager
 extends Node
 
 @export var default_equipment: EquipmentData
-var current_equipment: EquipmentData
-var _current_tricks: Array[BaseTrick] = []
-
-signal equipment_changed(equipment: EquipmentData, tricks: Array[BaseTrick])
+var current_equipment:         EquipmentData
+var _current_tricks:           Array[BaseTrick] = []
 
 
 func _ready() -> void:
@@ -20,8 +18,8 @@ func equip(equipment: EquipmentData):
 		return
 
 	current_equipment = equipment
-	_current_tricks = _build_tricks()
-	emit_signal("equipment_changed", equipment, get_tricks())
+	_current_tricks   = _build_tricks()
+	EventBus.equipment_changed.emit(equipment, get_tricks())
 
 
 func get_tricks() -> Array[BaseTrick]:
@@ -29,13 +27,29 @@ func get_tricks() -> Array[BaseTrick]:
 
 
 func _build_tricks() -> Array[BaseTrick]:
-	var result: Array[BaseTrick] = []
-
+	_clear_tricks()
+	var scenes: Array[BaseTrick] = []
+	
 	for packed_scene in current_equipment.tricks:
 		var trick = packed_scene.instantiate() as BaseTrick
 		if trick == null:
 			push_error("Trick scene does not extend BaseTrick")
 			continue
-		result.append(trick)
-		print(trick.name)
+		scenes.append(trick)
+	
+	# Order by priority
+	var i = 0
+	var result: Array[BaseTrick] = []
+	while i < scenes.size():
+		for trick in scenes:
+			if trick.trick_data.priority == i:
+				add_child(trick)
+				result.append(trick)
+		i += 1
 	return result
+
+
+func _clear_tricks() -> void:
+	for trick in _current_tricks:
+		trick.queue_free()
+	_current_tricks.clear()

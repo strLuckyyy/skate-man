@@ -1,5 +1,5 @@
 class_name NormalGrind
-extends BaseTrick
+extends GrindTrick
 
-func execute(context: TrickContext) -> void: #TODO: Normal Grind Logic.
-	print("executing normalgrind", context)
+func execute(_context: TrickContext) -> void:
+	super.execute(_context)
