@@ -1,8 +1,9 @@
 class_name EquipmentData 
 extends Resource
 
-@export var tricks:    Array[PackedScene]
-@export var max_speed: float = 2000.
+@export var tricks:          Array[PackedScene]
+@export var max_speed:       float = 1000.
+@export var max_boost_speed: float = 3000.
 
 ## must be a value between 0.0 and 1.0
 @export_range(0.0, 1.0) var acceleration: float = 0.3

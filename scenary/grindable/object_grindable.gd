@@ -1,9 +1,9 @@
-
 class_name ObjectGrindable
 extends Path2D
 
 @onready var player_anchor: PathFollow2D = $PlayerAnchor
 @export var grind_speed: float = 200.0
+
 
 # ---------------------------------------------------------------------------
 # Public API — called by OnGridingState each physics frame

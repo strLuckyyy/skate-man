@@ -3,20 +3,28 @@
 [ext_resource type="PackedScene" uid="uid://dkje7f8xayr4l" path="res://scenary/grindable/grind_area/grind_area.tscn" id="1_60qgo"]
 [ext_resource type="Script" uid="uid://fw76pyjr22yg" path="res://scenary/grindable/object_grindable.gd" id="1_f0y80"]
 
-[node name="ObjectGrindable" type="Path2D" unique_id=836304084]
+[node name="RigidBody2D" type="RigidBody2D" unique_id=424256817]
+collision_layer = 32
+collision_mask = 240
+
+[node name="ObjectGrindable" type="Path2D" parent="." unique_id=836304084]
 script = ExtResource("1_f0y80")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1036040147]
+[node name="PathFollow2D" type="PathFollow2D" parent="ObjectGrindable" unique_id=1036040147]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=97512553]
+[node name="Sprite2D" type="Sprite2D" parent="ObjectGrindable" unique_id=97512553]
 
-[node name="PlayerAnchor" type="PathFollow2D" parent="." unique_id=68904604]
+[node name="PlayerAnchor" type="PathFollow2D" parent="ObjectGrindable" unique_id=68904604]
 rotates = false
 loop = false
 
-[node name="GrindArea" parent="." unique_id=787362715 instance=ExtResource("1_60qgo")]
+[node name="GrindArea" parent="ObjectGrindable" unique_id=787362715 instance=ExtResource("1_60qgo")]
+collision_layer = 4
+collision_mask = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=130838198]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjectGrindable" unique_id=130838198]
 root_node = NodePath("../Sprite2D")
 
-[editable path="GrindArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1112063662]
+
+[editable path="ObjectGrindable/GrindArea"]

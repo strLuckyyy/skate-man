@@ -33,6 +33,9 @@ shape = SubResource("CapsuleShape2D_1f1u2")
 position = Vector2(25, 106)
 shape = SubResource("RectangleShape2D_s3qd7")
 
+[node name="TrickSystem" parent="." index="5" unique_id=33422410 node_paths=PackedStringArray("character")]
+character = NodePath("..")
+
 [node name="EquipmentManager" parent="." index="6" unique_id=2011998462]
 default_equipment = ExtResource("5_sh2bi")
 

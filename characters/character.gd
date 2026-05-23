@@ -13,8 +13,9 @@ var foot_ref:     CollisionShape2D
 var is_locked: bool = false
 
 # --- Animation flags ---
-var is_waiting: bool = false
-var is_caught:  bool = false
+var is_waiting:    bool = false
+var is_caught:     bool = false
+var is_trick_fail: bool = false
 
 # --- Gameplay flags ---
 var can_jump:  bool = true
@@ -25,20 +26,23 @@ var can_trick: bool = true #this flag will be used in animation tree transitions
 var _is_jumping: bool  = false
 var _jumped:     int   = 0
 var _is_moving:  bool  = false
-var _is_grinding: bool = false #this flag will be used in animation tree transitions - while 
+var _is_grinding: bool = false #this flag will be used in animation tree transitions - while
 
 var _current_grindable: ObjectGrindable = null
 
+# --- Boost flags ---
+var current_boost_speed: float = 0.0
 
 # ---------------------------------------------------------------------------
 # Getters
 # ---------------------------------------------------------------------------
 
-func is_jumping()        -> bool:    return _is_jumping
-func is_grinding()       -> bool:    return _is_grinding
-func is_moving()         -> bool:    return _is_moving
-func get_foot_position() -> Vector2: return foot_ref.global_position
-func reset_jump()        -> void:    _jumped = 0
+func is_jumping()          -> bool:    return _is_jumping
+func is_grinding()         -> bool:    return _is_grinding
+func is_moving()           -> bool:    return _is_moving
+func get_foot_position()   -> Vector2: return foot_ref.global_position
+func reset_jump()          -> void:    _jumped = 0
+func get_max_boost_speed() -> float:   return equipment.current_equipment.max_boost_speed
 
 # ---------------------------------------------------------------------------
 # Movement methods

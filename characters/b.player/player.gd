@@ -29,6 +29,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	print(velocity.x)
 	if is_locked:
 		move_and_slide()
 		return
@@ -60,9 +61,9 @@ func _apply_movement() -> void:
 		return
 
 	if controller.get_auto_move_active():
-		velocity = controller.apply_auto_movement(equipment.current_equipment, velocity)
+		velocity = controller.apply_auto_movement(velocity, equipment.current_equipment, current_boost_speed)
 	else:
-		velocity = controller.apply_movement(velocity, equipment.current_equipment)
+		velocity = controller.apply_movement(velocity, equipment.current_equipment, current_boost_speed)
 
 
 func _apply_jump() -> void:

@@ -34,6 +34,12 @@ signal trick_failed(trick: BaseTrick)
 @warning_ignore("unused_signal")
 signal equipment_changed(equipment: EquipmentData, tricks: Array[BaseTrick])
 
+# --- Boost Events ---
+@warning_ignore("unused_signal")
+signal request_boost(boost_amount: float, character: Node)
+@warning_ignore("unused_signal")
+signal request_boost_reset(character: Node)
+
 # --- Platform Events ---
 @warning_ignore("unused_signal")
 signal platform_lock_character(body: BaseCharacter)
@@ -43,21 +49,12 @@ signal platform_unlock_character()
 signal platform_timeout()
 
 # --- Grind Events ---
-## Emitted by TrickSystem when a GrindTrick successfully resolves.
-## Carries the ObjectGrindable the player will lock onto.
-## REPLACES the old parameterless `is_on_griding` signal.
 @warning_ignore("unused_signal")
 signal grind_started(grindable: ObjectGrindable)
-
-## Emitted by OnGridingState on a clean jump exit.
 @warning_ignore("unused_signal")
 signal grind_ended()
-
-## Emitted by OnGridingState when the player falls off the end of the path.
 @warning_ignore("unused_signal")
 signal grind_failed()
-
-## Legacy platform-style lock/unlock kept for other systems that still use them.
 @warning_ignore("unused_signal")
 signal grind_lock_character(body: BaseCharacter)
 @warning_ignore("unused_signal")

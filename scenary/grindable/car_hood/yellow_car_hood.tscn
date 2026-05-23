@@ -3,31 +3,34 @@
 [ext_resource type="PackedScene" uid="uid://bxt2g8x0hui58" path="res://scenary/grindable/object_grindable.tscn" id="1_jpicr"]
 [ext_resource type="Texture2D" uid="uid://begbm7e3oegmj" path="res://assets/cars/Kei Car Pack #1/hdn_bt/tuned/bt_td_front_view.png" id="2_n0d10"]
 
-[sub_resource type="Curve2D" id="Curve2D_xon4w"]
-_data = {
-"points": PackedVector2Array(-17.845, 0, 0, 0, -108, -10, 0, 0, 0, 0, -58, -5, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 59, -6, 0, 0, 0, 0, 104, -10)
-}
-point_count = 5
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xon4w"]
 size = Vector2(229, 69)
 
-[node name="YellowCarHood" unique_id=836304084 instance=ExtResource("1_jpicr")]
-curve = SubResource("Curve2D_xon4w")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cyvj"]
+size = Vector2(217, 181)
 
-[node name="PathFollow2D" parent="." index="0" unique_id=1036040147]
+[node name="YellowCarHood" unique_id=836304084 instance=ExtResource("1_jpicr")]
+collision_layer = 4
+collision_mask = 240
+
+[node name="PathFollow2D" parent="ObjectGrindable" parent_id_path=PackedInt32Array(836304084) index="0" unique_id=1036040147]
 position = Vector2(-108, -10)
 rotation = 0.09966865
 
-[node name="Sprite2D" parent="." index="1" unique_id=97512553]
+[node name="Sprite2D" parent="ObjectGrindable" parent_id_path=PackedInt32Array(836304084) index="1" unique_id=97512553]
 scale = Vector2(4.3150015, 4.3150015)
 texture = ExtResource("2_n0d10")
 
-[node name="PlayerAnchor" parent="." index="2" unique_id=68904604]
+[node name="PlayerAnchor" parent="ObjectGrindable" parent_id_path=PackedInt32Array(836304084) index="2" unique_id=68904604]
 position = Vector2(-108, -10)
 
-[node name="CollisionShape2D" parent="GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=1726410716]
+[node name="CollisionShape2D" parent="ObjectGrindable/GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=1726410716]
 position = Vector2(-0.5, -24.5)
 shape = SubResource("RectangleShape2D_xon4w")
 
-[editable path="GrindArea"]
+[node name="CollisionShape2D" parent="." index="1" unique_id=1112063662]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_7cyvj")
+debug_color = Color(0.6003715, 0.5437425, 3.85046e-07, 0.41960785)
+
+[editable path="ObjectGrindable/GrindArea"]
