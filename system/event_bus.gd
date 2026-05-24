@@ -10,6 +10,9 @@ signal player_unlock_requested()
 @warning_ignore("unused_signal")
 signal player_caught()
 
+# --- Oponent Events ---
+# --- NPC Events ---
+
 # --- Input Events ---
 @warning_ignore("unused_signal")
 signal direction_input(direction: Global.Direction, pressed: bool)
@@ -50,7 +53,7 @@ signal platform_timeout()
 
 # --- Grind Events ---
 @warning_ignore("unused_signal")
-signal grind_started(grindable: ObjectGrindable)
+signal grind_started(grindable: GrindableObject)
 @warning_ignore("unused_signal")
 signal grind_ended()
 @warning_ignore("unused_signal")

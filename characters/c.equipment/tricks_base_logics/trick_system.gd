@@ -5,7 +5,7 @@ extends Node
 var equipment:          EquipmentData
 var _current_state:     Global.StateID
 var _grind_opportunity: bool
-var _current_grindable: ObjectGrindable
+var _current_grindable: GrindableObject
 
 
 func _ready() -> void:
@@ -14,9 +14,9 @@ func _ready() -> void:
 
 
 func process(
-		state_id:        Global.StateID,
+		state_id:          Global.StateID,
 		grind_opportunity: bool,
-		grindable:       ObjectGrindable = null
+		grindable:         GrindableObject = null
 ) -> void:
 	_current_state      = state_id
 	_grind_opportunity  = grind_opportunity
@@ -29,12 +29,11 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	)
 	EventBus.trick_started.emit(trick)
 	
-	if trick.is_grind_trick and _current_grindable != null:
+	if trick.is_grind_trick and context.get_grind_opportunity():
 		EventBus.grind_started.emit(_current_grindable)
 	
 	EventBus.request_boost.emit(trick.trick_data.boost, character)
 	trick.execute(context)
-
 
 # ---------------------------------------------------------------------------
 # Private — sequence resolution
@@ -49,7 +48,6 @@ func _on_sequence_resolved(candidates: Array[BaseTrick], path: Array[Global.Dire
 			if trick.is_grind_trick and trick.can_execute(context):
 				try_execute(context, trick)
 				return
-	
 	
 	for trick in candidates:
 		if not trick.is_grind_trick and trick.can_execute(context):

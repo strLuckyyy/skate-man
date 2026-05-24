@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bnatrw1b4s4gi" path="res://characters/c.equipment/equipment_manager.tscn" id="2_3fwhk"]
 [ext_resource type="PackedScene" uid="uid://b0y55jk3gggnh" path="res://characters/a.controllers/controller.tscn" id="2_qqr4u"]
-[ext_resource type="PackedScene" uid="uid://ekofyepjq8d7" path="res://characters/c.equipment/tricks base logics/trick_system.tscn" id="4_ke030"]
+[ext_resource type="PackedScene" uid="uid://ekofyepjq8d7" path="res://characters/c.equipment/tricks_base_logics/trick_system.tscn" id="4_ke030"]
+[ext_resource type="PackedScene" uid="uid://c06pux3q0qn72" path="res://characters/c.equipment/grind_component/grind_component.tscn" id="4_mdkfl"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qqr4u"]
 
@@ -13,14 +14,17 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367863434]
 
-[node name="FootPosition" type="CollisionShape2D" parent="." unique_id=922820172]
-disabled = true
-
 [node name="TrickSystem" parent="." unique_id=33422410 instance=ExtResource("4_ke030")]
+unique_name_in_owner = true
 
 [node name="EquipmentManager" parent="." unique_id=2011998462 instance=ExtResource("2_3fwhk")]
+unique_name_in_owner = true
 
 [node name="Controller" parent="." unique_id=697335465 instance=ExtResource("2_qqr4u")]
+unique_name_in_owner = true
+
+[node name="GrindComponent" parent="." unique_id=1564649999 instance=ExtResource("4_mdkfl")]
+unique_name_in_owner = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1748857434]
 root_node = NodePath("../Sprite2D")

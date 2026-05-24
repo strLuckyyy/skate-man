@@ -19,6 +19,11 @@ enum Direction {
 	NONE,
 }
 
+enum ReasonToExitGrind {
+	JUMPED,
+	END_OF_RAIL
+}
+
 enum PlatformAnim {
 	MOVE_UP,
 	MOVE_DOWN,

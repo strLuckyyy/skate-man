@@ -10,7 +10,7 @@ var _auto_move_active:   bool  = false
 func get_auto_move_active() -> bool: return _auto_move_active
 
 func set_auto_move_left(speed: float) -> void:
-	_auto_move_velocity = -abs(speed)   # garante direção correta
+	_auto_move_velocity = -abs(speed)
 	_auto_move_active   = true
 
 func set_auto_move_right(speed: float) -> void:

@@ -16,17 +16,19 @@
 				"5930292f-2b7f-49f4-a0a4-230268fd7715",
 				"edfe50e8-e509-4258-910c-389c1d709d12",
 				"40dffa44-b936-4ad8-a2fa-5727ae0f6743",
-				"c177efe7-ecee-40d0-b388-4ce1fca61b22"
+				"c177efe7-ecee-40d0-b388-4ce1fca61b22",
+				"9413760d-4262-40bc-ab47-5f40dba0dded",
+				"5528a92e-dba8-4ec6-a240-667ffdcfe961",
+				"64a0ffa9-c279-4fde-8b11-cfacdf6ac513",
+				"ac2c0d7a-d575-42bb-ba68-1ef28ac94eae"
 			]
 		},
 		{
 			"uuid": "5e5b0a7a-e2c1-4814-a6cf-23ac3b273700",
 			"title": "Doing",
 			"tasks": [
-				"0746792c-e43a-4b7b-a1c1-2732fe846e41",
 				"34027d8f-8bc8-4d92-8062-309f6acab61e",
-				"6db5473d-322b-43b1-b6d0-54f8b7d94498",
-				"9f071770-97fd-4fba-a459-4a963c5f8a99"
+				"6db5473d-322b-43b1-b6d0-54f8b7d94498"
 			]
 		},
 		{
@@ -35,7 +37,9 @@
 			"tasks": [
 				"25ccc8ca-6fcf-4d7f-acc2-db50be76e29a",
 				"7f07e52f-5bc5-41b0-91e4-e595f1836758",
-				"9b5e72c5-83ca-4304-bdae-7cf6ff62918b"
+				"9b5e72c5-83ca-4304-bdae-7cf6ff62918b",
+				"0746792c-e43a-4b7b-a1c1-2732fe846e41",
+				"9f071770-97fd-4fba-a459-4a963c5f8a99"
 			]
 		}
 	],
@@ -88,7 +92,7 @@
 		{
 			"uuid": "0746792c-e43a-4b7b-a1c1-2732fe846e41",
 			"title": "GrindArea",
-			"description": "",
+			"description": "Para um jogo 2D estilo skate/plataforma (tipo o que tu comentou inspirado em OlliOlli), eu faria o grind pensando em:\n\n* desacoplamento total entre:\n\n  * detecção do trilho\n  * movimentação\n  * input\n  * estado do player\n* sistema orientado a dados (`Resource`)\n* mínimo de lógica dentro da própria `Area2D`\n* possibilidade de:\n\n  * curvas\n  * boost\n  * direção\n  * múltiplos tipos de trilho\n  * checkpoints/splines\n  * tricks\n  * replay/câmera depois\n\nA arquitetura que normalmente escala melhor:\n\n---\n\n# Estrutura\n\n```text\nPlayer\n ├── StateMachine\n ├── GrindComponent\n ├── MovementComponent\n ├── InputBuffer\n └── Controller\n\nGrindRail\n ├── Path2D\n ├── Area2D\n └── GrindData (Resource)\n```\n\n---\n\n# Ideia principal\n\nO trilho NÃO move o player.\n\nO trilho apenas fornece:\n\n* caminho\n* direção\n* velocidade sugerida\n* pontos válidos\n* normal\n* regras\n\nQuem controla o movimento:\n➡️ `GrindComponent` do player.\n\nIsso evita:\n\n* trilho mexendo em player\n* dependência circular\n* dezenas de bugs de sincronização\n\n---\n\n# Estrutura do trilho\n\n## Cena\n\n```text\nGrindRail\n ├── Path2D\n │    └── Curve2D\n └── DetectionArea\n      └── CollisionPolygon2D\n```\n\n---\n\n# Resource de configuração\n\n```gdscript\nclass_name GrindData\nextends Resource\n\n@export var base_speed: float = 500.0\n@export var allow_reverse: bool = true\n@export var snap_distance: float = 24.0\n@export var exit_impulse: float = 250.0\n@export var gravity_multiplier: float = 0.2\n```\n\nAssim:\n\n* cada trilho tem comportamento diferente\n* desacoplado\n* fácil balancear\n\n---\n\n# Classe GrindRail\n\n```gdscript\nclass_name GrindRail\nextends Node2D\n\n@export var data: GrindData\n\n@onready var path: Path2D = $Path2D\n@onready var area: Area2D = $DetectionArea\n```\n\nE só.\n\nO trilho não faz lógica de player.\n\n---\n\n# Detecção\n\nNo player:\n\n```gdscript\nfunc _on_grind_detected(rail: GrindRail):\n    grind_component.try_enter_grind(rail)\n```\n\nA `Area2D` do trilho apenas emite sinal.\n\n---\n\n# GrindComponent\n\nAqui fica toda a lógica real.\n\n```gdscript\nclass_name GrindComponent\nextends Node\n```\n\n---\n\n# Dados internos\n\n```gdscript\nvar current_rail: GrindRail\nvar distance := 0.0\nvar speed := 0.0\nvar direction := 1\nvar grinding := false\n```\n\n---\n\n# Entrar no grind\n\n```gdscript\nfunc try_enter_grind(rail: GrindRail):\n\n    current_rail = rail\n\n    var curve := rail.path.curve\n\n    distance = curve.get_closest_offset(owner.global_position)\n\n    grinding = true\n```\n\n---\n\n# Movimento no trilho\n\nNo `_physics_process`:\n\n```gdscript\nfunc update_grind(delta):\n\n    if !grinding:\n        return\n\n    distance += speed * direction * delta\n\n    var curve := current_rail.path.curve\n\n    var pos = curve.sample_baked(distance)\n\n    owner.global_position = pos\n```\n\nSimples.\n\nMuito eficiente.\n\n---\n\n# Direção automática\n\nTu pode detectar automaticamente:\n\n```gdscript\nvar next_pos = curve.sample_baked(distance + 5.0)\n\nvar dir = (next_pos - pos).normalized()\n```\n\nIsso te dá:\n\n* vetor tangente\n* rotação\n* impulso de saída\n\n---\n\n# Rotação automática\n\n```gdscript\nowner.rotation = dir.angle()\n```\n\n---\n\n# Snap elegante\n\nNa entrada:\n\n```gdscript\nvar closest = curve.sample_baked(distance)\n\nowner.global_position = owner.global_position.lerp(closest, 0.4)\n```\n\nOu tween.\n\n---\n\n# Saída do grind\n\nQuando:\n\n* chega no fim\n* pula\n* perde velocidade\n* input cancela\n\n```gdscript\nfunc exit_grind():\n\n    grinding = false\n\n    owner.velocity = exit_direction * impulse\n```\n\n---\n\n# OTIMIZAÇÃO\n\nEssa abordagem é MUITO barata.\n\nTu usa:\n\n* `Curve2D.sample_baked`\n* um float de distância\n* sem raycasts constantes\n* sem física complexa\n\nMesmo com dezenas de trilhos.\n\n---\n\n# Melhor abordagem para curvas\n\nA melhor solução moderna:\n➡️ `Path2D + Curve2D`\n\nPorque:\n\n* suporta curvas naturalmente\n* editor visual\n* bake otimizado\n* cálculo rápido\n* fácil expandir\n\nMuito melhor que:\n\n* vários colliders\n* vários pontos\n* tiles\n* raycast chains\n\n---\n\n# Como eu faria os estados\n\n## Estado Grind\n\n```text\nGrindState\n ├── enter()\n ├── update()\n ├── physics_update()\n └── exit()\n```\n\nO estado apenas chama:\n\n```gdscript\ngrind_component.update_grind(delta)\n```\n\n---\n\n# Sistema desacoplado ideal\n\n## Trilho sabe:\n\n* geometria\n* configuração\n\n## GrindComponent sabe:\n\n* movimentação\n* física\n* progressão\n\n## State sabe:\n\n* quando ativar/desativar\n\n---\n\n# Extra MUITO importante\n\n## Nunca:\n\n```gdscript\nrail.move_player()\n```\n\nou:\n\n```gdscript\nplayer.parent = rail\n```\n\nIsso explode arquitetura depois.\n\n---\n\n# Sistema avançado (recomendado)\n\nDepois tu pode adicionar:\n\n## Nós especiais\n\n```text\nGrindPoint\n ├── BOOST\n ├── JUMP\n ├── STOPPER\n ├── SWITCH_PATH\n └── TRICK_ZONE\n```\n\nUsando offsets ao longo da curva.\n\n---\n\n# Melhor método pra detectar entrada\n\nEu faria:\n\n* uma `Area2D` grossa ao redor do trilho\n* player detecta\n* calcula ponto mais próximo da curva\n* se distância válida:\n\n  * entra no grind\n\nAssim tu evita:\n\n* snap estranho\n* teleport\n* bugs em curvas\n\n---\n\n# Resumo da arquitetura ideal\n\n## Recomendo MUITO:\n\n### Trilho\n\n* `Path2D`\n* `Curve2D`\n* `Area2D`\n* `GrindData`\n\n### Player\n\n* `GrindComponent`\n* `GrindState`\n\n### Movimento\n\n* baseado em offset da curva\n\n---\n\nEssa arquitetura é:\n\n* modular\n* escalável\n* altamente otimizada\n* fácil de debugar\n* perfeita pra jogo de skate/plataforma 2D\n* compatível com trick system/fsm/input buffer que tu já tá fazendo\n\nE principalmente:\n➡️ não vira spaghetti quando o jogo crescer.\n",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []
 		},
@@ -152,6 +156,34 @@
 			"uuid": "9f071770-97fd-4fba-a459-4a963c5f8a99",
 			"title": "BoostSystem",
 			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "9413760d-4262-40bc-ab47-5f40dba0dded",
+			"title": "EventBuss",
+			"description": "EventBus como \"God Object\" (Assassino de Multiplayer): O seu EventBus (event_bus.gd) está roteando eventos que deveriam ser locais. Sinais como direction_input, player_state_changed, player_lock_requested e trick_started são disparados globalmente. Se você colocar 2 jogadores na cena (ou um NPC que possa fazer manobras), o input do Jogador 1 vai disparar a manobra no Jogador 2, pois o TrickSystem escuta o EventBus global.\n\nsolução\nLocalize o EventBus: Remova sinais específicos de entidade do Autoload. Crie um EntityEventBus (um nó comum) e coloque-o como filho do Player ou do NPC. Os componentes internos daquele personagem (FSM, Equipamento, UI local) devem se conectar a este nó local, e não ao Autoload. Mantenha no Autoload apenas o que afeta o mundo inteiro (ex: pause_requested, match_started).",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "5528a92e-dba8-4ec6-a240-667ffdcfe961",
+			"title": "Velocity",
+			"description": "Crise de Autoridade de Movimento (Race Conditions): O controle da velocidade (velocity) está espalhado. O Player.gd aplica gravidade no _physics_process. O PlayerController.gd aplica movimentação. A StateMachine controla o estado da física, mas o movimento em si é processado fora dela. Isso gera spaghetti de autoridade. (Ex: No estado OnGridingState, você zera a velocidade localmente, mas se o Player.gd rodar a gravidade depois, ocorrem micro-movimentos não intencionais).",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "64a0ffa9-c279-4fde-8b11-cfacdf6ac513",
+			"title": "Otimization",
+			"description": "Busca Ineficiente de Nós: Em Player.gd, você usa find_child(\"InputBuffer\"). O método find_child faz uma busca recursiva na árvore e tem custo computacional. Na Godot 4, a abordagem ideal e mais performática para nós que pertencem à mesma cena é utilizar Scene Unique Nodes (%InputBuffer).\n\nInputBuffer Duplo-Processamento: O script input_buffer.gd mistura checagem por polling dentro de _process (Input.is_action_pressed) e checagem baseada em eventos dentro de _unhandled_input. Isso pode causar dessincronização de frames em momentos de lag spike, onde um evento é registrado em um frame, mas o polling só pega no frame seguinte.\n\nCoyote Time com Instanciação Frequente: Em OnAirState e TrickFailState, o CoyoteTime é instanciado via CoyoteTime.new() ao invés de ser um nó ou recurso persistente. Embora RefCounted seja leve, o estado interno do Coyote Time zera toda vez que você entra no estado, o que pode invalidar janelas de input dependendo da ordem das transições de FSM.",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "ac2c0d7a-d575-42bb-ba68-1ef28ac94eae",
+			"title": "FSM",
+			"description": "Centralize a Física na State Machine: Transforme a FSM na verdadeira autoridade do movimento. O _physics_process do Player.gd deve apenas chamar state_machine.physics_update(delta). Cada estado deve decidir se aplica gravidade, movimento ou fricção.",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []
 		}

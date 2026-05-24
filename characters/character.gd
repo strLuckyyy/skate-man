@@ -1,48 +1,54 @@
 class_name BaseCharacter
 extends CharacterBody2D
 
+# --- Componentes Base ---
+var trick_system:    TrickSystem
+var equipment:       EquipmentManager
+var controller:      PlayerController
+var foot_ref:        CollisionShape2D
+var grind_component: GrindComponent
 
-var trick_system: TrickSystem
-var equipment:    EquipmentManager
-var controller:   PlayerController
-var foot_ref:     CollisionShape2D
-
-# --- Blocking State ---
-## When true, all controllers (input and automatic) are disabled.
-## The external node sets the pos via global_position.
-var is_locked: bool = false
-
-# --- Animation flags ---
-var is_waiting:    bool = false
-var is_caught:     bool = false
+# --- Flags e Estados (Reduzidos) ---
+var is_locked:     bool = false
 var is_trick_fail: bool = false
-
-# --- Gameplay flags ---
-var can_jump:  bool = true
-var can_grind: bool = false
-var can_move:  bool = true
-var can_trick: bool = true #this flag will be used in animation tree transitions - while some trick is been executed, can_trick = false. 
+var can_jump:      bool = true
+var can_move:      bool = true
 
 var _is_jumping: bool  = false
 var _jumped:     int   = 0
 var _is_moving:  bool  = false
-var _is_grinding: bool = false #this flag will be used in animation tree transitions - while
 
-var _current_grindable: ObjectGrindable = null
-
-# --- Boost flags ---
 var current_boost_speed: float = 0.0
+
+	# --- Grind flag ---
+var available_grindable: GrindableObject = null
+
+# ---------------------------------------------------------------------------
+# API de Grind
+# ---------------------------------------------------------------------------
+
+func add_available_grindable(grindable: GrindableObject) -> void:
+	available_grindable = grindable
+
+func remove_available_grindable(grindable: GrindableObject) -> void:
+	# Só remove se for o mesmo cano (previne bugs ao encostar em dois canos juntos)
+	if available_grindable == grindable:
+		available_grindable = null
+
+# O character está ativamente grindando se o GrindComponent disser que está.
+func is_grinding() -> bool:
+	return grind_component != null and grind_component.is_grinding
 
 # ---------------------------------------------------------------------------
 # Getters
 # ---------------------------------------------------------------------------
 
-func is_jumping()          -> bool:    return _is_jumping
-func is_grinding()         -> bool:    return _is_grinding
-func is_moving()           -> bool:    return _is_moving
-func get_foot_position()   -> Vector2: return foot_ref.global_position
-func reset_jump()          -> void:    _jumped = 0
-func get_max_boost_speed() -> float:   return equipment.current_equipment.max_boost_speed
+func reset_jump()          -> void:  _jumped = 0
+func can_grind()           -> bool:  return available_grindable != null
+func is_jumping()          -> bool:  return _is_jumping
+func jumped()              -> bool:  return _jumped > 0
+func is_moving()           -> bool:  return _is_moving
+func get_max_boost_speed() -> float: return equipment.current_equipment.max_boost_speed
 
 # ---------------------------------------------------------------------------
 # Movement methods
@@ -68,31 +74,11 @@ func _apply_gravity(delta: float) -> void:
 func _update_moving_state() -> void:
 	_is_moving = abs(velocity.x) > 1.0
 
-
-# ---------------------------------------------------------------------------
-# Grind API
-# ---------------------------------------------------------------------------
-
-func on_grinding_area(_can_grind: bool, grindable: ObjectGrindable = null) -> void:
-	can_grind          = _can_grind
-	_current_grindable = grindable
-
-
-func start_grind() -> void:
-	_is_grinding = true
-
-
-func stop_grind() -> void:
-	_is_grinding       = false
-	_current_grindable = null
-	can_grind          = false
-
-
 # ---------------------------------------------------------------------------
 # Lock / Unlock (platform / external movers)
 # ---------------------------------------------------------------------------
 
 @warning_ignore("unused_parameter")
-func _is_on_grinding(grindable: ObjectGrindable) -> void: pass
+func _is_on_grinding(grindable: GrindableObject) -> void: pass
 func on_lock_character(_body: BaseCharacter)     -> void: pass
 func on_unlock_character()                       -> void: pass

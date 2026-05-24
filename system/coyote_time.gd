@@ -1,7 +1,7 @@
 class_name CoyoteTime
 extends RefCounted
 
-const COYOTE_TIMEOUT: float = 0.1
+const COYOTE_TIMEOUT: float = 0.2
 var _coyote_elapsed:  float = 0.0
 var _ends:            bool  = false
 

@@ -13,8 +13,6 @@
 radius = 54.0
 height = 252.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3qd7"]
-
 [node name="Character" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
 script = ExtResource("2_dyllp")
 
@@ -26,26 +24,25 @@ texture = ExtResource("3_gom2c")
 shape = SubResource("CapsuleShape2D_1f1u2")
 
 [node name="InputBuffer" parent="." index="2" unique_id=69867716 instance=ExtResource("4_iai5m")]
+unique_name_in_owner = true
 
 [node name="StateMachine" parent="." index="3" unique_id=1335913820 instance=ExtResource("5_ymscc")]
+unique_name_in_owner = true
 
-[node name="FootPosition" parent="." index="4" unique_id=922820172]
-position = Vector2(25, 106)
-shape = SubResource("RectangleShape2D_s3qd7")
-
-[node name="TrickSystem" parent="." index="5" unique_id=33422410 node_paths=PackedStringArray("character")]
+[node name="TrickSystem" parent="." index="4" unique_id=33422410 node_paths=PackedStringArray("character")]
 character = NodePath("..")
 
-[node name="EquipmentManager" parent="." index="6" unique_id=2011998462]
+[node name="EquipmentManager" parent="." index="5" unique_id=2011998462]
 default_equipment = ExtResource("5_sh2bi")
 
-[node name="Controller" parent="." index="7" unique_id=697335465]
+[node name="Controller" parent="." index="6" unique_id=697335465]
 script = ExtResource("4_1f1u2")
 
 [node name="Camera2D" type="Camera2D" parent="." index="9" unique_id=404592596]
 offset = Vector2(0, -260)
 zoom = Vector2(0.43, 0.43)
+limit_enabled = false
 position_smoothing_enabled = true
-rotation_smoothing_enabled = true
+position_smoothing_speed = 20.0
 
 [node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]

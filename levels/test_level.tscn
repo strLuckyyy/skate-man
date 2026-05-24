@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c1c6r7to0jlqu" path="res://icon.svg" id="1_46lwt"]
 [ext_resource type="PackedScene" uid="uid://tkoi6wuvdx3s" path="res://characters/b.player/player.tscn" id="2_x25rp"]
-[ext_resource type="PackedScene" uid="uid://bcofinlg3rb04" path="res://scenary/grindable/car_hood/yellow_car_hood.tscn" id="4_w7r7j"]
+[ext_resource type="PackedScene" uid="uid://ca0x02fo5fi00" path="res://scenary/grindable/car_hood/car_yellow_hood.tscn" id="3_gmgay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr1um"]
 size = Vector2(1846, 20)
@@ -156,59 +156,8 @@ position = Vector2(-1.999939, 17.999996)
 scale = Vector2(14.3125, 0.42187494)
 texture = ExtResource("1_46lwt")
 
-[node name="YellowCarHood" parent="." unique_id=836304084 instance=ExtResource("4_w7r7j")]
-position = Vector2(1508, -8)
-
-[node name="YellowCarHood2" parent="." unique_id=418318428 instance=ExtResource("4_w7r7j")]
-position = Vector2(2511, 45)
-
-[node name="YellowCarHood3" parent="." unique_id=1270147384 instance=ExtResource("4_w7r7j")]
-position = Vector2(3936, -10)
-
-[node name="YellowCarHood4" parent="." unique_id=864916168 instance=ExtResource("4_w7r7j")]
-position = Vector2(4774, -47)
-
-[node name="YellowCarHood5" parent="." unique_id=673805030 instance=ExtResource("4_w7r7j")]
-position = Vector2(5914, -84)
-
-[node name="YellowCarHood6" parent="." unique_id=951132063 instance=ExtResource("4_w7r7j")]
-position = Vector2(7253, -151)
-
-[node name="YellowCarHood7" parent="." unique_id=2078715892 instance=ExtResource("4_w7r7j")]
-position = Vector2(8148, -203)
-
-[node name="YellowCarHood8" parent="." unique_id=138335518 instance=ExtResource("4_w7r7j")]
-position = Vector2(8858, -196)
-
-[node name="YellowCarHood9" parent="." unique_id=373542033 instance=ExtResource("4_w7r7j")]
-position = Vector2(9753, -211)
-
-[node name="YellowCarHood10" parent="." unique_id=1376341150 instance=ExtResource("4_w7r7j")]
-position = Vector2(10449, -189)
-
-[node name="YellowCarHood11" parent="." unique_id=1382331142 instance=ExtResource("4_w7r7j")]
-position = Vector2(11285, -115)
-
-[node name="YellowCarHood12" parent="." unique_id=1988125589 instance=ExtResource("4_w7r7j")]
-position = Vector2(12050, -107)
-
-[node name="YellowCarHood13" parent="." unique_id=1487703667 instance=ExtResource("4_w7r7j")]
-position = Vector2(13149, -140)
-
-[node name="YellowCarHood14" parent="." unique_id=1590327613 instance=ExtResource("4_w7r7j")]
-position = Vector2(14101, -238)
-
-[node name="YellowCarHood15" parent="." unique_id=602475884 instance=ExtResource("4_w7r7j")]
-position = Vector2(14769, -344)
-
-[node name="YellowCarHood16" parent="." unique_id=1310493741 instance=ExtResource("4_w7r7j")]
-position = Vector2(15787, -596)
-
-[node name="YellowCarHood17" parent="." unique_id=24150439 instance=ExtResource("4_w7r7j")]
-position = Vector2(16560, -808)
-
-[node name="YellowCarHood18" parent="." unique_id=121944776 instance=ExtResource("4_w7r7j")]
-position = Vector2(6558, -305)
+[node name="GrindableBase" parent="." unique_id=1698369429 instance=ExtResource("3_gmgay")]
+position = Vector2(2143, 817)
 
 [node name="Character" parent="." unique_id=1969115429 instance=ExtResource("2_x25rp")]
 position = Vector2(923, -61)

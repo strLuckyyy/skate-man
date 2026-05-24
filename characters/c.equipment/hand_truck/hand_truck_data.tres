@@ -17,4 +17,5 @@
 [resource]
 script = ExtResource("1_yvt1b")
 tricks = Array[PackedScene]([ExtResource("2_4he1p"), ExtResource("2_ulgfo"), ExtResource("3_fhugi"), ExtResource("4_v0uly"), ExtResource("5_74rsu"), ExtResource("6_mxdh8"), ExtResource("8_xwglu"), ExtResource("9_giy3b"), ExtResource("7_4he1p"), ExtResource("8_m0oau"), ExtResource("9_xwglu"), ExtResource("13_kdxh2")])
+acceleration = 0.664
 metadata/_custom_type_script = "uid://fsgq8yal7w87"
