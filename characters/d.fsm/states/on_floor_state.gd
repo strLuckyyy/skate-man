@@ -15,7 +15,7 @@ func enter(character: BaseCharacter, payload = null) -> void:
 
 func update(_delta: float) -> void:
 	if not character.is_on_floor():
-		emit_signal("transition_requested", self, Global.StateID.ON_AIR)
+		emit_signal("transition_requested", Global.StateID.ON_AIR)
 
 
 func exit() -> void:

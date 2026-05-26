@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://btr4pws8cw5t4" path="res://characters/b.player/player.gd" id="2_dyllp"]
 [ext_resource type="Texture2D" uid="uid://dml2d8skg150f" path="res://assets/sprites/player_placeholder.png" id="3_gom2c"]
 [ext_resource type="Script" uid="uid://mop13y4ovkd0" path="res://characters/a.controllers/player_controller.gd" id="4_1f1u2"]
-[ext_resource type="PackedScene" uid="uid://cc4jikaqqcx1d" path="res://characters/c.equipment/input_buffer.tscn" id="4_iai5m"]
+[ext_resource type="PackedScene" uid="uid://cc4jikaqqcx1d" path="res://system/input_buffer.tscn" id="4_iai5m"]
 [ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/c.equipment/hand_truck/hand_truck_data.tres" id="5_sh2bi"]
 [ext_resource type="PackedScene" uid="uid://c3ssg8nmo6d8w" path="res://characters/d.fsm/state_machine.tscn" id="5_ymscc"]
 [ext_resource type="PackedScene" uid="uid://b0p82k5dcrryy" path="res://system/trie_navigator.tscn" id="8_s3qd7"]
@@ -313,16 +313,11 @@ unique_name_in_owner = true
 [node name="TrickSystem" parent="." index="4" unique_id=33422410 node_paths=PackedStringArray("character")]
 character = NodePath("..")
 
-[node name="EquipmentManager" parent="." index="5" unique_id=2011998462]
+[node name="EquipmentManager" parent="." index="6" unique_id=2011998462]
 default_equipment = ExtResource("5_sh2bi")
 
-[node name="Controller" parent="." index="6" unique_id=697335465]
+[node name="Controller" parent="." index="7" unique_id=697335465]
 script = ExtResource("4_1f1u2")
-
-[node name="AnimationPlayer" parent="." index="8" unique_id=1748857434]
-libraries/ = SubResource("AnimationLibrary_qasjv")
-libraries/human = SubResource("AnimationLibrary_s3qd7")
-libraries/tricks = SubResource("AnimationLibrary_xw8k2")
 
 [node name="Camera2D" type="Camera2D" parent="." index="9" unique_id=404592596]
 offset = Vector2(0, -260)
@@ -332,3 +327,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
 [node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
+
+[node name="AnimationPlayer" parent="." index="11" unique_id=1748857434]
+libraries/ = SubResource("AnimationLibrary_qasjv")
+libraries/human = SubResource("AnimationLibrary_s3qd7")
+libraries/tricks = SubResource("AnimationLibrary_xw8k2")

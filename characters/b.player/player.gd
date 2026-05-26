@@ -9,21 +9,25 @@ var state_machine: StateMachine
 # ---------------------------------------------------------------------------
 
 func _ready() -> void:
-	input_buffer    = %InputBuffer
-	state_machine   = %StateMachine
-	trick_system    = %TrickSystem
-	equipment       = %EquipmentManager
-	controller      = %Controller
-	grind_component = %GrindComponent
+	input_buffer       = %InputBuffer
+	state_machine      = %StateMachine
+	trick_system       = %TrickSystem
+	equipment          = %EquipmentManager
+	controller         = %Controller
+	grind_component    = %GrindComponent
+	boost_component    = %BoostComponent
+	var trie_navigator = $TrieNavigator
 	
-	if state_machine:
-		state_machine.setup(self)
-	if grind_component:
-		grind_component.setup(self)
+	trie_navigator.setup(input_buffer, equipment)
+	trick_system.setup(trie_navigator, equipment)
+	boost_component.setup(self)
+	grind_component.setup(self)
+	state_machine.setup(self)
 	
 	GameManager.player = self
 	
-	# --- EventBus connections ---
+	# --- Signals connections ---
+	trick_system.grind_trick_requested.connect(_on_grind_trick_requested)
 	EventBus.grind_started.connect(_on_grind_trick_requested)
 	EventBus.player_lock_requested.connect(on_lock_character)
 	EventBus.player_unlock_requested.connect(on_unlock_character)

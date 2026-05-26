@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cc4jikaqqcx1d"]
 
-[ext_resource type="Script" uid="uid://s3t3vn1774xd" path="res://characters/c.equipment/input_buffer.gd" id="1_4w5l5"]
+[ext_resource type="Script" uid="uid://s3t3vn1774xd" path="res://system/input_buffer.gd" id="1_4w5l5"]
 
 [node name="InputBuffer" type="Node2D" unique_id=69867716]
 script = ExtResource("1_4w5l5")

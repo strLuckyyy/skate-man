@@ -1,6 +1,8 @@
 class_name EquipmentManager
 extends Node
 
+signal equipment_changed(equipment: EquipmentData, tricks: Array[BaseTrick])
+
 @export var default_equipment: EquipmentData
 var current_equipment:         EquipmentData
 var _current_tricks:           Array[BaseTrick] = []
@@ -19,7 +21,7 @@ func equip(equipment: EquipmentData):
 
 	current_equipment = equipment
 	_current_tricks   = _build_tricks()
-	EventBus.equipment_changed.emit(equipment, get_tricks())
+	equipment_changed.emit(equipment, get_tricks())
 
 
 func get_tricks() -> Array[BaseTrick]:

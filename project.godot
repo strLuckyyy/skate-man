@@ -21,7 +21,6 @@ config/icon="res://icon.svg"
 GameManager="*uid://b3pkltpeb0apa"
 EventBus="*uid://dl24x3t2r5j6y"
 SignalLens="*uid://85rkx60vm7a7"
-BoostManager="*uid://c7sulmtiahqp3"
 
 [dotnet]
 

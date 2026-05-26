@@ -1,6 +1,11 @@
 class_name InputBuffer
 extends Node
 
+
+signal direction_input(direction: Global.Direction, pressed: bool)
+signal direction_held(direction: Global.Direction)
+signal direction_released(direction: Global.Direction)
+
 ## Time (in seconds) before the buffer is automatically cleared
 const BUFFER_TIMEOUT: float = 1.5
 
@@ -30,37 +35,37 @@ func _process(_delta: float) -> void:
 	# Emit held signals for currently pressed directions
 	for dir in _held_directions:
 		if _held_directions[dir]:
-			EventBus.direction_held.emit(dir)
+			direction_held.emit(dir)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("up"):
 		if event.is_pressed() and not event.is_echo():
-			EventBus.direction_input.emit(Global.Direction.UP, true)
+			direction_input.emit(Global.Direction.UP, true)
 			_push_input(Global.Direction.UP)
 		elif not event.is_pressed():
-			EventBus.direction_released.emit(Global.Direction.UP)
+			direction_released.emit(Global.Direction.UP)
 
 	elif event.is_action("down"):
 		if event.is_pressed() and not event.is_echo():
-			EventBus.direction_input.emit(Global.Direction.DOWN, true)
+			direction_input.emit(Global.Direction.DOWN, true)
 			_push_input(Global.Direction.DOWN)
 		elif not event.is_pressed():
-			EventBus.direction_released.emit(Global.Direction.DOWN)
+			direction_released.emit(Global.Direction.DOWN)
 
 	elif event.is_action("right"):
 		if event.is_pressed() and not event.is_echo():
-			EventBus.direction_input.emit(Global.Direction.RIGHT, true)
+			direction_input.emit(Global.Direction.RIGHT, true)
 			_push_input(Global.Direction.RIGHT)
 		elif not event.is_pressed():
-			EventBus.direction_released.emit(Global.Direction.RIGHT)
+			direction_released.emit(Global.Direction.RIGHT)
 
 	elif event.is_action("left"):
 		if event.is_pressed() and not event.is_echo():
-			EventBus.direction_input.emit(Global.Direction.LEFT, true)
+			direction_input.emit(Global.Direction.LEFT, true)
 			_push_input(Global.Direction.LEFT)
 		elif not event.is_pressed():
-			EventBus.direction_released.emit(Global.Direction.LEFT)
+			direction_released.emit(Global.Direction.LEFT)
 
 
 func _push_input(dir: Global.Direction) -> void:

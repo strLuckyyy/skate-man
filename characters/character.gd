@@ -7,6 +7,7 @@ var equipment:       EquipmentManager
 var controller:      PlayerController
 var foot_ref:        CollisionShape2D
 var grind_component: GrindComponent
+var boost_component: BoostComponent
 
 # --- Flags e Estados (Reduzidos) ---
 var is_locked:     bool = false

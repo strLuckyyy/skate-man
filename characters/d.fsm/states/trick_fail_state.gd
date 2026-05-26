@@ -36,7 +36,7 @@ func update(delta: float) -> void:
 		coyote_time.update(delta)
 		
 		if character.jumped():
-			emit_signal("transition_requested", self, Global.StateID.ON_AIR, null)
+			emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 		
 		if character.is_on_floor():
 			_trigger_crash()
@@ -50,7 +50,7 @@ func update(delta: float) -> void:
 			character.velocity.x = 0.0
 		
 		if current_recover_time >= RECOVER_TIMEOUT:
-			emit_signal("transition_requested", self, Global.StateID.ON_FLOOR, null)
+			emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
 	character.move_and_slide()
 
 func _trigger_crash() -> void:

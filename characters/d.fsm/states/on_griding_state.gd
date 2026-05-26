@@ -26,12 +26,15 @@ func enter(character: BaseCharacter, payload = null) -> void:
 	character.grind_component.grind_finished.connect(_on_grind_finished)
 	character.grind_component.start_grind(rail, character.velocity)
 
+
 func update(delta: float) -> void:
 	character.grind_component.process_grind(delta)
+
 
 func exit() -> void:
 	character.can_move = true
 	character.grind_component.grind_finished.disconnect(_on_grind_finished)
+
 
 func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> void:
 	var direction: float = data.get("direction", 1.0)
@@ -42,10 +45,10 @@ func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> v
 		character.velocity.x  = speed * direction
 		character._is_jumping = true
 		
-		emit_signal("transition_requested", self, Global.StateID.ON_AIR, null)
+		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 	
 	elif reason == Global.ReasonToExitGrind.END_OF_RAIL:
 		var velocity := Vector2((speed * direction) * end_of_rail_boost_multiplier, end_of_rail_lift)
 		
-		EventBus.request_boost_reset.emit(character)
-		emit_signal("transition_requested", self, Global.StateID.TRICK_FAIL, velocity)
+		character.boost_component.reset_boost()
+		emit_signal("transition_requested", Global.StateID.TRICK_FAIL, velocity)

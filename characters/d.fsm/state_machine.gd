@@ -1,10 +1,12 @@
 class_name StateMachine
 extends Node
 
+
+signal state_changed(old_state: Global.StateID, new_state: Global.StateID)
+
 var current_state: BaseState
 var states:        Dictionary = { }
 var character:     BaseCharacter
-
 
 func _ready() -> void:
 	states = {
@@ -64,12 +66,12 @@ func transition_to(state_id: Global.StateID, payload = null) -> void:
 	
 	current_state = new_state
 	current_state.enter(character, payload)
+	state_changed.emit(old_state_id, state_id)
+	
 	print(Global.StateID.find_key(current_state.state_id))
-	EventBus.player_state_changed.emit(old_state_id, state_id)
 
 
-func _on_transition_requested(whos_call: Object, next_state_id: Global.StateID, payload = null):
-	print(whos_call.get_script())
+func _on_transition_requested(next_state_id: Global.StateID, payload = null):
 	transition_to(next_state_id, payload)
 
 
