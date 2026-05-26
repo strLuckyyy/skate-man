@@ -1,41 +1,65 @@
 class_name TrickFailState
 extends BaseState
 
-const RECOUVER_TIMEOUT:    float = 1.
-var current_recouver_time: float = 0.
+const RECOVER_TIMEOUT:    float = 1.0
+var current_recover_time: float = 0.0
+var has_crashed:          bool  = false
 
+var _slide_vel_value: float = 80.
+var _slide_distance:  float = 10.
+
+var pre_velo    := Vector2.ZERO
 var coyote_time := CoyoteTime.new()
-
 
 func _init() -> void:
 	state_id = Global.StateID.TRICK_FAIL
 
-
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
-func enter(character: CharacterBody2D, payload = null) -> void:
-	self.character        = character as BaseCharacter
-	character.velocity    = -character.velocity
-	character.can_move    = false
-	current_recouver_time = 0.0
+func enter(p_character: BaseCharacter, payload = null) -> void:
+	self.character          = p_character
+	character.is_trick_fail = true
+	has_crashed             = false
+	current_recover_time    = 0.0
+	
 	coyote_time.begin(character)
-
+	
+	if payload != null:
+		character.velocity = payload
+	
+	if character.is_on_floor():
+		_trigger_crash()
 
 func update(delta: float) -> void:
-	coyote_time.update(delta)
-	
-	current_recouver_time  += delta
-	character.is_trick_fail = true
-	
-	if character.jumped():
-		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
-	
-	if current_recouver_time >= RECOUVER_TIMEOUT:
+	if not has_crashed:
+		pre_velo = character.velocity
+		coyote_time.update(delta)
+		
+		if character.jumped():
+			emit_signal("transition_requested", self, Global.StateID.ON_AIR, null)
+		
+		if character.is_on_floor():
+			_trigger_crash()
+	else:
+		current_recover_time += delta
+		
 		character.can_jump = false
-		emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
+		character.can_move = false
+		
+		if character.velocity.x > pre_velo.x + _slide_distance:
+			character.velocity.x = 0.0
+		
+		if current_recover_time >= RECOVER_TIMEOUT:
+			emit_signal("transition_requested", self, Global.StateID.ON_FLOOR, null)
+	character.move_and_slide()
 
+func _trigger_crash() -> void:
+	has_crashed = true
+	character.velocity.x = _slide_vel_value
+	#character.velocity.y = -80.0
 
 func exit() -> void:
-	character.can_jump    = true
-	character.can_move    = true
-	current_recouver_time = 0.0
+	character.is_trick_fail = false
+	character.can_jump      = true
+	character.can_move      = true
+	current_recover_time    = 0.0

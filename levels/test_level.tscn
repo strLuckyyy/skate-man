@@ -159,5 +159,11 @@ texture = ExtResource("1_46lwt")
 [node name="GrindableBase" parent="." unique_id=1698369429 instance=ExtResource("3_gmgay")]
 position = Vector2(2143, 817)
 
+[node name="GrindableBase2" parent="." unique_id=1760826457 instance=ExtResource("3_gmgay")]
+position = Vector2(3002, 817)
+
+[node name="GrindableBase3" parent="." unique_id=799881510 instance=ExtResource("3_gmgay")]
+position = Vector2(4027, 825)
+
 [node name="Character" parent="." unique_id=1969115429 instance=ExtResource("2_x25rp")]
 position = Vector2(923, -61)

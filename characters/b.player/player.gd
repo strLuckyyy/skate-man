@@ -39,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	_update_moving_state()
 	
+	if not can_move: return
+	
 	trick_system.process(
 		state_machine.get_current_state_id(),
 		can_grind(),
@@ -53,10 +55,6 @@ func _physics_process(delta: float) -> void:
 # ---------------------------------------------------------------------------
 
 func _apply_movement() -> void:
-	if not can_move:
-		#print(can_move, velocity)
-		return
-
 	if controller.get_auto_move_active():
 		velocity = controller.apply_auto_movement(velocity, equipment.current_equipment, current_boost_speed)
 	else:

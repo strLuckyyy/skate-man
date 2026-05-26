@@ -6,23 +6,27 @@ var end_of_rail_boost_multiplier: float = 0.8
 # Uma pequena elevação no eixo Y para não cair seco
 var end_of_rail_lift: float = -100.0
 
+
+func _init() -> void:
+	state_id = Global.StateID.ON_GRIDING
+
+
 @warning_ignore("shadowed_variable_base_class")
 func enter(character: BaseCharacter, payload = null) -> void:
 	self.character = character
+	character.reset_jump()
 	var rail = payload as GrindableObject
 	
 	if rail == null:
 		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 		return
-		
+	
 	character.can_move = false
 	
-	# Conecta o sinal do componente para sair do estado
 	character.grind_component.grind_finished.connect(_on_grind_finished)
 	character.grind_component.start_grind(rail, character.velocity)
 
 func update(delta: float) -> void:
-	# O componente faz todo o trabalho duro de mover o player.
 	character.grind_component.process_grind(delta)
 
 func exit() -> void:
@@ -34,15 +38,14 @@ func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> v
 	var speed:     float = data.get("speed",   300.0)
 	
 	if reason == Global.ReasonToExitGrind.JUMPED:
-		# Aplica forças de pulo 
-		character.velocity.y = character.controller.apply_jump(character.equipment.current_equipment) * 1.1
-		character.velocity.x = speed * direction
+		character.velocity.y  = character.controller.apply_jump(character.equipment.current_equipment) * 1.1
+		character.velocity.x  = speed * direction
 		character._is_jumping = true
-		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
+		
+		emit_signal("transition_requested", self, Global.StateID.ON_AIR, null)
 	
 	elif reason == Global.ReasonToExitGrind.END_OF_RAIL:
-		character.velocity.x = (speed * direction) * end_of_rail_boost_multiplier
-		character.velocity.y = end_of_rail_lift 
+		var velocity := Vector2((speed * direction) * end_of_rail_boost_multiplier, end_of_rail_lift)
 		
 		EventBus.request_boost_reset.emit(character)
-		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
+		emit_signal("transition_requested", self, Global.StateID.TRICK_FAIL, velocity)

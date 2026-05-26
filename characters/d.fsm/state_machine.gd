@@ -55,20 +55,21 @@ func transition_to(state_id: Global.StateID, payload = null) -> void:
 		return
 
 	var old_state_id = current_state.state_id if current_state else Global.StateID.NONE
-	var new_state = get_state(state_id)
-	if new_state == null:
-		return
-
+	var new_state    = get_state(state_id)
+	
+	if new_state == null: return
+	
 	if current_state:
 		current_state.exit()
-
+	
 	current_state = new_state
 	current_state.enter(character, payload)
 	print(Global.StateID.find_key(current_state.state_id))
 	EventBus.player_state_changed.emit(old_state_id, state_id)
 
 
-func _on_transition_requested(next_state_id: Global.StateID, payload = null):
+func _on_transition_requested(whos_call: Object, next_state_id: Global.StateID, payload = null):
+	print(whos_call.get_script())
 	transition_to(next_state_id, payload)
 
 

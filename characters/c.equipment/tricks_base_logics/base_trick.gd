@@ -5,6 +5,7 @@ extends Node2D
 var _state_available:   Array[Global.StateID]
 var is_grind_trick:     bool = false
 var cd_timer:           Timer
+var anim_player:        AnimationPlayer
 
 func _ready() -> void:
 	_state_available = trick_data.state_available.duplicate()
@@ -17,6 +18,10 @@ func _ready() -> void:
 	
 	add_child(cd_timer)
 	cd_timer.timeout.connect(_on_cd_timer_timeout)
+
+
+func set_anim_player(animation_player: AnimationPlayer) -> void:
+	anim_player = animation_player
 
 
 func can_execute(context: TrickContext) -> bool:

@@ -24,16 +24,11 @@ func update(delta: float) -> void:
 	coyote_time.update(delta)
 	
 	if _fall_elapsed >= FALL_TIMEOUT:
-		emit_signal("transition_requested", Global.StateID.ON_FALLING, null)
-	
-	# ── Grind detection ───────────────────────────────────────────────────
-	if character.is_grinding():
-		emit_signal("transition_requested", Global.StateID.ON_GRIDING, character._current_grindable)
-		return
+		emit_signal("transition_requested", self, Global.StateID.ON_FALLING, null)
 	
 	if character.is_on_floor():
 		character.reset_jump()
-		emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
+		emit_signal("transition_requested", self, Global.StateID.ON_FLOOR, null)
 
 
 func exit() -> void:

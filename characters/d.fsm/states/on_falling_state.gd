@@ -18,13 +18,8 @@ func enter(character: BaseCharacter, payload = null) -> void:
 
 
 func update(_delta: float) -> void:
-	# ── Grind detection (same pattern as OnAirState) ──────────────────────
-	if character.is_grinding():
-		emit_signal("transition_requested", Global.StateID.ON_GRIDING, character._current_grindable)
-		return
-
 	if character.is_on_floor():
-		emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
+		emit_signal("transition_requested", self, Global.StateID.ON_FLOOR, null)
 
 
 func exit() -> void:
