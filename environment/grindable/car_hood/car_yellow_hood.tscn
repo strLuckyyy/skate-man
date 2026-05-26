@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ca0x02fo5fi00"]
+
+[ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_ft6bc"]
+[ext_resource type="Texture2D" uid="uid://cmyevn86pacl3" path="res://assets/cars/Kei Car Pack #1/Opacity Versions/hdn_bt/tuned/bt_op_td_front_view.png" id="2_1buxw"]
+
+[sub_resource type="Curve2D" id="Curve2D_1buxw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -149, -9, 0, 0, 0, 0, -118.61055, 0.11592102, 0, 0, 0, 0, -82, 4, 0, 0, 0, 0, -32, 7, 0, 0, 0, 0, -1, 7, 0, 0, 0, 0, 36, 6, 0, 0, 0, 0, 71.950165, 3.5309906, 0, 0, 0, 0, 119.078094, -1.9331207, 0, 0, 0, 0, 146, -8)
+}
+point_count = 9
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1buxw"]
+size = Vector2(378, 64)
+
+[node name="GrindableBase" unique_id=1698369429 instance=ExtResource("1_ft6bc")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1022371307]
+scale = Vector2(6.27, 6.27)
+texture = ExtResource("2_1buxw")
+
+[node name="Path2D" parent="." index="1" unique_id=1304231975]
+curve = SubResource("Curve2D_1buxw")
+
+[node name="PathFollow2D" parent="Path2D" index="0" unique_id=1942762927]
+position = Vector2(-149, -9)
+rotation = 0.29142922
+
+[node name="CollisionShape2D" parent="GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=1726410716]
+position = Vector2(-2, -24)
+shape = SubResource("RectangleShape2D_1buxw")
+
+[editable path="GrindArea"]
