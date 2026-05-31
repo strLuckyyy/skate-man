@@ -8,4 +8,5 @@ trick_name = "Lateral Grind"
 sequence = Array[int]([1, 2])
 state_available = Array[int]([5])
 conditional_state_available = Array[int]([3, 4])
+animation_name = &"grind-lateral"
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

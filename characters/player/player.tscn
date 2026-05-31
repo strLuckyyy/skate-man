@@ -293,8 +293,41 @@ _data = {
 &"surf": SubResource("Animation_0gtqx")
 }
 
-[node name="Character" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idpv6"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rpf03"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_x5dtk"]
+input_0/name = "Normal"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "TrickFail"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "Caught"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3t07l"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_on558"]
+nodes/output/position = Vector2(600, 100)
+nodes/BaseMovement/node = SubResource("AnimationNodeStateMachine_rpf03")
+nodes/BaseMovement/position = Vector2(-240, 60)
+nodes/TrickOneShot/node = SubResource("AnimationNodeOneShot_3t07l")
+nodes/TrickOneShot/position = Vector2(60, 80)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_idpv6")
+nodes/Animation/position = Vector2(-240, 260)
+nodes/Transition/node = SubResource("AnimationNodeTransition_x5dtk")
+nodes/Transition/position = Vector2(380, 80)
+node_connections = [&"output", 0, &"Transition", &"TrickOneShot", 0, &"BaseMovement", &"TrickOneShot", 1, &"Animation", &"Transition", 0, &"TrickOneShot"]
+
+[node name="Player" unique_id=1969115429 node_paths=PackedStringArray("animation_tree") instance=ExtResource("1_wo8oy")]
 script = ExtResource("2_dyllp")
+animation_tree = NodePath("AnimationTree")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1747011181]
 position = Vector2(0, 20.755)
@@ -328,7 +361,19 @@ position_smoothing_speed = 20.0
 
 [node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
 
-[node name="AnimationPlayer" parent="." index="11" unique_id=1748857434]
+[node name="TrickAnimator" parent="." index="11" unique_id=29396107 node_paths=PackedStringArray("anim_tree")]
+anim_tree = NodePath("../AnimationTree")
+
+[node name="AnimationPlayer" parent="." index="12" unique_id=1748857434]
 libraries/ = SubResource("AnimationLibrary_qasjv")
 libraries/human = SubResource("AnimationLibrary_s3qd7")
 libraries/tricks = SubResource("AnimationLibrary_xw8k2")
+
+[node name="AnimationTree" parent="." index="13" unique_id=1199496355]
+tree_root = SubResource("AnimationNodeBlendTree_on558")
+parameters/TrickOneShot/active = false
+parameters/TrickOneShot/internal_active = false
+parameters/TrickOneShot/request = 0
+parameters/Transition/current_state = "Normal"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0

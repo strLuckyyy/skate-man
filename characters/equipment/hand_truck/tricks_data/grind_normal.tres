@@ -8,4 +8,5 @@ trick_name = "Normal Slide"
 sequence = Array[int]([1])
 state_available = Array[int]([5])
 conditional_state_available = Array[int]([3, 4])
+animation_name = &"grind-normal"
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

@@ -7,4 +7,5 @@ script = ExtResource("1_d8iti")
 trick_name = "Spin Back"
 sequence = Array[int]([0, 3])
 state_available = Array[int]([3, 4])
+animation_name = &"spin-back"
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

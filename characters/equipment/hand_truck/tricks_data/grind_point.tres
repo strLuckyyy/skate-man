@@ -8,4 +8,5 @@ trick_name = "Point Slide"
 sequence = Array[int]([1, 3])
 state_available = Array[int]([5, 2])
 conditional_state_available = Array[int]([3, 4])
+animation_name = &"grind-point"
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

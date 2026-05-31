@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d2jq8ya2vskgm"]
 
-[ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/plataform/base_plataform.tscn" id="1_ethqj"]
-[ext_resource type="Script" uid="uid://bcnvemb404lqk" path="res://environment/plataform/elevator_plataform.gd" id="2_m66go"]
+[ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/platform/base_platform.tscn" id="1_ethqj"]
+[ext_resource type="Script" uid="uid://dubaah2j5npvg" path="res://environment/platform/elevator_platform.gd" id="2_ei1si"]
 [ext_resource type="Texture2D" uid="uid://c1c6r7to0jlqu" path="res://icon.svg" id="3_wlxt7"]
 
 [sub_resource type="Curve2D" id="Curve2D_wlxt7"]
@@ -77,9 +77,9 @@ _data = {
 &"move_up": SubResource("Animation_gkh8i")
 }
 
-[node name="BasePlataform" unique_id=705089617 instance=ExtResource("1_ethqj")]
+[node name="BasePlatform" unique_id=705089617 instance=ExtResource("1_ethqj")]
 curve = SubResource("Curve2D_wlxt7")
-script = ExtResource("2_m66go")
+script = ExtResource("2_ei1si")
 can_down = false
 
 [node name="PathFollow2D" parent="." index="0" unique_id=527806504]

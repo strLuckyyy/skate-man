@@ -6,14 +6,18 @@ signal grind_trick_requested(grindable: GrindableObject)
 
 @export var character:  BaseCharacter
 var equipment:          EquipmentData
+var animator:           TrickAnimator
+var is_busy:            bool = false
 var _current_state:     Global.StateID
-var _grind_opportunity: bool
+var _grind_opportunity: bool = false
 var _current_grindable: GrindableObject
 
 
-func setup(trie: TrieNavigator, equipment_manager: EquipmentManager) -> void:
+func setup(trie: TrieNavigator, equipment_manager: EquipmentManager, trick_animator: TrickAnimator) -> void:
 	trie.sequence_resolved.connect(_on_sequence_resolved)
 	equipment_manager.equipment_changed.connect(_on_equipment_changed)
+	animator = trick_animator
+	animator.trick_animation_finished.connect(_on_trick_anim_finished)
 
 
 func process(
@@ -27,6 +31,13 @@ func process(
 
 
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
+	if is_busy: return
+	is_busy = true
+	
+	var anim_name = trick.trick_data.animation_name
+	print(anim_name)
+	animator.play_trick(str("tricks/", anim_name))
+	
 	EventBus.trick_detected.emit(trick.trick_data.trick_name if trick.trick_data else "Unknown")
 	trick_started.emit(trick) 
 	
@@ -63,3 +74,7 @@ func _is_airborne() -> bool:
 
 func _on_equipment_changed(new_equipment: EquipmentData, _new_tricks: Array[BaseTrick]) -> void:
 	equipment = new_equipment
+
+
+func _on_trick_anim_finished() -> void:
+	is_busy = false

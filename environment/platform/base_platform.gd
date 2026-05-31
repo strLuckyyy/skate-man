@@ -1,4 +1,4 @@
-class_name BasePlataform
+class_name BasePlatform
 extends Path2D
 
 signal lock_character(body: BaseCharacter)

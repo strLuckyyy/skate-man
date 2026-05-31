@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ekofyepjq8d7" path="res://characters/components/trick_system.tscn" id="4_ke030"]
 [ext_resource type="PackedScene" uid="uid://c06pux3q0qn72" path="res://characters/components/grind_component.tscn" id="4_mdkfl"]
 [ext_resource type="PackedScene" uid="uid://8qa7fqsk72v2" path="res://characters/components/boost_component.tscn" id="5_b1u1o"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qqr4u"]
+[ext_resource type="PackedScene" uid="uid://5r1o5ghl6fxw" path="res://characters/components/trick_animator.tscn" id="6_xg31s"]
 
 [node name="Character" type="CharacterBody2D" unique_id=1969115429]
 collision_mask = 16
@@ -30,8 +29,14 @@ unique_name_in_owner = true
 [node name="GrindComponent" parent="." unique_id=1564649999 instance=ExtResource("4_mdkfl")]
 unique_name_in_owner = true
 
+[node name="TrickAnimator" parent="." unique_id=29396107 instance=ExtResource("6_xg31s")]
+unique_name_in_owner = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1748857434]
+unique_name_in_owner = true
 root_node = NodePath("../Sprite2D")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1199496355]
-tree_root = SubResource("AnimationNodeBlendTree_qqr4u")
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/../Sprite2D")
+anim_player = NodePath("../AnimationPlayer")

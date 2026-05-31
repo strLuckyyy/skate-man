@@ -28,7 +28,7 @@ project/assembly_name="SkateMan"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotSignalChecker/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/project_statistics/plugin.cfg", "res://addons/signal_lens/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotSignalChecker/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/godot_doctor/plugin.cfg", "res://addons/inspector_tabs/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/project_statistics/plugin.cfg", "res://addons/signal_lens/plugin.cfg", "res://addons/smart-editor-plugin/plugin.cfg")
 
 [global_group]
 
@@ -98,3 +98,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

@@ -9,20 +9,23 @@ var state_machine: StateMachine
 # ---------------------------------------------------------------------------
 
 func _ready() -> void:
-	input_buffer       = %InputBuffer
-	state_machine      = %StateMachine
-	trick_system       = %TrickSystem
-	equipment          = %EquipmentManager
-	controller         = %Controller
-	grind_component    = %GrindComponent
-	boost_component    = %BoostComponent
-	var trie_navigator = $TrieNavigator
+	input_buffer    = %InputBuffer
+	state_machine   = %StateMachine
+	trick_system    = %TrickSystem
+	equipment       = %EquipmentManager
+	controller      = %Controller
+	grind_component = %GrindComponent
+	boost_component = %BoostComponent
 	
-	trie_navigator.setup(input_buffer, equipment)
-	trick_system.setup(trie_navigator, equipment)
+	var trie_navigator = $TrieNavigator
+	var trick_animator = %TrickAnimator
+	
+	trick_system.   setup(trie_navigator, equipment, trick_animator)
+	trie_navigator. setup(input_buffer, equipment)
+	trick_animator. setup(animation_tree)
 	boost_component.setup(self)
 	grind_component.setup(self)
-	state_machine.setup(self)
+	state_machine.  setup(self)
 	
 	GameManager.player = self
 	

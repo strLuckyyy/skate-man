@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://83ogmy6xlbvv"]
 
-[ext_resource type="Script" uid="uid://bkj00gm61xjf" path="res://environment/plataform/base_plataform.gd" id="1_x7ek1"]
-[ext_resource type="PackedScene" uid="uid://m8sff6t4xjdo" path="res://environment/plataform/waiting_area/waiting_area.tscn" id="2_7g22i"]
+[ext_resource type="Script" uid="uid://vpb4ghld0a1n" path="res://environment/platform/base_platform.gd" id="1_54aj6"]
+[ext_resource type="PackedScene" uid="uid://m8sff6t4xjdo" path="res://environment/platform/waiting_area/waiting_area.tscn" id="2_7g22i"]
 
-[node name="BasePlataform" type="Path2D" unique_id=705089617]
-script = ExtResource("1_x7ek1")
+[node name="BasePlatform" type="Path2D" unique_id=705089617]
+script = ExtResource("1_54aj6")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=527806504]
 

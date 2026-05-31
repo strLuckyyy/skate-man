@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://1a11hvmjnrk5"
 path.s3tc="res://.godot/imported/zane-tex.png-11ab28523b0cda581461117cf818fb34.s3tc.ctex"
+path.etc2="res://.godot/imported/zane-tex.png-11ab28523b0cda581461117cf818fb34.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/3d-assets/zane-tex.png"
-dest_files=["res://.godot/imported/zane-tex.png-11ab28523b0cda581461117cf818fb34.s3tc.ctex"]
+dest_files=["res://.godot/imported/zane-tex.png-11ab28523b0cda581461117cf818fb34.s3tc.ctex", "res://.godot/imported/zane-tex.png-11ab28523b0cda581461117cf818fb34.etc2.ctex"]
 
 [params]
 

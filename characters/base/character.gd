@@ -2,6 +2,8 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 # --- Componentes Base ---
+@export var animation_tree: AnimationTree
+
 var trick_system:    TrickSystem
 var equipment:       EquipmentManager
 var controller:      PlayerController

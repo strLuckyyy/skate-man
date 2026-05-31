@@ -1,13 +1,13 @@
-class_name ElevatorPlataform
-extends BasePlataform
+class_name ElevatorPlatform
+extends BasePlatform
 
 signal has_arrived
 signal platform_timeout
 
 enum AnimName { MOVE_UP, MOVE_DOWN }
 
-@onready var elevator_door: CollisionShape2D = $AnimatableBody2D/ElevatorDoor
-@onready var elevator_timer: Timer = $AnimatableBody2D/Timer
+@onready var elevator_door:  CollisionShape2D = $AnimatableBody2D/ElevatorDoor
+@onready var elevator_timer: Timer            = $AnimatableBody2D/Timer
 
 @export var can_down: bool
 
@@ -31,8 +31,6 @@ func _ready() -> void:
 
 func set_platform_enabled(enabled: bool) -> void:
 	super.set_platform_enabled(enabled)
-	# NÃO toca no timer aqui — o timer é gerenciado manualmente
-	# em start() e exit() para evitar reativação com estado sujo.
 
 # ---------------------------------------------------------------------------
 # Movement flow
@@ -63,7 +61,6 @@ func exit() -> void:
 # Sync character × platform during movement
 # ---------------------------------------------------------------------------
 
-
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
@@ -74,7 +71,6 @@ func _physics_process(delta: float) -> void:
 # ---------------------------------------------------------------------------
 # Callbacks
 # ---------------------------------------------------------------------------
-
 
 ## Override do método virtual da BasePlataform.
 func _on_character_centered() -> void:
@@ -99,7 +95,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_timer_timeout() -> void:
 	elevator_timer.stop()
-
+	
 	if _current_character:
 		unlock_character.emit()
 		_disconnect_character(_current_character)

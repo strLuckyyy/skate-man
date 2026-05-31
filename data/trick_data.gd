@@ -9,4 +9,4 @@ extends Resource
 @export var cd: float = 1.0
 @export var boost: float = 150
 @export var score_bonus: int = 100
-@export var anim_id: StringName
+@export var animation_name: StringName
