@@ -29,14 +29,9 @@ unique_name_in_owner = true
 [node name="GrindComponent" parent="." unique_id=1564649999 instance=ExtResource("4_mdkfl")]
 unique_name_in_owner = true
 
-[node name="TrickAnimator" parent="." unique_id=29396107 instance=ExtResource("6_xg31s")]
+[node name="CharacterAnimator" parent="." unique_id=29396107 instance=ExtResource("6_xg31s")]
 unique_name_in_owner = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1748857434]
 unique_name_in_owner = true
 root_node = NodePath("../Sprite2D")
-
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1199496355]
-unique_name_in_owner = true
-root_node = NodePath("%AnimationTree/../Sprite2D")
-anim_player = NodePath("../AnimationPlayer")

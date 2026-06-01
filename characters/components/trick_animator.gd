@@ -1,34 +1,58 @@
 class_name TrickAnimator
 extends Node
 
-signal trick_animation_finished
+@export var anim_player: AnimationPlayer
+@export var character: BaseCharacter
 
-@export var anim_tree:  AnimationTree
-var is_animating_trick: bool = false
+var is_executing_trick: bool = false
+var current_trick_anim: StringName = ""
 
-const TRICK_NODE_ANIM   = "parameters/TrickAnimation/animation"
-const TRICK_ONESHOT_REQ = "parameters/TrickOneShot/request"
+func _ready() -> void:
+	# Conecta aos eventos globais do seu jogo
+	EventBus.player_state_changed.connect(_on_state_changed)
+	EventBus.trick_started.connect(_on_trick_started)
+	EventBus.trick_ended.connect(_on_trick_ended) # Assumindo que você dispare isso
 
+# 1. Trata as animações de manobra (Prioridade Máxima)
+func _on_trick_started(trick: BaseTrick) -> void:
+	is_executing_trick = true
+	current_trick_anim = trick.trick_data.anim_id
+	anim_player.play(current_trick_anim)
 
-func setup(tree: AnimationTree) -> void:
-	anim_tree = tree
+func _on_trick_ended(_trick: BaseTrick) -> void:
+	is_executing_trick = false
+	# Ao fim da trick, reavalia a animação base com o estado atual da FSM
+	_update_base_animation(character.state_machine.get_current_state_id())
 
+# 2. Trata as animações base da State Machine
+func _on_state_changed(_old_state: Global.StateID, new_state: Global.StateID) -> void:
+	# Se estiver no meio de uma trick, ignora a mudança de estado visual
+	if is_executing_trick:
+		return
+		
+	_update_base_animation(new_state)
 
-func play_trick(anim_name: String) -> void:
-	if is_animating_trick:
-		anim_tree.set(TRICK_ONESHOT_REQ, AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-	
-	is_animating_trick = true
-	
-	anim_tree.set(TRICK_NODE_ANIM, anim_name)	
-	anim_tree.set(TRICK_ONESHOT_REQ, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-
-func _process(_delta: float) -> void:
-	if not is_animating_trick: return
-	
-	var is_active = anim_tree.get("parameters/TrickOneShot/active")
-	
-	if not is_active:
-		is_animating_trick = false
-		trick_animation_finished.emit()
+# 3. Lógica interna de mapeamento Estado -> Animação
+func _update_base_animation(state_id: Global.StateID) -> void:
+	match state_id:
+		Global.StateID.ON_FLOOR:
+			# Aqui você pode ler a velocidade do character para decidir entre Idle e Run
+			if character.is_moving():
+				anim_player.play("run")
+			else:
+				anim_player.play("idle")
+		
+		Global.StateID.ON_AIR:
+			if character.velocity.y < 0:
+				anim_player.play("jump_up")
+			else:
+				anim_player.play("jump_fall")
+				
+		Global.StateID.ON_FALLING:
+			anim_player.play("jump_fall")
+			
+		Global.StateID.TRICK_FAIL:
+			anim_player.play("bail_out")
+			
+		Global.StateID.ON_GRIDING:
+			anim_player.play("grind_idle")

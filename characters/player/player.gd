@@ -18,14 +18,14 @@ func _ready() -> void:
 	boost_component = %BoostComponent
 	
 	var trie_navigator = $TrieNavigator
-	var trick_animator = %TrickAnimator
+	var character_animator = %CharacterAnimator
 	
-	trick_system.   setup(trie_navigator, equipment, trick_animator)
-	trie_navigator. setup(input_buffer, equipment)
-	trick_animator. setup(animation_tree)
-	boost_component.setup(self)
-	grind_component.setup(self)
-	state_machine.  setup(self)
+	trick_system.      setup(trie_navigator, equipment, character_animator)
+	trie_navigator.    setup(input_buffer, equipment)
+	character_animator.setup()
+	boost_component.   setup(self)
+	grind_component.   setup(self)
+	state_machine.     setup(self)
 	
 	GameManager.player = self
 	

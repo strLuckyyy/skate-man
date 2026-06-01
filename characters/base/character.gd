@@ -2,8 +2,6 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 # --- Componentes Base ---
-@export var animation_tree: AnimationTree
-
 var trick_system:    TrickSystem
 var equipment:       EquipmentManager
 var controller:      PlayerController
@@ -21,10 +19,18 @@ var _is_jumping: bool  = false
 var _jumped:     int   = 0
 var _is_moving:  bool  = false
 
+# --- Grind flag ---
+var available_grindable: GrindableObject = null
+
+# --- Boost flags ---
 var current_boost_speed: float = 0.0
 
-	# --- Grind flag ---
-var available_grindable: GrindableObject = null
+
+func _ready() -> void:
+	boost_component.boost_update.connect(func(speed: float):
+		current_boost_speed = speed
+		print(current_boost_speed)
+	)
 
 # ---------------------------------------------------------------------------
 # API de Grind
@@ -33,10 +39,12 @@ var available_grindable: GrindableObject = null
 func add_available_grindable(grindable: GrindableObject) -> void:
 	available_grindable = grindable
 
+
 func remove_available_grindable(grindable: GrindableObject) -> void:
 	# Só remove se for o mesmo cano (previne bugs ao encostar em dois canos juntos)
 	if available_grindable == grindable:
 		available_grindable = null
+
 
 # O character está ativamente grindando se o GrindComponent disser que está.
 func is_grinding() -> bool:
@@ -51,7 +59,10 @@ func can_grind()           -> bool:  return available_grindable != null
 func is_jumping()          -> bool:  return _is_jumping
 func jumped()              -> bool:  return _jumped > 0
 func is_moving()           -> bool:  return _is_moving
-func get_max_boost_speed() -> float: return equipment.current_equipment.max_boost_speed
+func get_max_boost_speed() -> float: 
+	if equipment == null: push_error("equipment is null. ", equipment)
+	if equipment.current_equipment == null: push_error("does not have equipment equip. ", equipment.current_equipment)
+	return equipment.current_equipment.max_boost_speed
 
 # ---------------------------------------------------------------------------
 # Movement methods

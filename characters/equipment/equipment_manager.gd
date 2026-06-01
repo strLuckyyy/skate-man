@@ -39,16 +39,16 @@ func _build_tricks() -> Array[BaseTrick]:
 			continue
 		scenes.append(trick)
 	
-	# Order by priority
-	var i = 0
-	var result: Array[BaseTrick] = []
-	while i < scenes.size():
-		for trick in scenes:
-			if trick.trick_data.priority == i:
-				add_child(trick)
-				result.append(trick)
-		i += 1
-	return result
+	# order by priority
+	scenes.sort_custom(func(a: BaseTrick, b: BaseTrick) -> bool:
+		if not a.trick_data or not b.trick_data:
+			return false
+		return a.trick_data.priority < b.trick_data.priority
+	)
+	
+	for trick in scenes:
+		add_child(trick)
+	return scenes
 
 
 func _clear_tricks() -> void:

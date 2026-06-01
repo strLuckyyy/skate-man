@@ -2,7 +2,9 @@ extends Node
 
 
 var player: Player
-var hand_truck: EquipmentData = preload("res://characters/equipment/hand_truck/hand_truck_data.tres")
+var hand_truck: EquipmentData = preload(
+	"res://characters/equipment/hand_truck/hand_truck_data.tres"
+	)
 
 
 func _ready() -> void:
