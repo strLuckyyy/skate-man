@@ -28,7 +28,14 @@ func update(delta: float) -> void:
 	
 	if character.is_on_floor():
 		character.reset_jump()
-		emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
+		
+		var is_doing_trick  = character.trick_system.is_busy
+		var is_bad_rotation = abs(character.rotation_degrees) > 25.0 
+		
+		if is_doing_trick or is_bad_rotation:
+			emit_signal("transition_requested", Global.StateID.TRICK_FAIL, null)
+		else:
+			emit_signal("transition_requested", Global.StateID.ON_FLOOR,   null)
 
 
 func exit() -> void:

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TrickData" format=3 uid="uid://dd4n4pkup5dn0"]
+
+[ext_resource type="Script" uid="uid://dpgg0shxlo7xl" path="res://data/trick_data.gd" id="1_lxshf"]
+
+[resource]
+script = ExtResource("1_lxshf")
+metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

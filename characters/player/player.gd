@@ -1,40 +1,35 @@
 class_name Player
 extends BaseCharacter
 
-var input_buffer: InputBuffer
-var state_machine: StateMachine
+var input_buffer:  InputBuffer
 
 # ---------------------------------------------------------------------------
 # Life cycle
 # ---------------------------------------------------------------------------
 
 func _ready() -> void:
-	input_buffer    = %InputBuffer
-	state_machine   = %StateMachine
-	trick_system    = %TrickSystem
-	equipment       = %EquipmentManager
-	controller      = %Controller
-	grind_component = %GrindComponent
-	boost_component = %BoostComponent
+	super._ready()
+	if %StateManager is not StateMachine: 
+		push_error("In Player node, State Manager must be State Machine.")
+	state_manager = %StateManager as StateMachine
+	input_buffer  = %InputBuffer
 	
-	var trie_navigator = $TrieNavigator
-	var character_animator = %CharacterAnimator
+	var trie_navigator  = $TrieNavigator
+	var sequence_signal = trie_navigator.sequence_resolved
 	
-	trick_system.      setup(trie_navigator, equipment, character_animator)
-	trie_navigator.    setup(input_buffer, equipment)
-	character_animator.setup()
-	boost_component.   setup(self)
-	grind_component.   setup(self)
-	state_machine.     setup(self)
+	trie_navigator.setup(input_buffer, equipment)
+	trick_system.  setup(self, equipment, character_animator, sequence_signal)
+	state_manager. setup(self)
+	state_manager. setup(self)
 	
 	GameManager.player = self
 	
 	# --- Signals connections ---
 	trick_system.grind_trick_requested.connect(_on_grind_trick_requested)
-	EventBus.grind_started.connect(_on_grind_trick_requested)
-	EventBus.player_lock_requested.connect(on_lock_character)
-	EventBus.player_unlock_requested.connect(on_unlock_character)
-	EventBus.platform_lock_character.connect(on_lock_character)
+	EventBus.grind_started.            connect(_on_grind_trick_requested)
+	EventBus.player_lock_requested.    connect(on_lock_character)
+	EventBus.player_unlock_requested.  connect(on_unlock_character)
+	EventBus.platform_lock_character.  connect(on_lock_character)
 	EventBus.platform_unlock_character.connect(on_unlock_character)
 
 
@@ -49,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	if not can_move: return
 	
 	trick_system.process(
-		state_machine.get_current_state_id(),
+		state_manager.get_current_state_id(),
 		can_grind(),
 		available_grindable
 	)
@@ -76,13 +71,13 @@ func _apply_jump() -> void:
 
 
 func _on_grind_trick_requested(grindable: GrindableObject) -> void:
-	var state := state_machine.get_current_state_id()
+	var state := state_manager.get_current_state_id()
 	
 	if _jumped == 0: return
 	if grindable == null: return
 	if state != Global.StateID.ON_AIR and state != Global.StateID.ON_FALLING: return
 	
-	state_machine.transition_to(Global.StateID.ON_GRIDING, grindable)
+	state_manager.transition_to(Global.StateID.ON_GRIDING, grindable)
 
 
 # ---------------------------------------------------------------------------
@@ -105,4 +100,4 @@ func on_unlock_character() -> void:
 # ---------------------------------------------------------------------------
 
 func player_caught() -> void:
-	state_machine.transition_to(Global.StateID.CAUGHT)
+	state_manager.transition_to(Global.StateID.CAUGHT)

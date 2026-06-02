@@ -7,10 +7,12 @@ var is_grind_trick:     bool = false
 var cd_timer:           Timer
 var anim_player:        AnimationPlayer
 
+
 func _ready() -> void:
 	_state_available = trick_data.state_available.duplicate()
 	if trick_data.conditional_state_available.size() > 0:
-		_state_available.append_array(trick_data.conditional_state_available.duplicate())
+		_state_available.append_array(
+			trick_data.conditional_state_available.duplicate())
 	
 	cd_timer           = Timer.new()
 	cd_timer.wait_time = trick_data.cd

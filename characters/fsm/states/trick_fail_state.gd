@@ -14,7 +14,6 @@ var coyote_time := CoyoteTime.new()
 func _init() -> void:
 	state_id = Global.StateID.TRICK_FAIL
 
-@warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
 func enter(p_character: BaseCharacter, payload = null) -> void:
 	self.character          = p_character
@@ -29,6 +28,8 @@ func enter(p_character: BaseCharacter, payload = null) -> void:
 	
 	if character.is_on_floor():
 		_trigger_crash()
+	
+	character.boost_component.reset_boost()
 
 func update(delta: float) -> void:
 	if not has_crashed:

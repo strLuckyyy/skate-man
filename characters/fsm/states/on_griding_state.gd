@@ -49,6 +49,4 @@ func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> v
 	
 	elif reason == Global.ReasonToExitGrind.END_OF_RAIL:
 		var velocity := Vector2((speed * direction) * end_of_rail_boost_multiplier, end_of_rail_lift)
-		
-		character.boost_component.reset_boost()
 		emit_signal("transition_requested", Global.StateID.TRICK_FAIL, velocity)

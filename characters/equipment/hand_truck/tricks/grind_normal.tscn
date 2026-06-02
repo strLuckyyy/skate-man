@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cig51qibmpjn3"]
 
 [ext_resource type="Script" uid="uid://886lnt2birjc" path="res://characters/equipment/hand_truck/tricks/grind_normal.gd" id="1_536gd"]
-[ext_resource type="Resource" uid="uid://btkgkj11unktg" path="res://characters/equipment/hand_truck/tricks_data/grind_normal.tres" id="2_mdmh8"]
+[ext_resource type="Resource" uid="uid://btkgkj11unktg" path="res://characters/equipment/hand_truck/tricks/grind_normal.tres" id="2_mdmh8"]
 
 [node name="GrindNormal" type="Node2D" unique_id=286849921]
 script = ExtResource("1_536gd")

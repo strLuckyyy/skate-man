@@ -1,18 +1,31 @@
 [gd_scene format=3 uid="uid://cugtsy8diq3wy"]
 
+[ext_resource type="Script" uid="uid://c1rux2kmxrsvm" path="res://characters/base/character.gd" id="1_nvf7k"]
+[ext_resource type="PackedScene" uid="uid://dnbgwejp3mcqa" path="res://characters/components/state_manager.tscn" id="2_0hoxr"]
 [ext_resource type="PackedScene" uid="uid://bnatrw1b4s4gi" path="res://characters/equipment/equipment_manager.tscn" id="2_3fwhk"]
 [ext_resource type="PackedScene" uid="uid://b0y55jk3gggnh" path="res://characters/controllers/controller.tscn" id="2_qqr4u"]
+[ext_resource type="Script" uid="uid://c1ci0afum4fls" path="res://characters/components/state_manager.gd" id="3_sn1g0"]
 [ext_resource type="PackedScene" uid="uid://ekofyepjq8d7" path="res://characters/components/trick_system.tscn" id="4_ke030"]
 [ext_resource type="PackedScene" uid="uid://c06pux3q0qn72" path="res://characters/components/grind_component.tscn" id="4_mdkfl"]
+[ext_resource type="Script" uid="uid://fsgq8yal7w87" path="res://data/equipment_data.gd" id="5_0hoxr"]
 [ext_resource type="PackedScene" uid="uid://8qa7fqsk72v2" path="res://characters/components/boost_component.tscn" id="5_b1u1o"]
-[ext_resource type="PackedScene" uid="uid://5r1o5ghl6fxw" path="res://characters/components/trick_animator.tscn" id="6_xg31s"]
+[ext_resource type="PackedScene" uid="uid://5r1o5ghl6fxw" path="res://characters/components/character_animator.tscn" id="6_xg31s"]
+
+[sub_resource type="Resource" id="Resource_n55mo"]
+script = ExtResource("5_0hoxr")
+metadata/_custom_type_script = "uid://fsgq8yal7w87"
 
 [node name="Character" type="CharacterBody2D" unique_id=1969115429]
 collision_mask = 16
+script = ExtResource("1_nvf7k")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1747011181]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367863434]
+
+[node name="StateManager" parent="." unique_id=734721836 instance=ExtResource("2_0hoxr")]
+unique_name_in_owner = true
+script = ExtResource("3_sn1g0")
 
 [node name="TrickSystem" parent="." unique_id=33422410 instance=ExtResource("4_ke030")]
 unique_name_in_owner = true
@@ -22,6 +35,7 @@ unique_name_in_owner = true
 
 [node name="EquipmentManager" parent="." unique_id=2011998462 instance=ExtResource("2_3fwhk")]
 unique_name_in_owner = true
+default_equipment = SubResource("Resource_n55mo")
 
 [node name="Controller" parent="." unique_id=697335465 instance=ExtResource("2_qqr4u")]
 unique_name_in_owner = true

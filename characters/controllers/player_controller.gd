@@ -1,5 +1,5 @@
 class_name PlayerController 
-extends Node2D
+extends BaseController
 
 @export var input_deadzone := 0.1
 

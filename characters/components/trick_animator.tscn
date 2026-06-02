@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://5r1o5ghl6fxw"]
-
-[ext_resource type="Script" uid="uid://dinoqxis0pi2a" path="res://characters/components/trick_animator.gd" id="1_28bhk"]
-
-[node name="TrickAnimator" type="Node2D" unique_id=29396107]
-script = ExtResource("1_28bhk")

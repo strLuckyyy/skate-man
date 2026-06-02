@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func equip(equipment: EquipmentData):
 	if equipment == null:
-		push_error("Trying to equip null equipment")
+		push_error("Trying to equip null equipment. Object: ", owner.name)
 		return
 
 	current_equipment = equipment
@@ -35,7 +35,7 @@ func _build_tricks() -> Array[BaseTrick]:
 	for packed_scene in current_equipment.tricks:
 		var trick = packed_scene.instantiate() as BaseTrick
 		if trick == null:
-			push_error("Trick scene does not extend BaseTrick")
+			push_error("Trick scene does not extend BaseTrick. Object: ", owner.name)
 			continue
 		scenes.append(trick)
 	

@@ -2,12 +2,15 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 # --- Componentes Base ---
-var trick_system:    TrickSystem
-var equipment:       EquipmentManager
-var controller:      PlayerController
-var foot_ref:        CollisionShape2D
-var grind_component: GrindComponent
-var boost_component: BoostComponent
+var state_manager:      StateManager
+var trick_system:       TrickSystem
+var equipment:          EquipmentManager
+var controller:         BaseController
+var foot_ref:           CollisionShape2D
+var grind_component:    GrindComponent
+var boost_component:    BoostComponent
+var character_animator: CharacterAnimator
+var animation_player:   AnimationPlayer
 
 # --- Flags e Estados (Reduzidos) ---
 var is_locked:     bool = false
@@ -27,6 +30,19 @@ var current_boost_speed: float = 0.0
 
 
 func _ready() -> void:
+	state_manager      = %StateManager
+	trick_system       = %TrickSystem
+	boost_component    = %BoostComponent
+	equipment          = %EquipmentManager
+	controller         = %Controller
+	grind_component    = %GrindComponent
+	character_animator = %CharacterAnimator
+	animation_player   = %AnimationPlayer
+	
+	boost_component.   setup(self)
+	grind_component.   setup(self)
+	character_animator.setup(self)
+	
 	boost_component.boost_update.connect(func(speed: float):
 		current_boost_speed = speed
 		print(current_boost_speed)

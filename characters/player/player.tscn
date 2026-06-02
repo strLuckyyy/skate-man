@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dml2d8skg150f" path="res://assets/sprites/player_placeholder.png" id="3_gom2c"]
 [ext_resource type="Script" uid="uid://mop13y4ovkd0" path="res://characters/controllers/player_controller.gd" id="4_1f1u2"]
 [ext_resource type="PackedScene" uid="uid://cc4jikaqqcx1d" path="res://characters/components/input_buffer.tscn" id="4_iai5m"]
+[ext_resource type="Script" uid="uid://bb3bt08okkmx0" path="res://characters/fsm/state_machine.gd" id="5_idpv6"]
 [ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/equipment/hand_truck/hand_truck_data.tres" id="5_sh2bi"]
-[ext_resource type="PackedScene" uid="uid://c3ssg8nmo6d8w" path="res://characters/fsm/state_machine.tscn" id="5_ymscc"]
 [ext_resource type="PackedScene" uid="uid://b0p82k5dcrryy" path="res://system/trie/trie_navigator.tscn" id="8_s3qd7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f1u2"]
@@ -70,6 +70,54 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_idpv6"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 20.755), Vector2(0, 20.755)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3qd7"]
 _data = {
@@ -77,6 +125,19 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_vw6u4"]
+length = 0.53333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.19547687]
+}
 
 [sub_resource type="Animation" id="Animation_fggh0"]
 length = 0.53333336
@@ -312,11 +373,8 @@ shape = SubResource("CapsuleShape2D_1f1u2")
 [node name="InputBuffer" parent="." index="2" unique_id=69867716 instance=ExtResource("4_iai5m")]
 unique_name_in_owner = true
 
-[node name="StateMachine" parent="." index="3" unique_id=1335913820 instance=ExtResource("5_ymscc")]
-unique_name_in_owner = true
-
-[node name="TrickSystem" parent="." index="4" unique_id=33422410 node_paths=PackedStringArray("character")]
-character = NodePath("..")
+[node name="StateManager" parent="." index="3" unique_id=734721836]
+script = ExtResource("5_idpv6")
 
 [node name="EquipmentManager" parent="." index="6" unique_id=2011998462]
 default_equipment = ExtResource("5_sh2bi")
@@ -324,14 +382,14 @@ default_equipment = ExtResource("5_sh2bi")
 [node name="Controller" parent="." index="7" unique_id=697335465]
 script = ExtResource("4_1f1u2")
 
-[node name="Camera2D" type="Camera2D" parent="." index="9" unique_id=404592596]
+[node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
+
+[node name="Camera2D" type="Camera2D" parent="." index="11" unique_id=404592596]
 offset = Vector2(0, -260)
 zoom = Vector2(0.43, 0.43)
 limit_enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
-
-[node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
 
 [node name="AnimationPlayer" parent="." index="12" unique_id=1748857434]
 libraries/ = SubResource("AnimationLibrary_qasjv")

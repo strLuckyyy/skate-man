@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b8k5ftacnuo4"]
+
+[ext_resource type="PackedScene" uid="uid://4rv2qcgbaw0i" path="res://characters/base/base_ai.tscn" id="1_n6juw"]
+[ext_resource type="Texture2D" uid="uid://2ig85w3bd7gc" path="res://assets/sprites/enemy_placeholder1.png" id="2_3ilrn"]
+[ext_resource type="Resource" uid="uid://dgvcqoj5a02we" path="res://characters/equipment/skate/skate.tres" id="4_meift"]
+[ext_resource type="Script" uid="uid://44ype0l70cqi" path="res://characters/controllers/ai_controller.gd" id="5_s5p0h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ilrn"]
+radius = 46.0
+height = 224.0
+
+[node name="AIJohn" unique_id=1969115429 instance=ExtResource("1_n6juw")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1747011181]
+scale = Vector2(0.185, 0.185)
+texture = ExtResource("2_3ilrn")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=367863434]
+shape = SubResource("CapsuleShape2D_3ilrn")
+
+[node name="EquipmentManager" parent="." index="5" unique_id=2011998462]
+default_equipment = ExtResource("4_meift")
+
+[node name="Controller" parent="." index="6" unique_id=697335465]
+script = ExtResource("5_s5p0h")

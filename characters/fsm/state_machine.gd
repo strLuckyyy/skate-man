@@ -1,8 +1,5 @@
 class_name StateMachine
-extends Node
-
-
-signal state_changed(old_state: Global.StateID, new_state: Global.StateID)
+extends StateManager
 
 var current_state: BaseState
 var states:        Dictionary = { }
