@@ -4,6 +4,7 @@ extends Node
 signal grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary)
 
 var character:     BaseCharacter
+var controller:    BaseController
 var current_rail:  GrindableObject
 var current_curve: Curve2D
 
@@ -14,7 +15,8 @@ var current_speed:   float = 0.0
 var is_grinding: bool = false
 
 func setup(p_character: CharacterBody2D) -> void:
-	character = p_character
+	character  = p_character
+	controller = character.controller
 
 
 func start_grind(rail: GrindableObject, entry_velocity: Vector2) -> void:
@@ -43,7 +45,7 @@ func process_grind(delta: float) -> void:
 	
 	character._apply_jump()
 	
-	if character.jumped():
+	if controller.is_jumped():
 		exit_grind(Global.ReasonToExitGrind.JUMPED)
 		return
 	

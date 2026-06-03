@@ -19,9 +19,9 @@ func _init() -> void:
 @warning_ignore("shadowed_variable_base_class")
 func enter(p_character: BaseCharacter, payload = null) -> void:
 	super.enter(p_character, payload)
-	character.is_trick_fail = true
-	has_crashed             = false
-	current_recover_time    = 0.0
+	controller.is_trick_fail = true
+	has_crashed              = false
+	current_recover_time     = 0.0
 	
 	coyote_time.begin(character)
 	
@@ -38,7 +38,7 @@ func update(delta: float) -> void:
 		pre_velo = character.velocity
 		coyote_time.update(delta)
 		
-		if character.jumped():
+		if controller.is_jumped():
 			emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 		
 		if character.is_on_floor():
@@ -46,8 +46,8 @@ func update(delta: float) -> void:
 	else:
 		current_recover_time += delta
 		
-		character.can_jump = false
-		character.can_move = false
+		controller.can_jump = false
+		controller.can_move = false
 		
 		if character.velocity.x > pre_velo.x + _slide_distance:
 			character.velocity.x = 0.0
@@ -62,7 +62,7 @@ func _trigger_crash() -> void:
 	#character.velocity.y = -80.0
 
 func exit() -> void:
-	character.is_trick_fail = false
-	character.can_jump      = true
-	character.can_move      = true
+	controller.is_trick_fail = false
+	controller.can_jump      = true
+	controller.can_move      = true
 	current_recover_time    = 0.0

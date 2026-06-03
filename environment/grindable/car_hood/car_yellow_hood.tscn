@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ca0x02fo5fi00"]
 
 [ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_ft6bc"]
-[ext_resource type="Texture2D" uid="uid://cmyevn86pacl3" path="res://assets/cars/Kei Car Pack #1/Opacity Versions/hdn_bt/tuned/bt_op_td_front_view.png" id="2_1buxw"]
+[ext_resource type="Texture2D" uid="uid://begbm7e3oegmj" path="res://assets/cars/Kei Car Pack #1/hdn_bt/tuned/bt_td_front_view.png" id="2_b16de"]
 
 [sub_resource type="Curve2D" id="Curve2D_1buxw"]
 _data = {
@@ -16,7 +16,7 @@ size = Vector2(378, 64)
 
 [node name="Sprite2D" parent="." index="0" unique_id=1022371307]
 scale = Vector2(6.27, 6.27)
-texture = ExtResource("2_1buxw")
+texture = ExtResource("2_b16de")
 
 [node name="Path2D" parent="." index="1" unique_id=1304231975]
 curve = SubResource("Curve2D_1buxw")

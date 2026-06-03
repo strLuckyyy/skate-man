@@ -9,5 +9,5 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	_apply_gravity(delta)
+	super._physics_process(delta)
 	move_and_slide()

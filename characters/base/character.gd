@@ -56,6 +56,18 @@ func _ready() -> void:
 		print(current_boost_speed)
 	)
 
+
+func _physics_process(delta: float) -> void:
+	if controller != null: apply_gravity(delta)
+
+
+func apply_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		controller.is_jumping = false
+		controller.jumped     = 0
+
 # ---------------------------------------------------------------------------
 # API de Grind
 # ---------------------------------------------------------------------------

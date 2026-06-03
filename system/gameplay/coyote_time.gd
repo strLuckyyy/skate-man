@@ -5,15 +5,15 @@ const COYOTE_TIMEOUT: float = 0.2
 var _coyote_elapsed:  float = 0.0
 var _ends:            bool  = false
 
-var _character: BaseCharacter
+var _controller: BaseController
 
 
 func coyote_time_ends() -> bool: return _ends
 
 func begin(character: BaseCharacter):
-	_character         = character
+	_controller         = character.controller
 	_coyote_elapsed    = 0.0
-	character.can_jump = true
+	_controller.can_jump = true
 
 
 func update(delta: float) -> void:
@@ -21,5 +21,5 @@ func update(delta: float) -> void:
 	_coyote_elapsed += delta
 	
 	if _coyote_elapsed >= COYOTE_TIMEOUT:
-		_character.can_jump = false
-		_ends               = true
+		_controller.can_jump = false
+		_ends                = true

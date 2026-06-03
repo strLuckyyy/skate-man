@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/platform/base_platform.tscn" id="1_ethqj"]
 [ext_resource type="Script" uid="uid://dubaah2j5npvg" path="res://environment/platform/elevator_platform.gd" id="2_ei1si"]
-[ext_resource type="Texture2D" uid="uid://c1c6r7to0jlqu" path="res://icon.svg" id="3_wlxt7"]
+[ext_resource type="Texture2D" uid="uid://d1fv5314saex1" path="res://icon.svg" id="3_wlxt7"]
 
 [sub_resource type="Curve2D" id="Curve2D_wlxt7"]
 _data = {

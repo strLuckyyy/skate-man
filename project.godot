@@ -20,8 +20,7 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://b3pkltpeb0apa"
 EventBus="*uid://dl24x3t2r5j6y"
-SignalLens="*uid://85rkx60vm7a7"
-ControllerIcons="*uid://dio6u2rq5357b"
+Signal_Debugger="*uid://4hsxhnqhs7kd"
 
 [dotnet]
 
@@ -29,7 +28,7 @@ project/assembly_name="SkateMan"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotSignalChecker/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/gdscript_block_jumper/plugin.cfg", "res://addons/godot_doctor/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/project_statistics/plugin.cfg", "res://addons/signal_lens/plugin.cfg", "res://addons/smart-editor-plugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/godot_doctor/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/project_health_scanner/plugin.cfg", "res://addons/project_statistics/plugin.cfg", "res://addons/smart-editor-plugin/plugin.cfg")
 
 [global_group]
 

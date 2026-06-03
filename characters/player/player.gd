@@ -32,12 +32,11 @@ func _ready() -> void:
 	EventBus.platform_lock_character.  connect(on_lock_character)
 	EventBus.platform_unlock_character.connect(on_unlock_character)
 
-
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	if controller.is_locked:
 		move_and_slide()
 		return
-	if not controller.can_move: return
 	
 	controller.update_moving_state(velocity)
 	

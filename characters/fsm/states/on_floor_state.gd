@@ -10,7 +10,7 @@ func _init() -> void:
 @warning_ignore("shadowed_variable_base_class")
 func enter(p_character: BaseCharacter, payload = null) -> void:
 	super.enter(p_character, payload)
-	character.can_jump = true
+	controller.can_jump = true
 
 
 func update(_delta: float) -> void:
