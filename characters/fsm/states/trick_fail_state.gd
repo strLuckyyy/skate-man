@@ -11,12 +11,14 @@ var _slide_distance:  float = 10.
 var pre_velo    := Vector2.ZERO
 var coyote_time := CoyoteTime.new()
 
+
 func _init() -> void:
 	state_id = Global.StateID.TRICK_FAIL
 
+
 @warning_ignore("shadowed_variable_base_class")
 func enter(p_character: BaseCharacter, payload = null) -> void:
-	self.character          = p_character
+	super.enter(p_character, payload)
 	character.is_trick_fail = true
 	has_crashed             = false
 	current_recover_time    = 0.0

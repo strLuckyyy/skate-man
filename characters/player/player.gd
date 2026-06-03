@@ -33,15 +33,13 @@ func _ready() -> void:
 	EventBus.platform_unlock_character.connect(on_unlock_character)
 
 
-func _physics_process(delta: float) -> void:
-	if is_locked:
+func _physics_process(_delta: float) -> void:
+	if controller.is_locked:
 		move_and_slide()
 		return
+	if not controller.can_move: return
 	
-	_apply_gravity(delta)
-	_update_moving_state()
-	
-	if not can_move: return
+	controller.update_moving_state(velocity)
 	
 	trick_system.process(
 		state_manager.get_current_state_id(),
@@ -56,6 +54,11 @@ func _physics_process(delta: float) -> void:
 # Movement
 # ---------------------------------------------------------------------------
 
+func _calculate_velocity() -> void:
+	_apply_movement()
+	_apply_jump()
+
+
 func _apply_movement() -> void:
 	if controller.get_auto_move_active():
 		velocity = controller.apply_auto_movement(velocity, equipment.current_equipment, current_boost_speed)
@@ -64,21 +67,17 @@ func _apply_movement() -> void:
 
 
 func _apply_jump() -> void:
-	if Input.is_action_just_pressed("jump") and can_jump and _jumped == 0:
-		velocity.y  = controller.apply_jump(equipment.current_equipment)
-		_jumped    += 1
-		_is_jumping = true
+	velocity = controller.apply_jump(velocity, equipment.current_equipment)
 
 
 func _on_grind_trick_requested(grindable: GrindableObject) -> void:
 	var state := state_manager.get_current_state_id()
 	
-	if _jumped == 0: return
+	if controller.jumped == 0: return
 	if grindable == null: return
 	if state != Global.StateID.ON_AIR and state != Global.StateID.ON_FALLING: return
 	
 	state_manager.transition_to(Global.StateID.ON_GRIDING, grindable)
-
 
 # ---------------------------------------------------------------------------
 # Lock / Unlock
@@ -87,13 +86,13 @@ func _on_grind_trick_requested(grindable: GrindableObject) -> void:
 func on_lock_character(_body: BaseCharacter) -> void:
 	if _body != self:
 		return
-	is_locked = true
+	controller.is_locked = true
 	velocity  = Vector2.ZERO
 	controller.clear_auto_move()
 
 
 func on_unlock_character() -> void:
-	is_locked = false
+	controller.is_locked = false
 
 # ---------------------------------------------------------------------------
 # Gameplay callbacks

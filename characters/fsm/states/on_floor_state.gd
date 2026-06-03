@@ -8,8 +8,8 @@ func _init() -> void:
 
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
-func enter(character: BaseCharacter, payload = null) -> void:
-	self.character = character
+func enter(p_character: BaseCharacter, payload = null) -> void:
+	super.enter(p_character, payload)
 	character.can_jump = true
 
 

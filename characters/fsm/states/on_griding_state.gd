@@ -12,8 +12,8 @@ func _init() -> void:
 
 
 @warning_ignore("shadowed_variable_base_class")
-func enter(character: BaseCharacter, payload = null) -> void:
-	self.character = character
+func enter(p_character: BaseCharacter, payload = null) -> void:
+	super.enter(p_character, payload)
 	character.reset_jump()
 	var rail = payload as GrindableObject
 	
@@ -21,7 +21,7 @@ func enter(character: BaseCharacter, payload = null) -> void:
 		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 		return
 	
-	character.can_move = false
+	controller.can_move = false
 	
 	character.grind_component.grind_finished.connect(_on_grind_finished)
 	character.grind_component.start_grind(rail, character.velocity)
@@ -32,7 +32,7 @@ func update(delta: float) -> void:
 
 
 func exit() -> void:
-	character.can_move = true
+	controller.can_move = true
 	character.grind_component.grind_finished.disconnect(_on_grind_finished)
 
 
@@ -41,9 +41,9 @@ func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> v
 	var speed:     float = data.get("speed",   300.0)
 	
 	if reason == Global.ReasonToExitGrind.JUMPED:
-		character.velocity.y  = character.controller.apply_jump(character.equipment.current_equipment) * 1.1
+		character.velocity    = controller.apply_jump(character.velocity, character.equipment.current_equipment) * 1.1
 		character.velocity.x  = speed * direction
-		character._is_jumping = true
+		controller.is_jumping = true
 		
 		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 	

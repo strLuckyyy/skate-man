@@ -3,6 +3,7 @@ extends BaseController
 
 @export var input_deadzone := 0.1
 
+
 # --- Automatic Movement ---
 var _auto_move_velocity: float = 0.0
 var _auto_move_active:   bool  = false
@@ -21,6 +22,9 @@ func clear_auto_move() -> void:
 	_auto_move_active   = false
 	_auto_move_velocity = 0.0
 
+# ---------------------------------------------------------------------------
+# Movement methods
+# ---------------------------------------------------------------------------
 
 func apply_auto_movement(velocity: Vector2, equipment: EquipmentData, boost: float) -> Vector2:
 	var accel = clamp(
@@ -46,5 +50,9 @@ func apply_movement(velocity: Vector2, equipment: EquipmentData, boost: float) -
 	return velocity
 
 
-func apply_jump(equipment_data: EquipmentData) -> float:
-	return -equipment_data.jump_modifier
+func apply_jump(velocity: Vector2, equipment_data: EquipmentData) -> Vector2:
+	if Input.is_action_just_pressed("jump") and can_jump and jumped == 0:
+		jumped    += 1
+		is_jumping = true
+		velocity.y = -equipment_data.jump_modifier
+	return velocity

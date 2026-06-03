@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://c76k5r5jf6ql2"]
 
-[ext_resource type="Texture2D" uid="uid://c1c6r7to0jlqu" path="res://icon.svg" id="1_46lwt"]
+[ext_resource type="Texture2D" uid="uid://d1fv5314saex1" path="res://icon.svg" id="1_46lwt"]
 [ext_resource type="PackedScene" uid="uid://tkoi6wuvdx3s" path="res://characters/player/player.tscn" id="2_x25rp"]
 [ext_resource type="PackedScene" uid="uid://ca0x02fo5fi00" path="res://environment/grindable/car_hood/car_yellow_hood.tscn" id="3_gmgay"]
 [ext_resource type="PackedScene" uid="uid://b8k5ftacnuo4" path="res://characters/opponents/john/ai_john.tscn" id="4_w7r7j"]
-[ext_resource type="Script" uid="uid://b3ljnsjfrwt31" path="res://characters/opponents/ai/opponent_ai.gd" id="5_o6mel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr1um"]
 size = Vector2(1846, 20)
@@ -172,4 +171,3 @@ position = Vector2(923, -61)
 
 [node name="AIJohn" parent="." unique_id=1975987281 instance=ExtResource("4_w7r7j")]
 position = Vector2(1077, -38)
-script = ExtResource("5_o6mel")

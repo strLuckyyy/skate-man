@@ -385,8 +385,9 @@ script = ExtResource("4_1f1u2")
 [node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
 
 [node name="Camera2D" type="Camera2D" parent="." index="11" unique_id=404592596]
-offset = Vector2(0, -260)
-zoom = Vector2(0.43, 0.43)
+position = Vector2(93, -186)
+zoom = Vector2(0.57, 0.57)
+process_callback = 0
 limit_enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
