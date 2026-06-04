@@ -18,9 +18,9 @@ func make_trick(sequence: Array[Global.Direction]) -> void:
 	trick_sequence.emit(equipment.get_tricks(), sequence)
 
 
-func apply_movement(direction: float, boost: float = 0.0) -> void:
+func apply_movement(direction: float) -> void:
 	controller.direction = direction
-	controller.apply_movement(velocity, equipment.current_equipment, boost)
+	controller.apply_movement(velocity, equipment.current_equipment, current_boost_speed)
 
 
 func apply_jump() -> bool:

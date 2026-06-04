@@ -52,6 +52,8 @@ func _ready() -> void:
 	character_animator.setup(self)
 	state_machine.     setup(self)
 	
+	
+	trick_system.grind_trick_requested.connect(_on_grind_trick_requested)
 	boost_component.boost_update.connect(func(speed: float):
 		current_boost_speed = speed
 		print(current_boost_speed)
@@ -75,6 +77,16 @@ func apply_gravity(delta: float) -> void:
 
 func add_available_grindable(grindable: GrindableObject) -> void:
 	available_grindable = grindable
+
+
+func _on_grind_trick_requested(grindable: GrindableObject) -> void:
+	var state := state_machine.get_current_state_id()
+	
+	if controller.jumped == 0: return
+	if grindable == null: return
+	if state != Global.StateID.ON_AIR and state != Global.StateID.ON_FALLING: return
+	
+	state_machine.transition_to(Global.StateID.ON_GRIDING, grindable)
 
 
 func remove_available_grindable(grindable: GrindableObject) -> void:

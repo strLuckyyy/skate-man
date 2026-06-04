@@ -19,8 +19,6 @@ func _ready() -> void:
 	
 	GameManager.player = self
 	
-	# --- Signals connections ---
-	trick_system.grind_trick_requested.connect(_on_grind_trick_requested)
 
 
 func _physics_process(delta: float) -> void:
@@ -58,16 +56,6 @@ func _apply_movement() -> void:
 
 func _apply_jump() -> void:
 	velocity = controller.apply_jump(velocity, equipment.current_equipment)
-
-
-func _on_grind_trick_requested(grindable: GrindableObject) -> void:
-	var state := state_machine.get_current_state_id()
-	
-	if controller.jumped == 0: return
-	if grindable == null: return
-	if state != Global.StateID.ON_AIR and state != Global.StateID.ON_FALLING: return
-	
-	state_machine.transition_to(Global.StateID.ON_GRIDING, grindable)
 
 # ---------------------------------------------------------------------------
 # Lock / Unlock
