@@ -2,10 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cugtsy8diq3wy" path="res://characters/base/character.tscn" id="1_i5pb3"]
 [ext_resource type="Script" uid="uid://b3ljnsjfrwt31" path="res://characters/opponents/ai/opponent_ai.gd" id="2_71drv"]
-[ext_resource type="Script" uid="uid://btyaqjdhbqkod" path="res://characters/opponents/ai/bt_manager.gd" id="3_234tf"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_234tf"]
 
 [node name="BaseAI" unique_id=1969115429 instance=ExtResource("1_i5pb3")]
+collision_layer = 2
 script = ExtResource("2_71drv")
 
-[node name="StateManager" parent="." index="2" unique_id=734721836]
-script = ExtResource("3_234tf")
+[node name="BTPlayer" type="BTPlayer" parent="." index="2" unique_id=94575947]
+blackboard_plan = SubResource("BlackboardPlan_234tf")
+unique_name_in_owner = true

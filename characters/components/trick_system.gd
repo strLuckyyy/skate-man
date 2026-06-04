@@ -2,6 +2,7 @@ class_name TrickSystem
 extends Node
 
 signal trick_started(trick: BaseTrick)
+signal trick_ended()
 signal grind_trick_requested(grindable: GrindableObject)
 
 var character:          BaseCharacter
@@ -29,7 +30,7 @@ func setup(
 	equipment_manager.equipment_changed.  connect(_on_equipment_changed)
 	animator.trick_animation_finished.    connect(_on_trick_anim_finished)
 	
-	character.state_manager.state_changed.connect(_on_state_changed)
+	character.state_machine.state_changed.connect(_on_state_changed)
 
 
 func process(
@@ -50,8 +51,7 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	var anim_name = trick.trick_data.animation_name
 	animator.play_trick(str("tricks/", anim_name))
 	
-	EventBus.trick_detected.emit(
-		trick.trick_data.trick_name if trick.trick_data else "Unknown")
+	EventBus.trick_detected.emit(trick.trick_data)
 	trick_started.emit(trick) 
 	
 	if trick.is_grind_trick and context.get_grind_opportunity():

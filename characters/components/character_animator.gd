@@ -15,7 +15,7 @@ func setup(character_ref: BaseCharacter) -> void:
 	anim_player = character.animation_player
 	anim_player.animation_finished.connect(_on_animation_finished)
 	
-	character.state_manager.state_changed.connect(_on_state_changed)
+	character.state_machine.state_changed.connect(_on_state_changed)
 
 
 func play_trick(anim_path: String) -> void:
@@ -28,7 +28,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 	if is_executing_trick and anim_name == current_trick_anim:
 		is_executing_trick = false
 		trick_animation_finished.emit()
-		_update_base_animation(character.state_manager.get_current_state_id())
+		_update_base_animation(character.state_machine.get_current_state_id())
 
 func _on_state_changed(_old_state: Global.StateID, new_state: Global.StateID) -> void:
 	if new_state == Global.StateID.TRICK_FAIL: 

@@ -7,6 +7,19 @@ signal equipment_changed(equipment: EquipmentData, tricks: Array[BaseTrick])
 var current_equipment:         EquipmentData
 var _current_tricks:           Array[BaseTrick] = []
 
+func get_trick_pool(state: Global.StateID = Global.StateID.NONE) -> Array[TrickData]:
+	var pool: Array[TrickData]
+	
+	if state == Global.StateID.NONE:
+		for trick in _current_tricks:
+			pool.append(trick.trick_data)
+		return pool
+	
+	for trick in _current_tricks:
+		if state in trick.get_state_available():
+			pool.append(trick.trick_data)
+	return pool
+
 
 func _ready() -> void:
 	await owner.ready

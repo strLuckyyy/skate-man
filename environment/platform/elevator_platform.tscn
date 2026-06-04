@@ -91,6 +91,8 @@ update_rotation = false
 
 [node name="AnimatableBody2D" parent="." index="1" unique_id=92778484]
 position = Vector2(0, -65)
+collision_layer = 8
+collision_mask = 3
 
 [node name="Sprite2D" parent="AnimatableBody2D" index="0" unique_id=1771229665]
 texture = ExtResource("3_wlxt7")

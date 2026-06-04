@@ -7,6 +7,9 @@ var is_grind_trick:     bool = false
 var cd_timer:           Timer
 var anim_player:        AnimationPlayer
 
+func get_state_available() -> Array[Global.StateID]:
+	return _state_available.duplicate(true)
+
 
 func _ready() -> void:
 	_state_available = trick_data.state_available.duplicate()

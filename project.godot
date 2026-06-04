@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 GameManager="*uid://b3pkltpeb0apa"
 EventBus="*uid://dl24x3t2r5j6y"
 Signal_Debugger="*uid://4hsxhnqhs7kd"
+OpponentGlobal="*uid://b0giqsxgo70se"
 
 [dotnet]
 

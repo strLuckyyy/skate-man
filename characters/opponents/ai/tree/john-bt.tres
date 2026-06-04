@@ -1,8 +1,86 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://cymenedscfq63"]
 
+[ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/caught_task.gd" id="1_5wqov"]
+[ext_resource type="Script" uid="uid://xk8gi504vmas" path="res://characters/opponents/ai/tasks/check_state_condition.gd" id="1_fukyl"]
+[ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/trick_fail_task.gd" id="3_n51gn"]
+[ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/bt_play_random_trick.gd" id="4_n0p6c"]
+[ext_resource type="Script" uid="uid://f7llk3k4he68" path="res://characters/opponents/ai/tasks/pumping_task.gd" id="6_68jnl"]
+
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ilfj0"]
 
+[sub_resource type="BTCondition" id="BTCondition_cqrue"]
+script = ExtResource("1_fukyl")
+
+[sub_resource type="BTAction" id="BTAction_oy5bn"]
+script = ExtResource("1_5wqov")
+
+[sub_resource type="BTSequence" id="BTSequence_5wqov"]
+custom_name = "CaughtSequence"
+children = [SubResource("BTCondition_cqrue"), SubResource("BTAction_oy5bn")]
+
+[sub_resource type="BTCondition" id="BTCondition_68jnl"]
+script = ExtResource("1_fukyl")
+target_state = 1
+
+[sub_resource type="BTAction" id="BTAction_riel8"]
+script = ExtResource("3_n51gn")
+
+[sub_resource type="BTSequence" id="BTSequence_75b4g"]
+custom_name = "TrickFailSequence"
+children = [SubResource("BTCondition_68jnl"), SubResource("BTAction_riel8")]
+
+[sub_resource type="BTCondition" id="BTCondition_pjmpy"]
+script = ExtResource("1_fukyl")
+target_state = 5
+
+[sub_resource type="BTAction" id="BTAction_5wqov"]
+script = ExtResource("4_n0p6c")
+
+[sub_resource type="BTSequence" id="BTSequence_cqrue"]
+custom_name = "GrindSequence"
+children = [SubResource("BTCondition_pjmpy"), SubResource("BTAction_5wqov")]
+
+[sub_resource type="BTCondition" id="BTCondition_fukyl"]
+script = ExtResource("1_fukyl")
+target_state = 4
+
+[sub_resource type="BTAction" id="BTAction_lj4pd"]
+script = ExtResource("4_n0p6c")
+
+[sub_resource type="BTSequence" id="BTSequence_fukyl"]
+custom_name = "FallingSequence"
+children = [SubResource("BTCondition_fukyl"), SubResource("BTAction_lj4pd")]
+
+[sub_resource type="BTCondition" id="BTCondition_n51gn"]
+script = ExtResource("1_fukyl")
+target_state = 3
+
+[sub_resource type="BTAction" id="BTAction_fukyl"]
+script = ExtResource("4_n0p6c")
+
+[sub_resource type="BTSequence" id="BTSequence_oy5bn"]
+custom_name = "AirSequence"
+children = [SubResource("BTCondition_n51gn"), SubResource("BTAction_fukyl")]
+
+[sub_resource type="BTCondition" id="BTCondition_oy5bn"]
+script = ExtResource("1_fukyl")
+target_state = 2
+
+[sub_resource type="BTAction" id="BTAction_n51gn"]
+script = ExtResource("4_n0p6c")
+
+[sub_resource type="BTSequence" id="BTSequence_riel8"]
+custom_name = "FloorSequence"
+children = [SubResource("BTCondition_oy5bn"), SubResource("BTAction_n51gn")]
+
+[sub_resource type="BTSelector" id="BTSelector_hmjqt"]
+children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_cqrue"), SubResource("BTSequence_fukyl"), SubResource("BTSequence_oy5bn"), SubResource("BTSequence_riel8")]
+
+[sub_resource type="BTAction" id="BTAction_iytlr"]
+script = ExtResource("6_68jnl")
+
 [sub_resource type="BTSelector" id="BTSelector_7bpj1"]
+children = [SubResource("BTSelector_hmjqt"), SubResource("BTAction_iytlr")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_ilfj0")

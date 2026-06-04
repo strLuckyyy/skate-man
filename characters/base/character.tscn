@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cugtsy8diq3wy"]
 
 [ext_resource type="Script" uid="uid://c1rux2kmxrsvm" path="res://characters/base/character.gd" id="1_nvf7k"]
-[ext_resource type="PackedScene" uid="uid://dnbgwejp3mcqa" path="res://characters/components/state_manager.tscn" id="2_0hoxr"]
+[ext_resource type="PackedScene" uid="uid://dnbgwejp3mcqa" path="res://characters/fsm/state_machine.tscn" id="2_0hoxr"]
 [ext_resource type="PackedScene" uid="uid://bnatrw1b4s4gi" path="res://characters/equipment/equipment_manager.tscn" id="2_3fwhk"]
 [ext_resource type="PackedScene" uid="uid://b0y55jk3gggnh" path="res://characters/controllers/controller.tscn" id="2_qqr4u"]
-[ext_resource type="Script" uid="uid://c1ci0afum4fls" path="res://characters/components/state_manager.gd" id="3_sn1g0"]
+[ext_resource type="Script" uid="uid://bb3bt08okkmx0" path="res://characters/fsm/state_machine.gd" id="3_sn1g0"]
 [ext_resource type="PackedScene" uid="uid://ekofyepjq8d7" path="res://characters/components/trick_system.tscn" id="4_ke030"]
 [ext_resource type="PackedScene" uid="uid://c06pux3q0qn72" path="res://characters/components/grind_component.tscn" id="4_mdkfl"]
 [ext_resource type="Script" uid="uid://fsgq8yal7w87" path="res://data/equipment_data.gd" id="5_0hoxr"]
@@ -16,14 +16,14 @@ script = ExtResource("5_0hoxr")
 metadata/_custom_type_script = "uid://fsgq8yal7w87"
 
 [node name="Character" type="CharacterBody2D" unique_id=1969115429]
-collision_mask = 16
+collision_mask = 24
 script = ExtResource("1_nvf7k")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1747011181]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367863434]
 
-[node name="StateManager" parent="." unique_id=734721836 instance=ExtResource("2_0hoxr")]
+[node name="StateMachine" parent="." unique_id=734721836 instance=ExtResource("2_0hoxr")]
 unique_name_in_owner = true
 script = ExtResource("3_sn1g0")
 

@@ -2,7 +2,7 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 # --- Componentes Base ---
-var state_manager:      StateManager
+var state_machine:      StateMachine
 var trick_system:       TrickSystem
 var equipment:          EquipmentManager
 var controller:         BaseController
@@ -38,7 +38,7 @@ func get_max_boost_speed() -> float:
 
 
 func _ready() -> void:
-	state_manager      = %StateManager
+	state_machine      = %StateMachine
 	trick_system       = %TrickSystem
 	boost_component    = %BoostComponent
 	equipment          = %EquipmentManager
@@ -66,7 +66,7 @@ func apply_gravity(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		controller.is_jumping = false
-		controller.jumped     = 0
+		controller.reset_jumped()
 
 # ---------------------------------------------------------------------------
 # API de Grind
@@ -80,10 +80,12 @@ func remove_available_grindable(grindable: GrindableObject) -> void:
 	if available_grindable == grindable: available_grindable = null
 
 # ---------------------------------------------------------------------------
-# Lock / Unlock (platform / external movers)
+# Abstract methods
 # ---------------------------------------------------------------------------
 
 @warning_ignore("unused_parameter")
 func _is_on_grinding(grindable: GrindableObject) -> void: pass
 func on_lock_character(_body: BaseCharacter)     -> void: pass
 func on_unlock_character()                       -> void: pass
+func get_caught()                                -> void:
+	EventBus.character_caught.emit(self)

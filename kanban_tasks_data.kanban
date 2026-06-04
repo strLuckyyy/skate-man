@@ -26,7 +26,8 @@
 			"title": "Doing",
 			"tasks": [
 				"fc9ff3e4-4525-455f-b46d-9fcd89fc4931",
-				"50ae1214-249c-49b9-bf74-dede27e155a0"
+				"50ae1214-249c-49b9-bf74-dede27e155a0",
+				"57cc43a5-bf46-4e4c-b1d3-d820fbc7bf73"
 			]
 		},
 		{
@@ -184,6 +185,13 @@
 			"uuid": "ac2c0d7a-d575-42bb-ba68-1ef28ac94eae",
 			"title": "FSM",
 			"description": "Centralize a Física na State Machine: Transforme a FSM na verdadeira autoridade do movimento. O _physics_process do Player.gd deve apenas chamar state_machine.physics_update(delta). Cada estado deve decidir se aplica gravidade, movimento ou fricção.",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "57cc43a5-bf46-4e4c-b1d3-d820fbc7bf73",
+			"title": "opponent action tem q grindar",
+			"description": "so grinda se tiver em area de grind, e atualmente so roda o grind action se estiver grindando, mas n grinda se n grindar",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []
 		}
