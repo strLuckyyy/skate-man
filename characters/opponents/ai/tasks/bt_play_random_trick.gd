@@ -27,36 +27,30 @@ func dbg(msg: String) -> void:
 		print("[BTPlayRandomTrick] ", msg)
 
 func _enter() -> void:
-	await agent.ready
-	dbg("=== ENTER ===")
-	if agent != OpponentAI:
-		push_error("Agent must be a OpponentAI, not ", agent.name)
-		return
 	_char = agent as OpponentAI
-	dbg("Agent: %s" % _char.name)
+	if _char == null:
+		push_error("BTPlayRandomTrick: agent must be OpponentAI")
+		return
 	
+	_trick_pool         = _char.equipment.get_trick_pool(action_state)
 	_is_executing_trick = false
-	_current_state      = _char.state_machine.get_current_state_id()
-	_trick_pool         = _char.equipment.get_trick_pool(_current_state)
 	
-	dbg("Current State: %s" % _current_state)
-	dbg("Trick Pool Size: %d" % _trick_pool.size())
-
-	for trick in _trick_pool:
-		dbg("Pool Trick: %s" % trick.name)
+	_trick_buffer.clear()
 	#if _trick_pool.is_empty(): return
 
 
 func _tick(_delta: float) -> Status:
+	if not _check(): 
+		dbg("State Check FAILED")
+		return FAILURE
+	dbg("State Check SUCCESS")
+	
+	_current_state = _char.state_machine.get_current_state_id()
+	
 	dbg("---------------------")
 	dbg("Tick")
 	dbg("Current State: %s" % _current_state)
 	dbg("Action State: %s" % action_state)
-	
-	if not state_check(): 
-		dbg("State Check FAILED")
-		return FAILURE
-	dbg("State Check SUCCESS")
 	
 	if _is_executing_trick:
 		dbg("Waiting Trick Execution")
@@ -73,33 +67,31 @@ func _tick(_delta: float) -> Status:
 	
 	dbg("Decision: %s" % Global.AIDecision.keys()[_decision])
 	
-	# Nothing Decision
-	if _decision == Global.AIDecision.NOTHING:
-		dbg("Executing NOTHING")
-		if action_state == Global.StateID.ON_FLOOR:
-			_char.apply_movement(1.0)
-		return SUCCESS
-	
-	# Jump Decision
-	if _decision == Global.AIDecision.JUMP:
-		dbg("Executing JUMP")
-		var result := _char.apply_jump()
-		dbg("Jump Result: %s" % result)
-		return SUCCESS if _char.apply_jump() else FAILURE
-	
-	# Trick Decision
-	if _decision == Global.AIDecision.TRICK:
-		dbg("Executing TRICK")
-		_char.make_trick(randomize_trick())
-		return RUNNING if _char.trick_system.is_busy else FAILURE
+	match _decision:
+		Global.AIDecision.NOTHING:
+			if action_state == Global.StateID.ON_FLOOR:
+				_char.apply_movement(1.0)
+			return SUCCESS
+		
+		Global.AIDecision.JUMP:
+			return SUCCESS if _char.apply_jump() else FAILURE
+		
+		Global.AIDecision.TRICK:
+			if _trick_pool.is_empty():
+				return FAILURE
+			_char.make_trick(randomize_trick())
+			if _char.trick_system.is_busy:
+				_is_executing_trick = true
+				return RUNNING
+			return FAILURE
 	dbg("Unexpected FAILURE")
 	return FAILURE
 
 
-func state_check() -> bool:
-	_current_state = _char.state_machine.get_current_state_id()
-	if _current_state != action_state:
-		return false
+func _check() -> bool:
+	if _char == null or not is_instance_valid(_char):              return false
+	if _char.state_machine == null:                                return false
+	if _char.state_machine.get_current_state_id() != action_state: return false
 	return true
 
 

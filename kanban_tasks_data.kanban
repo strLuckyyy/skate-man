@@ -16,18 +16,18 @@
 				"40dffa44-b936-4ad8-a2fa-5727ae0f6743",
 				"c177efe7-ecee-40d0-b388-4ce1fca61b22",
 				"6db5473d-322b-43b1-b6d0-54f8b7d94498",
-				"5528a92e-dba8-4ec6-a240-667ffdcfe961",
-				"64a0ffa9-c279-4fde-8b11-cfacdf6ac513",
-				"ac2c0d7a-d575-42bb-ba68-1ef28ac94eae"
+				"b7478f2e-6e94-4975-a073-d82a0b2b072c",
+				"664c7ffc-3250-43fd-99a3-8bed75b43b25"
 			]
 		},
 		{
 			"uuid": "5e5b0a7a-e2c1-4814-a6cf-23ac3b273700",
 			"title": "Doing",
 			"tasks": [
-				"fc9ff3e4-4525-455f-b46d-9fcd89fc4931",
 				"50ae1214-249c-49b9-bf74-dede27e155a0",
-				"57cc43a5-bf46-4e4c-b1d3-d820fbc7bf73"
+				"57cc43a5-bf46-4e4c-b1d3-d820fbc7bf73",
+				"afbc579f-1089-44ba-b79a-474b83ac87c9",
+				"728b41a1-038e-4eec-9f71-b4105368efe4"
 			]
 		},
 		{
@@ -39,7 +39,11 @@
 				"7f07e52f-5bc5-41b0-91e4-e595f1836758",
 				"9b5e72c5-83ca-4304-bdae-7cf6ff62918b",
 				"0746792c-e43a-4b7b-a1c1-2732fe846e41",
+				"fc9ff3e4-4525-455f-b46d-9fcd89fc4931",
+				"ac2c0d7a-d575-42bb-ba68-1ef28ac94eae",
 				"9f071770-97fd-4fba-a459-4a963c5f8a99",
+				"64a0ffa9-c279-4fde-8b11-cfacdf6ac513",
+				"5528a92e-dba8-4ec6-a240-667ffdcfe961",
 				"9413760d-4262-40bc-ab47-5f40dba0dded"
 			]
 		}
@@ -192,6 +196,34 @@
 			"uuid": "57cc43a5-bf46-4e4c-b1d3-d820fbc7bf73",
 			"title": "opponent action tem q grindar",
 			"description": "so grinda se tiver em area de grind, e atualmente so roda o grind action se estiver grindando, mas n grinda se n grindar",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "afbc579f-1089-44ba-b79a-474b83ac87c9",
+			"title": "opponent decisions buffer",
+			"description": "o oponente deve ter um buffer para não ficar flodando ações, tricks e etc\n\npara os trick, pensando num arr de 3\n[a, b, c] deve ser impossível fazer a c novamente, deve ser pouco provavel fazer o b, e relativamente provavel fazer o a novamente\n\npara as ações deve seguir uma ideia parecida",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "b7478f2e-6e94-4975-a073-d82a0b2b072c",
+			"title": "InputBuffer",
+			"description": "Melhorar o recebimento de inputs e leitura com base no enum ja estabelecido:\nenum TrickType {\n\tMOMENTARY, # Executa uma vez e termina\n\tCONTINUOUS, # Executa enquanto tecla é segurada\n\tCHARGED, # Carrega enquanto segura, executa ao soltar\n}",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "728b41a1-038e-4eec-9f71-b4105368efe4",
+			"title": "Player e AI Controller",
+			"description": "Eles devem sempre andar para a direita a menos que algo mude sua trajetória. Sempre indo a  menos q um estado o pare. ",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "664c7ffc-3250-43fd-99a3-8bed75b43b25",
+			"title": "Grind",
+			"description": "Um grind area que força uma manobra específica ; talvez tirar esse do game\n",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []
 		}

@@ -20,7 +20,7 @@ func make_trick(sequence: Array[Global.Direction]) -> void:
 
 func apply_movement(direction: float) -> void:
 	controller.direction = direction
-	controller.apply_movement(velocity, equipment.current_equipment, current_boost_speed)
+	velocity = controller.apply_movement(velocity, equipment.current_equipment, current_boost_speed)
 
 
 func apply_jump() -> bool:

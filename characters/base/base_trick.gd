@@ -40,7 +40,7 @@ func can_execute(context: TrickContext) -> bool:
 	if not (state_match and input_match):
 		return false
 	
-	if is_grind_trick in _state_available:
+	if is_grind_trick and Global.StateID.ON_GRIDING in _state_available:
 		if not context.get_grind_opportunity():
 			return false
 	

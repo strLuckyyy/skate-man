@@ -19,7 +19,7 @@ func enter(p_character: BaseCharacter, payload = null) -> void:
 	coyote_time.begin(character)
 
 
-func update(delta: float) -> void:	
+func update(delta: float) -> void:
 	_fall_elapsed += delta
 	coyote_time.update(delta)
 	
