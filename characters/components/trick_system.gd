@@ -2,7 +2,6 @@ class_name TrickSystem
 extends Node
 
 signal trick_started(trick: BaseTrick)
-signal trick_ended()
 signal grind_trick_requested(grindable: GrindableObject)
 
 var character:          BaseCharacter

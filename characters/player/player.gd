@@ -16,8 +16,6 @@ func _ready() -> void:
 	
 	trie_navigator.setup(input_buffer, equipment)
 	trick_system.  setup(self, equipment, character_animator, sequence_signal)
-	state_machine. setup(self)
-	state_machine. setup(self)
 	
 	GameManager.player = self
 	

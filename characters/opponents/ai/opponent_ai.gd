@@ -14,8 +14,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func make_trick(sequence: Array[Global.Direction]):
+func make_trick(sequence: Array[Global.Direction]) -> void:
 	trick_sequence.emit(equipment.get_tricks(), sequence)
+
+
+func apply_movement(direction: float, boost: float = 0.0) -> void:
+	controller.direction = direction
+	controller.apply_movement(velocity, equipment.current_equipment, boost)
 
 
 func apply_jump() -> bool:

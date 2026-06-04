@@ -50,6 +50,7 @@ func _ready() -> void:
 	boost_component.   setup(self)
 	grind_component.   setup(self)
 	character_animator.setup(self)
+	state_machine.     setup(self)
 	
 	boost_component.boost_update.connect(func(speed: float):
 		current_boost_speed = speed

@@ -35,6 +35,7 @@ target_state = 5
 
 [sub_resource type="BTAction" id="BTAction_5wqov"]
 script = ExtResource("4_n0p6c")
+action_state = 5
 
 [sub_resource type="BTSequence" id="BTSequence_cqrue"]
 custom_name = "GrindSequence"
@@ -46,6 +47,7 @@ target_state = 4
 
 [sub_resource type="BTAction" id="BTAction_lj4pd"]
 script = ExtResource("4_n0p6c")
+action_state = 4
 
 [sub_resource type="BTSequence" id="BTSequence_fukyl"]
 custom_name = "FallingSequence"
@@ -57,6 +59,7 @@ target_state = 3
 
 [sub_resource type="BTAction" id="BTAction_fukyl"]
 script = ExtResource("4_n0p6c")
+action_state = 3
 
 [sub_resource type="BTSequence" id="BTSequence_oy5bn"]
 custom_name = "AirSequence"
@@ -68,19 +71,23 @@ target_state = 2
 
 [sub_resource type="BTAction" id="BTAction_n51gn"]
 script = ExtResource("4_n0p6c")
-
-[sub_resource type="BTSequence" id="BTSequence_riel8"]
-custom_name = "FloorSequence"
-children = [SubResource("BTCondition_oy5bn"), SubResource("BTAction_n51gn")]
-
-[sub_resource type="BTSelector" id="BTSelector_hmjqt"]
-children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_cqrue"), SubResource("BTSequence_fukyl"), SubResource("BTSequence_oy5bn"), SubResource("BTSequence_riel8")]
+action_state = 2
 
 [sub_resource type="BTAction" id="BTAction_iytlr"]
 script = ExtResource("6_68jnl")
 
+[sub_resource type="BTWait" id="BTWait_n0p6c"]
+custom_name = "PumpingTime"
+
+[sub_resource type="BTSequence" id="BTSequence_riel8"]
+custom_name = "FloorSequence"
+children = [SubResource("BTCondition_oy5bn"), SubResource("BTAction_n51gn"), SubResource("BTAction_iytlr"), SubResource("BTWait_n0p6c")]
+
+[sub_resource type="BTSelector" id="BTSelector_hmjqt"]
+children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_cqrue"), SubResource("BTSequence_fukyl"), SubResource("BTSequence_oy5bn"), SubResource("BTSequence_riel8")]
+
 [sub_resource type="BTSelector" id="BTSelector_7bpj1"]
-children = [SubResource("BTSelector_hmjqt"), SubResource("BTAction_iytlr")]
+children = [SubResource("BTSelector_hmjqt")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_ilfj0")
