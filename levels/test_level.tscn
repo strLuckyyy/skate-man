@@ -12,7 +12,7 @@ size = Vector2(1846, 20)
 [node name="TestLevel" type="Node2D" unique_id=1323558784]
 
 [node name="BasePlatform" parent="." unique_id=705089617 instance=ExtResource("2_o6mel")]
-position = Vector2(1833, 956)
+position = Vector2(4432, 956)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1734837313]
 position = Vector2(574, 881)
@@ -162,7 +162,7 @@ scale = Vector2(14.3125, 0.42187494)
 texture = ExtResource("1_46lwt")
 
 [node name="GrindableBase" parent="." unique_id=1698369429 instance=ExtResource("3_gmgay")]
-position = Vector2(2143, 817)
+position = Vector2(1522, 798)
 
 [node name="GrindableBase2" parent="." unique_id=1760826457 instance=ExtResource("3_gmgay")]
 position = Vector2(3002, 817)

@@ -6,6 +6,16 @@
 [ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/bt_play_random_trick.gd" id="4_n0p6c"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ilfj0"]
+var/can_grind/name = &"can_grind"
+var/can_grind/type = 1
+var/can_grind/value = false
+var/can_grind/hint = 0
+var/can_grind/hint_string = ""
+var/on_air/name = &"on_air"
+var/on_air/type = 1
+var/on_air/value = false
+var/on_air/hint = 0
+var/on_air/hint_string = ""
 
 [sub_resource type="BTCondition" id="BTCondition_cqrue"]
 script = ExtResource("1_fukyl")
@@ -28,17 +38,46 @@ script = ExtResource("3_n51gn")
 custom_name = "TrickFailSequence"
 children = [SubResource("BTCondition_68jnl"), SubResource("BTAction_riel8")]
 
-[sub_resource type="BTCondition" id="BTCondition_pjmpy"]
+[sub_resource type="BTCondition" id="BTCondition_0na88"]
 script = ExtResource("1_fukyl")
 target_state = 5
 
-[sub_resource type="BTAction" id="BTAction_5wqov"]
+[sub_resource type="BTAction" id="BTAction_0na88"]
 script = ExtResource("4_n0p6c")
-action_state = 5
+
+[sub_resource type="BTSequence" id="BTSequence_n0p6c"]
+custom_name = "already grinding"
+children = [SubResource("BTCondition_0na88"), SubResource("BTAction_0na88")]
+
+[sub_resource type="BBVariant" id="BBVariant_n0p6c"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_5wqov"]
+variable = &"on_air"
+value = SubResource("BBVariant_n0p6c")
+
+[sub_resource type="BTAction" id="BTAction_n0p6c"]
+script = ExtResource("4_n0p6c")
+
+[sub_resource type="BTSequence" id="BTSequence_lj4pd"]
+custom_name = "is not grinding"
+children = [SubResource("BTCheckVar_5wqov"), SubResource("BTAction_n0p6c")]
+
+[sub_resource type="BBVariant" id="BBVariant_0na88"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_n0p6c"]
+variable = &"can_grind"
+value = SubResource("BBVariant_0na88")
+children = [SubResource("BTSequence_n0p6c"), SubResource("BTSequence_lj4pd")]
 
 [sub_resource type="BTSequence" id="BTSequence_cqrue"]
 custom_name = "GrindSequence"
-children = [SubResource("BTCondition_pjmpy"), SubResource("BTAction_5wqov")]
+children = [SubResource("BTCheckVar_n0p6c")]
 
 [sub_resource type="BTCondition" id="BTCondition_fukyl"]
 script = ExtResource("1_fukyl")
@@ -74,12 +113,9 @@ action_state = 2
 nothing_chance = 3
 trick_chance = 7
 
-[sub_resource type="BTWait" id="BTWait_n0p6c"]
-custom_name = "PumpingTime"
-
 [sub_resource type="BTSequence" id="BTSequence_riel8"]
 custom_name = "FloorSequence"
-children = [SubResource("BTCondition_oy5bn"), SubResource("BTAction_n51gn"), SubResource("BTWait_n0p6c")]
+children = [SubResource("BTCondition_oy5bn"), SubResource("BTAction_n51gn")]
 
 [sub_resource type="BTSelector" id="BTSelector_hmjqt"]
 children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_cqrue"), SubResource("BTSequence_fukyl"), SubResource("BTSequence_oy5bn"), SubResource("BTSequence_riel8")]

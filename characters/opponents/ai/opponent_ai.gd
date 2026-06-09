@@ -3,15 +3,33 @@ extends BaseCharacter
 
 signal trick_sequence(candidates: Array[BaseTrick], path: Array[Global.Direction])
 
+var behavior_tree: BTPlayer
+var _on_air:        bool
+var _air_states:    Array[Global.StateID] = [Global.StateID.ON_AIR, Global.StateID.ON_FALLING]
 
 func _ready() -> void:
 	super._ready()
+	behavior_tree = %BTPlayer
 	trick_system.setup(self, equipment, character_animator, trick_sequence)
 
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+	
+	trick_system.process(
+		state_machine.get_current_state_id(),
+		can_grind(),
+		available_grindable
+	)
+	
+	_set_on_air()
 	move_and_slide()
+
+
+func can_grind() -> bool:
+	var c: bool = true if available_grindable != null else false
+	behavior_tree.blackboard.set_var("can_grind", c)
+	return c
 
 
 func make_trick(sequence: Array[Global.Direction]) -> void:
@@ -33,3 +51,13 @@ func apply_jump() -> bool:
 
 func get_caught() -> void:
 	super.get_caught()
+
+
+func _set_on_air():
+	var cs = state_machine.get_current_state_id()
+	var oa = cs in _air_states
+	
+	if _on_air == oa: return
+	
+	_on_air = oa
+	behavior_tree.blackboard.set_var("on_air", _on_air)

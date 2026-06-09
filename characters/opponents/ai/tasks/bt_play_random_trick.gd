@@ -20,7 +20,7 @@ var _decision:      Global.AIDecision
 var _trick_pool:    Array[TrickData]
 var _trick_buffer:  Array[TrickData]
 
-const DEBUG_BT := true
+const DEBUG_BT := false
 
 func dbg(msg: String) -> void:
 	if DEBUG_BT:
@@ -71,7 +71,7 @@ func _tick(_delta: float) -> Status:
 		Global.AIDecision.NOTHING:
 			if action_state == Global.StateID.ON_FLOOR:
 				_char.apply_movement(1.0)
-			return SUCCESS
+				return SUCCESS
 		
 		Global.AIDecision.JUMP:
 			return SUCCESS if _char.apply_jump() else FAILURE

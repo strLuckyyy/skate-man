@@ -96,8 +96,7 @@ func remove_available_grindable(grindable: GrindableObject) -> void:
 # Abstract methods
 # ---------------------------------------------------------------------------
 
-@warning_ignore("unused_parameter")
-func _is_on_grinding(grindable: GrindableObject) -> void: pass
+func _is_on_grinding(_grindable: GrindableObject) -> void: pass
 func on_lock_character(_body: BaseCharacter)     -> void: pass
 func on_unlock_character()                       -> void: pass
 func get_caught()                                -> void:

@@ -37,9 +37,12 @@ func process(
 		grind_opportunity: bool,
 		grindable:         GrindableObject = null
 ) -> void:
-	_current_state      = state_id
-	_grind_opportunity  = grind_opportunity
-	_current_grindable  = grindable
+	if state_id != _current_state: 
+		_current_state = state_id
+	if grind_opportunity != _grind_opportunity: 
+		_grind_opportunity = grind_opportunity
+	if grindable != _current_grindable:
+		_current_grindable  = grindable
 
 
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:

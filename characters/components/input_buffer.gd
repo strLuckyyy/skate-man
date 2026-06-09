@@ -70,10 +70,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _push_input(dir: Global.Direction) -> void:
 	_input_buffer.append(dir)
-
+	
 	if _input_buffer.size() > BUFFER_SIZE:
 		_input_buffer.pop_front()
-
+	
 	_buffer_time.start()
 
 
