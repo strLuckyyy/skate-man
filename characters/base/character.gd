@@ -65,6 +65,7 @@ func _physics_process(delta: float) -> void:
 
 
 func apply_gravity(delta: float) -> void:
+	if is_grinding(): return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:

@@ -35,6 +35,15 @@ func _physics_process(delta: float) -> void:
 		available_grindable
 	)
 	
+	if is_grinding():
+		# During a grind the GrindComponent is the sole authority on the body's
+		# position (it samples the rail curve in the state's update). The
+		# character must not run its own movement/move_and_slide here, otherwise
+		# move_and_slide would drag the body off the rail. We still poll jump so
+		# the player can leave the rail.
+		_apply_jump()
+		return
+	
 	_calculate_velocity()
 	move_and_slide()
 
