@@ -1,18 +1,12 @@
 class_name RandomizerConfig
-extends RefCounted
+extends Resource
 
-# Pesos de decisão base
-var nothing_weight:    float = 5.0
-var jump_weight:       float = 5.0
-var trick_weight:      float = 5.0
-var difficulty_weight: float = 6.0
+@export_group("Pesos Decisão Base")
+@export var nothing_weight:    float = 1.0
+@export var jump_weight:       float = 1.0
+@export var trick_weight:      float = 1.0
+@export var difficulty_weight: float = 0.0
 
-# Penalidades para o buffer de ação (tamanho 8)
-var action_penalty_weights: Array[float] = [
-	80.0, 70.0, 60.0, 45.0, 35.0, 20.0, 10.0, 0.0
-]
-
-# Penalidades para o buffer de manobra (tamanho 3)
-var trick_penalty_weights: Array[float] = [
-	60.0, 25.0, 0.0
-]
+@export_group("Penalidades dos Buffers")
+@export var action_penalty_weights: Array[float] = []
+@export var trick_penalty_weights:  Array[float] = []

@@ -3,13 +3,13 @@ extends BaseCharacter
 
 signal trick_sequence(candidates: Array[BaseTrick], path: Array[Global.Direction])
 
-var behavior_tree: BTPlayer
+@onready var behavior_tree: BTPlayer = %BTPlayer
+
 var _on_air:        bool
 var _air_states:    Array[Global.StateID] = [Global.StateID.ON_AIR, Global.StateID.ON_FALLING]
 
 func _ready() -> void:
 	super._ready()
-	behavior_tree = %BTPlayer
 	trick_system.setup(self, equipment, character_animator, trick_sequence)
 
 

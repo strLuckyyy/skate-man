@@ -5,27 +5,17 @@ extends BaseOpponentDecides
 @export var action_state: Global.StateID
 
 @export_category("Probability")
-@export var difficulty_weight: float = 6
-@export var nothing_chance:    int = 5
-@export var jump_chance:       int = 5
-@export var trick_chance:      int = 5
+@export var config: RandomizerConfig
 
-
-func _init() -> void:
-	var config := RandomizerConfig.new()
-	config.nothing_weight     = nothing_chance
-	config.jump_weight        = jump_chance
-	config.trick_weight       = trick_chance
-	config.difficulty_weight  = difficulty_weight
-	
+func _setup() -> void:
 	_randomizer = Randomizer.new()
-	_randomizer.setup(config)
 
 
 func _enter() -> void:
 	super._enter()
 	_trick_pool         = _char.equipment.get_trick_pool(action_state)
 	_is_executing_trick = false
+	_randomizer.setup(config)
 
 
 func _tick(_delta: float) -> Status:

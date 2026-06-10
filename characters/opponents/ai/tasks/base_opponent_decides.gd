@@ -20,7 +20,7 @@ var _is_executing_trick: bool
 func _enter() -> void:
 	_char = agent as OpponentAI
 	if _char == null:
-		push_error("BTPlayRandomTrick: agent must be OpponentAI")
+		push_error("BTPlayer: O agente configurado não herda de OpponentAI.")
 		return
 
 
