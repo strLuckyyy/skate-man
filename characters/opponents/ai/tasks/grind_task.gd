@@ -1,2 +1,5 @@
+@tool
 class_name GrindTask
-extends BTAction
+extends BaseOpponentDecides
+
+var potato

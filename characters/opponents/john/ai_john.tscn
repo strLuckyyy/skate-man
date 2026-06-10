@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4rv2qcgbaw0i" path="res://characters/base/base_ai.tscn" id="1_n6juw"]
 [ext_resource type="Texture2D" uid="uid://3mu2um647vjy" path="res://assets/sprites/enemy_placeholder1.png" id="2_3ilrn"]
-[ext_resource type="BehaviorTree" uid="uid://cymenedscfq63" path="res://characters/opponents/ai/tree/john-bt.tres" id="3_jn72f"]
+[ext_resource type="BehaviorTree" uid="uid://cymenedscfq63" path="res://characters/opponents/ai/tree/bt_opponent.tres" id="3_jn72f"]
 [ext_resource type="Resource" uid="uid://dgvcqoj5a02we" path="res://characters/equipment/skate/skate.tres" id="4_meift"]
 [ext_resource type="Script" uid="uid://44ype0l70cqi" path="res://characters/controllers/ai_controller.gd" id="5_s5p0h"]
 

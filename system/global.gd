@@ -38,7 +38,6 @@ enum TrickType {
 	CHARGED, # Carrega enquanto segura, executa ao soltar
 }
 
-
 enum AIDecision {
 	NOTHING,
 	JUMP,

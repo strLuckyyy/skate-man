@@ -1,9 +1,10 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://cymenedscfq63"]
 
-[ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/caught_task.gd" id="1_5wqov"]
-[ext_resource type="Script" uid="uid://xk8gi504vmas" path="res://characters/opponents/ai/tasks/check_state_condition.gd" id="1_fukyl"]
-[ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/trick_fail_task.gd" id="3_n51gn"]
-[ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/bt_play_random_trick.gd" id="4_n0p6c"]
+[ext_resource type="Script" uid="uid://xk8gi504vmas" path="res://characters/opponents/ai/tasks/check_state_condition.gd" id="1_vjfjo"]
+[ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/caught_task.gd" id="2_a7347"]
+[ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/trick_fail_task.gd" id="3_d373b"]
+[ext_resource type="Script" uid="uid://cimfcih161dqx" path="res://characters/opponents/ai/tasks/grind_task.gd" id="4_wwfib"]
+[ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/play_random_trick.gd" id="5_vjfjo"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ilfj0"]
 var/can_grind/name = &"can_grind"
@@ -18,52 +19,25 @@ var/on_air/hint = 0
 var/on_air/hint_string = ""
 
 [sub_resource type="BTCondition" id="BTCondition_cqrue"]
-script = ExtResource("1_fukyl")
+script = ExtResource("1_vjfjo")
 
 [sub_resource type="BTAction" id="BTAction_oy5bn"]
-script = ExtResource("1_5wqov")
+script = ExtResource("2_a7347")
 
 [sub_resource type="BTSequence" id="BTSequence_5wqov"]
 custom_name = "CaughtSequence"
 children = [SubResource("BTCondition_cqrue"), SubResource("BTAction_oy5bn")]
 
 [sub_resource type="BTCondition" id="BTCondition_68jnl"]
-script = ExtResource("1_fukyl")
+script = ExtResource("1_vjfjo")
 target_state = 1
 
 [sub_resource type="BTAction" id="BTAction_riel8"]
-script = ExtResource("3_n51gn")
+script = ExtResource("3_d373b")
 
 [sub_resource type="BTSequence" id="BTSequence_75b4g"]
 custom_name = "TrickFailSequence"
 children = [SubResource("BTCondition_68jnl"), SubResource("BTAction_riel8")]
-
-[sub_resource type="BTCondition" id="BTCondition_0na88"]
-script = ExtResource("1_fukyl")
-target_state = 5
-
-[sub_resource type="BTAction" id="BTAction_0na88"]
-script = ExtResource("4_n0p6c")
-
-[sub_resource type="BTSequence" id="BTSequence_n0p6c"]
-custom_name = "already grinding"
-children = [SubResource("BTCondition_0na88"), SubResource("BTAction_0na88")]
-
-[sub_resource type="BBVariant" id="BBVariant_n0p6c"]
-type = 1
-saved_value = true
-resource_name = "true"
-
-[sub_resource type="BTCheckVar" id="BTCheckVar_5wqov"]
-variable = &"on_air"
-value = SubResource("BBVariant_n0p6c")
-
-[sub_resource type="BTAction" id="BTAction_n0p6c"]
-script = ExtResource("4_n0p6c")
-
-[sub_resource type="BTSequence" id="BTSequence_lj4pd"]
-custom_name = "is not grinding"
-children = [SubResource("BTCheckVar_5wqov"), SubResource("BTAction_n0p6c")]
 
 [sub_resource type="BBVariant" id="BBVariant_0na88"]
 type = 1
@@ -73,18 +47,20 @@ resource_name = "true"
 [sub_resource type="BTCheckVar" id="BTCheckVar_n0p6c"]
 variable = &"can_grind"
 value = SubResource("BBVariant_0na88")
-children = [SubResource("BTSequence_n0p6c"), SubResource("BTSequence_lj4pd")]
+
+[sub_resource type="BTAction" id="BTAction_cqrue"]
+script = ExtResource("4_wwfib")
 
 [sub_resource type="BTSequence" id="BTSequence_cqrue"]
 custom_name = "GrindSequence"
-children = [SubResource("BTCheckVar_n0p6c")]
+children = [SubResource("BTCheckVar_n0p6c"), SubResource("BTAction_cqrue")]
 
 [sub_resource type="BTCondition" id="BTCondition_fukyl"]
-script = ExtResource("1_fukyl")
+script = ExtResource("1_vjfjo")
 target_state = 4
 
 [sub_resource type="BTAction" id="BTAction_lj4pd"]
-script = ExtResource("4_n0p6c")
+script = ExtResource("5_vjfjo")
 action_state = 4
 
 [sub_resource type="BTSequence" id="BTSequence_fukyl"]
@@ -92,11 +68,11 @@ custom_name = "FallingSequence"
 children = [SubResource("BTCondition_fukyl"), SubResource("BTAction_lj4pd")]
 
 [sub_resource type="BTCondition" id="BTCondition_n51gn"]
-script = ExtResource("1_fukyl")
+script = ExtResource("1_vjfjo")
 target_state = 3
 
 [sub_resource type="BTAction" id="BTAction_fukyl"]
-script = ExtResource("4_n0p6c")
+script = ExtResource("5_vjfjo")
 action_state = 3
 
 [sub_resource type="BTSequence" id="BTSequence_oy5bn"]
@@ -104,11 +80,11 @@ custom_name = "AirSequence"
 children = [SubResource("BTCondition_n51gn"), SubResource("BTAction_fukyl")]
 
 [sub_resource type="BTCondition" id="BTCondition_oy5bn"]
-script = ExtResource("1_fukyl")
+script = ExtResource("1_vjfjo")
 target_state = 2
 
 [sub_resource type="BTAction" id="BTAction_n51gn"]
-script = ExtResource("4_n0p6c")
+script = ExtResource("5_vjfjo")
 action_state = 2
 nothing_chance = 3
 trick_chance = 7

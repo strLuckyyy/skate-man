@@ -1,3 +1,4 @@
+@abstract
 class_name GrindableObject
 extends Node2D
 

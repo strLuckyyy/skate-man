@@ -43,14 +43,13 @@ func process_grind(delta: float) -> void:
 		exit_grind(Global.ReasonToExitGrind.END_OF_RAIL)
 		return
 	
-	character._apply_jump()
-	
 	if controller.is_jumped():
 		exit_grind(Global.ReasonToExitGrind.JUMPED)
 		return
 	
 	var new_local_pos = current_curve.sample_baked(current_offset)
 	character.global_position = current_rail.get_global_start_position() + new_local_pos
+
 
 func exit_grind(reason: Global.ReasonToExitGrind) -> void:
 	is_grinding   = false

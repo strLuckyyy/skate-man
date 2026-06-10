@@ -1,3 +1,4 @@
+@abstract
 class_name BaseTrick
 extends Node2D
 

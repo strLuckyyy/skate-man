@@ -1,3 +1,4 @@
+@abstract
 class_name BaseController
 extends Node2D
 
