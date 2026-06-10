@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bgv1br0bp5ghp"]
+
+[ext_resource type="Script" uid="uid://cnboyohk65kf2" path="res://characters/opponents/ai/randomizer/randomizer.gd" id="1_1g4is"]
+
+[node name="Randomizer" type="Node2D" unique_id=411042525]
+script = ExtResource("1_1g4is")

@@ -11,14 +11,21 @@ extends BaseOpponentDecides
 @export var trick_chance:      int = 5
 
 
+func _init() -> void:
+	var config := RandomizerConfig.new()
+	config.nothing_weight     = nothing_chance
+	config.jump_weight        = jump_chance
+	config.trick_weight       = trick_chance
+	config.difficulty_weight  = difficulty_weight
+	
+	_randomizer = Randomizer.new()
+	_randomizer.setup(config)
+
+
 func _enter() -> void:
 	super._enter()
 	_trick_pool         = _char.equipment.get_trick_pool(action_state)
-	_randomizer         = Randomizer.new()
 	_is_executing_trick = false
-	
-	_randomizer.  setup(nothing_chance, jump_chance, trick_chance, difficulty_weight)
-	_trick_buffer.clear()
 
 
 func _tick(_delta: float) -> Status:

@@ -1,4 +1,3 @@
-@abstract
 class_name BasePlatform
 extends Path2D
 

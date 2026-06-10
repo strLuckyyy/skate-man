@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://xk8gi504vmas" path="res://characters/opponents/ai/tasks/check_state_condition.gd" id="1_vjfjo"]
 [ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/caught_task.gd" id="2_a7347"]
 [ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/trick_fail_task.gd" id="3_d373b"]
-[ext_resource type="Script" uid="uid://cimfcih161dqx" path="res://characters/opponents/ai/tasks/grind_task.gd" id="4_wwfib"]
 [ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/play_random_trick.gd" id="5_vjfjo"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ilfj0"]
@@ -48,12 +47,12 @@ resource_name = "true"
 variable = &"can_grind"
 value = SubResource("BBVariant_0na88")
 
-[sub_resource type="BTAction" id="BTAction_cqrue"]
-script = ExtResource("4_wwfib")
+[sub_resource type="BTAction" id="BTAction_ns51f"]
+script = ExtResource("5_vjfjo")
 
 [sub_resource type="BTSequence" id="BTSequence_cqrue"]
 custom_name = "GrindSequence"
-children = [SubResource("BTCheckVar_n0p6c"), SubResource("BTAction_cqrue")]
+children = [SubResource("BTCheckVar_n0p6c"), SubResource("BTAction_ns51f")]
 
 [sub_resource type="BTCondition" id="BTCondition_fukyl"]
 script = ExtResource("1_vjfjo")
