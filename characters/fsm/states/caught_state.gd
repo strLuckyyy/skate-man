@@ -10,6 +10,7 @@ func _init() -> void:
 func enter(p_character: BaseCharacter, payload = null) -> void:
 	super.enter(p_character, payload)
 	character.is_caught = true
+	controller.set_permissions(false, false)
 
 
 func update(_delta: float) -> void:

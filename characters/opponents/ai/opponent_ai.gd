@@ -5,8 +5,12 @@ signal trick_sequence(candidates: Array[BaseTrick], path: Array[Global.Direction
 
 @onready var behavior_tree: BTPlayer = %BTPlayer
 
-var _on_air:        bool
-var _air_states:    Array[Global.StateID] = [Global.StateID.ON_AIR, Global.StateID.ON_FALLING]
+var _jumped:     bool
+var _on_air:     bool
+var _air_states: Array[Global.StateID] = [Global.StateID.ON_AIR, Global.StateID.ON_FALLING]
+
+func was_jumped() -> bool: return _jumped
+
 
 func _ready() -> void:
 	super._ready()
@@ -15,6 +19,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+	
+	controller.update_moving_state(velocity)
 	
 	trick_system.process(
 		state_machine.get_current_state_id(),
@@ -36,17 +42,17 @@ func make_trick(sequence: Array[Global.Direction]) -> void:
 	trick_sequence.emit(equipment.get_tricks(), sequence)
 
 
-func apply_movement(direction: float) -> void:
-	controller.direction = direction
-	velocity = controller.apply_movement(velocity, equipment.current_equipment, current_boost_speed)
+func apply_push() -> void:
+	if not controller.can_move: return
+	controller.apply_push(velocity, equipment.current_equipment)
 
 
-func apply_jump() -> bool:
+func apply_jump(_payload = null) -> void:
+	var pl: float = _payload if (_payload is float and _payload > 0.0) else 1.0
 	var pre_vel: float = velocity.y
-	velocity = controller.apply_jump(velocity, equipment.current_equipment)
-	if pre_vel == velocity.y:
-		return false
-	return true
+	
+	velocity = controller.apply_jump(velocity, equipment.current_equipment) * pl
+	_jumped  = false if pre_vel == velocity.y else true
 
 
 func get_caught() -> void:

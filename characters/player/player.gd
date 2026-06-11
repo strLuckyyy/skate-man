@@ -18,7 +18,6 @@ func _ready() -> void:
 	trick_system.  setup(self, equipment, character_animator, sequence_signal)
 	
 	GameManager.player = self
-	
 
 
 func _physics_process(delta: float) -> void:
@@ -35,27 +34,17 @@ func _physics_process(delta: float) -> void:
 		available_grindable
 	)
 	
-	_calculate_velocity()
+	_calculate_movement()
+	
 	move_and_slide()
 
-# ---------------------------------------------------------------------------
-# Movement
-# ---------------------------------------------------------------------------
 
-func _calculate_velocity() -> void:
-	_apply_movement()
-	_apply_jump()
-
-
-func _apply_movement() -> void:
-	if controller.get_auto_move_active():
-		velocity = controller.apply_auto_movement(velocity, equipment.current_equipment, current_boost_speed)
-	else:
-		velocity = controller.apply_movement(velocity, equipment.current_equipment, current_boost_speed)
-
-
-func _apply_jump() -> void:
-	velocity = controller.apply_jump(velocity, equipment.current_equipment)
+func _calculate_movement() -> void:
+	if Input.is_action_just_pressed("push"):
+		controller.apply_push(velocity, equipment.current_equipment)
+	
+	if Input.is_action_just_pressed("jump"):
+		velocity = controller.apply_jump(velocity, equipment.current_equipment)
 
 # ---------------------------------------------------------------------------
 # Lock / Unlock

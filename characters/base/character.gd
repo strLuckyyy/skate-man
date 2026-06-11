@@ -5,7 +5,7 @@ extends CharacterBody2D
 var state_machine:      StateMachine
 var trick_system:       TrickSystem
 var equipment:          EquipmentManager
-var controller:         BaseController
+var controller:         Controller
 var foot_ref:           CollisionShape2D
 var grind_component:    GrindComponent
 var boost_component:    BoostComponent
@@ -18,7 +18,7 @@ var is_caught: bool = false
 # --- Grind flag ---
 var available_grindable: GrindableObject = null
 
-# --- Boost flags ---
+# --- Boost flag ---
 var current_boost_speed: float = 0.0
 
 # ---------------------------------------------------------------------------
@@ -64,12 +64,21 @@ func _physics_process(delta: float) -> void:
 	if controller != null: apply_gravity(delta)
 
 
+func apply_momentum(floor_normal: Vector2) -> void:
+	velocity = controller.apply_momentum(
+		velocity, 
+		is_on_floor(), 
+		floor_normal, 
+		get_physics_process_delta_time(),
+		equipment.current_equipment
+	)
+
+
 func apply_gravity(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else:
-		controller.is_jumping = false
-		controller.reset_jumped()
+	if is_grinding():     return
+	if not is_on_floor(): velocity += get_gravity() * delta; return
+	controller.is_jumping = false
+	controller.reset_jumped()
 
 # ---------------------------------------------------------------------------
 # API de Grind
@@ -97,7 +106,7 @@ func remove_available_grindable(grindable: GrindableObject) -> void:
 # ---------------------------------------------------------------------------
 
 func _is_on_grinding(_grindable: GrindableObject) -> void: pass
-func on_lock_character(_body: BaseCharacter)     -> void: pass
-func on_unlock_character()                       -> void: pass
-func get_caught()                                -> void:
+func on_lock_character(_body: BaseCharacter)      -> void: pass
+func on_unlock_character()                        -> void: pass
+func get_caught()                                 -> void:
 	EventBus.character_caught.emit(self)

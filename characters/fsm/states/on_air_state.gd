@@ -17,11 +17,14 @@ func enter(p_character: BaseCharacter, payload = null) -> void:
 	super.enter(p_character, payload)
 	_fall_elapsed   = 0.0
 	coyote_time.begin(character)
+	controller.set_permissions(false, true)
 
 
 func update(delta: float) -> void:
 	_fall_elapsed += delta
 	coyote_time.update(delta)
+	
+	character.apply_momentum(Vector2.UP)
 	
 	if _fall_elapsed >= FALL_TIMEOUT:
 		emit_signal("transition_requested", Global.StateID.ON_FALLING, null)
