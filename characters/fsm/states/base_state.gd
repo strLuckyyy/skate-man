@@ -6,7 +6,7 @@ extends RefCounted
 signal transition_requested(next_state_id: Global.StateID, payload: Variant)
 
 var character:  BaseCharacter  = null
-var controller: BaseController = null
+var controller: Controller     = null
 var state_id:   Global.StateID = Global.StateID.NONE
 
 @warning_ignore("unused_parameter")

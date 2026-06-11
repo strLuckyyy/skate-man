@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://3mu2um647vjy" path="res://assets/sprites/enemy_placeholder1.png" id="2_3ilrn"]
 [ext_resource type="BehaviorTree" uid="uid://cymenedscfq63" path="res://characters/opponents/ai/tree/bt_opponent.tres" id="3_jn72f"]
 [ext_resource type="Resource" uid="uid://dgvcqoj5a02we" path="res://characters/equipment/skate/skate.tres" id="4_meift"]
-[ext_resource type="Script" uid="uid://44ype0l70cqi" path="res://characters/controllers/ai_controller.gd" id="5_s5p0h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ilrn"]
 radius = 53.0
@@ -137,9 +136,6 @@ behavior_tree = ExtResource("3_jn72f")
 
 [node name="EquipmentManager" parent="." index="6" unique_id=2011998462]
 default_equipment = ExtResource("4_meift")
-
-[node name="Controller" parent="." index="7" unique_id=697335465]
-script = ExtResource("5_s5p0h")
 
 [node name="AnimationPlayer" parent="." index="10" unique_id=1748857434]
 libraries/ = SubResource("AnimationLibrary_2kdqk")

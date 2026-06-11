@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://c1rux2kmxrsvm" path="res://characters/base/character.gd" id="1_nvf7k"]
 [ext_resource type="PackedScene" uid="uid://dnbgwejp3mcqa" path="res://characters/fsm/state_machine.tscn" id="2_0hoxr"]
 [ext_resource type="PackedScene" uid="uid://bnatrw1b4s4gi" path="res://characters/equipment/equipment_manager.tscn" id="2_3fwhk"]
-[ext_resource type="PackedScene" uid="uid://b0y55jk3gggnh" path="res://characters/controllers/controller.tscn" id="2_qqr4u"]
+[ext_resource type="PackedScene" uid="uid://b0y55jk3gggnh" path="res://characters/components/controller.tscn" id="2_qqr4u"]
 [ext_resource type="Script" uid="uid://bb3bt08okkmx0" path="res://characters/fsm/state_machine.gd" id="3_sn1g0"]
 [ext_resource type="PackedScene" uid="uid://ekofyepjq8d7" path="res://characters/components/trick_system.tscn" id="4_ke030"]
 [ext_resource type="PackedScene" uid="uid://c06pux3q0qn72" path="res://characters/components/grind_component.tscn" id="4_mdkfl"]
 [ext_resource type="Script" uid="uid://fsgq8yal7w87" path="res://data/equipment_data.gd" id="5_0hoxr"]
 [ext_resource type="PackedScene" uid="uid://8qa7fqsk72v2" path="res://characters/components/boost_component.tscn" id="5_b1u1o"]
 [ext_resource type="PackedScene" uid="uid://5r1o5ghl6fxw" path="res://characters/components/character_animator.tscn" id="6_xg31s"]
+[ext_resource type="Script" uid="uid://jf0xh8wscxk0" path="res://characters/components/controller.gd" id="9_osgrd"]
 
 [sub_resource type="Resource" id="Resource_n55mo"]
 script = ExtResource("5_0hoxr")
@@ -39,6 +40,7 @@ default_equipment = SubResource("Resource_n55mo")
 
 [node name="Controller" parent="." unique_id=697335465 instance=ExtResource("2_qqr4u")]
 unique_name_in_owner = true
+script = ExtResource("9_osgrd")
 
 [node name="GrindComponent" parent="." unique_id=1564649999 instance=ExtResource("4_mdkfl")]
 unique_name_in_owner = true

@@ -9,12 +9,13 @@ func _init() -> void:
 @warning_ignore("shadowed_variable_base_class")
 func enter(p_character: BaseCharacter, payload = null) -> void:
 	super.enter(p_character, payload)
-	controller.can_jump = false
+	controller.set_permissions(false, false)
 
 
 func update(_delta: float) -> void:
 	if character.is_on_floor():
 		emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
+	character.apply_momentum(Vector2.UP)
 
 
 func exit() -> void:

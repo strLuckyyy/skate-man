@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/caught_task.gd" id="2_a7347"]
 [ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/trick_fail_task.gd" id="3_d373b"]
 [ext_resource type="Script" uid="uid://crv6m26dfelos" path="res://characters/opponents/ai/randomizer/randomizer_config.gd" id="4_vjfjo"]
-[ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/play_random_trick.gd" id="5_vjfjo"]
+[ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/play_random_action.gd" id="5_vjfjo"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ilfj0"]
 var/can_grind/name = &"can_grind"

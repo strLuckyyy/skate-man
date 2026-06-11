@@ -16,6 +16,7 @@ func _enter() -> void:
 	_trick_pool         = _char.equipment.get_trick_pool(action_state)
 	_is_executing_trick = false
 	_randomizer.setup(config)
+	_char.controller.can_move = true
 
 
 func _tick(_delta: float) -> Status:
@@ -37,19 +38,16 @@ func _tick(_delta: float) -> Status:
 	match _decision:
 		Global.AIDecision.NOTHING:
 			if action_state == Global.StateID.ON_FLOOR:
-				_char.apply_movement(1.0)
-				return SUCCESS
+				_char.apply_push(); return RUNNING
 		
 		Global.AIDecision.JUMP:
-			return SUCCESS if _char.apply_jump() else FAILURE
+			return SUCCESS if _char.was_jumped() else FAILURE
 		
 		Global.AIDecision.TRICK:
-			if _trick_pool.is_empty():
-				return FAILURE
+			if _trick_pool.is_empty(): return FAILURE
 			_char.make_trick(_randomizer.randomize_trick(_trick_pool))
 			if _char.trick_system.is_busy:
-				_is_executing_trick = true
-				return RUNNING
+				_is_executing_trick = true; return RUNNING
 			return FAILURE
 	return FAILURE
 

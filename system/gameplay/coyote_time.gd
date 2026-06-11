@@ -5,7 +5,7 @@ const COYOTE_TIMEOUT: float = 0.2
 var _coyote_elapsed:  float = 0.0
 var _ends:            bool  = false
 
-var _controller: BaseController
+var _controller: Controller
 
 
 func coyote_time_ends() -> bool: return _ends

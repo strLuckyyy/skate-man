@@ -4,7 +4,7 @@ extends Node
 signal grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary)
 
 var character:     BaseCharacter
-var controller:    BaseController
+var controller:    Controller
 var current_rail:  GrindableObject
 var current_curve: Curve2D
 
