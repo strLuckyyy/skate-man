@@ -138,14 +138,17 @@ shape = SubResource("CapsuleShape2D_3ilrn")
 [node name="BTPlayer" parent="." index="2" unique_id=94575947]
 behavior_tree = ExtResource("3_jn72f")
 
-[node name="EquipmentManager" parent="." index="6" unique_id=2011998462]
+[node name="Randomizer" parent="." index="3" unique_id=1651548237]
+unique_name_in_owner = true
+
+[node name="EquipmentManager" parent="." index="7" unique_id=2011998462]
 default_equipment = ExtResource("4_meift")
 
-[node name="AnimationPlayer" parent="." index="10" unique_id=1748857434]
+[node name="AnimationPlayer" parent="." index="11" unique_id=1748857434]
 libraries/ = SubResource("AnimationLibrary_2kdqk")
 libraries/human = SubResource("AnimationLibrary_3j5e6")
 
-[node name="WorldPerception" parent="." index="11" unique_id=718027603]
+[node name="WorldPerception" parent="." index="12" unique_id=718027603]
 script = ExtResource("5_2kdqk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldPerception" index="0" unique_id=321310269 node_paths=PackedStringArray("agent")]

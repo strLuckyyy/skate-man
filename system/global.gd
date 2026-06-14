@@ -43,3 +43,10 @@ enum AIDecision {
 	JUMP,
 	TRICK
 }
+
+enum AIGoal {
+	CRUISE,
+	DO_TRICKS,
+	SAFE_LANDING,
+	GRIND_CHAIN
+}

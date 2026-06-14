@@ -1,94 +1,107 @@
 class_name Randomizer
 extends Node
 
-class Buffering:
-	var buffer:   Array = []
-	var size:     int
-	var timeout:  float
-	var _elapsed: float = 0.0
-	
-	func _init(p_size: int, p_timeout: float = 1.8) -> void:
-		size    = p_size
-		timeout = p_timeout
-	
-	func add(value) -> void:
-		if buffer.size() >= size: buffer.pop_front()
-		buffer.append(value)
-	
-	func is_empty() -> bool:
-		return buffer.is_empty()
-	
-	func has(value) -> bool:
-		return value in buffer
-	
-	func update(delta: float) -> void:
-		if buffer.is_empty(): return
-		_elapsed += delta
-		if _elapsed >= timeout:
-			buffer.pop_front()
-			_elapsed = 0.0
+# --- Configuration & State ---
+var current_goal: Global.AIGoal = Global.AIGoal.CRUISE
 
+# Cooldowns (Hard Locks)
+var jump_cooldown: float = 0.0
+var trick_cooldown: float = 0.0
 
-const DEBUG_BT           := false
-const TRICK_BUFFER_SIZE  := 3
-const ACTION_BUFFER_SIZE := 8
+# Fatigue (Dynamic Weight Reduction: 1.0 = fresh, 0.0 = exhausted)
+var action_fatigue: Dictionary = {
+	Global.AIDecision.NOTHING: 1.0,
+	Global.AIDecision.JUMP: 1.0,
+	Global.AIDecision.TRICK: 1.0
+}
 
-var weights:        Dictionary
-var _trick_buffer:  Buffering
-var _action_buffer: Buffering
-
-
-func dbg(msg: String) -> void:
-	if DEBUG_BT:
-		print("[", name, "] ", msg)
-
-
-func setup(cnfg: RandomizerConfig):
-	weights = {
-		Global.AIDecision.NOTHING: (cnfg.nothing_weight),
-		Global.AIDecision.JUMP:    (cnfg.jump_weight  + cnfg.difficulty_weight),
-		Global.AIDecision.TRICK:   (cnfg.trick_weight + cnfg.difficulty_weight),
-		"difficulty_weight":       cnfg.difficulty_weight
-	}
-	
-	_trick_buffer  = Buffering.new(TRICK_BUFFER_SIZE)
-	_action_buffer = Buffering.new(ACTION_BUFFER_SIZE)
+# Base Weights per Goal (Level 2)
+const GOAL_WEIGHTS = {
+	Global.AIGoal.CRUISE:       { Global.AIDecision.NOTHING: 80, Global.AIDecision.JUMP: 20, Global.AIDecision.TRICK: 0 },
+	Global.AIGoal.DO_TRICKS:    { Global.AIDecision.NOTHING: 20, Global.AIDecision.JUMP: 40, Global.AIDecision.TRICK: 40 },
+	Global.AIGoal.SAFE_LANDING: { Global.AIDecision.NOTHING: 100, Global.AIDecision.JUMP: 0, Global.AIDecision.TRICK: 0 },
+	Global.AIGoal.GRIND_CHAIN:  { Global.AIDecision.NOTHING: 10, Global.AIDecision.JUMP: 40, Global.AIDecision.TRICK: 50 }
+}
 
 
 func _physics_process(delta: float) -> void:
-	_trick_buffer. update(delta)
-	_action_buffer.update(delta)
-
-
-func randomize_decision() -> Global.AIDecision:
-	var total_weight: int = (
-		weights[Global.AIDecision.NOTHING] +
-		weights[Global.AIDecision.JUMP] +
-		weights[Global.AIDecision.TRICK]
-	)
-	var rand_result:  int = randi() % total_weight
+	# Recover Cooldowns
+	if jump_cooldown > 0.0: jump_cooldown -= delta
+	if trick_cooldown > 0.0: trick_cooldown -= delta
 	
-	if rand_result <= weights.get(Global.AIDecision.NOTHING):
-		return Global.AIDecision.NOTHING
-	
-	if rand_result <= (weights.get(Global.AIDecision.NOTHING) + weights.get(Global.AIDecision.JUMP)):
-		return Global.AIDecision.JUMP
-	
-	return Global.AIDecision.TRICK
+	# Recover Fatigue gradually
+	for action in action_fatigue:
+		action_fatigue[action] = move_toward(action_fatigue[action], 1.0, delta * 0.5)
 
 
 func randomize_trick(trick_pool: Array[TrickData]) -> Array[Global.Direction]:
 	if trick_pool.is_empty():
-		dbg("Trick Pool Empty")
 		return []
 	
 	var rand_result: int = randi() % trick_pool.size()
 	var trick: TrickData = trick_pool[rand_result]
 	
-	if not _trick_buffer.is_empty() and _trick_buffer.has(trick):
-		rand_result = randi() % trick_pool.size()
-		trick = trick_pool[rand_result]
-	
-	_trick_buffer.add(trick)
+	rand_result = randi() % trick_pool.size()
+	trick = trick_pool[rand_result]
 	
 	return trick.sequence
+
+
+# --- Decision Logic ---
+func get_decision(context: Dictionary) -> Global.AIDecision:
+	# 1. Start with Goal-based weights
+	var weights = GOAL_WEIGHTS[current_goal].duplicate()
+	
+	# 2. Apply World Context Modifiers (Level 3)
+	if context.get("rail_ahead", false):
+		weights[Global.AIDecision.TRICK] += 50
+		weights[Global.AIDecision.JUMP] += 20
+		
+	if context.get("ramp_ahead", false):
+		weights[Global.AIDecision.JUMP] += 60
+		
+	if context.get("speed", 0.0) < 300.0:
+		weights[Global.AIDecision.JUMP] = max(0, weights[Global.AIDecision.JUMP] - 30)
+		weights[Global.AIDecision.NOTHING] += 50 # Force cruising to build speed
+
+	# 3. Apply Cooldowns (Hard restrictions)
+	if jump_cooldown > 0.0: weights[Global.AIDecision.JUMP] = 0
+	if trick_cooldown > 0.0: weights[Global.AIDecision.TRICK] = 0
+	
+	# 4. Apply Fatigue (Variety enforcer)
+	weights[Global.AIDecision.NOTHING] *= action_fatigue[Global.AIDecision.NOTHING]
+	weights[Global.AIDecision.JUMP] *= action_fatigue[Global.AIDecision.JUMP]
+	weights[Global.AIDecision.TRICK] *= action_fatigue[Global.AIDecision.TRICK]
+
+	# 5. Roll the dice
+	return _roll_weighted(weights)
+
+
+func _roll_weighted(weights: Dictionary) -> Global.AIDecision:
+	var total = weights[Global.AIDecision.NOTHING] + weights[Global.AIDecision.JUMP] + weights[Global.AIDecision.TRICK]
+	if total <= 0: return Global.AIDecision.NOTHING
+	
+	var roll = randf_range(0, total)
+	
+	if roll <= weights[Global.AIDecision.NOTHING]:
+		_apply_cost(Global.AIDecision.NOTHING)
+		return Global.AIDecision.NOTHING
+		
+	if roll <= weights[Global.AIDecision.NOTHING] + weights[Global.AIDecision.JUMP]:
+		_apply_cost(Global.AIDecision.JUMP)
+		return Global.AIDecision.JUMP
+		
+	_apply_cost(Global.AIDecision.TRICK)
+	return Global.AIDecision.TRICK
+
+
+func _apply_cost(decision: Global.AIDecision) -> void:
+	# Trigger cooldowns and fatigue penalty when an action is selected
+	if decision == Global.AIDecision.JUMP:
+		jump_cooldown = 1.5
+		action_fatigue[Global.AIDecision.JUMP] = 0.1 # Drop weight to 10%
+	elif decision == Global.AIDecision.TRICK:
+		trick_cooldown = 1.0
+		action_fatigue[Global.AIDecision.TRICK] = 0.2
+	elif decision == Global.AIDecision.NOTHING:
+		action_fatigue[Global.AIDecision.NOTHING] = 0.5
