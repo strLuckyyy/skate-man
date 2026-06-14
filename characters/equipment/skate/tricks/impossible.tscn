@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bg1b0n4lb0b7s"]
+
+[ext_resource type="Script" uid="uid://dun5s5f0ri3sc" path="res://characters/equipment/skate/tricks/impossible.gd" id="1_s1fgg"]
+[ext_resource type="Resource" uid="uid://dcbyemf6qervh" path="res://characters/equipment/skate/tricks/impossible.tres" id="2_s1fgg"]
+
+[node name="Impossible" type="Node2D" unique_id=789185422]
+script = ExtResource("1_s1fgg")
+trick_data = ExtResource("2_s1fgg")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

@@ -7,16 +7,17 @@ extends BaseOpponentDecides
 @export_category("Probability")
 @export var config: RandomizerConfig
 
+
 func _setup() -> void:
 	_randomizer = Randomizer.new()
 
 
 func _enter() -> void:
 	super._enter()
-	_trick_pool         = _char.equipment.get_trick_pool(action_state)
-	_is_executing_trick = false
-	_randomizer.setup(config)
+	_trick_pool               = _char.equipment.get_trick_pool(action_state)
+	_is_executing_trick       = false
 	_char.controller.can_move = true
+	_randomizer.setup(config)
 
 
 func _tick(_delta: float) -> Status:
@@ -38,9 +39,10 @@ func _tick(_delta: float) -> Status:
 	match _decision:
 		Global.AIDecision.NOTHING:
 			if action_state == Global.StateID.ON_FLOOR:
-				_char.apply_push(); return RUNNING
+				_char.apply_push(); return SUCCESS
 		
 		Global.AIDecision.JUMP:
+			_char.apply_jump()
 			return SUCCESS if _char.was_jumped() else FAILURE
 		
 		Global.AIDecision.TRICK:

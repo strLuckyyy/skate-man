@@ -1,18 +1,22 @@
 class_name BasePlatform
 extends Path2D
 
+enum TargetCharacter { ANY, PLAYER, OPPONENT }
+
 signal lock_character(body: BaseCharacter)
 signal unlock_character()
 signal character_centered()
+
+const _CENTER_SNAP_THRESHOLD: float = 2.0
 
 @onready var _path_follow:   PathFollow2D     = $PathFollow2D
 @onready var _anima_body:    AnimatableBody2D = $AnimatableBody2D
 @onready var _wait_area:     WaitingArea      = $WaitingArea
 @onready var _anim_platform: AnimationPlayer  = $AnimationPlayer
 
-const _CENTER_SNAP_THRESHOLD: float   = 2.0
-@export var center_offset:    Vector2 = Vector2.ZERO
-@export var centering_speed:  float   = 400.0
+@export var target_character: TargetCharacter = TargetCharacter.ANY
+@export var center_offset:    Vector2         = Vector2.ZERO
+@export var centering_speed:  float           = 400.0
 
 var _current_character: CharacterBody2D = null
 var _is_centering:      bool            = false
@@ -21,18 +25,45 @@ var _is_centering:      bool            = false
 func _ready() -> void:
 	set_platform_enabled(false)
 	_wait_area.character_entered.connect(_on_character_entered)
+	_set_layer()
 
 
 func _physics_process(delta: float) -> void:
 	if _is_centering and _current_character:
 		_process_centering(delta)
 
+
+func _resolve_platform_layer(target: TargetCharacter) -> int:
+	match target:
+		TargetCharacter.PLAYER:   return 1 << 3  # Layer 4 — plataform_player
+		TargetCharacter.OPPONENT: return 1 << 4  # Layer 5 — plataform_opponent
+		_: return _anima_body.collision_layer    # fallback original
+
+
+func _resolve_platform_mask(target: TargetCharacter) -> int:
+	match target:
+		TargetCharacter.PLAYER:   return 1 << 0  # Layer 1 — player
+		TargetCharacter.OPPONENT: return 1 << 1  # Layer 2 — opponent
+		_: return _anima_body.collision_mask
+
+
+func _set_layer() -> void:
+	var layer_bit := _resolve_platform_layer(target_character)
+	var mask_bit  := _resolve_platform_mask(target_character)
+
+	_anima_body.collision_layer = layer_bit
+	_anima_body.collision_mask  = mask_bit
+	_wait_area.collision_layer  = layer_bit
+	_wait_area.collision_mask   = mask_bit
+
+	_wait_area.target_character = target_character
+
 # ---------------------------------------------------------------------------
 # Public flow
 # ---------------------------------------------------------------------------
 
-func start(): set_platform_enabled(true)
-func exit(): set_platform_enabled(false)
+func start() -> void: set_platform_enabled(true)
+func exit()  -> void: set_platform_enabled(false)
 
 
 func set_platform_enabled(enabled: bool) -> void:

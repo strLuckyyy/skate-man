@@ -14,10 +14,10 @@
 				"5930292f-2b7f-49f4-a0a4-230268fd7715",
 				"edfe50e8-e509-4258-910c-389c1d709d12",
 				"40dffa44-b936-4ad8-a2fa-5727ae0f6743",
-				"c177efe7-ecee-40d0-b388-4ce1fca61b22",
 				"6db5473d-322b-43b1-b6d0-54f8b7d94498",
 				"b7478f2e-6e94-4975-a073-d82a0b2b072c",
-				"664c7ffc-3250-43fd-99a3-8bed75b43b25"
+				"664c7ffc-3250-43fd-99a3-8bed75b43b25",
+				"c177efe7-ecee-40d0-b388-4ce1fca61b22"
 			]
 		},
 		{
@@ -27,7 +27,9 @@
 				"50ae1214-249c-49b9-bf74-dede27e155a0",
 				"57cc43a5-bf46-4e4c-b1d3-d820fbc7bf73",
 				"afbc579f-1089-44ba-b79a-474b83ac87c9",
-				"728b41a1-038e-4eec-9f71-b4105368efe4"
+				"e269ad01-caf5-45ca-aac8-fbcbb04c4bdd",
+				"f0a9a5e6-c5a2-4089-9d0c-ab63970d99c5",
+				"d9a0705e-e861-47ef-a3a9-3b6012ab5aa2"
 			]
 		},
 		{
@@ -38,6 +40,7 @@
 				"25ccc8ca-6fcf-4d7f-acc2-db50be76e29a",
 				"7f07e52f-5bc5-41b0-91e4-e595f1836758",
 				"9b5e72c5-83ca-4304-bdae-7cf6ff62918b",
+				"728b41a1-038e-4eec-9f71-b4105368efe4",
 				"0746792c-e43a-4b7b-a1c1-2732fe846e41",
 				"fc9ff3e4-4525-455f-b46d-9fcd89fc4931",
 				"ac2c0d7a-d575-42bb-ba68-1ef28ac94eae",
@@ -201,10 +204,35 @@
 		},
 		{
 			"uuid": "afbc579f-1089-44ba-b79a-474b83ac87c9",
-			"title": "opponent decisions buffer",
-			"description": "o oponente deve ter um buffer para não ficar flodando ações, tricks e etc\n\npara os trick, pensando num arr de 3\n[a, b, c] deve ser impossível fazer a c novamente, deve ser pouco provavel fazer o b, e relativamente provavel fazer o a novamente\n\npara as ações deve seguir uma ideia parecida",
+			"title": "opponent decisions improvement",
+			"description": "Pelo que você descreveu, o problema não está na aleatorização em si. O problema é que sua IA está tomando decisões de forma **reativa e sem memória**.\n\nAtualmente o fluxo parece algo assim:\n\n```text\nEntrou no estado\n↓\nRandomiza decisão\n↓\nExecuta\n↓\nTroca de estado\n↓\nRandomiza novamente\n↓\nExecuta\n↓\n...\n```\n\nMesmo usando pesos, se você roda isso dezenas de vezes por minuto, o resultado inevitável será um personagem hiperativo fazendo ações sem intenção.\n\n## O que eu faria\n\nSepararia a IA em 3 níveis:\n\n### Nível 1 - Objetivo (Goal)\n\nA IA escolhe o que quer fazer pelos próximos segundos.\n\nExemplos:\n\n```cpp\nenum Goal\n{\n    CRUISE,                 // apenas andar\n    BUILD_SPEED,      // ganhar velocidade\n    DO_TRICKS,          // procurar manobras\n    SAFE_LANDING,  // focar em aterrissar\n    GRIND_CHAIN     // procurar corrimãos\n};\n```\n\nEsses objetivos mudam raramente:\n\n```text\na cada 2~5 segundos\nou\nquando algo importante acontece\n```\n\n---\n\n### Nível 2 - Decisão\n\nA decisão passa a depender do objetivo.\n\nExemplo:\n\n#### Goal = CRUISE\n\n```text\nNOTHING = 90\nJUMP    = 10\nTRICK   = 0\n```\n\n#### Goal = DO_TRICKS\n\n```text\nNOTHING = 20\nJUMP    = 40\nTRICK   = 40\n```\n\n#### Goal = SAFE_LANDING\n\n```text\nNOTHING = 100\nJUMP    = 0\nTRICK   = 0\n```\n\nAssim o comportamento parece muito mais intencional.\n\n---\n\n### Nível 3 - Execução\n\nA state machine apenas executa.\n\n```text\nBehavior Tree\n↓\nescolhe objetivo\n\nBehavior Tree\n↓\nescolhe ação\n\nState Machine\n↓\nexecuta ação\n```\n\n---\n\n# Adicione Cooldowns\n\nEsse é provavelmente o maior ganho imediato.\n\nExemplo:\n\n```cpp\nfloat jump_cooldown;\nfloat trick_cooldown;\n```\n\nQuando pula:\n\n```cpp\njump_cooldown = 2.0f;\n```\n\nEnquanto o cooldown existir:\n\n```text\nJUMP = proibido\n```\n\nIsso sozinho elimina:\n\n```text\nPULA\nPULA\nPULA\nPULA\nPULA\n```\n\n---\n\n# Adicione Fadiga de Escolha\n\nToda vez que uma ação é executada, diminua seu peso temporariamente.\n\nExemplo:\n\nInicial:\n\n```text\nNOTHING = 30\nJUMP = 40\nTRICK = 30\n```\n\nPulou:\n\n```text\nNOTHING = 40\nJUMP = 5\nTRICK = 55\n```\n\nPulou novamente:\n\n```text\nNOTHING = 50\nJUMP = 0\nTRICK = 50\n```\n\nApós alguns segundos:\n\n```text\nJUMP volta gradualmente\n```\n\nIsso gera variedade naturalmente.\n\n---\n\n# Use Contexto do Mundo\n\nHoje sua IA parece decidir sem observar nada.\n\nUm skatista normalmente pensa:\n\n```text\nTem rampa?\nTem corrimão?\nTem gap?\nEstou rápido?\nEstou alto?\nVou conseguir aterrissar?\n```\n\nEntão os pesos podem depender disso.\n\nExemplo:\n\n```gdscript\nif rail_ahead:\n    weights[TRICK] += 50\n\nif speed < MIN_SPEED:\n    weights[JUMP] -= 30\n\nif airborne:\n    weights[NOTHING] -= 50\n```\n\n---\n\n# Crie Buffers de Decisão\n\nEm vez de escolher uma ação única:\n\nEscolha uma sequência.\n\n```text\nPlano:\n1. Ganhar velocidade\n2. Pular\n3. Kickflip\n4. Aterrissar\n```\n\nA IA executa o plano inteiro antes de pensar novamente.\n\nIsso produz comportamento muito mais humano.\n\n---\n\n# Aproveite melhor a Behavior Tree\n\nHoje parece que sua BT está servindo apenas para disparar randomização.\n\nEu inverteria:\n\n```text\nSelector\n\n├── Se está caindo\n│   └── Aterrissar\n\n├── Se existe rail próximo\n│   └── Fazer grind\n\n├── Se existe rampa próxima\n│   └── Fazer trick\n\n├── Se velocidade baixa\n│   └── Acelerar\n\n└── Passear\n```\n\nDentro das folhas você ainda pode usar pesos aleatórios.\n\nOu seja:\n\n```text\nBehavior Tree\n↓\ndecide contexto\n\nRandomizer\n↓\nescolhe variante da ação\n\nState Machine\n↓\nexecuta\n```\n\ne não:\n\n```text\nRandomizer\n↓\ndecide tudo\n```\n\n---\n\nPara um jogo de skate, eu provavelmente manteria a State Machine exatamente como está e transformaria o randomizer em um sistema baseado em:\n\n```text\nGoal atual\n+\nCooldowns\n+\nMemória das últimas ações\n+\nContexto do cenário\n+\nPesos aleatórios\n```\n\nCom isso o agente deixa de parecer um \"gerador de números aleatórios\" e passa a parecer um skatista tentando completar linhas de manobras.\n",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
-			"steps": []
+			"steps": [
+				{
+					"details": "1-Objetivo",
+					"done": false
+				},
+				{
+					"details": "2-Decisão",
+					"done": false
+				},
+				{
+					"details": "3-Cooldown",
+					"done": false
+				},
+				{
+					"details": "4-Fadiga",
+					"done": false
+				},
+				{
+					"details": "5-Contexto de Mundo",
+					"done": false
+				},
+				{
+					"details": "6-Buffers",
+					"done": false
+				}
+			]
 		},
 		{
 			"uuid": "b7478f2e-6e94-4975-a073-d82a0b2b072c",
@@ -224,6 +252,27 @@
 			"uuid": "664c7ffc-3250-43fd-99a3-8bed75b43b25",
 			"title": "Grind",
 			"description": "Um grind area que força uma manobra específica ; talvez tirar esse do game\n",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "e269ad01-caf5-45ca-aac8-fbcbb04c4bdd",
+			"title": "SCORE SYSTEM",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "f0a9a5e6-c5a2-4089-9d0c-ab63970d99c5",
+			"title": "fase prototipo",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "d9a0705e-e861-47ef-a3a9-3b6012ab5aa2",
+			"title": "rampa sys",
+			"description": "",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []
 		}

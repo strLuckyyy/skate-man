@@ -26,8 +26,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
-	controller.update_moving_state(velocity)
-	
 	trick_system.process(
 		state_machine.get_current_state_id(),
 		can_grind(),
@@ -35,16 +33,19 @@ func _physics_process(delta: float) -> void:
 	)
 	
 	_calculate_movement()
+	state_machine.process_physics(delta)
 	
 	move_and_slide()
 
 
 func _calculate_movement() -> void:
-	if Input.is_action_just_pressed("push"):
-		controller.apply_push(velocity, equipment.current_equipment)
+	if Input.is_action_just_pressed("push") and is_on_floor():
+		velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed)
 	
 	if Input.is_action_just_pressed("jump"):
 		velocity = controller.apply_jump(velocity, equipment.current_equipment)
+	
+	controller.update_moving_state(velocity)
 
 # ---------------------------------------------------------------------------
 # Lock / Unlock
@@ -54,7 +55,6 @@ func on_lock_character(_body: BaseCharacter) -> void:
 	if _body != self: return
 	controller.is_locked = true
 	velocity  = Vector2.ZERO
-	controller.clear_auto_move()
 
 
 func on_unlock_character() -> void:

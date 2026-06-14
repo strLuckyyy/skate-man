@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_lxshf")
+trick_name = "Ollie"
+state_available = Array[int]([2, 3, 4])
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

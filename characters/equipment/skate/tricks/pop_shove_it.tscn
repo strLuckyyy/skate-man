@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cinn4hjs1prc8"]
+
+[ext_resource type="Script" uid="uid://b0xj57q2sc2a1" path="res://characters/equipment/skate/tricks/pop_shove_it.gd" id="1_74ird"]
+[ext_resource type="Resource" uid="uid://doxuxdn1vjg3n" path="res://characters/equipment/skate/tricks/pop_shove_it.tres" id="2_74ird"]
+
+[node name="PopShoveIt" type="Node2D" unique_id=142794278]
+script = ExtResource("1_74ird")
+trick_data = ExtResource("2_74ird")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

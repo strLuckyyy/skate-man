@@ -17,8 +17,11 @@ var/on_air/hint_string = ""
 
 [node name="BaseAI" unique_id=1969115429 instance=ExtResource("1_i5pb3")]
 collision_layer = 2
+collision_mask = 48
 script = ExtResource("2_71drv")
 
 [node name="BTPlayer" type="BTPlayer" parent="." index="2" unique_id=94575947]
 blackboard_plan = SubResource("BlackboardPlan_234tf")
 unique_name_in_owner = true
+
+[node name="WorldPerception" type="Area2D" parent="." index="11" unique_id=718027603]

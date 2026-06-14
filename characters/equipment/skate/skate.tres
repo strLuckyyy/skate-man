@@ -1,7 +1,19 @@
 [gd_resource type="Resource" script_class="EquipmentData" format=3 uid="uid://dgvcqoj5a02we"]
 
 [ext_resource type="Script" uid="uid://fsgq8yal7w87" path="res://data/equipment_data.gd" id="1_vcxp6"]
+[ext_resource type="PackedScene" uid="uid://bpm08jj2cyrri" path="res://characters/equipment/skate/tricks/grab.tscn" id="2_25o3f"]
+[ext_resource type="PackedScene" uid="uid://cinn4hjs1prc8" path="res://characters/equipment/skate/tricks/pop_shove_it.tscn" id="2_lwdbj"]
+[ext_resource type="PackedScene" uid="uid://b3ilrsnxevykh" path="res://characters/equipment/skate/tricks/ollie.tscn" id="3_15yxn"]
+[ext_resource type="PackedScene" uid="uid://dl3icfambrcc" path="res://characters/equipment/skate/tricks/heel_flip.tscn" id="3_k2p8y"]
+[ext_resource type="PackedScene" uid="uid://crr3fqavvaclg" path="res://characters/equipment/skate/tricks/nose_manual.tscn" id="4_4w8w5"]
+[ext_resource type="PackedScene" uid="uid://bg1b0n4lb0b7s" path="res://characters/equipment/skate/tricks/impossible.tscn" id="4_10axi"]
+[ext_resource type="PackedScene" uid="uid://cl4upwcl18cvp" path="res://characters/equipment/skate/tricks/manual.tscn" id="5_8ww0w"]
+[ext_resource type="PackedScene" uid="uid://bn6473deelowv" path="res://characters/equipment/skate/tricks/kick_flip.tscn" id="6_bsdqp"]
+[ext_resource type="PackedScene" uid="uid://dw3mtkyg2gtum" path="res://characters/equipment/skate/tricks/nollie.tscn" id="7_ulku5"]
+[ext_resource type="PackedScene" uid="uid://df8ahyr5k2uko" path="res://characters/equipment/skate/tricks/spin.tscn" id="11_5ns7j"]
+[ext_resource type="PackedScene" uid="uid://bgebkbiif7jj" path="res://characters/equipment/skate/tricks/grab_flip.tscn" id="12_k2p8y"]
 
 [resource]
 script = ExtResource("1_vcxp6")
+tricks = Array[PackedScene]([ExtResource("2_25o3f"), ExtResource("3_k2p8y"), ExtResource("4_10axi"), ExtResource("6_bsdqp"), ExtResource("5_8ww0w"), ExtResource("7_ulku5"), ExtResource("4_4w8w5"), ExtResource("3_15yxn"), ExtResource("2_lwdbj"), ExtResource("11_5ns7j"), ExtResource("12_k2p8y")])
 metadata/_custom_type_script = "uid://fsgq8yal7w87"

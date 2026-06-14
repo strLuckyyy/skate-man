@@ -36,7 +36,6 @@ func set_platform_enabled(enabled: bool) -> void:
 # Movement flow
 # ---------------------------------------------------------------------------
 
-
 func start(dir: AnimName = AnimName.MOVE_UP) -> void:
 	super.start()
 	_anim_platform.play(ANIM_NAMES[dir])

@@ -50,9 +50,6 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	is_busy      = true
 	active_trick = trick
 	
-	var anim_name = trick.trick_data.animation_name
-	animator.play_trick(str("tricks/", anim_name))
-	
 	EventBus.trick_detected.emit(trick.trick_data)
 	trick_started.emit(trick) 
 	
@@ -61,6 +58,9 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	
 	character.boost_component.add_boost(trick.trick_data.boost)
 	trick.execute(context)
+	
+	var anim_name = trick.anim_name
+	animator.play_trick(str("tricks/", anim_name))
 
 # ---------------------------------------------------------------------------
 # Private — sequence resolution

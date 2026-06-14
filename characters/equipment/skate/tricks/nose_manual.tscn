@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://crr3fqavvaclg"]
+
+[ext_resource type="Script" uid="uid://8rrmiyiw3aca" path="res://characters/equipment/skate/tricks/nose_manual.gd" id="1_5wsih"]
+[ext_resource type="Resource" uid="uid://ciq0jeolj4l7a" path="res://characters/equipment/skate/tricks/nose_manual.tres" id="2_5wsih"]
+
+[node name="NoseManual" type="Node2D" unique_id=1798483179]
+script = ExtResource("1_5wsih")
+trick_data = ExtResource("2_5wsih")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

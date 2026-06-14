@@ -21,6 +21,9 @@ var available_grindable: GrindableObject = null
 # --- Boost flag ---
 var current_boost_speed: float = 0.0
 
+# --- Angle flag ---
+var smoothed_floor_angle: float = 0.0
+
 # ---------------------------------------------------------------------------
 # Getters
 # ---------------------------------------------------------------------------
@@ -62,16 +65,42 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if controller != null: apply_gravity(delta)
+	apply_slope_rotation(delta)
 
 
 func apply_momentum(floor_normal: Vector2) -> void:
 	velocity = controller.apply_momentum(
+		get_physics_process_delta_time(),
 		velocity, 
 		is_on_floor(), 
 		floor_normal, 
-		get_physics_process_delta_time(),
-		equipment.current_equipment
+		equipment.current_equipment,
+		current_boost_speed
 	)
+
+
+func apply_slope_rotation(delta: float) -> void:
+	var target_floor_angle: float = 0.0
+	
+	if is_on_floor() and not is_grinding():
+		target_floor_angle = get_floor_normal().angle() + (PI / 2.0)
+	else:
+		target_floor_angle = 0.0
+	
+	var target_smoothing_speed: float = 5.0 
+	
+	if abs(velocity.x) > 300:
+		target_smoothing_speed = 3.0
+	
+	smoothed_floor_angle = lerp_angle(smoothed_floor_angle, target_floor_angle, 
+		target_smoothing_speed * delta)
+	
+	rotation = lerp_angle(rotation, smoothed_floor_angle, 15.0 * delta)
+
+
+func apply_jump(mult: float = 1.0) -> void:
+	var m = mult if mult != 0.0 else 1.0
+	velocity = controller.apply_jump(velocity, equipment.current_equipment) * m
 
 
 func apply_gravity(delta: float) -> void:

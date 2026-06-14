@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dw3mtkyg2gtum"]
+
+[ext_resource type="Script" uid="uid://b6wascfox2c47" path="res://characters/equipment/skate/tricks/nollie.gd" id="1_ib0bn"]
+[ext_resource type="Resource" uid="uid://b6bf0gvyj1bc" path="res://characters/equipment/skate/tricks/nollie.tres" id="2_ib0bn"]
+
+[node name="Nollie" type="Node2D" unique_id=1948487311]
+script = ExtResource("1_ib0bn")
+trick_data = ExtResource("2_ib0bn")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bn6473deelowv"]
+
+[ext_resource type="Script" uid="uid://pcvhwcu75jdl" path="res://characters/equipment/skate/tricks/kick_flip.gd" id="1_mbmdo"]
+[ext_resource type="Resource" uid="uid://dejb5r6ivhwkx" path="res://characters/equipment/skate/tricks/kick_flip.tres" id="2_mbmdo"]
+
+[node name="KickFlip" type="Node2D" unique_id=587886295]
+script = ExtResource("1_mbmdo")
+trick_data = ExtResource("2_mbmdo")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

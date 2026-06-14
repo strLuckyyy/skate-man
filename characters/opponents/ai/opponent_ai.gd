@@ -9,7 +9,7 @@ var _jumped:     bool
 var _on_air:     bool
 var _air_states: Array[Global.StateID] = [Global.StateID.ON_AIR, Global.StateID.ON_FALLING]
 
-func was_jumped() -> bool: return _jumped
+func was_jumped() -> bool:  return _jumped
 
 
 func _ready() -> void:
@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 	)
 	
 	_set_on_air()
+	state_machine.process_physics(delta)
 	move_and_slide()
 
 
@@ -44,7 +45,7 @@ func make_trick(sequence: Array[Global.Direction]) -> void:
 
 func apply_push() -> void:
 	if not controller.can_move: return
-	controller.apply_push(velocity, equipment.current_equipment)
+	velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed)
 
 
 func apply_jump(_payload = null) -> void:

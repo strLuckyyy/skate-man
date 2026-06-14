@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cl4upwcl18cvp"]
+
+[ext_resource type="Script" uid="uid://b7dxuumxxxnf8" path="res://characters/equipment/skate/tricks/manual.gd" id="1_7b8xn"]
+[ext_resource type="Resource" uid="uid://bg1dgmosd75ry" path="res://characters/equipment/skate/tricks/manual.tres" id="2_7b8xn"]
+
+[node name="Manual" type="Node2D" unique_id=1551958789]
+script = ExtResource("1_7b8xn")
+trick_data = ExtResource("2_7b8xn")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

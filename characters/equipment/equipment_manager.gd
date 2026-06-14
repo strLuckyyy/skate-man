@@ -35,6 +35,7 @@ func equip(equipment: EquipmentData):
 	current_equipment = equipment
 	_current_tricks   = _build_tricks()
 	equipment_changed.emit(equipment, get_tricks())
+	print(get_tricks())
 
 
 func get_tricks() -> Array[BaseTrick]:

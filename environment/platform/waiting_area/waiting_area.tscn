@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://m8sff6t4xjdo"]
 
-[ext_resource type="Script" uid="uid://cdk6e5glrolk4" path="res://environment/plataform/waiting_area/waiting_area.gd" id="1_38knl"]
+[ext_resource type="Script" uid="uid://cdk6e5glrolk4" path="res://environment/platform/waiting_area/waiting_area.gd" id="1_38knl"]
 
 [node name="WaitingArea" type="Area2D" unique_id=12035457]
+collision_layer = 0
+collision_mask = 0
+input_pickable = false
 script = ExtResource("1_38knl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1386168499]

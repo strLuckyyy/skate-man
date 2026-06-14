@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bgebkbiif7jj"]
+
+[ext_resource type="Script" uid="uid://cfp12qj15ciup" path="res://characters/equipment/skate/tricks/grab_flip.gd" id="1_q062c"]
+[ext_resource type="Resource" uid="uid://dr2qspwksxkbq" path="res://characters/equipment/skate/tricks/grab_flip.tres" id="2_q062c"]
+
+[node name="GrabFlip" type="Node2D" unique_id=236966824]
+script = ExtResource("1_q062c")
+trick_data = ExtResource("2_q062c")
+metadata/_custom_type_script = "uid://c30xtvsme52m1"

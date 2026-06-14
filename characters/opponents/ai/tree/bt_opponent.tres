@@ -48,13 +48,15 @@ resource_name = "true"
 variable = &"can_grind"
 value = SubResource("BBVariant_0na88")
 
-[sub_resource type="Resource" id="Resource_a7347"]
+[sub_resource type="Resource" id="Resource_vjfjo"]
 script = ExtResource("4_vjfjo")
+nothing_weight = 0.0
 metadata/_custom_type_script = "uid://crv6m26dfelos"
 
 [sub_resource type="BTAction" id="BTAction_ns51f"]
 script = ExtResource("5_vjfjo")
-config = SubResource("Resource_a7347")
+action_state = 5
+config = SubResource("Resource_vjfjo")
 
 [sub_resource type="BTSequence" id="BTSequence_cqrue"]
 custom_name = "GrindSequence"
@@ -64,59 +66,63 @@ children = [SubResource("BTCheckVar_n0p6c"), SubResource("BTAction_ns51f")]
 script = ExtResource("1_vjfjo")
 target_state = 4
 
-[sub_resource type="Resource" id="Resource_d373b"]
+[sub_resource type="Resource" id="Resource_a7347"]
 script = ExtResource("4_vjfjo")
+jump_weight = 0.0
 metadata/_custom_type_script = "uid://crv6m26dfelos"
 
-[sub_resource type="BTAction" id="BTAction_lj4pd"]
+[sub_resource type="BTAction" id="BTAction_vjfjo"]
 script = ExtResource("5_vjfjo")
 action_state = 4
-config = SubResource("Resource_d373b")
+config = SubResource("Resource_a7347")
 
 [sub_resource type="BTSequence" id="BTSequence_fukyl"]
 custom_name = "FallingSequence"
-children = [SubResource("BTCondition_fukyl"), SubResource("BTAction_lj4pd")]
+children = [SubResource("BTCondition_fukyl"), SubResource("BTAction_vjfjo")]
 
 [sub_resource type="BTCondition" id="BTCondition_n51gn"]
 script = ExtResource("1_vjfjo")
 target_state = 3
 
-[sub_resource type="Resource" id="Resource_wwfib"]
+[sub_resource type="Resource" id="Resource_d373b"]
 script = ExtResource("4_vjfjo")
+jump_weight = 0.0
 metadata/_custom_type_script = "uid://crv6m26dfelos"
 
-[sub_resource type="BTAction" id="BTAction_fukyl"]
+[sub_resource type="BTAction" id="BTAction_a7347"]
 script = ExtResource("5_vjfjo")
 action_state = 3
-config = SubResource("Resource_wwfib")
+config = SubResource("Resource_d373b")
 
 [sub_resource type="BTSequence" id="BTSequence_oy5bn"]
 custom_name = "AirSequence"
-children = [SubResource("BTCondition_n51gn"), SubResource("BTAction_fukyl")]
+children = [SubResource("BTCondition_n51gn"), SubResource("BTAction_a7347")]
 
 [sub_resource type="BTCondition" id="BTCondition_oy5bn"]
 script = ExtResource("1_vjfjo")
 target_state = 2
 
-[sub_resource type="Resource" id="Resource_r3hhf"]
+[sub_resource type="Resource" id="Resource_wwfib"]
 script = ExtResource("4_vjfjo")
+nothing_weight = 3.0
+trick_weight = 2.0
 metadata/_custom_type_script = "uid://crv6m26dfelos"
 
-[sub_resource type="BTAction" id="BTAction_n51gn"]
+[sub_resource type="BTAction" id="BTAction_d373b"]
 script = ExtResource("5_vjfjo")
 action_state = 2
-config = SubResource("Resource_r3hhf")
+config = SubResource("Resource_wwfib")
 
 [sub_resource type="BTSequence" id="BTSequence_riel8"]
 custom_name = "FloorSequence"
-children = [SubResource("BTCondition_oy5bn"), SubResource("BTAction_n51gn")]
+children = [SubResource("BTCondition_oy5bn"), SubResource("BTAction_d373b")]
 
 [sub_resource type="BTSelector" id="BTSelector_hmjqt"]
 children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_cqrue"), SubResource("BTSequence_fukyl"), SubResource("BTSequence_oy5bn"), SubResource("BTSequence_riel8")]
 
-[sub_resource type="BTSelector" id="BTSelector_7bpj1"]
+[sub_resource type="BTSelector" id="BTSelector_r3hhf"]
 children = [SubResource("BTSelector_hmjqt")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_ilfj0")
-root_task = SubResource("BTSelector_7bpj1")
+root_task = SubResource("BTSelector_r3hhf")

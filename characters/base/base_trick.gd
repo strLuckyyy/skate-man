@@ -1,14 +1,15 @@
-@abstract
 class_name BaseTrick
 extends Node2D
 
 @export var trick_data: TrickData
+var anim_name:         StringName
 var _state_available:   Array[Global.StateID]
 var is_grind_trick:     bool = false
 var cd_timer:           Timer
 var anim_player:        AnimationPlayer
 
-func get_state_available() -> Array[Global.StateID]:
+
+func get_state_available() -> Array[Global.StateID]: 
 	return _state_available.duplicate(true)
 
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 		_state_available.append_array(
 			trick_data.conditional_state_available.duplicate())
 	
+	anim_name          = trick_data.animation_name
 	cd_timer           = Timer.new()
 	cd_timer.wait_time = trick_data.cd
 	cd_timer.one_shot  = true

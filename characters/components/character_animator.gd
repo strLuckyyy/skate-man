@@ -21,6 +21,9 @@ func setup(character_ref: BaseCharacter) -> void:
 func play_trick(anim_path: String) -> void:
 	is_executing_trick = true
 	current_trick_anim = anim_path
+	if current_trick_anim == "tricks/":
+		push_warning("Trick have no anim path.")
+		return
 	anim_player.play(current_trick_anim)
 
 
@@ -30,6 +33,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		trick_animation_finished.emit()
 		_update_base_animation(character.state_machine.get_current_state_id())
 
+
 func _on_state_changed(_old_state: Global.StateID, new_state: Global.StateID) -> void:
 	if new_state == Global.StateID.TRICK_FAIL: 
 		is_executing_trick = false
@@ -38,6 +42,7 @@ func _on_state_changed(_old_state: Global.StateID, new_state: Global.StateID) ->
 		return
 	
 	_update_base_animation(new_state)
+
 
 func _update_base_animation(state_id: Global.StateID) -> void:
 	match state_id:
