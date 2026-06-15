@@ -210,19 +210,19 @@
 			"steps": [
 				{
 					"details": "1-Objetivo",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "2-Decisão",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "3-Cooldown",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "4-Fadiga",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "5-Contexto de Mundo",

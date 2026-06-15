@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_evnyq")
 trick_name = "Spin"
+sequence = Array[int]([0, 3, 1, 2])
 state_available = Array[int]([2, 3, 4])
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

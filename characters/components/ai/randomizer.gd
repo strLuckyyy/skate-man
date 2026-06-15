@@ -20,7 +20,7 @@ const GOAL_WEIGHTS = {
 	Global.AIGoal.CRUISE:       { 
 		Global.AIDecision.NOTHING: 80, 
 		Global.AIDecision.JUMP: 20, 
-		Global.AIDecision.TRICK: 0 
+		Global.AIDecision.TRICK: 10 
 		},
 	Global.AIGoal.DO_TRICKS:    { 
 		Global.AIDecision.NOTHING: 20, 
@@ -30,7 +30,7 @@ const GOAL_WEIGHTS = {
 	Global.AIGoal.SAFE_LANDING: { 
 		Global.AIDecision.NOTHING: 100, 
 		Global.AIDecision.JUMP: 0, 
-		Global.AIDecision.TRICK: 0 
+		Global.AIDecision.TRICK: 50 
 		},
 	Global.AIGoal.GRIND_CHAIN:  { 
 		Global.AIDecision.NOTHING: 10, 

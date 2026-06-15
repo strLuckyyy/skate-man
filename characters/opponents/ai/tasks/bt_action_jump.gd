@@ -10,4 +10,4 @@ func _tick(_delta: float) -> int:
 		agent_char.apply_jump()
 		return SUCCESS
 		
-	return RUNNING
+	return SUCCESS

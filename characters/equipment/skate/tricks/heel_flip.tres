@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_5cyto")
 trick_name = "Heel Flip"
+sequence = Array[int]([0, 2])
 state_available = Array[int]([2])
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

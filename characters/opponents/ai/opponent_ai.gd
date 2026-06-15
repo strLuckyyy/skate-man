@@ -76,34 +76,6 @@ func apply_jump(_payload: float = 1.0) -> void:
 	_jumped  = false if pre_vel == velocity.y else true
 
 
-# --- Behavior Tree API ---
-func execute_decision(decision: Global.AIDecision) -> void:
-	match decision:
-		Global.AIDecision.NOTHING:
-			apply_push()
-		
-		Global.AIDecision.JUMP:
-			apply_jump()
-		
-		Global.AIDecision.TRICK:
-			var state_id   := state_machine.current_state.state_id
-			var trick_pool := equipment.get_trick_pool(state_id)
-			make_trick(randomizer.randomize_trick(trick_pool))
-
-
-func _perform_trick() -> void:
-	if not is_on_floor():
-		# OPÇÃO A: Chamar seu sistema de trick diretamente
-		# var random_trick = trick_system.get_random_available_trick()
-		# trick_system.execute(random_trick)
-		
-		# OPÇÃO B: Usar Input Buffer
-		# ai_input_buffer.push_action("kickflip")
-		
-		print("AI: Mandou uma manobra!")
-# --- ---
-
-
 func get_caught() -> void:
 	super.get_caught()
 
@@ -119,3 +91,9 @@ func _update_blackboard():
 	bb.set_var("on_air", _on_air)
 	bb.set_var("speed", velocity.x)
 	
+	if world_perception.closer_area != null:
+		var area = world_perception.closer_area
+		var bb_name = world_perception.get_closer_area_bb_var_name()
+		var new_position = abs(area.global_position.x - global_position.x)
+		
+		bb.set_var(bb_name, new_position)
