@@ -3,23 +3,39 @@
 [ext_resource type="Script" uid="uid://xk8gi504vmas" path="res://characters/opponents/ai/tasks/check_state_condition.gd" id="1_vjfjo"]
 [ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/caught_task.gd" id="2_a7347"]
 [ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/trick_fail_task.gd" id="3_d373b"]
-[ext_resource type="Script" uid="uid://bdurs448peeka" path="res://characters/opponents/ai/tasks/is_feature_ahead.gd" id="4_vjfjo"]
-[ext_resource type="Script" uid="uid://7wd5yfhjtmsv" path="res://characters/opponents/ai/tasks/update_ai_goal.gd" id="6_a7347"]
+[ext_resource type="Script" uid="uid://cat2dtktaxs1i" path="res://characters/opponents/ai/tasks/set_ai_goal.gd" id="5_vjfjo"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ilfj0"]
-var/is_airbone/name = &"is_airbone"
-var/is_airbone/type = 1
-var/is_airbone/value = false
-var/is_airbone/hint = 0
-var/is_airbone/hint_string = ""
+var/on_air/name = &"on_air"
+var/on_air/type = 1
+var/on_air/value = false
+var/on_air/hint = 0
+var/on_air/hint_string = ""
 var/speed/name = &"speed"
 var/speed/type = 3
 var/speed/value = 0.0
 var/speed/hint = 0
 var/speed/hint_string = ""
+var/has_rail_ahead/name = &"has_rail_ahead"
+var/has_rail_ahead/type = 1
+var/has_rail_ahead/value = false
+var/has_rail_ahead/hint = 0
+var/has_rail_ahead/hint_string = ""
+var/has_plataform_ahead/name = &"has_plataform_ahead"
+var/has_plataform_ahead/type = 1
+var/has_plataform_ahead/value = false
+var/has_plataform_ahead/hint = 0
+var/has_plataform_ahead/hint_string = ""
+var/has_ramp_ahead/name = &"has_ramp_ahead"
+var/has_ramp_ahead/type = 1
+var/has_ramp_ahead/value = false
+var/has_ramp_ahead/hint = 0
+var/has_ramp_ahead/hint_string = ""
 
 [sub_resource type="BTCondition" id="BTCondition_cqrue"]
+custom_name = "has caught?"
 script = ExtResource("1_vjfjo")
+secound_target_state = null
 
 [sub_resource type="BTAction" id="BTAction_oy5bn"]
 script = ExtResource("2_a7347")
@@ -29,8 +45,10 @@ custom_name = "CaughtSequence"
 children = [SubResource("BTCondition_cqrue"), SubResource("BTAction_oy5bn")]
 
 [sub_resource type="BTCondition" id="BTCondition_68jnl"]
+custom_name = "trick fail?"
 script = ExtResource("1_vjfjo")
 target_state = 1
+secound_target_state = null
 
 [sub_resource type="BTAction" id="BTAction_riel8"]
 script = ExtResource("3_d373b")
@@ -39,60 +57,115 @@ script = ExtResource("3_d373b")
 custom_name = "TrickFailSequence"
 children = [SubResource("BTCondition_68jnl"), SubResource("BTAction_riel8")]
 
-[sub_resource type="BTCondition" id="BTCondition_a7347"]
-script = ExtResource("4_vjfjo")
-check_type = 2
+[sub_resource type="BTCondition" id="BTCondition_ns51f"]
+custom_name = "On Airbone"
+script = ExtResource("1_vjfjo")
+target_state = 3
+secound_target_state = 4
 
-[sub_resource type="BTAction" id="BTAction_n84rp"]
-script = ExtResource("6_a7347")
-target_goal = 3
+[sub_resource type="BTAction" id="BTAction_d373b"]
+custom_name = "Stay Safe"
+script = ExtResource("5_vjfjo")
+goal = 2
 
-[sub_resource type="BTSequence" id="BTSequence_5c3fb"]
-custom_name = "ReadyToGrind"
-children = [SubResource("BTCondition_a7347"), SubResource("BTAction_n84rp")]
+[sub_resource type="BTAction" id="BTAction_ns51f"]
+custom_name = "Do Trick when Fall"
+script = ExtResource("5_vjfjo")
+goal = 1
 
-[sub_resource type="BBVariant" id="BBVariant_vjfjo"]
+[sub_resource type="BTRandomSequence" id="BTRandomSequence_d373b"]
+children = [SubResource("BTAction_d373b"), SubResource("BTAction_ns51f")]
+
+[sub_resource type="BTSequence" id="BTSequence_wwfib"]
+custom_name = "On Air/Falling"
+children = [SubResource("BTCondition_ns51f"), SubResource("BTRandomSequence_d373b")]
+
+[sub_resource type="BBVariant" id="BBVariant_a7347"]
 type = 1
 saved_value = true
 resource_name = "true"
 
-[sub_resource type="BTCheckVar" id="BTCheckVar_a7347"]
-variable = &"is_airbone"
-value = SubResource("BBVariant_vjfjo")
+[sub_resource type="BTCheckVar" id="BTCheckVar_d373b"]
+variable = &"has_rail_ahead"
+value = SubResource("BBVariant_a7347")
 
-[sub_resource type="BTAction" id="BTAction_wwfib"]
-script = ExtResource("6_a7347")
-target_goal = 2
+[sub_resource type="BTAction" id="BTAction_a7347"]
+custom_name = "Grind"
+script = ExtResource("5_vjfjo")
+goal = 3
 
-[sub_resource type="BTSequence" id="BTSequence_d373b"]
-custom_name = "AirSequence"
-children = [SubResource("BTCheckVar_a7347"), SubResource("BTAction_wwfib")]
+[sub_resource type="BTSequence" id="BTSequence_5c3fb"]
+custom_name = "Ready to Grind"
+children = [SubResource("BTCheckVar_d373b"), SubResource("BTAction_a7347")]
 
-[sub_resource type="BBVariant" id="BBVariant_ywbxg"]
+[sub_resource type="BBVariant" id="BBVariant_ns51f"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_vjfjo"]
+variable = &"has_ramp_ahead"
+value = SubResource("BBVariant_ns51f")
+
+[sub_resource type="BTAction" id="BTAction_r3hhf"]
+script = ExtResource("5_vjfjo")
+force_decision = 2
+
+[sub_resource type="BTSequence" id="BTSequence_002lp"]
+custom_name = "Gain speed"
+children = [SubResource("BTCheckVar_vjfjo"), SubResource("BTAction_r3hhf")]
+
+[sub_resource type="BBVariant" id="BBVariant_vjfjo"]
 type = 3
 saved_value = 300.0
 resource_name = "300.0"
 
-[sub_resource type="BTCheckVar" id="BTCheckVar_o5l08"]
+[sub_resource type="BTCheckVar" id="BTCheckVar_a7347"]
+variable = &"speed"
+check_type = 3
+value = SubResource("BBVariant_vjfjo")
+
+[sub_resource type="BTAction" id="BTAction_vjfjo"]
+custom_name = "Cruise more"
+script = ExtResource("5_vjfjo")
+
+[sub_resource type="BTAction" id="BTAction_wwfib"]
+custom_name = "Do Trick"
+script = ExtResource("5_vjfjo")
+goal = 1
+
+[sub_resource type="BTRandomSequence" id="BTRandomSequence_a7347"]
+children = [SubResource("BTAction_vjfjo"), SubResource("BTAction_wwfib")]
+
+[sub_resource type="BTSequence" id="BTSequence_r3hhf"]
+custom_name = "Try Some Trick"
+children = [SubResource("BTCheckVar_a7347"), SubResource("BTRandomSequence_a7347")]
+
+[sub_resource type="BBVariant" id="BBVariant_002lp"]
+type = 3
+saved_value = 300.0
+resource_name = "300.0"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_n84rp"]
 variable = &"speed"
 check_type = 1
-value = SubResource("BBVariant_ywbxg")
+value = SubResource("BBVariant_002lp")
 
-[sub_resource type="BTAction" id="BTAction_nflul"]
-script = ExtResource("6_a7347")
+[sub_resource type="BTCondition" id="BTCondition_vjfjo"]
+custom_name = "Is on Floor?"
+script = ExtResource("1_vjfjo")
+target_state = 2
 
-[sub_resource type="BTSequence" id="BTSequence_nlwgy"]
-children = [SubResource("BTCheckVar_o5l08"), SubResource("BTAction_nflul")]
+[sub_resource type="BTAction" id="BTAction_5c3fb"]
+custom_name = "Cruise"
+script = ExtResource("5_vjfjo")
 
-[sub_resource type="BTAction" id="BTAction_ns51f"]
-script = ExtResource("6_a7347")
-target_goal = 1
-
-[sub_resource type="BTSequence" id="BTSequence_vjfjo"]
-children = [SubResource("BTAction_ns51f")]
+[sub_resource type="BTSequence" id="BTSequence_ywbxg"]
+custom_name = "Apply Push"
+children = [SubResource("BTCheckVar_n84rp"), SubResource("BTCondition_vjfjo"), SubResource("BTAction_5c3fb")]
 
 [sub_resource type="BTSelector" id="BTSelector_ns51f"]
-children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_5c3fb"), SubResource("BTSequence_d373b"), SubResource("BTSequence_nlwgy"), SubResource("BTSequence_vjfjo")]
+children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_wwfib"), SubResource("BTSequence_5c3fb"), SubResource("BTSequence_002lp"), SubResource("BTSequence_r3hhf"), SubResource("BTSequence_ywbxg")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_ilfj0")

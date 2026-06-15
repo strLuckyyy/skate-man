@@ -9,8 +9,6 @@ signal trick_sequence(candidates: Array[BaseTrick], path: Array[Global.Direction
 
 @export var profile_data: AIProfileData = null
 
-var obstacles: Array[Global.ObstacleType] = []
-
 # --- push controll ---
 var _can_push:     bool  = true
 var _push_cd:      float = 1.
@@ -26,7 +24,7 @@ func was_jumped() -> bool:  return _jumped
 func _ready() -> void:
 	super._ready()
 	trick_system.setup(self, equipment, character_animator, trick_sequence)
-	world_perception.update_obstacles.connect(func (value): obstacles = value)
+
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
@@ -40,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		available_grindable
 	)
 	
-	_set_on_air()
+	_update_blackboard()
 	state_machine.process_physics(delta)
 	move_and_slide()
 
@@ -110,11 +108,14 @@ func get_caught() -> void:
 	super.get_caught()
 
 
-func _set_on_air():
-	var cs = state_machine.get_current_state_id()
-	var oa = cs in _air_states
+func _update_blackboard():
+	var bb = behavior_tree.blackboard
+	var current_state = state_machine.get_current_state_id()
 	
-	if _on_air == oa: return
+	# --- on air ---
+	var oa = current_state in _air_states
+	if _on_air != oa: _on_air = oa
 	
-	_on_air = oa
-	behavior_tree.blackboard.set_var("on_air", _on_air)
+	bb.set_var("on_air", _on_air)
+	bb.set_var("speed", velocity.x)
+	

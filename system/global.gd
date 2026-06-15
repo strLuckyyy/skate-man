@@ -56,7 +56,8 @@ enum ObstacleType {
 enum AIDecision {
 	NOTHING,
 	JUMP,
-	TRICK
+	TRICK,
+	NONE
 }
 
 enum AIGoal {

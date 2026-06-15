@@ -5,7 +5,7 @@ extends Node
 var current_goal: Global.AIGoal = Global.AIGoal.CRUISE
 
 # Cooldowns (Hard Locks)
-var jump_cooldown: float = 0.0
+var jump_cooldown:  float = 0.0
 var trick_cooldown: float = 0.0
 
 # Fatigue (Dynamic Weight Reduction: 1.0 = fresh, 0.0 = exhausted)
@@ -17,10 +17,26 @@ var action_fatigue: Dictionary = {
 
 # Base Weights per Goal (Level 2)
 const GOAL_WEIGHTS = {
-	Global.AIGoal.CRUISE:       { Global.AIDecision.NOTHING: 80, Global.AIDecision.JUMP: 20, Global.AIDecision.TRICK: 0 },
-	Global.AIGoal.DO_TRICKS:    { Global.AIDecision.NOTHING: 20, Global.AIDecision.JUMP: 40, Global.AIDecision.TRICK: 40 },
-	Global.AIGoal.SAFE_LANDING: { Global.AIDecision.NOTHING: 100, Global.AIDecision.JUMP: 0, Global.AIDecision.TRICK: 0 },
-	Global.AIGoal.GRIND_CHAIN:  { Global.AIDecision.NOTHING: 10, Global.AIDecision.JUMP: 40, Global.AIDecision.TRICK: 50 }
+	Global.AIGoal.CRUISE:       { 
+		Global.AIDecision.NOTHING: 80, 
+		Global.AIDecision.JUMP: 20, 
+		Global.AIDecision.TRICK: 0 
+		},
+	Global.AIGoal.DO_TRICKS:    { 
+		Global.AIDecision.NOTHING: 20, 
+		Global.AIDecision.JUMP: 40, 
+		Global.AIDecision.TRICK: 40 
+		},
+	Global.AIGoal.SAFE_LANDING: { 
+		Global.AIDecision.NOTHING: 100, 
+		Global.AIDecision.JUMP: 0, 
+		Global.AIDecision.TRICK: 0 
+		},
+	Global.AIGoal.GRIND_CHAIN:  { 
+		Global.AIDecision.NOTHING: 10, 
+		Global.AIDecision.JUMP: 40, 
+		Global.AIDecision.TRICK: 50 
+		}
 }
 
 
@@ -53,11 +69,11 @@ func get_decision(context: Dictionary) -> Global.AIDecision:
 	var weights = GOAL_WEIGHTS[current_goal].duplicate()
 	
 	# 2. Apply World Context Modifiers (Level 3)
-	if context.get("rail_ahead", false):
+	if context.get("has_rail_ahead", false):
 		weights[Global.AIDecision.TRICK] += 50
-		weights[Global.AIDecision.JUMP] += 20
+		weights[Global.AIDecision.JUMP]  += 20
 		
-	if context.get("ramp_ahead", false):
+	if context.get("has_ramp_ahead", false):
 		weights[Global.AIDecision.JUMP] += 60
 		
 	if context.get("speed", 0.0) < 300.0:
@@ -65,20 +81,24 @@ func get_decision(context: Dictionary) -> Global.AIDecision:
 		weights[Global.AIDecision.NOTHING] += 50 # Force cruising to build speed
 
 	# 3. Apply Cooldowns (Hard restrictions)
-	if jump_cooldown > 0.0: weights[Global.AIDecision.JUMP] = 0
+	if jump_cooldown  > 0.0: weights[Global.AIDecision.JUMP] = 0
 	if trick_cooldown > 0.0: weights[Global.AIDecision.TRICK] = 0
 	
 	# 4. Apply Fatigue (Variety enforcer)
 	weights[Global.AIDecision.NOTHING] *= action_fatigue[Global.AIDecision.NOTHING]
-	weights[Global.AIDecision.JUMP] *= action_fatigue[Global.AIDecision.JUMP]
-	weights[Global.AIDecision.TRICK] *= action_fatigue[Global.AIDecision.TRICK]
+	weights[Global.AIDecision.JUMP]    *= action_fatigue[Global.AIDecision.JUMP]
+	weights[Global.AIDecision.TRICK]   *= action_fatigue[Global.AIDecision.TRICK]
 
 	# 5. Roll the dice
 	return _roll_weighted(weights)
 
 
 func _roll_weighted(weights: Dictionary) -> Global.AIDecision:
-	var total = weights[Global.AIDecision.NOTHING] + weights[Global.AIDecision.JUMP] + weights[Global.AIDecision.TRICK]
+	var total = weights[
+		Global.AIDecision.NOTHING] + \
+		weights[Global.AIDecision.JUMP] + \
+		weights[Global.AIDecision.TRICK
+		]
 	if total <= 0: return Global.AIDecision.NOTHING
 	
 	var roll = randf_range(0, total)

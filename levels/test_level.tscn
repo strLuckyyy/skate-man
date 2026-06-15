@@ -5,9 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://tkoi6wuvdx3s" path="res://characters/player/player.tscn" id="2_x25rp"]
 [ext_resource type="PackedScene" uid="uid://ca0x02fo5fi00" path="res://environment/grindable/car_hood/car_yellow_hood.tscn" id="3_gmgay"]
 [ext_resource type="PackedScene" uid="uid://b8k5ftacnuo4" path="res://characters/opponents/ai_john.tscn" id="4_w7r7j"]
+[ext_resource type="PackedScene" uid="uid://wrwb1lg84cpr" path="res://environment/ramp/ramp_area.tscn" id="6_e7anx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr1um"]
 size = Vector2(1846, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7anx"]
+radius = 1144.3396
 
 [node name="TestLevel" type="Node2D" unique_id=1323558784]
 
@@ -167,6 +171,37 @@ position = Vector2(3002, 817)
 [node name="GrindableBase3" parent="." unique_id=799881510 instance=ExtResource("3_gmgay")]
 position = Vector2(4027, 825)
 
+[node name="GrindableBase4" parent="." unique_id=693085985 instance=ExtResource("3_gmgay")]
+position = Vector2(4909, 825)
+
+[node name="GrindableBase5" parent="." unique_id=1461285070 instance=ExtResource("3_gmgay")]
+position = Vector2(5863, 773)
+rotation = -0.07565743
+
+[node name="GrindableBase6" parent="." unique_id=1772431043 instance=ExtResource("3_gmgay")]
+position = Vector2(6683, 709)
+rotation = -0.07565743
+
+[node name="GrindableBase7" parent="." unique_id=1758272284 instance=ExtResource("3_gmgay")]
+position = Vector2(8084, 603.00006)
+rotation = -0.07565743
+
+[node name="GrindableBase8" parent="." unique_id=1172610037 instance=ExtResource("3_gmgay")]
+position = Vector2(9131, 529)
+rotation = -0.07565743
+
+[node name="GrindableBase9" parent="." unique_id=291866987 instance=ExtResource("3_gmgay")]
+position = Vector2(10344, 423)
+rotation = -0.07565743
+
+[node name="GrindableBase10" parent="." unique_id=709858030 instance=ExtResource("3_gmgay")]
+position = Vector2(11385, 396.99997)
+rotation = -0.0073082075
+
+[node name="GrindableBase11" parent="." unique_id=1425974752 instance=ExtResource("3_gmgay")]
+position = Vector2(12361.001, 391)
+rotation = -0.0073082075
+
 [node name="BasePlatform" parent="." unique_id=705089617 instance=ExtResource("2_o6mel")]
 position = Vector2(2184, 950)
 target_character = 1
@@ -176,9 +211,16 @@ position = Vector2(2182, 951)
 target_character = 2
 
 [node name="Player" parent="." unique_id=1969115429 instance=ExtResource("2_x25rp")]
-position = Vector2(924, 789)
-collision_mask = 40
+position = Vector2(10899, -76)
 
 [node name="AIJohn" parent="." unique_id=1414241354 instance=ExtResource("4_w7r7j")]
-position = Vector2(1052, 784)
-collision_mask = 48
+position = Vector2(11027, -81)
+
+[node name="RampArea" parent="." unique_id=1992232978 instance=ExtResource("6_e7anx")]
+position = Vector2(16382, -160)
+
+[node name="CollisionShape2D" parent="RampArea" index="0" unique_id=985326648]
+position = Vector2(407, -242)
+shape = SubResource("CircleShape2D_e7anx")
+
+[editable path="RampArea"]
