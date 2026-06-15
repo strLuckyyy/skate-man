@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://4rv2qcgbaw0i"]
+
+[ext_resource type="PackedScene" uid="uid://cugtsy8diq3wy" path="res://characters/base/character.tscn" id="1_ox04g"]
+[ext_resource type="Script" uid="uid://b3ljnsjfrwt31" path="res://characters/opponents/ai/opponent_ai.gd" id="2_mwbc3"]
+[ext_resource type="PackedScene" uid="uid://bmrv3ip3oj4dh" path="res://characters/components/ai/randomizer.tscn" id="3_rhi7i"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_234tf"]
+var/is_airbone/name = &"is_airbone"
+var/is_airbone/type = 1
+var/is_airbone/value = false
+var/is_airbone/hint = 0
+var/is_airbone/hint_string = ""
+var/has_rail_ahead/name = &"has_rail_ahead"
+var/has_rail_ahead/type = 1
+var/has_rail_ahead/value = false
+var/has_rail_ahead/hint = 0
+var/has_rail_ahead/hint_string = ""
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 0.0
+var/speed/hint = 0
+var/speed/hint_string = ""
+
+[node name="BaseAI" unique_id=1969115429 instance=ExtResource("1_ox04g")]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource("2_mwbc3")
+profile_data = null
+
+[node name="BTPlayer" type="BTPlayer" parent="." index="2" unique_id=94575947]
+blackboard_plan = SubResource("BlackboardPlan_234tf")
+unique_name_in_owner = true
+
+[node name="Randomizer" parent="." index="3" unique_id=1651548237 instance=ExtResource("3_rhi7i")]
+
+[node name="WorldPerception" type="Area2D" parent="." index="12" unique_id=718027603]

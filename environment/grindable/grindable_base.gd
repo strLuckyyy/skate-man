@@ -2,6 +2,7 @@ class_name GrindableObject
 extends Node2D
 
 @onready var path: Path2D = $Path2D
+@export var obstacle_data: ObstacleData = null
 
 # Retorna a curva matemática que o player precisa seguir
 func get_curve() -> Curve2D:

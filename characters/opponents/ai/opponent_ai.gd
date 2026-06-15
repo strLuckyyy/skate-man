@@ -3,8 +3,13 @@ extends BaseCharacter
 
 signal trick_sequence(candidates: Array[BaseTrick], path: Array[Global.Direction])
 
-@onready var behavior_tree: BTPlayer   = %BTPlayer
-@onready var randomizer:    Randomizer = %Randomizer
+@onready var behavior_tree:    BTPlayer        = %BTPlayer
+@onready var randomizer:       Randomizer      = %Randomizer
+@onready var world_perception: WorldPerception = %WorldPerception
+
+@export var profile_data: AIProfileData = null
+
+var obstacles: Array[Global.ObstacleType] = []
 
 # --- push controll ---
 var _can_push:     bool  = true
@@ -21,7 +26,7 @@ func was_jumped() -> bool:  return _jumped
 func _ready() -> void:
 	super._ready()
 	trick_system.setup(self, equipment, character_animator, trick_sequence)
-
+	world_perception.update_obstacles.connect(func (value): obstacles = value)
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
@@ -98,7 +103,8 @@ func _perform_trick() -> void:
 		# ai_input_buffer.push_action("kickflip")
 		
 		print("AI: Mandou uma manobra!")
- 
+# --- ---
+
 
 func get_caught() -> void:
 	super.get_caught()

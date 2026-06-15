@@ -19,11 +19,21 @@ enum Direction {
 	NONE,
 }
 
+
+# --- TRICK ENUMs ---
+enum TrickType {
+	MOMENTARY, # Executa uma vez e termina
+	CONTINUOUS, # Executa enquanto tecla é segurada
+	CHARGED, # Carrega enquanto segura, executa ao soltar
+}
+
 enum ReasonToExitGrind {
 	JUMPED,
 	END_OF_RAIL
 }
 
+
+# --- OBSTACLES ENUMs ---
 enum PlatformAnim {
 	MOVE_UP,
 	MOVE_DOWN,
@@ -32,12 +42,17 @@ enum PlatformAnim {
 	IDLE,
 }
 
-enum TrickType {
-	MOMENTARY, # Executa uma vez e termina
-	CONTINUOUS, # Executa enquanto tecla é segurada
-	CHARGED, # Carrega enquanto segura, executa ao soltar
+enum ObstacleType {
+	PLATAFORM,
+	ELEVATOR,
+	RAIL,
+	RAMP,
+	BARRIER,
+	HOLE
 }
 
+
+# --- AI ENUMs ---
 enum AIDecision {
 	NOTHING,
 	JUMP,

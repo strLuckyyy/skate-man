@@ -14,6 +14,7 @@ const _CENTER_SNAP_THRESHOLD: float = 2.0
 @onready var _wait_area:     WaitingArea      = $WaitingArea
 @onready var _anim_platform: AnimationPlayer  = $AnimationPlayer
 
+@export var obstacle_data:    ObstacleData    = null
 @export var target_character: TargetCharacter = TargetCharacter.ANY
 @export var center_offset:    Vector2         = Vector2.ZERO
 @export var centering_speed:  float           = 400.0
@@ -35,8 +36,8 @@ func _physics_process(delta: float) -> void:
 
 func _resolve_platform_layer(target: TargetCharacter) -> int:
 	match target:
-		TargetCharacter.PLAYER:   return 1 << 3  # Layer 4 — plataform_player
-		TargetCharacter.OPPONENT: return 1 << 4  # Layer 5 — plataform_opponent
+		TargetCharacter.PLAYER:   return 1 << 2  # Layer 3 — plataform_player
+		TargetCharacter.OPPONENT: return 1 << 3  # Layer 4 — plataform_opponent
 		_: return _anima_body.collision_layer    # fallback original
 
 

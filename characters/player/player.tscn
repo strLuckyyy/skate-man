@@ -358,6 +358,7 @@ _data = {
 }
 
 [node name="Player" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
+collision_mask = 20
 script = ExtResource("2_dyllp")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1747011181]

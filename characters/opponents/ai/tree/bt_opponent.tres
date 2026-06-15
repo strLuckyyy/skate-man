@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://xk8gi504vmas" path="res://characters/opponents/ai/tasks/check_state_condition.gd" id="1_vjfjo"]
 [ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/caught_task.gd" id="2_a7347"]
 [ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/trick_fail_task.gd" id="3_d373b"]
+[ext_resource type="Script" uid="uid://bdurs448peeka" path="res://characters/opponents/ai/tasks/is_feature_ahead.gd" id="4_vjfjo"]
 [ext_resource type="Script" uid="uid://7wd5yfhjtmsv" path="res://characters/opponents/ai/tasks/update_ai_goal.gd" id="6_a7347"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ilfj0"]
@@ -11,11 +12,6 @@ var/is_airbone/type = 1
 var/is_airbone/value = false
 var/is_airbone/hint = 0
 var/is_airbone/hint_string = ""
-var/has_rail_ahead/name = &"has_rail_ahead"
-var/has_rail_ahead/type = 1
-var/has_rail_ahead/value = false
-var/has_rail_ahead/hint = 0
-var/has_rail_ahead/hint_string = ""
 var/speed/name = &"speed"
 var/speed/type = 3
 var/speed/value = 0.0
@@ -43,6 +39,18 @@ script = ExtResource("3_d373b")
 custom_name = "TrickFailSequence"
 children = [SubResource("BTCondition_68jnl"), SubResource("BTAction_riel8")]
 
+[sub_resource type="BTCondition" id="BTCondition_a7347"]
+script = ExtResource("4_vjfjo")
+check_type = 2
+
+[sub_resource type="BTAction" id="BTAction_n84rp"]
+script = ExtResource("6_a7347")
+target_goal = 3
+
+[sub_resource type="BTSequence" id="BTSequence_5c3fb"]
+custom_name = "ReadyToGrind"
+children = [SubResource("BTCondition_a7347"), SubResource("BTAction_n84rp")]
+
 [sub_resource type="BBVariant" id="BBVariant_vjfjo"]
 type = 1
 saved_value = true
@@ -59,23 +67,6 @@ target_goal = 2
 [sub_resource type="BTSequence" id="BTSequence_d373b"]
 custom_name = "AirSequence"
 children = [SubResource("BTCheckVar_a7347"), SubResource("BTAction_wwfib")]
-
-[sub_resource type="BBVariant" id="BBVariant_r3hhf"]
-type = 1
-saved_value = true
-resource_name = "true"
-
-[sub_resource type="BTCheckVar" id="BTCheckVar_002lp"]
-variable = &"has_rail_ahead"
-value = SubResource("BBVariant_r3hhf")
-
-[sub_resource type="BTAction" id="BTAction_n84rp"]
-script = ExtResource("6_a7347")
-target_goal = 3
-
-[sub_resource type="BTSequence" id="BTSequence_5c3fb"]
-custom_name = "ReadyToGrind"
-children = [SubResource("BTCheckVar_002lp"), SubResource("BTAction_n84rp")]
 
 [sub_resource type="BBVariant" id="BBVariant_ywbxg"]
 type = 3
@@ -100,9 +91,9 @@ target_goal = 1
 [sub_resource type="BTSequence" id="BTSequence_vjfjo"]
 children = [SubResource("BTAction_ns51f")]
 
-[sub_resource type="BTParallel" id="BTParallel_ns51f"]
-children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_d373b"), SubResource("BTSequence_5c3fb"), SubResource("BTSequence_nlwgy"), SubResource("BTSequence_vjfjo")]
+[sub_resource type="BTSelector" id="BTSelector_ns51f"]
+children = [SubResource("BTSequence_5wqov"), SubResource("BTSequence_75b4g"), SubResource("BTSequence_5c3fb"), SubResource("BTSequence_d373b"), SubResource("BTSequence_nlwgy"), SubResource("BTSequence_vjfjo")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_ilfj0")
-root_task = SubResource("BTParallel_ns51f")
+root_task = SubResource("BTSelector_ns51f")

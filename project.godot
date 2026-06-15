@@ -82,11 +82,12 @@ right={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="opponent"
-2d_physics/layer_3="grindable"
-2d_physics/layer_4="plataform_player"
-2d_physics/layer_5="plataform_opponent"
-2d_physics/layer_6="ground"
-2d_physics/layer_7="grind_object"
+2d_physics/layer_3="plataform_player"
+2d_physics/layer_4="plataform_opponent"
+2d_physics/layer_5="ground"
+2d_physics/layer_6="grind_object"
+2d_physics/layer_7="grindable_area"
+2d_physics/layer_8="ramp_mark"
 
 [limbo_ai]
 

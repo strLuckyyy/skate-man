@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/platform/base_platform.tscn" id="1_ethqj"]
 [ext_resource type="Script" uid="uid://dubaah2j5npvg" path="res://environment/platform/elevator_platform.gd" id="2_ei1si"]
+[ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="3_rstrf"]
 [ext_resource type="Texture2D" uid="uid://d1fv5314saex1" path="res://icon.svg" id="3_wlxt7"]
 
 [sub_resource type="Curve2D" id="Curve2D_wlxt7"]
@@ -9,6 +10,11 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, -65, 0, 0, 0, 0, 0, -947)
 }
 point_count = 2
+
+[sub_resource type="Resource" id="Resource_es3th"]
+script = ExtResource("3_rstrf")
+type = 1
+metadata/_custom_type_script = "uid://isu3ifo2t6m2"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ethqj"]
 size = Vector2(123, 10)
@@ -81,6 +87,7 @@ _data = {
 curve = SubResource("Curve2D_wlxt7")
 script = ExtResource("2_ei1si")
 can_down = false
+obstacle_data = SubResource("Resource_es3th")
 
 [node name="PathFollow2D" parent="." index="0" unique_id=527806504]
 position = Vector2(0, -65)

@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://ca0x02fo5fi00"]
 
 [ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_ft6bc"]
-[ext_resource type="Texture2D" uid="uid://begbm7e3oegmj" path="res://assets/cars/Kei Car Pack #1/hdn_bt/tuned/bt_td_front_view.png" id="2_b16de"]
+[ext_resource type="Texture2D" uid="uid://begbm7e3oegmj" path="res://assets/cars/Kei_Car_Pack_1/hdn_bt/tuned/bt_td_front_view.png" id="2_b16de"]
+[ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_qivcv"]
+
+[sub_resource type="Resource" id="Resource_ctipn"]
+script = ExtResource("2_qivcv")
+type = 2
+metadata/_custom_type_script = "uid://isu3ifo2t6m2"
 
 [sub_resource type="Curve2D" id="Curve2D_1buxw"]
 _data = {
@@ -13,6 +19,7 @@ point_count = 9
 size = Vector2(378, 64)
 
 [node name="GrindableBase" unique_id=1698369429 instance=ExtResource("1_ft6bc")]
+obstacle_data = SubResource("Resource_ctipn")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1022371307]
 scale = Vector2(6.27, 6.27)
