@@ -8,6 +8,7 @@ enum StateID {
 	ON_AIR,
 	ON_FALLING,
 	ON_GRIDING,
+	ON_PLATAFORM,
 	NONE,
 }
 
@@ -42,7 +43,8 @@ enum PlatformAnim {
 	IDLE,
 }
 
-enum ObstacleType {
+enum TargetType {
+	NONE,
 	PLATAFORM,
 	ELEVATOR,
 	RAIL,
@@ -66,3 +68,10 @@ enum AIGoal {
 	SAFE_LANDING,
 	GRIND_CHAIN
 }
+
+# Constantes para chaves do Blackboard para evitar erros de digitação
+class BBKeys:
+	const NEAREST_TARGET_TYPE = "nearest_target_type"
+	const NEAREST_TARGET_DIST = "nearest_target_dist"
+	const NEAREST_TARGET_NODE = "nearest_target_node"
+	const HAS_TARGET_AHEAD    = "has_target_ahead"

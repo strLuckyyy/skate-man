@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cxnui2wa26kjt"]
+
+[ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/platform/base_platform.tscn" id="1_kdc00"]
+
+[node name="Wall" unique_id=705089617 instance=ExtResource("1_kdc00")]
+
+[editable path="WaitingArea"]

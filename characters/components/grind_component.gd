@@ -20,6 +20,9 @@ func setup(p_character: CharacterBody2D) -> void:
 
 
 func start_grind(rail: GrindableObject, entry_velocity: Vector2) -> void:
+	if entry_velocity.x < 300.: 
+		exit_grind(Global.ReasonToExitGrind.JUMPED)
+		return
 	is_grinding   = true
 	current_rail  = rail
 	current_curve = rail.get_curve()
@@ -28,7 +31,7 @@ func start_grind(rail: GrindableObject, entry_velocity: Vector2) -> void:
 	current_offset = current_curve.get_closest_offset(local_pos)
 	
 	grind_direction = 1.0 if entry_velocity.x >= 0 else -1.0
-	current_speed = character.velocity.x
+	current_speed = character.velocity.x + character.current_boost_speed
 	
 	character.velocity = Vector2.ZERO
 

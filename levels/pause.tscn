@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dt6aqeno54wyt"]
+
+[ext_resource type="Script" uid="uid://cpd47f4j7tcf4" path="res://levels/pause.gd" id="1_c2i8b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_72aqx"]
+font_size = 49
+
+[node name="Pause" type="Control" unique_id=1169743778]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c2i8b")
+
+[node name="Panel" type="Panel" parent="." unique_id=1020323696]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1450242093]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 124.0
+offset_bottom = 192.0
+grow_horizontal = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_72aqx")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1671123404]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -68.0
+offset_right = 52.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=48521041]
+layout_mode = 2
+text = "CONTINUAR"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=343891857]
+layout_mode = 2
+text = "RECOMEÇAR"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1841928266]
+layout_mode = 2
+text = "MENU"
+
+[node name="Button4" type="Button" parent="VBoxContainer" unique_id=1755616179]
+layout_mode = 2
+text = "SAIR"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_button_4_pressed"]

@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://cda25t41qw8gu"]
+
+[ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/platform/base_platform.tscn" id="1_u37l8"]
+[ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_d08x1"]
+[ext_resource type="Script" uid="uid://c6yny1a4wgtlv" path="res://environment/platform/crane/crane_plataform.gd" id="2_tvyba"]
+[ext_resource type="Texture2D" uid="uid://can0cq0tda87e" path="res://assets/scenary/crane/plataform_crane.png" id="4_tvyba"]
+
+[sub_resource type="Resource" id="Resource_68o7p"]
+script = ExtResource("2_d08x1")
+type = 1
+metadata/_custom_type_script = "uid://isu3ifo2t6m2"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d08x1"]
+size = Vector2(950, 141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_butba"]
+size = Vector2(132.955, 441.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvyba"]
+size = Vector2(902, 527)
+
+[sub_resource type="Animation" id="Animation_2liia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d08x1"]
+resource_name = "idl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g700w"]
+_data = {
+&"RESET": SubResource("Animation_2liia"),
+&"idl": SubResource("Animation_d08x1")
+}
+
+[sub_resource type="Animation" id="Animation_tvyba"]
+resource_name = "idl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_butba"]
+resource_name = "move_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_68o7p"]
+resource_name = "move_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2liia"]
+_data = {
+&"idl": SubResource("Animation_tvyba"),
+&"move_left": SubResource("Animation_butba"),
+&"move_right": SubResource("Animation_68o7p")
+}
+
+[node name="CranePlataform" unique_id=705089617 instance=ExtResource("1_u37l8")]
+script = ExtResource("2_tvyba")
+can_back = false
+obstacle_data = SubResource("Resource_68o7p")
+
+[node name="AnimatableBody2D" parent="." index="1" unique_id=92778484]
+collision_layer = 16
+collision_mask = 3
+
+[node name="Sprite2D" parent="AnimatableBody2D" index="0" unique_id=1771229665]
+scale = Vector2(8.84, 8.84)
+texture = ExtResource("4_tvyba")
+
+[node name="CollisionShape2D" parent="AnimatableBody2D" index="1" unique_id=473667595]
+position = Vector2(-9, 274.5)
+shape = SubResource("RectangleShape2D_d08x1")
+
+[node name="PushCharacter" type="CollisionShape2D" parent="AnimatableBody2D" index="2" unique_id=787538928]
+unique_name_in_owner = true
+position = Vector2(-240, -9)
+shape = SubResource("RectangleShape2D_butba")
+disabled = true
+
+[node name="WaitingArea" parent="." index="2" unique_id=12035457]
+collision_layer = 12
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="WaitingArea" index="0" unique_id=1386168499]
+position = Vector2(-3.5, -19)
+shape = SubResource("RectangleShape2D_tvyba")
+debug_color = Color(0.5386777, 0.5683935, 0, 0.41960785)
+
+[node name="AnimationPlayer" parent="." index="3" unique_id=1255810193]
+libraries/ = SubResource("AnimationLibrary_g700w")
+libraries/crane = SubResource("AnimationLibrary_2liia")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="WaitingArea"]

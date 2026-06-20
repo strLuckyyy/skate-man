@@ -24,12 +24,13 @@
 			"uuid": "5e5b0a7a-e2c1-4814-a6cf-23ac3b273700",
 			"title": "Doing",
 			"tasks": [
-				"50ae1214-249c-49b9-bf74-dede27e155a0",
 				"57cc43a5-bf46-4e4c-b1d3-d820fbc7bf73",
-				"afbc579f-1089-44ba-b79a-474b83ac87c9",
-				"e269ad01-caf5-45ca-aac8-fbcbb04c4bdd",
+				"50ae1214-249c-49b9-bf74-dede27e155a0",
 				"f0a9a5e6-c5a2-4089-9d0c-ab63970d99c5",
-				"d9a0705e-e861-47ef-a3a9-3b6012ab5aa2"
+				"34902fdb-78f1-44b3-ac8a-40aca11c46bd",
+				"b35c295d-82a7-405e-be71-9b24f1be2fff",
+				"7744788f-dbbf-4cee-9abe-7e91aac5803e",
+				"e269ad01-caf5-45ca-aac8-fbcbb04c4bdd"
 			]
 		},
 		{
@@ -37,7 +38,9 @@
 			"title": "Done",
 			"tasks": [
 				"34027d8f-8bc8-4d92-8062-309f6acab61e",
+				"afbc579f-1089-44ba-b79a-474b83ac87c9",
 				"25ccc8ca-6fcf-4d7f-acc2-db50be76e29a",
+				"d9a0705e-e861-47ef-a3a9-3b6012ab5aa2",
 				"7f07e52f-5bc5-41b0-91e4-e595f1836758",
 				"9b5e72c5-83ca-4304-bdae-7cf6ff62918b",
 				"728b41a1-038e-4eec-9f71-b4105368efe4",
@@ -226,11 +229,11 @@
 				},
 				{
 					"details": "5-Contexto de Mundo",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "6-Buffers",
-					"done": false
+					"done": true
 				}
 			]
 		},
@@ -272,6 +275,27 @@
 		{
 			"uuid": "d9a0705e-e861-47ef-a3a9-3b6012ab5aa2",
 			"title": "rampa sys",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "34902fdb-78f1-44b3-ac8a-40aca11c46bd",
+			"title": "hud",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "b35c295d-82a7-405e-be71-9b24f1be2fff",
+			"title": "menu",
+			"description": "",
+			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
+			"steps": []
+		},
+		{
+			"uuid": "7744788f-dbbf-4cee-9abe-7e91aac5803e",
+			"title": "RaceSystem",
 			"description": "",
 			"category": "b61cd5c7-98ee-4fd9-925b-22c370d38243",
 			"steps": []

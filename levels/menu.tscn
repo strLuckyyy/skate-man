@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://ptho4uo0voph"]
+
+[ext_resource type="Script" uid="uid://bv563wg1m5rod" path="res://system/level/menu.gd" id="1_cnlwo"]
+
+[sub_resource type="SystemFont" id="SystemFont_cnlwo"]
+
+[sub_resource type="FontVariation" id="FontVariation_kfbsc"]
+base_font = SubResource("SystemFont_cnlwo")
+spacing_glyph = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_gbx6r"]
+font = SubResource("FontVariation_kfbsc")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_cnlwo"]
+font_size = 27
+
+[node name="Menu" type="Control" unique_id=1677761112]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cnlwo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=565513134]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=64507547]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=1562801243]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=565777283]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -168.0
+offset_right = 66.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "STREET TRICKERS"
+label_settings = SubResource("LabelSettings_gbx6r")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control" unique_id=189968865]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -116.0
+offset_right = -93.0
+offset_bottom = -58.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "clique e aguarde..."
+label_settings = SubResource("LabelSettings_cnlwo")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=1035740295]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -33.0
+offset_right = 28.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=406147364]
+layout_mode = 2
+text = "START"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=488620473]
+layout_mode = 2
+text = "SAIR"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

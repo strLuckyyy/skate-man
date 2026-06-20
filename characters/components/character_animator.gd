@@ -22,7 +22,7 @@ func play_trick(anim_path: String) -> void:
 	is_executing_trick = true
 	current_trick_anim = anim_path
 	if current_trick_anim == "tricks/":
-		push_warning("Trick have no anim path.")
+		push_warning("The trick ", anim_path," have no anim path.")
 		return
 	anim_player.play(current_trick_anim)
 
@@ -47,4 +47,7 @@ func _on_state_changed(_old_state: Global.StateID, new_state: Global.StateID) ->
 func _update_base_animation(state_id: Global.StateID) -> void:
 	match state_id:
 		Global.StateID.ON_FLOOR:
-			anim_player.play("human/idle")
+			if owner is OpponentAI: anim_player.play("human/idle_op")
+			elif owner is Player:   anim_player.play("human/idle")
+		Global.StateID.TRICK_FAIL:
+			anim_player.play("human/trick_fail")

@@ -2,6 +2,8 @@
 .godot/
 *.tmp
 /android/
-.zip
+*.zip
 /.vscode
 *tccfiles/
+*.exe
+game/*.exe

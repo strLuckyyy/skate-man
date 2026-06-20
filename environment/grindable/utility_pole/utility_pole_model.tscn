@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://clltpvn12j8b0"]
+
+[ext_resource type="Texture2D" uid="uid://sga74dkm084v" path="res://assets/scenary/utility_pole/force_box.png" id="1_xhlui"]
+[ext_resource type="Texture2D" uid="uid://dvvbvvavejog4" path="res://assets/scenary/utility_pole/pole_base.png" id="2_tm713"]
+[ext_resource type="Texture2D" uid="uid://0pteljn2gq3v" path="res://assets/scenary/utility_pole/arm_pole_up.png" id="3_njevk"]
+[ext_resource type="Texture2D" uid="uid://c82wapiw03x0t" path="res://assets/scenary/utility_pole/arm_pole_down.png" id="4_kf6no"]
+
+[node name="UtilityPoleModel" type="Node2D" unique_id=1932510927]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1588593804]
+position = Vector2(21, -106)
+scale = Vector2(3, 3)
+texture = ExtResource("1_xhlui")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1961840575]
+scale = Vector2(3, 3)
+texture = ExtResource("2_tm713")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1066889936]
+position = Vector2(-5, -344)
+scale = Vector2(3, 3)
+texture = ExtResource("3_njevk")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1636469535]
+position = Vector2(5, -264.00003)
+rotation = 0.042776406
+scale = Vector2(3.0000002, 3.0000002)
+texture = ExtResource("4_kf6no")

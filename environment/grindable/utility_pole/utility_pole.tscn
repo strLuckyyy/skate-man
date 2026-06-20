@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c1fddkx8byqab"]
+
+[ext_resource type="PackedScene" uid="uid://clltpvn12j8b0" path="res://environment/grindable/utility_pole/utility_pole_model.tscn" id="2_f3axj"]
+
+[node name="UtilityPole" type="Node2D" unique_id=288880188]
+
+[node name="RightAnchor" type="Marker2D" parent="." unique_id=425020348]
+unique_name_in_owner = true
+position = Vector2(127, -362)
+
+[node name="LeftAnchor" type="Marker2D" parent="." unique_id=568107359]
+unique_name_in_owner = true
+position = Vector2(-135, -356)
+
+[node name="UtilityPoleModel" parent="." unique_id=1932510927 instance=ExtResource("2_f3axj")]

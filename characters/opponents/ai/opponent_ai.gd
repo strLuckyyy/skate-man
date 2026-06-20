@@ -3,9 +3,10 @@ extends BaseCharacter
 
 signal trick_sequence(candidates: Array[BaseTrick], path: Array[Global.Direction])
 
-@onready var behavior_tree:    BTPlayer        = %BTPlayer
-@onready var randomizer:       Randomizer      = %Randomizer
-@onready var world_perception: WorldPerception = %WorldPerception
+@onready var behavior_tree:    BTPlayer          = %BTPlayer
+@onready var ai_assessor:      AIAssessor        = %AIAssessor
+@onready var ai_perception:    AIPerceptionRadar = %AIPerceptionRadar
+@onready var blackboard:       Blackboard        = %BTPlayer.blackboard
 
 @export var profile_data: AIProfileData = null
 
@@ -24,6 +25,7 @@ func was_jumped() -> bool:  return _jumped
 func _ready() -> void:
 	super._ready()
 	trick_system.setup(self, equipment, character_animator, trick_sequence)
+	if ai_assessor: ai_assessor.setup(profile_data)
 
 
 func _physics_process(delta: float) -> void:
@@ -45,7 +47,7 @@ func _physics_process(delta: float) -> void:
 
 func can_grind() -> bool:
 	var c: bool = true if available_grindable != null else false
-	behavior_tree.blackboard.set_var("can_grind", c)
+	blackboard.set_var("can_grind", c)
 	return c
 
 
@@ -62,10 +64,10 @@ func _push_time(delta: float):
 		_push_elapsed = 0.0
 
 
-func apply_push() -> void:
-	if not _can_push: return
-	if not controller.can_move: return
-	velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed)
+func apply_push(forced := false) -> void:
+	if not forced:
+		if not _can_push: return
+	velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed, forced)
 
 
 func apply_jump(_payload: float = 1.0) -> void:
@@ -80,20 +82,24 @@ func get_caught() -> void:
 	super.get_caught()
 
 
-func _update_blackboard():
-	var bb = behavior_tree.blackboard
+func _update_blackboard() -> void:
+	if not blackboard or not is_instance_valid(ai_perception):
+		return
+	
 	var current_state = state_machine.get_current_state_id()
 	
-	# --- on air ---
-	var oa = current_state in _air_states
-	if _on_air != oa: _on_air = oa
+	var is_on_air = current_state in _air_states
+	if _on_air != is_on_air: _on_air = is_on_air
+	var dist_to_rail = ai_perception.get_distance_to_nearest_type(Global.TargetType.RAIL)
 	
-	bb.set_var("on_air", _on_air)
-	bb.set_var("speed", velocity.x)
+	blackboard.set_var("rail_distance", dist_to_rail)
+	blackboard.set_var("on_air", _on_air)
+	blackboard.set_var("speed", velocity.x)
+	blackboard.set_var("can_grind", available_grindable != null)
 	
-	if world_perception.closer_area != null:
-		var area = world_perception.closer_area
-		var bb_name = world_perception.get_closer_area_bb_var_name()
-		var new_position = abs(area.global_position.x - global_position.x)
-		
-		bb.set_var(bb_name, new_position)
+	# O Radar alimenta o Blackboard diretamente
+	if is_instance_valid(ai_perception):
+		blackboard.set_var(Global.BBKeys.NEAREST_TARGET_TYPE, ai_perception.nearest_type)
+		blackboard.set_var(Global.BBKeys.NEAREST_TARGET_DIST, ai_perception.nearest_distance)
+		blackboard.set_var(Global.BBKeys.NEAREST_TARGET_NODE, ai_perception.nearest_target)
+		blackboard.set_var(Global.BBKeys.HAS_TARGET_AHEAD, ai_perception.nearest_type != Global.TargetType.NONE)

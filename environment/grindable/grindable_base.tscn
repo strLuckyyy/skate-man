@@ -15,3 +15,5 @@ unique_name_in_owner = true
 
 [node name="GrindArea" parent="." unique_id=787362715 instance=ExtResource("2_b0s4n")]
 unique_name_in_owner = true
+
+[editable path="GrindArea"]

@@ -1,11 +1,11 @@
+# GameManager.gd
 extends Node
 
-var player: Player
-var hand_truck: EquipmentData = preload(
-	"res://characters/equipment/hand_truck/hand_truck_data.tres"
-	)
+## Cenas e recursos globais
+var player_scene: PackedScene = preload("res://characters/player/player.tscn")
+var default_equipment: EquipmentData = preload(
+	"res://characters/equipment/hand_truck/hand_truck_data.tres")
 
 
-func _ready() -> void:
-	if player:
-		player.equipment.equip(hand_truck)
+func start_level(level_scene: PackedScene) -> void:
+	get_tree().change_scene_to_packed(level_scene)

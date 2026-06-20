@@ -14,13 +14,15 @@ const _CENTER_SNAP_THRESHOLD: float = 2.0
 @onready var _wait_area:     WaitingArea      = $WaitingArea
 @onready var _anim_platform: AnimationPlayer  = $AnimationPlayer
 
+@export var need_jump:        bool            = false
+@export var need_center:      bool            = true
 @export var obstacle_data:    ObstacleData    = null
 @export var target_character: TargetCharacter = TargetCharacter.ANY
 @export var center_offset:    Vector2         = Vector2.ZERO
 @export var centering_speed:  float           = 400.0
 
-var _current_character: CharacterBody2D = null
-var _is_centering:      bool            = false
+var _current_character: BaseCharacter = null
+var _is_centering:      bool          = false
 
 
 func _ready() -> void:
@@ -30,8 +32,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if _is_centering and _current_character:
-		_process_centering(delta)
+	if not _current_character: return
+	if need_jump and not _current_character.controller.is_jumped(): return
+	if need_center:
+		if _is_centering:
+			_process_centering(delta)
+	else: character_centered.emit()
 
 
 func _resolve_platform_layer(target: TargetCharacter) -> int:

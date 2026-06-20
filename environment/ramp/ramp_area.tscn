@@ -1,10 +1,17 @@
 [gd_scene format=3 uid="uid://wrwb1lg84cpr"]
 
 [ext_resource type="Script" uid="uid://d3x6n54logibi" path="res://environment/ramp/ramp_area.gd" id="1_14dvh"]
+[ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_sp8eh"]
+
+[sub_resource type="Resource" id="Resource_hejqu"]
+script = ExtResource("2_sp8eh")
+type = 4
+metadata/_custom_type_script = "uid://isu3ifo2t6m2"
 
 [node name="RampArea" type="Area2D" unique_id=1992232978]
 collision_layer = 128
 collision_mask = 3
 script = ExtResource("1_14dvh")
+obstacle_data = SubResource("Resource_hejqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=985326648]

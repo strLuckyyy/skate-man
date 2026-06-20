@@ -47,6 +47,7 @@ func process(
 
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	if is_busy: return
+	if character.controller.is_locked: return
 	is_busy      = true
 	active_trick = trick
 	

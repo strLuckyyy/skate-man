@@ -1,6 +1,7 @@
 class_name Player
 extends BaseCharacter
 
+@onready var hud: CanvasLayer = $HUD
 var input_buffer:  InputBuffer
 
 # ---------------------------------------------------------------------------
@@ -16,8 +17,6 @@ func _ready() -> void:
 	
 	trie_navigator.setup(input_buffer, equipment)
 	trick_system.  setup(self, equipment, character_animator, sequence_signal)
-	
-	GameManager.player = self
 
 
 func _physics_process(delta: float) -> void:
@@ -38,27 +37,26 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func end_race():
+	super.end_race()
+	hud.visible = false
+	hud.set_process(false)
+	hud.process_mode = Node.PROCESS_MODE_DISABLED
+
+
 func _calculate_movement() -> void:
 	if Input.is_action_just_pressed("push") and is_on_floor():
-		velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed)
+		apply_push()
 	
 	if Input.is_action_just_pressed("jump"):
 		velocity = controller.apply_jump(velocity, equipment.current_equipment)
 	
 	controller.update_moving_state(velocity)
 
-# ---------------------------------------------------------------------------
-# Lock / Unlock
-# ---------------------------------------------------------------------------
 
-func on_lock_character(_body: BaseCharacter) -> void:
-	if _body != self: return
-	controller.is_locked = true
-	velocity  = Vector2.ZERO
+func apply_push(forced := false) -> void:
+	velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed, forced)
 
-
-func on_unlock_character() -> void:
-	controller.is_locked = false
 
 # ---------------------------------------------------------------------------
 # Gameplay callbacks

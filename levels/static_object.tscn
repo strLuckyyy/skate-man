@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://8bpf00wsme1j"]
+
+[ext_resource type="Texture2D" uid="uid://cqkwnqmc54v8f" path="res://assets/scenary/Rocky Beach environment/Rocky-Tileset-HD-preview.png" id="1_0egos"]
+[ext_resource type="Texture2D" uid="uid://c7yxav7qhlrg" path="res://assets/scenary/parallax-industrial-web/Layers/bg.png" id="2_2hpww"]
+[ext_resource type="Texture2D" uid="uid://cr62ma6qsie3p" path="res://assets/scenary/parallax-industrial-web/Layers/skill-foreground.png" id="3_pgifb"]
+
+[node name="StaticObject" type="StaticBody2D" unique_id=247031719]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1250455411]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=731982001]
+scroll_scale = Vector2(0.98, 0.98)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1045372084]
+texture = ExtResource("1_0egos")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1583834818]
+scroll_scale = Vector2(0.99, 0.99)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=1722143066]
+texture = ExtResource("2_2hpww")
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1939955457]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" unique_id=1329422281]
+texture = ExtResource("3_pgifb")

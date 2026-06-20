@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://nbx5j62h0pvu"]
+
+[ext_resource type="Texture2D" uid="uid://cdmyo8fgx7ds8" path="res://assets/scenary/crane/crane_man.png" id="1_68xmt"]
+[ext_resource type="Texture2D" uid="uid://cwty6gom6syqy" path="res://assets/scenary/crane/crane_body.png" id="2_1b3k0"]
+[ext_resource type="Texture2D" uid="uid://bsgu4e4umj5ga" path="res://assets/scenary/crane/crane_top_part.png" id="3_gbbym"]
+[ext_resource type="Texture2D" uid="uid://dupqvrpnij4mb" path="res://assets/scenary/crane/crane_top.png" id="4_4n5vy"]
+
+[node name="CraneModel" type="Node2D" unique_id=1174697002]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=503621112]
+scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(391, -232)
+
+[node name="CraneMan" type="Sprite2D" parent="Parallax2D" unique_id=1439587763]
+scale = Vector2(4.495, 4.495)
+texture = ExtResource("1_68xmt")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1033772189]
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(-43, -495)
+
+[node name="CraneBody" type="Sprite2D" parent="Parallax2D2" unique_id=2086395542]
+scale = Vector2(4.495, 4.495)
+texture = ExtResource("2_1b3k0")
+
+[node name="CraneBody2" type="Sprite2D" parent="Parallax2D2" unique_id=1729973847]
+position = Vector2(6.0000014, 3331)
+scale = Vector2(4.495, 4.495)
+texture = ExtResource("2_1b3k0")
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1298976745]
+scroll_scale = Vector2(0.98, 0.98)
+scroll_offset = Vector2(-12, -1780)
+
+[node name="CraneTopPart" type="Sprite2D" parent="Parallax2D3" unique_id=789453467]
+scale = Vector2(4.495, 4.495)
+texture = ExtResource("3_gbbym")
+
+[node name="CraneTopPart2" type="Sprite2D" parent="Parallax2D3" unique_id=1785379929]
+scale = Vector2(4.495, 4.495)
+texture = ExtResource("3_gbbym")
+
+[node name="CraneTopPart3" type="Sprite2D" parent="Parallax2D3" unique_id=725266976]
+scale = Vector2(4.495, 4.495)
+texture = ExtResource("3_gbbym")
+
+[node name="CraneTop" type="Sprite2D" parent="Parallax2D3" unique_id=505330597]
+scale = Vector2(4.495, 4.495)
+texture = ExtResource("4_4n5vy")

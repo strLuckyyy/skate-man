@@ -1,17 +1,23 @@
 [gd_scene format=3 uid="uid://c76k5r5jf6ql2"]
 
 [ext_resource type="Texture2D" uid="uid://d1fv5314saex1" path="res://icon.svg" id="1_46lwt"]
-[ext_resource type="PackedScene" uid="uid://d2jq8ya2vskgm" path="res://environment/platform/elevator_platform.tscn" id="2_o6mel"]
 [ext_resource type="PackedScene" uid="uid://tkoi6wuvdx3s" path="res://characters/player/player.tscn" id="2_x25rp"]
 [ext_resource type="PackedScene" uid="uid://ca0x02fo5fi00" path="res://environment/grindable/car_hood/car_yellow_hood.tscn" id="3_gmgay"]
 [ext_resource type="PackedScene" uid="uid://b8k5ftacnuo4" path="res://characters/opponents/ai_john.tscn" id="4_w7r7j"]
 [ext_resource type="PackedScene" uid="uid://wrwb1lg84cpr" path="res://environment/ramp/ramp_area.tscn" id="6_e7anx"]
+[ext_resource type="PackedScene" uid="uid://cda25t41qw8gu" path="res://environment/platform/crane/crane_plataform.tscn" id="7_ur00s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr1um"]
 size = Vector2(1846, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7anx"]
 radius = 1806.7695
+
+[sub_resource type="Curve2D" id="Curve2D_e7anx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -185, 9, 0, 0, 0, 0, 1061, 12)
+}
+point_count = 2
 
 [node name="TestLevel" type="Node2D" unique_id=1323558784]
 
@@ -43,184 +49,50 @@ position = Vector2(-1.999939, 17.999996)
 scale = Vector2(14.3125, 0.42187494)
 texture = ExtResource("1_46lwt")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=854830354]
-position = Vector2(4245, 895)
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1286247016]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3/CollisionShape2D" unique_id=1880450803]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1647666372]
-position = Vector2(6055, 826)
-rotation = -0.08145086
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1396856224]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4/CollisionShape2D" unique_id=1725165883]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="." unique_id=781632504]
-position = Vector2(7865.0005, 688)
-rotation = -0.08145086
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5" unique_id=1899113676]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5/CollisionShape2D" unique_id=236561484]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
-[node name="StaticBody2D6" type="StaticBody2D" parent="." unique_id=483930561]
-position = Vector2(9685, 550.00006)
-rotation = -0.08145086
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6" unique_id=634336183]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D6/CollisionShape2D" unique_id=163213444]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
-[node name="StaticBody2D7" type="StaticBody2D" parent="." unique_id=542612950]
-position = Vector2(11500, 463)
-rotation = -0.0068471357
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7" unique_id=1318171951]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D7/CollisionShape2D" unique_id=363287665]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
-[node name="StaticBody2D8" type="StaticBody2D" parent="." unique_id=935351653]
-position = Vector2(13301, 454)
-rotation = -0.0068471357
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8" unique_id=797758372]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D8/CollisionShape2D" unique_id=459220141]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
-[node name="StaticBody2D9" type="StaticBody2D" parent="." unique_id=1192799790]
-position = Vector2(15079, 292.99988)
-rotation = -0.2260159
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9" unique_id=739610099]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D9/CollisionShape2D" unique_id=2136125151]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
-[node name="StaticBody2D10" type="StaticBody2D" parent="." unique_id=417894714]
-position = Vector2(16804, -219.9996)
-rotation = -0.39412063
-collision_layer = 16
-collision_mask = 47
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D10" unique_id=195799641]
-position = Vector2(171, 75)
-shape = SubResource("RectangleShape2D_fr1um")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D10/CollisionShape2D" unique_id=1936419514]
-position = Vector2(-1.999939, 17.999996)
-scale = Vector2(14.3125, 0.42187494)
-texture = ExtResource("1_46lwt")
-
 [node name="GrindableBase" parent="." unique_id=1698369429 instance=ExtResource("3_gmgay")]
 position = Vector2(1522, 798)
 
 [node name="GrindableBase2" parent="." unique_id=1760826457 instance=ExtResource("3_gmgay")]
 position = Vector2(3002, 817)
 
-[node name="GrindableBase3" parent="." unique_id=799881510 instance=ExtResource("3_gmgay")]
-position = Vector2(4027, 825)
-
-[node name="GrindableBase4" parent="." unique_id=693085985 instance=ExtResource("3_gmgay")]
-position = Vector2(4909, 825)
-
-[node name="GrindableBase5" parent="." unique_id=1461285070 instance=ExtResource("3_gmgay")]
-position = Vector2(5863, 773)
-rotation = -0.07565743
-
-[node name="GrindableBase6" parent="." unique_id=1772431043 instance=ExtResource("3_gmgay")]
-position = Vector2(6683, 709)
-rotation = -0.07565743
-
-[node name="GrindableBase7" parent="." unique_id=1758272284 instance=ExtResource("3_gmgay")]
-position = Vector2(8084, 603.00006)
-rotation = -0.07565743
-
-[node name="GrindableBase8" parent="." unique_id=1172610037 instance=ExtResource("3_gmgay")]
-position = Vector2(9131, 529)
-rotation = -0.07565743
-
-[node name="GrindableBase9" parent="." unique_id=291866987 instance=ExtResource("3_gmgay")]
-position = Vector2(10344, 423)
-rotation = -0.07565743
-
-[node name="GrindableBase10" parent="." unique_id=709858030 instance=ExtResource("3_gmgay")]
-position = Vector2(11385, 396.99997)
-rotation = -0.0073082075
-
-[node name="GrindableBase11" parent="." unique_id=1425974752 instance=ExtResource("3_gmgay")]
-position = Vector2(12361.001, 391)
-rotation = -0.0073082075
-
-[node name="BasePlatform" parent="." unique_id=705089617 instance=ExtResource("2_o6mel")]
-position = Vector2(2184, 950)
-target_character = 1
-
-[node name="BasePlatform2" parent="." unique_id=1064640620 instance=ExtResource("2_o6mel")]
-position = Vector2(2182, 951)
-target_character = 2
-
 [node name="Player" parent="." unique_id=1969115429 instance=ExtResource("2_x25rp")]
-position = Vector2(349, 637)
+position = Vector2(1264, 717)
 
 [node name="AIJohn" parent="." unique_id=1414241354 instance=ExtResource("4_w7r7j")]
 position = Vector2(477, 632)
 
 [node name="RampArea" parent="." unique_id=1992232978 instance=ExtResource("6_e7anx")]
-position = Vector2(16382, -160)
+position = Vector2(16349, -152)
 
 [node name="CollisionShape2D" parent="RampArea" index="0" unique_id=985326648]
 position = Vector2(-295, -99)
 shape = SubResource("CircleShape2D_e7anx")
 
+[node name="CranePlataform" parent="." unique_id=645180397 instance=ExtResource("7_ur00s")]
+position = Vector2(2175, 740)
+curve = SubResource("Curve2D_e7anx")
+can_back = null
+need_jump = null
+need_center = null
+target_character = null
+center_offset = null
+centering_speed = null
+
+[node name="PathFollow2D" parent="CranePlataform" index="0" unique_id=527806504]
+rotation = 0.0024077
+
+[node name="AnimatableBody2D" parent="CranePlataform" index="1" unique_id=92778484]
+position = Vector2(-185, 9)
+rotation = 0.0024077
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="WaitingArea" parent="CranePlataform" index="2" unique_id=12035457]
+position = Vector2(-185, 9)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" parent="CranePlataform/WaitingArea" index="0" unique_id=1386168499]
+position = Vector2(1, 6)
+
 [editable path="RampArea"]
+[editable path="CranePlataform"]
+[editable path="CranePlataform/WaitingArea"]

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dvdwau3dkl8f7"]
+
+[ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_mtox2"]
+[ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_wrigc"]
+[ext_resource type="Texture2D" uid="uid://bba5pdkiosqck" path="res://assets/scenary/billboard.png" id="3_eh3uk"]
+
+[sub_resource type="Resource" id="Resource_eh3uk"]
+script = ExtResource("2_wrigc")
+type = 3
+metadata/_custom_type_script = "uid://isu3ifo2t6m2"
+
+[sub_resource type="Curve2D" id="Curve2D_dlaod"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -122, 118, 0, 0, 0, 0, 196, 74)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh3uk"]
+size = Vector2(613.75, 487)
+
+[node name="Billboard" unique_id=1698369429 instance=ExtResource("1_mtox2")]
+obstacle_data = SubResource("Resource_eh3uk")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1022371307]
+texture = ExtResource("3_eh3uk")
+
+[node name="Path2D" parent="." index="1" unique_id=1304231975]
+curve = SubResource("Curve2D_dlaod")
+
+[node name="PathFollow2D" parent="Path2D" index="0" unique_id=1942762927]
+position = Vector2(-122, 118)
+rotation = -0.1374918
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=644138214]
+position = Vector2(-3, -2)
+shape = SubResource("RectangleShape2D_eh3uk")
+
+[editable path="GrindArea"]

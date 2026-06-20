@@ -6,11 +6,13 @@ var state_machine:      StateMachine
 var trick_system:       TrickSystem
 var equipment:          EquipmentManager
 var controller:         Controller
-var foot_ref:           CollisionShape2D
+var collision_shape:    CollisionShape2D
 var grind_component:    GrindComponent
 var boost_component:    BoostComponent
 var character_animator: CharacterAnimator
 var animation_player:   AnimationPlayer
+
+var _out_equip_data:    EquipmentData
 
 # --- End Game flag ---
 var is_caught: bool = false
@@ -28,11 +30,8 @@ var smoothed_floor_angle: float = 0.0
 # Getters
 # ---------------------------------------------------------------------------
 
-func can_grind() -> bool: 
-	return available_grindable != null
-
-func is_grinding() -> bool:
-	return grind_component != null and grind_component.is_grinding
+func get_caught() -> void:
+	EventBus.character_caught.emit(self)
 
 func get_max_boost_speed() -> float:
 	if equipment == null: push_error("equipment is null. ", equipment)
@@ -40,7 +39,12 @@ func get_max_boost_speed() -> float:
 	return equipment.current_equipment.max_boost_speed
 
 
+func equip(_equipment: EquipmentData) -> void:
+	_out_equip_data = _equipment
+
+
 func _ready() -> void:
+	collision_shape    = $CollisionShape2D
 	state_machine      = %StateMachine
 	trick_system       = %TrickSystem
 	boost_component    = %BoostComponent
@@ -54,19 +58,34 @@ func _ready() -> void:
 	grind_component.   setup(self)
 	character_animator.setup(self)
 	state_machine.     setup(self)
-	
+	if _out_equip_data != null: equipment.equip(_out_equip_data)
 	
 	trick_system.grind_trick_requested.connect(_on_grind_trick_requested)
 	boost_component.boost_update.connect(func(speed: float):
 		current_boost_speed = speed
 		print(current_boost_speed)
 	)
+	
+	controller.is_locked = true
 
 
 func _physics_process(delta: float) -> void:
 	if controller != null: apply_gravity(delta)
 	apply_slope_rotation(delta)
 
+
+func start_race():
+	controller.is_locked = false
+
+
+func end_race():
+	controller.is_locked = true
+
+# ---------------------------------------------------------------------------
+# Movement
+# ---------------------------------------------------------------------------
+
+func apply_push(_forced := false) -> void: pass
 
 func apply_momentum(floor_normal: Vector2) -> void:
 	velocity = controller.apply_momentum(
@@ -127,15 +146,27 @@ func _on_grind_trick_requested(grindable: GrindableObject) -> void:
 	state_machine.transition_to(Global.StateID.ON_GRIDING, grindable)
 
 
+func can_grind() -> bool: 
+	return available_grindable != null
+
+func is_grinding() -> bool:
+	return grind_component != null and grind_component.is_grinding
+
+
 func remove_available_grindable(grindable: GrindableObject) -> void:
 	if available_grindable == grindable: available_grindable = null
 
+func _is_on_grinding(_grindable: GrindableObject) -> void: pass
+
 # ---------------------------------------------------------------------------
-# Abstract methods
+# Lock and Unlock
 # ---------------------------------------------------------------------------
 
-func _is_on_grinding(_grindable: GrindableObject) -> void: pass
-func on_lock_character(_body: BaseCharacter)      -> void: pass
-func on_unlock_character()                        -> void: pass
-func get_caught()                                 -> void:
-	EventBus.character_caught.emit(self)
+func on_lock_character(_body: BaseCharacter) -> void:
+	velocity = Vector2.ZERO
+	controller.is_locked = true
+	#state_machine.transition_to(Global.StateID.ON_PLATAFORM)
+func on_unlock_character()                   -> void:
+	controller.is_locked = false
+	apply_push(true)
+	#state_machine.transition_to(Global.StateID.ON_FLOOR)

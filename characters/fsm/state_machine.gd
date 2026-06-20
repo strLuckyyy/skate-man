@@ -9,12 +9,13 @@ var character:     BaseCharacter
 
 func _ready() -> void:
 	states = {
-		Global.StateID.CAUGHT:     CaughtState.new(),
-		Global.StateID.TRICK_FAIL: TrickFailState.new(),
-		Global.StateID.ON_FLOOR:   OnFloorState.new(),
-		Global.StateID.ON_AIR:     OnAirState.new(),
-		Global.StateID.ON_FALLING: OnFallingState.new(),
-		Global.StateID.ON_GRIDING: OnGridingState.new(),
+		Global.StateID.CAUGHT:       CaughtState.new(),
+		Global.StateID.TRICK_FAIL:   TrickFailState.new(),
+		Global.StateID.ON_FLOOR:     OnFloorState.new(),
+		Global.StateID.ON_AIR:       OnAirState.new(),
+		Global.StateID.ON_FALLING:   OnFallingState.new(),
+		Global.StateID.ON_GRIDING:   OnGridingState.new(),
+		Global.StateID.ON_PLATAFORM: OnPlatformState.new()
 	}
 
 	for state in states.values():

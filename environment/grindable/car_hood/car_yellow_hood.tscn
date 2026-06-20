@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_ctipn"]
 script = ExtResource("2_qivcv")
-type = 2
+type = 3
 metadata/_custom_type_script = "uid://isu3ifo2t6m2"
 
 [sub_resource type="Curve2D" id="Curve2D_1buxw"]
@@ -15,8 +15,8 @@ _data = {
 }
 point_count = 9
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1buxw"]
-size = Vector2(378, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wm73k"]
+size = Vector2(334, 47)
 
 [node name="GrindableBase" unique_id=1698369429 instance=ExtResource("1_ft6bc")]
 obstacle_data = SubResource("Resource_ctipn")
@@ -33,7 +33,7 @@ position = Vector2(-149, -9)
 rotation = 0.29142922
 
 [node name="CollisionShape2D" parent="GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=1726410716]
-position = Vector2(-2, -24)
-shape = SubResource("RectangleShape2D_1buxw")
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_wm73k")
 
 [editable path="GrindArea"]
