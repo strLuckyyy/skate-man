@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://6w8diicxwk7p"]
+
+[ext_resource type="Texture2D" uid="uid://sxdu1jllgwfh" path="res://assets/scenary/cloud.png" id="1_1qmus"]
+[ext_resource type="Texture2D" uid="uid://btsvn35s1knmu" path="res://assets/scenary/Synth City/city skyline/Layers/back.png" id="2_jcr7b"]
+[ext_resource type="Texture2D" uid="uid://k44qxhcb42j5" path="res://assets/scenary/Synth City/Version 1/PNG/layers/back-buildings.png" id="3_kq6vn"]
+[ext_resource type="Texture2D" uid="uid://cdl50led5kk4x" path="res://assets/scenary/Synth City/city skyline/Layers/buildings.png" id="4_3u1fu"]
+[ext_resource type="Texture2D" uid="uid://dh0ashoaoenrj" path="res://assets/scenary/Synth City/city skyline/Layers/front.png" id="5_bwbm7"]
+[ext_resource type="Texture2D" uid="uid://x3oyaw8vx8tu" path="res://assets/scenary/filter.png" id="6_4upfq"]
+
+[node name="Parallax" type="Node2D" unique_id=245099177]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1055876304]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(4592, 0)
+repeat_times = 3
+
+[node name="Back2" type="Sprite2D" parent="Parallax2D" unique_id=111536343]
+scale = Vector2(10, 10)
+texture = ExtResource("1_1qmus")
+
+[node name="Back" type="Sprite2D" parent="Parallax2D" unique_id=1968613783]
+position = Vector2(15, -784)
+scale = Vector2(16, 16)
+texture = ExtResource("2_jcr7b")
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=2134698351]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(3072, 0)
+repeat_times = 3
+
+[node name="BackBuildings" type="Sprite2D" parent="Parallax2D3" unique_id=460949803]
+position = Vector2(59.999996, 261.00003)
+scale = Vector2(8.61, 8.61)
+texture = ExtResource("3_kq6vn")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=497376782]
+scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(1214.905, -429)
+repeat_size = Vector2(4604.05, 0)
+repeat_times = 3
+
+[node name="Buildings2" type="Sprite2D" parent="Parallax2D2" unique_id=431737166]
+scale = Vector2(16, 16)
+texture = ExtResource("4_3u1fu")
+
+[node name="Parallax2D4" type="Parallax2D" parent="." unique_id=1993442581]
+repeat_size = Vector2(2858.18, 0)
+repeat_times = 3
+
+[node name="Front" type="Sprite2D" parent="Parallax2D4" unique_id=1331394394]
+scale = Vector2(10, 10)
+texture = ExtResource("5_bwbm7")
+
+[node name="Parallax2D5" type="Parallax2D" parent="." unique_id=16599344]
+repeat_size = Vector2(12800, 7200)
+repeat_times = 3
+
+[node name="Front2" type="Sprite2D" parent="Parallax2D5" unique_id=214937536]
+scale = Vector2(10, 10)
+texture = ExtResource("6_4upfq")

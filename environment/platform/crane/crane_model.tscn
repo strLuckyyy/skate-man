@@ -7,11 +7,8 @@
 
 [node name="CraneModel" type="Node2D" unique_id=1174697002]
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=503621112]
-scroll_scale = Vector2(0.7, 0.7)
-scroll_offset = Vector2(391, -232)
-
-[node name="CraneMan" type="Sprite2D" parent="Parallax2D" unique_id=1439587763]
+[node name="CraneMan" type="Sprite2D" parent="." unique_id=1439587763]
+position = Vector2(391, -232)
 scale = Vector2(4.495, 4.495)
 texture = ExtResource("1_68xmt")
 

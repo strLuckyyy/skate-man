@@ -166,7 +166,14 @@ func on_lock_character(_body: BaseCharacter) -> void:
 	velocity = Vector2.ZERO
 	controller.is_locked = true
 	#state_machine.transition_to(Global.StateID.ON_PLATAFORM)
-func on_unlock_character()                   -> void:
+
+
+func unlock_from_platform(apply_exit_push: bool = true) -> void:
 	controller.is_locked = false
-	apply_push(true)
+	if apply_exit_push:
+		apply_push(true)
+
+
+func on_unlock_character()                   -> void:
+	unlock_from_platform()
 	#state_machine.transition_to(Global.StateID.ON_FLOOR)

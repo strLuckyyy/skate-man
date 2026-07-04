@@ -2,6 +2,9 @@
 extends Path2D
 
 func _ready() -> void:
+	if not Engine.is_editor_hint():
+		return
+	
 	if curve and not curve.changed.is_connected(_update_line):
 		curve.changed.connect(_update_line)
 	_update_line()

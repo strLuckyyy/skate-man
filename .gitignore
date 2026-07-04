@@ -6,4 +6,5 @@
 /.vscode
 *tccfiles/
 *.exe
-game/*.exe
+game/
+/game

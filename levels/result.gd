@@ -11,12 +11,15 @@ func result(position:int):
 	$VBoxContainer/Label.text = str("Posição: ", position)
 
 func _on_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
 func _on_button_2_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_packed(menu_scene)
 
 
 func _on_button_3_pressed() -> void:
+	get_tree().paused = false
 	get_tree().quit()

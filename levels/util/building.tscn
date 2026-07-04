@@ -1,0 +1,254 @@
+[gd_scene format=3 uid="uid://x1e0x1m0edtl"]
+
+[ext_resource type="PackedScene" uid="uid://nbx5j62h0pvu" path="res://environment/platform/crane/crane_model.tscn" id="1_lucoj"]
+[ext_resource type="Texture2D" uid="uid://y2jrcklrrtgy" path="res://assets/scenary/buildings/building.png" id="2_pt5a5"]
+[ext_resource type="Texture2D" uid="uid://blniow8tlb2p" path="res://assets/scenary/buildings/building2.png" id="3_8tikj"]
+[ext_resource type="Texture2D" uid="uid://bf7lpav1hbrmu" path="res://assets/scenary/brick_wall.png" id="4_84a1x"]
+[ext_resource type="Texture2D" uid="uid://tcdukxsbbwh3" path="res://assets/scenary/background_city.png" id="5_0i6v1"]
+[ext_resource type="Texture2D" uid="uid://oa71tj8av4jv" path="res://assets/scenary/office_building.png" id="6_7vx4g"]
+[ext_resource type="PackedScene" uid="uid://d2jq8ya2vskgm" path="res://environment/platform/elevator/elevator_platform.tscn" id="7_c0mag"]
+[ext_resource type="Texture2D" uid="uid://cb71ahwrsmcgf" path="res://assets/scenary/buildings/building3.png" id="8_lqkt3"]
+[ext_resource type="Texture2D" uid="uid://cs4x7qww6lo0v" path="res://assets/scenary/buildings/building4.png" id="9_um735"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x2cs"]
+size = Vector2(44.333435, 218.67596)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60ru3"]
+size = Vector2(100.40723, 17.442657)
+
+[sub_resource type="Curve2D" id="Curve2D_6amrg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 907.714, 0, 0, 0, 0, 0, -560.857)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqpx7"]
+size = Vector2(184.28589, 54.999657)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81x6n"]
+size = Vector2(18.964111, 270)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi6w2"]
+size = Vector2(164.57141, 254.57141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6amrg"]
+size = Vector2(790.4293, 137.42859)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njq5g"]
+size = Vector2(1023.2849, 220.57135)
+
+[node name="building" type="Node2D" unique_id=923952973]
+scale = Vector2(3.5, 3.5)
+
+[node name="CraneModel" parent="." unique_id=1174697002 instance=ExtResource("1_lucoj")]
+position = Vector2(1050.8572, -695.1429)
+scale = Vector2(0.23, 0.23)
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1094141879]
+scale = Vector2(0.99999994, 0.99999994)
+scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(34.571426, -11.42857)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=927012587]
+position = Vector2(-33.714287, 12.285715)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_pt5a5")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1336407824]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=2009526865]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_pt5a5")
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=713574001]
+scroll_offset = Vector2(1156.5714, 168.85713)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D3" unique_id=1328975624]
+scale = Vector2(2.0849998, 2.0849998)
+texture = ExtResource("3_8tikj")
+
+[node name="Stores" type="Node2D" parent="." unique_id=1193999619]
+position = Vector2(2796.2856, 529.71423)
+
+[node name="Parallax2D" type="Parallax2D" parent="Stores" unique_id=1118831162]
+scale = Vector2(0.99999994, 0.99999994)
+scroll_scale = Vector2(0.98, 0.98)
+
+[node name="BrickWall" type="Sprite2D" parent="Stores/Parallax2D" unique_id=410430324]
+position = Vector2(-964.37274, -87.18315)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall6" type="Sprite2D" parent="Stores/Parallax2D" unique_id=866613792]
+position = Vector2(-964.08704, 35.10257)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall7" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1261338837]
+position = Vector2(-764.9439, 34.245426)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall10" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1248380587]
+position = Vector2(-963.2299, 151.38828)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall11" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1423802483]
+position = Vector2(-764.0868, 150.53113)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall8" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1025152068]
+position = Vector2(42.769783, -89.75458)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall9" type="Sprite2D" parent="Stores/Parallax2D" unique_id=470481041]
+position = Vector2(242.76978, -91.754585)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall2" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1584599775]
+position = Vector2(-762.0875, -87.18316)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall3" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1560381461]
+position = Vector2(-558.08734, -89.46888)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall4" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1884305358]
+position = Vector2(-358.94452, -90.32601)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall5" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1302294486]
+position = Vector2(-159.23021, -91.46888)
+scale = Vector2(0.21499999, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BackgroundCity" type="Sprite2D" parent="Stores" unique_id=45467834]
+position = Vector2(103.14286, -19.142788)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("5_0i6v1")
+
+[node name="Office" type="Node2D" parent="." unique_id=777778967]
+position = Vector2(4715.143, -291.42856)
+
+[node name="OfficeBuilding" type="Sprite2D" parent="Office" unique_id=1965877650]
+scale = Vector2(3.145, 3.145)
+texture = ExtResource("6_7vx4g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Office" unique_id=1737092201]
+scale = Vector2(3.1449993, 3.1449993)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Office/StaticBody2D" unique_id=339806948]
+position = Vector2(-103.65662, 99.33797)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_2x2cs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Office/StaticBody2D" unique_id=1237296183]
+position = Vector2(76.22074, -162.34389)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_60ru3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Office/StaticBody2D" unique_id=749908551]
+position = Vector2(6.2685375, -245.83241)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_60ru3")
+
+[node name="Elevator" parent="Office" unique_id=705089617 instance=ExtResource("7_c0mag")]
+position = Vector2(1.7142856, -79.428566)
+curve = SubResource("Curve2D_6amrg")
+target_character = 1
+
+[node name="PathFollow2D" parent="Office/Elevator" index="0" unique_id=527806504]
+position = Vector2(0, 907.714)
+rotation = -1.5707964
+
+[node name="AnimatableBody2D" parent="Office/Elevator" index="1" unique_id=92778484]
+position = Vector2(0, 907.714)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" parent="Office/Elevator/AnimatableBody2D" index="3" unique_id=473667595]
+position = Vector2(-4.5714984, 128.57144)
+shape = SubResource("RectangleShape2D_aqpx7")
+
+[node name="ElevatorDoor" parent="Office/Elevator/AnimatableBody2D" index="4" unique_id=1595129574]
+position = Vector2(76.28586, -27.142578)
+shape = SubResource("RectangleShape2D_81x6n")
+
+[node name="WaitingArea" parent="Office/Elevator" index="2" unique_id=12035457]
+position = Vector2(0, 907.714)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" parent="Office/Elevator/WaitingArea" index="0" unique_id=1386168499]
+position = Vector2(4, -29.142586)
+shape = SubResource("RectangleShape2D_mi6w2")
+
+[node name="Elevator2" parent="Office" unique_id=1724660679 instance=ExtResource("7_c0mag")]
+position = Vector2(1.7142856, -79.428566)
+curve = SubResource("Curve2D_6amrg")
+target_character = 2
+
+[node name="PathFollow2D" parent="Office/Elevator2" index="0" unique_id=527806504]
+position = Vector2(0, 907.714)
+rotation = -1.5707964
+
+[node name="AnimatableBody2D" parent="Office/Elevator2" index="1" unique_id=92778484]
+position = Vector2(0, 907.714)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" parent="Office/Elevator2/AnimatableBody2D" index="3" unique_id=473667595]
+position = Vector2(-4.5714984, 128.57144)
+shape = SubResource("RectangleShape2D_aqpx7")
+
+[node name="ElevatorDoor" parent="Office/Elevator2/AnimatableBody2D" index="4" unique_id=1595129574]
+position = Vector2(76.28586, -27.142578)
+shape = SubResource("RectangleShape2D_81x6n")
+
+[node name="WaitingArea" parent="Office/Elevator2" index="2" unique_id=12035457]
+position = Vector2(0, 907.714)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" parent="Office/Elevator2/WaitingArea" index="0" unique_id=1386168499]
+position = Vector2(4, -29.142586)
+shape = SubResource("RectangleShape2D_mi6w2")
+
+[node name="Building3" type="Sprite2D" parent="." unique_id=43060733]
+position = Vector2(5498.2856, 170.85715)
+scale = Vector2(1.995, 1.995)
+texture = ExtResource("8_lqkt3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Building3" unique_id=2077979026]
+scale = Vector2(0.34188032, 0.34188032)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Building3/StaticBody2D" unique_id=2140640457]
+position = Vector2(1.3574219, -576.14294)
+shape = SubResource("RectangleShape2D_6amrg")
+
+[node name="Building4" type="Sprite2D" parent="." unique_id=986930687]
+position = Vector2(6141.715, 233.42857)
+scale = Vector2(1.76, 1.76)
+texture = ExtResource("9_um735")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Building4" unique_id=860578418]
+scale = Vector2(0.3831418, 0.3831418)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Building4/StaticBody2D2" unique_id=282701121]
+position = Vector2(-3.072754, -485.7142)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_njq5g")
+
+[editable path="Office/Elevator"]
+[editable path="Office/Elevator/WaitingArea"]
+[editable path="Office/Elevator2"]
+[editable path="Office/Elevator2/WaitingArea"]

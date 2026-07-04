@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://dywhc7o7xgam3"]
+
+[ext_resource type="Texture2D" uid="uid://ck1dyyy8xe3au" path="res://assets/scenary/tree1.png" id="1_077uq"]
+[ext_resource type="Texture2D" uid="uid://574po20sf0cc" path="res://assets/scenary/tree2.png" id="2_hjwak"]
+[ext_resource type="Texture2D" uid="uid://bf7lpav1hbrmu" path="res://assets/scenary/brick_wall.png" id="3_axkqj"]
+
+[node name="Park" type="Node2D" unique_id=1380093101]
+
+[node name="tree" type="Node2D" parent="." unique_id=1066286511]
+position = Vector2(15693, 516)
+scale = Vector2(0.395, 0.395)
+
+[node name="Tree1" type="Sprite2D" parent="tree" unique_id=1998315610]
+position = Vector2(26610.375, -414.82507)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("1_077uq")
+
+[node name="Tree7" type="Sprite2D" parent="tree" unique_id=337301559]
+position = Vector2(28879.002, -328)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("1_077uq")
+
+[node name="Tree8" type="Sprite2D" parent="tree" unique_id=2128716803]
+position = Vector2(33486, -363)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("1_077uq")
+
+[node name="Tree9" type="Sprite2D" parent="tree" unique_id=965786526]
+position = Vector2(29944, -346)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("1_077uq")
+
+[node name="Tree10" type="Sprite2D" parent="tree" unique_id=173090114]
+position = Vector2(34952, -398)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("1_077uq")
+
+[node name="Tree11" type="Sprite2D" parent="tree" unique_id=1089329352]
+position = Vector2(34097, -590)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("1_077uq")
+
+[node name="Tree12" type="Sprite2D" parent="tree" unique_id=689659605]
+position = Vector2(31724, -555)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("1_077uq")
+
+[node name="Tree2" type="Sprite2D" parent="tree" unique_id=1015210525]
+position = Vector2(28092.002, -503)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("2_hjwak")
+
+[node name="Tree3" type="Sprite2D" parent="tree" unique_id=158564363]
+position = Vector2(30822, -470)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("2_hjwak")
+
+[node name="Tree4" type="Sprite2D" parent="tree" unique_id=1695534225]
+position = Vector2(32566, -503)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("2_hjwak")
+
+[node name="Tree5" type="Sprite2D" parent="tree" unique_id=566968774]
+position = Vector2(35550, -643)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("2_hjwak")
+
+[node name="Tree6" type="Sprite2D" parent="tree" unique_id=665031753]
+position = Vector2(31414.004, -521.00006)
+scale = Vector2(4.85, 4.85)
+texture = ExtResource("2_hjwak")
+
+[node name="wall" type="Node2D" parent="." unique_id=1763108636]
+position = Vector2(8451, 328)
+scale = Vector2(0.675, 0.675)
+
+[node name="BrickWall" type="Sprite2D" parent="wall" unique_id=1213797527]
+position = Vector2(26560, 852)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall2" type="Sprite2D" parent="wall" unique_id=486107663]
+position = Vector2(27493, 852)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall3" type="Sprite2D" parent="wall" unique_id=1836370583]
+position = Vector2(28438, 852)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall4" type="Sprite2D" parent="wall" unique_id=1543205190]
+position = Vector2(29386, 852)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall5" type="Sprite2D" parent="wall" unique_id=325250778]
+position = Vector2(31273, 849)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall7" type="Sprite2D" parent="wall" unique_id=1744893101]
+position = Vector2(32203, 837)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall8" type="Sprite2D" parent="wall" unique_id=1635788180]
+position = Vector2(33133, 837)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall9" type="Sprite2D" parent="wall" unique_id=1850999985]
+position = Vector2(34075, 831)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall10" type="Sprite2D" parent="wall" unique_id=1436841541]
+position = Vector2(35023, 825)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall11" type="Sprite2D" parent="wall" unique_id=940103745]
+position = Vector2(35959, 825)
+texture = ExtResource("3_axkqj")
+
+[node name="BrickWall6" type="Sprite2D" parent="wall" unique_id=749211154]
+position = Vector2(30337, 849)
+texture = ExtResource("3_axkqj")

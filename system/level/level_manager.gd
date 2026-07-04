@@ -52,6 +52,13 @@ func _process(delta: float) -> void:
 
 
 func finish(position: int):
+	if result_inst:
+		return
+
+	var pause_menu = canvas.get_node_or_null("Pause")
+	if pause_menu and pause_menu.has_method("set_pause_enabled"):
+		pause_menu.call("set_pause_enabled", false)
+
 	result_inst = result.instantiate() as Result
 	canvas.add_child(result_inst)
 	result_inst.result(position)

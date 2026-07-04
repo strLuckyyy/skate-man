@@ -69,7 +69,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				_current_character = null
 			
 			if can_back: start(AnimName.MOVE_DOWN)
-			
+			push_char.set_deferred("disabled", true)
 			has_arrived.emit()
 			super.exit()
 		AnimName.MOVE_DOWN:

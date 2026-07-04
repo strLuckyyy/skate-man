@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_g7plw"]
 [ext_resource type="Texture2D" uid="uid://b3t26mrxa10qg" path="res://assets/scenary/scaffolding.png" id="2_rutve"]
 [ext_resource type="Script" uid="uid://bumwhfcus6ajl" path="res://environment/platform/scaffolding/set_collision.gd" id="2_tgnt5"]
+[ext_resource type="Script" uid="uid://d05e7ejkemyu4" path="res://environment/platform/scaffolding/scaffolding.gd" id="2_yyifu"]
 
 [sub_resource type="Resource" id="Resource_yyifu"]
 script = ExtResource("2_g7plw")
@@ -17,9 +18,12 @@ size = Vector2(1459.75, 45)
 size = Vector2(63, 411)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7plw"]
-size = Vector2(1164, 562)
+size = Vector2(1164, 667)
 
 [node name="Scaffolding" unique_id=705089617 instance=ExtResource("1_was78")]
+script = ExtResource("2_yyifu")
+need_jump = true
+need_center = false
 obstacle_data = SubResource("Resource_yyifu")
 
 [node name="AnimatableBody2D" parent="." index="1" unique_id=92778484 node_paths=PackedStringArray("collision")]
@@ -31,18 +35,24 @@ collision = NodePath("CollisionShape2D")
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("2_rutve")
 
-[node name="CollisionShape2D" parent="AnimatableBody2D" index="1" unique_id=473667595]
+[node name="Sprite2D2" parent="AnimatableBody2D" index="1" unique_id=608923222]
+visible = false
+
+[node name="Sprite2D3" parent="AnimatableBody2D" index="2" unique_id=1905971803]
+visible = false
+
+[node name="CollisionShape2D" parent="AnimatableBody2D" index="3" unique_id=473667595]
 position = Vector2(-50, 643)
 shape = SubResource("RectangleShape2D_rutve")
 disabled = true
 
-[node name="ElevatorDoor" parent="AnimatableBody2D" index="2" unique_id=1595129574]
+[node name="ElevatorDoor" parent="AnimatableBody2D" index="4" unique_id=1595129574]
 position = Vector2(523.5, -3.5)
 shape = SubResource("RectangleShape2D_tgnt5")
 disabled = true
 
 [node name="CollisionShape2D" parent="WaitingArea" parent_id_path=PackedInt32Array(12035457) index="0" unique_id=1386168499]
-position = Vector2(13, -13)
+position = Vector2(13, 39.5)
 shape = SubResource("RectangleShape2D_g7plw")
 
 [connection signal="body_entered" from="WaitingArea" to="AnimatableBody2D" method="_on_waiting_area_body_entered"]
