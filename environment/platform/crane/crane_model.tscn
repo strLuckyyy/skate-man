@@ -1,16 +1,10 @@
 [gd_scene format=3 uid="uid://nbx5j62h0pvu"]
 
-[ext_resource type="Texture2D" uid="uid://cdmyo8fgx7ds8" path="res://assets/scenary/crane/crane_man.png" id="1_68xmt"]
 [ext_resource type="Texture2D" uid="uid://cwty6gom6syqy" path="res://assets/scenary/crane/crane_body.png" id="2_1b3k0"]
 [ext_resource type="Texture2D" uid="uid://bsgu4e4umj5ga" path="res://assets/scenary/crane/crane_top_part.png" id="3_gbbym"]
 [ext_resource type="Texture2D" uid="uid://dupqvrpnij4mb" path="res://assets/scenary/crane/crane_top.png" id="4_4n5vy"]
 
 [node name="CraneModel" type="Node2D" unique_id=1174697002]
-
-[node name="CraneMan" type="Sprite2D" parent="." unique_id=1439587763]
-position = Vector2(391, -232)
-scale = Vector2(4.495, 4.495)
-texture = ExtResource("1_68xmt")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1033772189]
 scroll_scale = Vector2(0.8, 0.8)

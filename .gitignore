@@ -7,3 +7,4 @@
 *tccfiles/
 *.exe
 *apikey.gd
+*apikey.gd.uid

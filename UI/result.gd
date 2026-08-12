@@ -3,7 +3,7 @@ class_name Result
 extends Control
 
 
-@onready var menu_scene = preload("res://levels/menu.tscn")
+@onready var menu_scene = preload("res://UI/menu.tscn")
 
 func result(position:int):
 	var r = "GANHOU!" if position == 1 else "PERDEU."

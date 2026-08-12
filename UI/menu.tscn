@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://ptho4uo0voph"]
 
-[ext_resource type="Script" uid="uid://bv563wg1m5rod" path="res://system/level/menu.gd" id="1_cnlwo"]
+[ext_resource type="Script" uid="uid://bv563wg1m5rod" path="res://system/level/menu.gd" id="1_0h2wq"]
 
 [sub_resource type="SystemFont" id="SystemFont_cnlwo"]
+subpixel_positioning = 0
 
 [sub_resource type="FontVariation" id="FontVariation_kfbsc"]
 base_font = SubResource("SystemFont_cnlwo")
@@ -22,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cnlwo")
+script = ExtResource("1_0h2wq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=565513134]
 

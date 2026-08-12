@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var menu_scene = preload("res://levels/menu.tscn")
+@onready var menu_scene = preload("res://UI/menu.tscn")
 
 var pause_enabled: bool = true
 

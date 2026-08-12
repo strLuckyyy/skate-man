@@ -4,7 +4,7 @@ extends Node2D
 
 
 #signal race_started(racers: Array)
-@onready var result: PackedScene = preload("res://levels/result.tscn")
+@onready var result: PackedScene = preload("res://UI/result.tscn")
 @onready var countdown := Countdown.new()
 @onready var cd_label = %Label
 

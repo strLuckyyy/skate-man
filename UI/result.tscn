@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cui3eelnf74cl"]
 
-[ext_resource type="Script" uid="uid://bjouhkwiluvgj" path="res://levels/result.gd" id="1_cajcu"]
+[ext_resource type="Script" uid="uid://bjouhkwiluvgj" path="res://UI/result.gd" id="1_cajcu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cajcu"]
 font_size = 55

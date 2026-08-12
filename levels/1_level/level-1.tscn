@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://b8k5ftacnuo4" path="res://characters/opponents/ai_john.tscn" id="2_j1ov8"]
 [ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="2_miceu"]
 [ext_resource type="PackedScene" uid="uid://cyrvd3ux0qniv" path="res://system/level/spawner.tscn" id="3_0fkkx"]
-[ext_resource type="PackedScene" uid="uid://dt6aqeno54wyt" path="res://levels/pause.tscn" id="4_aqpx7"]
+[ext_resource type="PackedScene" uid="uid://dt6aqeno54wyt" path="res://UI/pause.tscn" id="4_aqpx7"]
 [ext_resource type="PackedScene" uid="uid://6w8diicxwk7p" path="res://levels/util/parallax.tscn" id="6_ojjop"]
-[ext_resource type="Texture2D" uid="uid://x3oyaw8vx8tu" path="res://assets/scenary/filter.png" id="8_g4hib"]
 [ext_resource type="PackedScene" uid="uid://x1e0x1m0edtl" path="res://levels/util/building.tscn" id="8_ihovi"]
+[ext_resource type="Texture2D" uid="uid://cdmyo8fgx7ds8" path="res://assets/scenary/crane/crane_man.png" id="9_8y1l8"]
 [ext_resource type="PackedScene" uid="uid://dywhc7o7xgam3" path="res://levels/util/park.tscn" id="9_iprx8"]
 [ext_resource type="PackedScene" uid="uid://dl4ufc70gy33o" path="res://environment/grindable/utility_pole/utility_pole_generator.tscn" id="9_o6ssf"]
 [ext_resource type="PackedScene" uid="uid://c1fddkx8byqab" path="res://environment/grindable/utility_pole/utility_pole.tscn" id="9_qckbq"]
@@ -50,7 +50,7 @@ radius = 621.0394
 
 [sub_resource type="Curve2D" id="Curve2D_dnik4"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 165, 0, 0, 0, 0, 0, -3614)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 165, 0, 0, 0, 0, 0, -3845)
 }
 point_count = 2
 
@@ -181,7 +181,7 @@ collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RaceManager/Area2D" unique_id=1107330797]
 z_index = 1
-position = Vector2(537, -3382)
+position = Vector2(1992, -3382)
 shape = SubResource("RectangleShape2D_4fbnm")
 debug_color = Color(1.5642494e-06, 0.38492048, 0.19123918, 0.41960785)
 
@@ -198,6 +198,11 @@ scale = Vector2(3.4999998, 3.4999998)
 position = Vector2(1092, -1329)
 
 [node name="Park" parent="Scenary" unique_id=1380093101 instance=ExtResource("9_iprx8")]
+
+[node name="CraneMan" type="Sprite2D" parent="." unique_id=819464175]
+position = Vector2(11442, -4614)
+scale = Vector2(3, 3)
+texture = ExtResource("9_8y1l8")
 
 [node name="Interactables" type="Node2D" parent="." unique_id=1847932350]
 
@@ -307,10 +312,13 @@ position = Vector2(0, 165)
 rotation = -1.5707964
 
 [node name="AnimatableBody2D" parent="Interactables/Scaffolding/Scaffolding" index="1" unique_id=92778484]
-position = Vector2(0, -3613.9995)
+position = Vector2(0, 165)
 
 [node name="WaitingArea" parent="Interactables/Scaffolding/Scaffolding" index="2" unique_id=12035457]
-position = Vector2(0, -3613.9995)
+position = Vector2(0, 165)
+
+[node name="CollisionShape2D" parent="Interactables/Scaffolding/Scaffolding/WaitingArea" index="0" unique_id=1386168499]
+position = Vector2(13, 73)
 
 [node name="Area2D" type="Area2D" parent="Interactables/Scaffolding" unique_id=171071729 node_paths=PackedStringArray("roof")]
 position = Vector2(5630, -3735)
@@ -379,16 +387,6 @@ position = Vector2(3932, -366)
 
 [node name="Spawner" parent="." unique_id=1301072490 instance=ExtResource("3_0fkkx")]
 position = Vector2(343, 236)
-
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=363005775]
-z_index = 2
-repeat_size = Vector2(12800, 7200)
-repeat_times = 4
-
-[node name="Front3" type="Sprite2D" parent="Parallax2D" unique_id=1386985031]
-z_index = 2
-scale = Vector2(10, 10)
-texture = ExtResource("8_g4hib")
 
 [node name="1_tutorial" type="Control" parent="." unique_id=1322224299]
 layout_mode = 3
