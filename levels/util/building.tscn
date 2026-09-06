@@ -75,8 +75,8 @@ scale = Vector2(0.99999994, 0.99999994)
 scroll_scale = Vector2(0.98, 0.98)
 
 [node name="BrickWall" type="Sprite2D" parent="Stores/Parallax2D" unique_id=410430324]
-position = Vector2(-964.37274, -87.18315)
-scale = Vector2(0.21499999, 0.21499999)
+position = Vector2(-973.08704, -87.18315)
+scale = Vector2(0.23323078, 0.21499999)
 texture = ExtResource("4_84a1x")
 
 [node name="BrickWall6" type="Sprite2D" parent="Stores/Parallax2D" unique_id=866613792]
@@ -90,8 +90,13 @@ scale = Vector2(0.21499999, 0.21499999)
 texture = ExtResource("4_84a1x")
 
 [node name="BrickWall10" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1248380587]
-position = Vector2(-963.2299, 151.38828)
-scale = Vector2(0.21499999, 0.21499999)
+position = Vector2(-973.3728, 151.38828)
+scale = Vector2(0.23621945, 0.21499999)
+texture = ExtResource("4_84a1x")
+
+[node name="BrickWall10" type="Sprite2D" parent="Stores/Parallax2D/BrickWall10" unique_id=120444998]
+position = Vector2(-13.149841, -584.20776)
+scale = Vector2(0.9784441, 1.119459)
 texture = ExtResource("4_84a1x")
 
 [node name="BrickWall11" type="Sprite2D" parent="Stores/Parallax2D" unique_id=1423802483]

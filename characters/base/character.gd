@@ -10,7 +10,6 @@ var collision_shape:    CollisionShape2D
 var grind_component:    GrindComponent
 var boost_component:    BoostComponent
 var character_animator: CharacterAnimator
-var animation_player:   AnimationPlayer
 
 var _out_equip_data:    EquipmentData
 
@@ -52,7 +51,6 @@ func _ready() -> void:
 	controller         = %Controller
 	grind_component    = %GrindComponent
 	character_animator = %CharacterAnimator
-	animation_player   = %AnimationPlayer
 	
 	boost_component.   setup(self)
 	grind_component.   setup(self)

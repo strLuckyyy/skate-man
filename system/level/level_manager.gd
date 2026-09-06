@@ -51,6 +51,7 @@ func _process(delta: float) -> void:
 		for i : BaseCharacter in racers: i.start_race()
 
 
+@warning_ignore("shadowed_variable_base_class")
 func finish(position: int):
 	if result_inst:
 		return

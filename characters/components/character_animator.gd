@@ -4,7 +4,7 @@ extends Node
 signal trick_animation_finished
 
 var character:          BaseCharacter
-var anim_player:        AnimationPlayer
+var anim_player:        AnimatedSprite2D
 var is_executing_trick: bool = false
 var current_trick_anim: StringName = ""
 
@@ -12,7 +12,7 @@ var current_trick_anim: StringName = ""
 func setup(character_ref: BaseCharacter) -> void:
 	character = character_ref
 	
-	anim_player = character.animation_player
+	anim_player = %AnimatedSprite2D
 	anim_player.animation_finished.connect(_on_animation_finished)
 	
 	character.state_machine.state_changed.connect(_on_state_changed)
@@ -47,7 +47,6 @@ func _on_state_changed(_old_state: Global.StateID, new_state: Global.StateID) ->
 func _update_base_animation(state_id: Global.StateID) -> void:
 	match state_id:
 		Global.StateID.ON_FLOOR:
-			if owner is OpponentAI: anim_player.play("human/idle_op")
-			elif owner is Player:   anim_player.play("human/idle")
+			anim_player.play("idle")
 		Global.StateID.TRICK_FAIL:
-			anim_player.play("human/trick_fail")
+			anim_player.play("trick_fail")

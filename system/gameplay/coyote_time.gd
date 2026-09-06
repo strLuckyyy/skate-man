@@ -12,7 +12,7 @@ func coyote_time_ends() -> bool: return _ends
 
 func begin(character: BaseCharacter):
 	_controller         = character.controller
-	_coyote_elapsed    = 0.0
+	_coyote_elapsed     = 0.0
 	_controller.can_jump = true
 
 

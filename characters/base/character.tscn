@@ -19,9 +19,10 @@ metadata/_custom_type_script = "uid://fsgq8yal7w87"
 collision_mask = 16
 script = ExtResource("1_nvf7k")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1747011181]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367863434]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=915211023]
+unique_name_in_owner = true
 
 [node name="StateMachine" parent="." unique_id=734721836 instance=ExtResource("2_0hoxr")]
 unique_name_in_owner = true
@@ -45,7 +46,3 @@ unique_name_in_owner = true
 
 [node name="CharacterAnimator" parent="." unique_id=29396107 instance=ExtResource("6_xg31s")]
 unique_name_in_owner = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1748857434]
-unique_name_in_owner = true
-root_node = NodePath("../Sprite2D")
