@@ -53,7 +53,7 @@ func apply_push(velocity: Vector2, equipment: EquipmentData, current_boost: floa
 func apply_momentum(
 	delta:         float,
 	velocity:      Vector2, 
-	is_on_floor:   bool, 
+	is_on_floor:   bool,
 	floor_normal:  Vector2,
 	equipment:     EquipmentData, 
 	current_boost: float = 0.0) -> Vector2:

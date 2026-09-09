@@ -52,8 +52,7 @@ func can_execute(context: TrickContext) -> bool:
 
 func execute(_context: TrickContext) -> void:
 	if cd_timer.is_stopped(): cd_timer.start()
-	anim_sprite.play(anim_name)
-	print("executing ", self.name, " logic.")
+	#print("executing ", self.name, " logic.")
 
 
 ##Checks if the current input buffer matches the trick's required input sequence.

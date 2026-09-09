@@ -2297,7 +2297,7 @@ animations = [{
 "texture": ExtResource("496_3suc4")
 }],
 "loop": 0,
-"name": &"jump-and-walk",
+"name": &"jump_and_walk",
 "speed": 30.0
 }, {
 "frames": [{
@@ -2448,7 +2448,7 @@ animations = [{
 "texture": ExtResource("543_d45xc")
 }],
 "loop": 1,
-"name": &"one-wheel",
+"name": &"one_wheel",
 "speed": 24.0
 }, {
 "frames": [{
@@ -2483,7 +2483,7 @@ animations = [{
 "texture": ExtResource("535_eyaoo")
 }],
 "loop": 0,
-"name": &"one-wheel-in",
+"name": &"one_wheel-in",
 "speed": 24.0
 }, {
 "frames": [{
@@ -2518,7 +2518,7 @@ animations = [{
 "texture": ExtResource("545_2r3vp")
 }],
 "loop": 0,
-"name": &"one-wheel-out",
+"name": &"one_wheel-out",
 "speed": 24.0
 }, {
 "frames": [{
@@ -3005,7 +3005,7 @@ animations = [{
 "texture": ExtResource("712_w1kds")
 }],
 "loop": 0,
-"name": &"trick-fail",
+"name": &"trick_fail",
 "speed": 24.0
 }]
 
@@ -3088,7 +3088,7 @@ shape = SubResource("CapsuleShape2D_1f1u2")
 position = Vector2(7, -145)
 scale = Vector2(0.52, 0.52)
 sprite_frames = SubResource("SpriteFrames_sn1g0")
-animation = &"push"
+animation = &"one_wheel"
 
 [node name="InputBuffer" parent="." index="3" unique_id=69867716 instance=ExtResource("4_iai5m")]
 unique_name_in_owner = true

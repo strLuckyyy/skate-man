@@ -24,7 +24,7 @@ animations = [{
 "texture": ExtResource("4_x53m4")
 }],
 "loop": 1,
-"name": &"idle_in",
+"name": &"idle-in",
 "speed": 5.0
 }, {
 "frames": [{
@@ -50,6 +50,11 @@ animations = [{
 "loop": 1,
 "name": &"push",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"trick_fail",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyg4d"]
@@ -66,7 +71,7 @@ unique_name_in_owner = true
 position = Vector2(0, -50.999992)
 scale = Vector2(0.34, 0.34)
 sprite_frames = SubResource("SpriteFrames_a7347")
-animation = &"idle_in"
+animation = &"idle-in"
 script = ExtResource("4_gyjpf")
 
 [node name="BTPlayer" parent="." index="2" unique_id=94575947]

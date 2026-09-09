@@ -14,6 +14,16 @@ var _current_state:     Global.StateID
 var _current_grindable: GrindableObject
 
 
+func get_is_doing_trick() -> bool:
+	if active_trick == null or animator == null:
+		return false
+
+	var is_looping: bool = animator.is_loop_animation()
+
+	if is_looping: return false
+	return is_busy
+
+
 func setup(
 	char_ref: BaseCharacter,
 	equipment_manager: EquipmentManager, 
@@ -46,8 +56,9 @@ func process(
 
 
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
-	if is_busy: return
+	if get_is_doing_trick():           return
 	if character.controller.is_locked: return
+
 	is_busy      = true
 	active_trick = trick
 	
@@ -60,8 +71,7 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	character.boost_component.add_boost(trick.trick_data.boost)
 	trick.execute(context)
 	
-	var anim_name = trick.anim_name
-	animator.play_trick(str("tricks/", anim_name))
+	animator.play_trick(trick.anim_name)
 
 # ---------------------------------------------------------------------------
 # Private — sequence resolution
@@ -71,10 +81,9 @@ func _on_state_changed(
 	_old_state: Global.StateID, new_state: Global.StateID
 ) -> void:
 	if new_state == Global.StateID.TRICK_FAIL and is_busy:
-		is_busy = false
-		if active_trick != null:
-			EventBus.trick_failed.emit(active_trick)
-		active_trick = null
+		if active_trick != null: EventBus.trick_failed.emit(active_trick)
+	is_busy      = false
+	active_trick = null
 
 
 func _on_sequence_resolved(

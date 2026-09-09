@@ -32,11 +32,11 @@ func update(delta: float) -> void:
 	if character.is_on_floor():
 		controller.reset_jumped()
 		
-		var is_doing_trick  = character.trick_system.is_busy
-		var is_bad_rotation = abs(character.rotation_degrees) > 25.0 
+		var is_doing_trick = character.trick_system.get_is_doing_trick()
 		
-		if is_doing_trick or is_bad_rotation:
+		if is_doing_trick:
 			emit_signal("transition_requested", Global.StateID.TRICK_FAIL, null)
+			print("Transitioning to TRICK_FAIL state from ON_AIR state due to trick execution.")
 		else:
 			emit_signal("transition_requested", Global.StateID.ON_FLOOR,   null)
 

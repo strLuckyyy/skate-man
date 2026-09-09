@@ -14,7 +14,14 @@ func enter(p_character: BaseCharacter, payload = null) -> void:
 
 func update(_delta: float) -> void:
 	if character.is_on_floor():
-		emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
+		controller.reset_jumped()
+		
+		var is_doing_trick = character.trick_system.get_is_doing_trick()
+		
+		if is_doing_trick:
+			emit_signal("transition_requested", Global.StateID.TRICK_FAIL, null)
+		else:
+			emit_signal("transition_requested", Global.StateID.ON_FLOOR,   null)
 	character.apply_momentum(Vector2.UP)
 
 

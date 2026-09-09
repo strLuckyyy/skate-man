@@ -49,7 +49,7 @@ func _calculate_movement() -> void:
 		apply_push()
 	
 	if Input.is_action_just_pressed("jump"):
-		velocity = controller.apply_jump(velocity, equipment.current_equipment)
+		apply_jump()
 	
 	controller.update_moving_state(velocity)
 

@@ -61,7 +61,6 @@ func _ready() -> void:
 	trick_system.grind_trick_requested.connect(_on_grind_trick_requested)
 	boost_component.boost_update.connect(func(speed: float):
 		current_boost_speed = speed
-		print(current_boost_speed)
 	)
 	
 	controller.is_locked = true
@@ -121,7 +120,7 @@ func apply_slope_rotation(delta: float) -> void:
 func apply_jump(mult: float = 1.0) -> void:
 	var m = mult if mult != 0.0 else 1.0
 	velocity = controller.apply_jump(velocity, equipment.current_equipment) * m
-	character_animator.play_animation("jump")
+	character_animator.play_animation("jump", true)
 
 
 func apply_gravity(delta: float) -> void:

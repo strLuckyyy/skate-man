@@ -14,5 +14,6 @@ var state_id:   Global.StateID = Global.StateID.NONE
 func enter(p_character: BaseCharacter, payload = null) -> void: 
 	character  = p_character
 	controller = character.controller
+	print("enter in:", state_id)
 func exit()                                          -> void: pass
 func update(_delta: float)                           -> void: pass

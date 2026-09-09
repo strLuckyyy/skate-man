@@ -40,6 +40,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if race_running: return
 	cd_label.text = str(int(countdown.get_remaining_time()))
 	
 	if not can_start_cd: return
