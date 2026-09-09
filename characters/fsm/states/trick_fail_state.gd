@@ -55,7 +55,7 @@ func update(delta: float) -> void:
 			character.velocity.x = 0.0
 		
 		if current_recover_time >= RECOVER_TIMEOUT:
-			emit_signal("transition_requested", Global.StateID.ON_FLOOR, null)
+			emit_signal("transition_requested", Global.StateID.ON_FLOOR, true)
 	character.move_and_slide()
 
 
@@ -69,4 +69,4 @@ func exit() -> void:
 	controller.is_trick_fail = false
 	controller.can_jump      = true
 	controller.can_move      = true
-	current_recover_time    = 0.0
+	current_recover_time     = 0.0

@@ -693,6 +693,28 @@
 [ext_resource type="Texture2D" uid="uid://bmjr7ph5ws0d5" path="res://assets/characters/porter/animations files/surf/surf-out/0008.png" id="650_qwhw4"]
 [ext_resource type="Texture2D" uid="uid://d3ui3hndkqrrr" path="res://assets/characters/porter/animations files/surf/surf-out/0009.png" id="651_ktyf0"]
 [ext_resource type="Texture2D" uid="uid://xt1y1f31asfy" path="res://assets/characters/porter/animations files/surf/surf-out/0010.png" id="652_tna3k"]
+[ext_resource type="Texture2D" uid="uid://bfyiqse11465g" path="res://assets/characters/porter/animations files/trick-fail/0001.png" id="691_kx2ws"]
+[ext_resource type="Texture2D" uid="uid://b5kvffy5e4p77" path="res://assets/characters/porter/animations files/trick-fail/0002.png" id="692_b2r22"]
+[ext_resource type="Texture2D" uid="uid://brs2v5dvbhfc" path="res://assets/characters/porter/animations files/trick-fail/0003.png" id="693_qpuvp"]
+[ext_resource type="Texture2D" uid="uid://bu24tie64j6sx" path="res://assets/characters/porter/animations files/trick-fail/0004.png" id="694_imfgd"]
+[ext_resource type="Texture2D" uid="uid://fc8m5x80dy3x" path="res://assets/characters/porter/animations files/trick-fail/0005.png" id="695_63hcn"]
+[ext_resource type="Texture2D" uid="uid://bbs4r5ni4tmso" path="res://assets/characters/porter/animations files/trick-fail/0006.png" id="696_g43xc"]
+[ext_resource type="Texture2D" uid="uid://c4kkne4e0sdhi" path="res://assets/characters/porter/animations files/trick-fail/0007.png" id="697_gsmxb"]
+[ext_resource type="Texture2D" uid="uid://cgyef8gydp5br" path="res://assets/characters/porter/animations files/trick-fail/0008.png" id="698_phsg5"]
+[ext_resource type="Texture2D" uid="uid://c6q2hbxbvk15t" path="res://assets/characters/porter/animations files/trick-fail/0009.png" id="699_hjf2t"]
+[ext_resource type="Texture2D" uid="uid://dsux2ft1rb2wj" path="res://assets/characters/porter/animations files/trick-fail/0010.png" id="700_qgmwi"]
+[ext_resource type="Texture2D" uid="uid://bvdxcbmirux5d" path="res://assets/characters/porter/animations files/trick-fail/0011.png" id="701_fa23j"]
+[ext_resource type="Texture2D" uid="uid://bjiwtcj4bwyd0" path="res://assets/characters/porter/animations files/trick-fail/0012.png" id="702_qcr5p"]
+[ext_resource type="Texture2D" uid="uid://s02sli5os1c4" path="res://assets/characters/porter/animations files/trick-fail/0013.png" id="703_qwhw4"]
+[ext_resource type="Texture2D" uid="uid://uauygjpgbpst" path="res://assets/characters/porter/animations files/trick-fail/0014.png" id="704_ktyf0"]
+[ext_resource type="Texture2D" uid="uid://cr23b1q4gj4aw" path="res://assets/characters/porter/animations files/trick-fail/0015.png" id="705_tna3k"]
+[ext_resource type="Texture2D" uid="uid://b1s481ffsk02b" path="res://assets/characters/porter/animations files/trick-fail/0016.png" id="706_7h7u0"]
+[ext_resource type="Texture2D" uid="uid://dksuto125lp8m" path="res://assets/characters/porter/animations files/trick-fail/0017.png" id="707_mqy00"]
+[ext_resource type="Texture2D" uid="uid://b6kw7jr0j55sh" path="res://assets/characters/porter/animations files/trick-fail/0018.png" id="708_giocj"]
+[ext_resource type="Texture2D" uid="uid://dxn6g3lgivjpn" path="res://assets/characters/porter/animations files/trick-fail/0019.png" id="709_dv5k3"]
+[ext_resource type="Texture2D" uid="uid://dhyn6b2o4tv0g" path="res://assets/characters/porter/animations files/trick-fail/0020.png" id="710_davbf"]
+[ext_resource type="Texture2D" uid="uid://prmcxpe7vs1x" path="res://assets/characters/porter/animations files/trick-fail/0021.png" id="711_a7yvh"]
+[ext_resource type="Texture2D" uid="uid://byqeqsljjbl2t" path="res://assets/characters/porter/animations files/trick-fail/0022.png" id="712_w1kds"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rpf03"]
 font_size = 40
@@ -2591,7 +2613,7 @@ animations = [{
 "texture": ExtResource("555_o3fts")
 }],
 "loop": 0,
-"name": &"run",
+"name": &"push",
 "speed": 30.0
 }, {
 "frames": [{
@@ -2914,6 +2936,77 @@ animations = [{
 "loop": 0,
 "name": &"surf-out",
 "speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("691_kx2ws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("692_b2r22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("693_qpuvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("694_imfgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("695_63hcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("696_g43xc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("697_gsmxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("698_phsg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("699_hjf2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("700_qgmwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("701_fa23j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("702_qcr5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("703_qwhw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("704_ktyf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("705_tna3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("706_7h7u0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("707_mqy00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("708_giocj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("709_dv5k3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("710_davbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("711_a7yvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("712_w1kds")
+}],
+"loop": 0,
+"name": &"trick-fail",
+"speed": 24.0
 }]
 
 [node name="Player" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
@@ -2991,13 +3084,11 @@ label_settings = SubResource("LabelSettings_3t07l")
 [node name="CollisionShape2D" parent="." index="1" unique_id=367863434]
 shape = SubResource("CapsuleShape2D_1f1u2")
 
-[node name="AnimatedSprite2D" parent="." index="2" unique_id=915211023]
+[node name="CharacterAnimator" parent="." index="2" unique_id=915211023]
 position = Vector2(7, -145)
 scale = Vector2(0.52, 0.52)
 sprite_frames = SubResource("SpriteFrames_sn1g0")
-animation = &"surf-out"
-frame = 9
-frame_progress = 1.0
+animation = &"push"
 
 [node name="InputBuffer" parent="." index="3" unique_id=69867716 instance=ExtResource("4_iai5m")]
 unique_name_in_owner = true

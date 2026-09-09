@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 
 func start_race():
 	controller.is_locked = false
+	character_animator.play_animation("idle-in")
 
 
 func end_race():
@@ -83,7 +84,9 @@ func end_race():
 # Movement
 # ---------------------------------------------------------------------------
 
-func apply_push(_forced := false) -> void: pass
+func apply_push(_forced := false) -> void: 
+	character_animator.play_animation("push")
+
 
 func apply_momentum(floor_normal: Vector2) -> void:
 	velocity = controller.apply_momentum(
@@ -118,6 +121,7 @@ func apply_slope_rotation(delta: float) -> void:
 func apply_jump(mult: float = 1.0) -> void:
 	var m = mult if mult != 0.0 else 1.0
 	velocity = controller.apply_jump(velocity, equipment.current_equipment) * m
+	character_animator.play_animation("jump")
 
 
 func apply_gravity(delta: float) -> void:

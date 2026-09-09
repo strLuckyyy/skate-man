@@ -3,9 +3,10 @@ extends Node
 
 signal equipment_changed(equipment: EquipmentData, tricks: Array[BaseTrick])
 
-@export var default_equipment: EquipmentData
-var current_equipment:         EquipmentData
-var _current_tricks:           Array[BaseTrick] = []
+@onready var animated_sprite:   CharacterAnimator = %CharacterAnimator
+@export  var default_equipment: EquipmentData
+var current_equipment:          EquipmentData
+var _current_tricks:            Array[BaseTrick] = []
 
 func get_trick_pool(state: Global.StateID = Global.StateID.NONE) -> Array[TrickData]:
 	var pool: Array[TrickData]
@@ -51,6 +52,7 @@ func _build_tricks() -> Array[BaseTrick]:
 		if trick == null:
 			push_error("Trick scene does not extend BaseTrick. Object: ", owner.name)
 			continue
+		trick.setup(animated_sprite)
 		scenes.append(trick)
 	
 	# order by priority

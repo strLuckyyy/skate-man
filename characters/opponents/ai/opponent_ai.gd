@@ -65,6 +65,7 @@ func _push_time(delta: float):
 
 
 func apply_push(forced := false) -> void:
+	super.apply_push(forced)
 	if not forced:
 		if not _can_push: return
 	velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed, forced)

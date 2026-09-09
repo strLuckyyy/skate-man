@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://b8k5ftacnuo4"]
 
 [ext_resource type="PackedScene" uid="uid://4rv2qcgbaw0i" path="res://characters/base/ai/base_ai.tscn" id="1_n6juw"]
-[ext_resource type="Texture2D" uid="uid://3mu2um647vjy" path="res://assets/sprites/enemy_placeholder1.png" id="2_3ilrn"]
 [ext_resource type="Script" uid="uid://bjs7prebesdpk" path="res://data/ai_profile_data.gd" id="2_gyjpf"]
 [ext_resource type="BehaviorTree" uid="uid://cymenedscfq63" path="res://characters/opponents/ai/tree/bt_opponent.tres" id="3_jn72f"]
+[ext_resource type="Script" uid="uid://dinoqxis0pi2a" path="res://characters/components/character_animator.gd" id="4_gyjpf"]
 [ext_resource type="Resource" uid="uid://dgvcqoj5a02we" path="res://characters/equipment/skate/skate.tres" id="4_meift"]
+[ext_resource type="Texture2D" uid="uid://em4excujg1ci" path="res://assets/characters/john/animation_files/0001.png" id="4_x53m4"]
 [ext_resource type="Script" uid="uid://je56wctexd5b" path="res://characters/opponents/ai/perceptions/set_perception_shape_position.gd" id="5_jn72f"]
+[ext_resource type="Texture2D" uid="uid://b0ekkmide73jx" path="res://assets/characters/john/animation_files/0008.png" id="5_xw4jr"]
 
 [sub_resource type="Resource" id="Resource_ru431"]
 script = ExtResource("2_gyjpf")
@@ -15,61 +17,40 @@ metadata/_custom_type_script = "uid://bjs7prebesdpk"
 radius = 46.0
 height = 264.0
 
-[sub_resource type="Animation" id="Animation_jn72f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:skew")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.215, 0.215)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2kdqk"]
-_data = {
-&"RESET": SubResource("Animation_jn72f")
-}
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7347"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_x53m4")
+}],
+"loop": 1,
+"name": &"idle_in",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_x53m4")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_x53m4")
+}],
+"loop": 1,
+"name": &"mommentum",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xw4jr")
+}],
+"loop": 1,
+"name": &"push",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyg4d"]
 size = Vector2(405, 429)
@@ -77,12 +58,16 @@ size = Vector2(405, 429)
 [node name="AIJohn" unique_id=1969115429 instance=ExtResource("1_n6juw")]
 profile_data = SubResource("Resource_ru431")
 
-[node name="Sprite2D" parent="." index="0" unique_id=1747011181]
-scale = Vector2(0.215, 0.215)
-texture = ExtResource("2_3ilrn")
-
-[node name="CollisionShape2D" parent="." index="1" unique_id=367863434]
+[node name="CollisionShape2D" parent="." index="0" unique_id=367863434]
 shape = SubResource("CapsuleShape2D_3ilrn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1" unique_id=915211023]
+unique_name_in_owner = true
+position = Vector2(0, -50.999992)
+scale = Vector2(0.34, 0.34)
+sprite_frames = SubResource("SpriteFrames_a7347")
+animation = &"idle_in"
+script = ExtResource("4_gyjpf")
 
 [node name="BTPlayer" parent="." index="2" unique_id=94575947]
 behavior_tree = ExtResource("3_jn72f")
@@ -93,10 +78,7 @@ unique_name_in_owner = true
 [node name="EquipmentManager" parent="." index="7" unique_id=2011998462]
 default_equipment = ExtResource("4_meift")
 
-[node name="AnimationPlayer" parent="." index="11" unique_id=1748857434]
-libraries/ = SubResource("AnimationLibrary_2kdqk")
-
-[node name="AIPerceptionRadar" parent="." index="12" unique_id=718027603]
+[node name="AIPerceptionRadar" parent="." index="10" unique_id=718027603]
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 204

@@ -2,15 +2,19 @@ class_name BaseTrick
 extends Node2D
 
 @export var trick_data: TrickData
-var anim_name:         StringName
+var anim_name:          StringName
 var _state_available:   Array[Global.StateID]
 var is_grind_trick:     bool = false
 var cd_timer:           Timer
-var anim_player:        AnimationPlayer
+var anim_sprite:        CharacterAnimator
 
 
 func get_state_available() -> Array[Global.StateID]: 
 	return _state_available.duplicate(true)
+
+
+func setup(animated_sprite: CharacterAnimator) -> void:
+	self.anim_sprite = animated_sprite
 
 
 func _ready() -> void:
@@ -26,10 +30,6 @@ func _ready() -> void:
 	
 	add_child(cd_timer)
 	cd_timer.timeout.connect(_on_cd_timer_timeout)
-
-
-func set_anim_player(animation_player: AnimationPlayer) -> void:
-	anim_player = animation_player
 
 
 func can_execute(context: TrickContext) -> bool:
@@ -52,8 +52,8 @@ func can_execute(context: TrickContext) -> bool:
 
 func execute(_context: TrickContext) -> void:
 	if cd_timer.is_stopped(): cd_timer.start()
+	anim_sprite.play(anim_name)
 	print("executing ", self.name, " logic.")
-	pass
 
 
 ##Checks if the current input buffer matches the trick's required input sequence.

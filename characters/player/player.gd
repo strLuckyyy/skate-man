@@ -55,8 +55,8 @@ func _calculate_movement() -> void:
 
 
 func apply_push(forced := false) -> void:
+	super.apply_push(forced)
 	velocity = controller.apply_push(velocity, equipment.current_equipment, current_boost_speed, forced)
-
 
 # ---------------------------------------------------------------------------
 # Gameplay callbacks
