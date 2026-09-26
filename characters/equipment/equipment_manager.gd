@@ -9,16 +9,16 @@ var current_equipment:          EquipmentData
 var _current_tricks:            Array[BaseTrick] = []
 
 func get_trick_pool(state: Global.StateID = Global.StateID.NONE) -> Array[TrickData]:
-	var pool: Array[TrickData]
-	
-	if state == Global.StateID.NONE:
-		for trick in _current_tricks:
+	var pool: Array[TrickData] = []
+
+	for trick: BaseTrick in _current_tricks:
+		if state == Global.StateID.NONE:
 			pool.append(trick.trick_data)
-		return pool
-	
-	for trick in _current_tricks:
+			continue
+
 		if state in trick.get_state_available():
 			pool.append(trick.trick_data)
+
 	return pool
 
 
@@ -45,26 +45,33 @@ func get_tricks() -> Array[BaseTrick]:
 
 func _build_tricks() -> Array[BaseTrick]:
 	_clear_tricks()
-	var scenes: Array[BaseTrick] = []
+	var tricks: Array[BaseTrick] = []
 	
-	for packed_scene in current_equipment.tricks:
-		var trick = packed_scene.instantiate() as BaseTrick
-		if trick == null:
-			push_error("Trick scene does not extend BaseTrick. Object: ", owner.name)
+	for trick_data: TrickData in current_equipment.tricks:
+		if trick_data == null:
+			push_error(
+				"Equipment contains a null TrickData. Object: ",
+				owner.name
+			)
 			continue
+
+		var trick := BaseTrick.new()
+
+		trick.trick_data = trick_data
 		trick.setup(animated_sprite)
-		scenes.append(trick)
+
+		tricks.append(trick)
 	
 	# order by priority
-	scenes.sort_custom(func(a: BaseTrick, b: BaseTrick) -> bool:
+	tricks.sort_custom(func(a: BaseTrick, b: BaseTrick) -> bool:
 		if not a.trick_data or not b.trick_data:
 			return false
 		return a.trick_data.priority < b.trick_data.priority
 	)
 	
-	for trick in scenes:
+	for trick in tricks:
 		add_child(trick)
-	return scenes
+	return tricks
 
 
 func _clear_tricks() -> void:

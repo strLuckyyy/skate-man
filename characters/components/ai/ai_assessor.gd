@@ -44,5 +44,4 @@ func get_random_trick(trick_pool: Array[TrickData], requires_grind: bool = false
 
 ## Função auxiliar para identificar se a TrickData suporta Grind
 func _is_grind_trick(trick: TrickData) -> bool:
-	var grind_state = Global.StateID.ON_GRIDING
-	return grind_state in trick.state_available or grind_state in trick.conditional_state_available
+	return trick.is_grind_trick

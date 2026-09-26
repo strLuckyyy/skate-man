@@ -62,7 +62,7 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	is_busy      = true
 	active_trick = trick
 	
-	EventBus.trick_detected.emit(trick.trick_data)
+	EventBus.trick_detected.emit(trick)
 	trick_started.emit(trick) 
 	
 	if trick.is_grind_trick and context.get_grind_opportunity():

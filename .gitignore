@@ -1,10 +1,27 @@
 # Godot 4+ specific ignores
 .godot/
+.import/
+
+# Arquivos de exportação do jogo
+*.translation
+*.pck
+*.apk
+*.exe
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
 *.tmp
 /android/
+
 *.zip
 /.vscode
+
 *tccfiles/
-*.exe
+
 *apikey.gd
 *apikey.gd.uid
+
+.fake

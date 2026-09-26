@@ -8,4 +8,5 @@ trick_name = "Manual"
 sequence = Array[int]([3])
 state_available = Array[int]([2])
 conditional_state_available = Array[int]([5])
+is_grind_trick = true
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

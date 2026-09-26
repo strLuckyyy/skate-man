@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://nemj62nj8q53" path="res://assets/characters/porter/animations files/back-flip/0001.png" id="4_doiu5"]
 [ext_resource type="PackedScene" uid="uid://cc4jikaqqcx1d" path="res://characters/components/input_buffer.tscn" id="4_iai5m"]
 [ext_resource type="Texture2D" uid="uid://bhlpkoxydwvhn" path="res://assets/characters/porter/animations files/braking/0002.png" id="5_8xm28"]
-[ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/equipment/hand_truck/hand_truck_data.tres" id="5_sh2bi"]
+[ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/equipment/hand_truck/hand_truck.tres" id="5_sh2bi"]
 [ext_resource type="Texture2D" uid="uid://chln6vtd4762v" path="res://assets/characters/porter/animations files/back-flip/0002.png" id="5_t8c0d"]
 [ext_resource type="Texture2D" uid="uid://d38bm57y6dbpk" path="res://assets/characters/porter/animations files/idle/idle-in/0002.png" id="5_x3apq"]
 [ext_resource type="Texture2D" uid="uid://ueqii0si7fka" path="res://assets/characters/porter/animations files/idle/idle-in/0003.png" id="6_k30j8"]
