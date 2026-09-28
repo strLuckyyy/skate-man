@@ -18,9 +18,9 @@ Thumbs.db
 
 *.zip
 /.vscode
-
 *tccfiles/
-
+*assets/
+*addons/
 *apikey.gd
 *apikey.gd.uid
 
