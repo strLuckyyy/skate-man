@@ -16,7 +16,7 @@ func _ready() -> void:
 	var sequence_signal = trie_navigator.sequence_resolved
 	
 	trie_navigator.setup(input_buffer, equipment)
-	trick_system.  setup(self, equipment, character_animator, sequence_signal)
+	trick_system.  setup(self, equipment, character_animator, sequence_signal, input_buffer)
 
 
 func _physics_process(delta: float) -> void:

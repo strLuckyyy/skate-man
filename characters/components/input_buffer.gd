@@ -20,6 +20,10 @@ var _held_directions: Dictionary              = { }
 var input_deadzone := 0.1
 
 
+func get_is_direction_held(direction: Global.Direction) -> bool:
+	return _held_directions.get(direction, false)
+
+
 func _ready() -> void:
 	_buffer_time           = $Timer
 	_buffer_time.wait_time = BUFFER_TIMEOUT

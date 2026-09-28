@@ -6,9 +6,10 @@ extends Node2D
 var anim_name:   StringName
 var cd_timer:    Timer
 var anim_sprite: CharacterAnimator
-
-
 var _state_available: Array[Global.StateID]
+
+
+var state_available: Array[Global.StateID]:
 	get:
 		return _state_available.duplicate(true)
 

@@ -5,8 +5,10 @@
 [resource]
 script = ExtResource("1_1l0p5")
 trick_name = "Manual"
-sequence = Array[int]([3])
+sequence = Array[int]([1])
 state_available = Array[int]([2])
 conditional_state_available = Array[int]([5])
 is_grind_trick = true
+animation_name = &"manual"
+hold_direction = 2
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

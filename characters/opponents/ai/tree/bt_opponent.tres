@@ -1,8 +1,8 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://cymenedscfq63"]
 
 [ext_resource type="Script" uid="uid://xk8gi504vmas" path="res://characters/opponents/ai/tasks/conditions/check_state_condition.gd" id="1_ns51f"]
-[ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/states_task/caught_task.gd" id="2_vjfjo"]
-[ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/states_task/trick_fail_task.gd" id="3_a7347"]
+[ext_resource type="Script" uid="uid://dahag4bwlgij0" path="res://characters/opponents/ai/tasks/states/caught_task.gd" id="2_vjfjo"]
+[ext_resource type="Script" uid="uid://cdivsup6oug7c" path="res://characters/opponents/ai/tasks/states/trick_fail_task.gd" id="3_a7347"]
 [ext_resource type="Script" uid="uid://t6i4wory10em" path="res://characters/opponents/ai/tasks/actions/bt_action_grind.gd" id="4_a7347"]
 [ext_resource type="Script" uid="uid://c0wfqtmh1hbmm" path="res://characters/opponents/ai/tasks/actions/bt_action_ramp.gd" id="5_d373b"]
 [ext_resource type="Script" uid="uid://dwhv3qosje0lt" path="res://characters/opponents/ai/tasks/actions/bt_action_cruise.gd" id="6_wwfib"]

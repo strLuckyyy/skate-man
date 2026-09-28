@@ -2,7 +2,7 @@ class_name Menu
 extends Control
 
 
-@onready var level = preload("res://levels/1_level/level-1.tscn")
+@onready var level = preload("res://levels/level_01/level_01.tscn")
 
 
 func _on_button_pressed() -> void:

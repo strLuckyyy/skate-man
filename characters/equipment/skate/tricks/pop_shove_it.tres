@@ -7,4 +7,5 @@ script = ExtResource("1_tuavd")
 trick_name = "Pop Shove It"
 sequence = Array[int]([0, 1])
 state_available = Array[int]([2])
+animation_name = &"pop_shove_it"
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"
