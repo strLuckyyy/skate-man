@@ -6,7 +6,8 @@ var is_trick_fail: bool  = false
 var can_jump:      bool  = true
 var can_move:      bool  = true
 var is_jumping:    bool  = false
-var is_moving:     bool  = false
+var is_moving:     bool  = false:
+	get: return abs(direction) > 0.0
 var jumped:        int   = 0
 var direction:     float = 1.0 # 1.0 direita; -1.0 esquerda
 
@@ -30,7 +31,9 @@ func update_moving_state(velocity: Vector2) -> void:
 	is_moving = abs(velocity.x) > 5.0 
 
 
-func apply_push(velocity: Vector2, equipment: EquipmentData, current_boost: float = 0.0, forced := false) -> Vector2:
+func apply_push(
+	velocity: Vector2, equipment: EquipmentData, current_boost: float = 0.0, forced := false
+	) -> Vector2:
 	if not forced:
 		if not can_move: return velocity
 		if is_locked: return velocity
@@ -44,7 +47,8 @@ func apply_push(velocity: Vector2, equipment: EquipmentData, current_boost: floa
 	var burst_force = 400.0 + (current_boost * 0.5) 
 	velocity.x += burst_force * direction
 	
-	var cap = clamp(equipment.max_speed + current_boost, equipment.max_speed, equipment.max_boost_speed)
+	var cap = clamp(
+		equipment.max_speed + current_boost, equipment.max_speed, equipment.max_boost_speed)
 	velocity.x = clamp(velocity.x, -cap, cap)
 	
 	return velocity
@@ -58,7 +62,7 @@ func apply_momentum(
 	equipment:     EquipmentData, 
 	current_boost: float = 0.0) -> Vector2:
 	if not can_move: return velocity
-	if is_locked: return velocity
+	if is_locked:    return velocity
 	
 	if is_on_floor and floor_normal != Vector2.UP:
 		var slope_gravity = 1500.0

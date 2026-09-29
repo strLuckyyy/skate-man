@@ -34,7 +34,8 @@ func get_caught() -> void:
 
 func get_max_boost_speed() -> float:
 	if equipment == null: push_error("equipment is null. ", equipment)
-	if equipment.current_equipment == null: push_error("does not have equipment equip. ", equipment.current_equipment)
+	if equipment.current_equipment == null: push_error(
+		"does not have equipment equip. ", equipment.current_equipment)
 	return equipment.current_equipment.max_boost_speed
 
 
@@ -73,7 +74,7 @@ func _physics_process(delta: float) -> void:
 
 func start_race():
 	controller.is_locked = false
-	character_animator.play_animation("idle-in")
+	character_animator.play_animation("idle-in", Global.AnimPriority.BACKGROUND)
 
 
 func end_race():
@@ -84,7 +85,7 @@ func end_race():
 # ---------------------------------------------------------------------------
 
 func apply_push(_forced := false) -> void: 
-	character_animator.play_animation("push")
+	character_animator.play_animation("push", Global.AnimPriority.ACTION)
 
 
 func apply_momentum(floor_normal: Vector2) -> void:
@@ -120,7 +121,7 @@ func apply_slope_rotation(delta: float) -> void:
 func apply_jump(mult: float = 1.0) -> void:
 	var m = mult if mult != 0.0 else 1.0
 	velocity = controller.apply_jump(velocity, equipment.current_equipment) * m
-	character_animator.play_animation("jump", true)
+	character_animator.play_animation("jump", Global.AnimPriority.ACTION)
 
 
 func apply_gravity(delta: float) -> void:

@@ -48,8 +48,7 @@ func update(delta: float) -> void:
 	else:
 		current_recover_time += delta
 		
-		controller.can_jump = false
-		controller.can_move = false
+		controller.set_permissions(false, false)
 		
 		if character.velocity.x > pre_velo.x + _slide_distance:
 			character.velocity.x = 0.0
@@ -67,6 +66,6 @@ func _trigger_crash() -> void:
 
 func exit() -> void:
 	controller.is_trick_fail = false
-	controller.can_jump      = true
-	controller.can_move      = true
 	current_recover_time     = 0.0
+	controller.set_permissions(true, true)
+	character.character_animator.play_animation("idle-in", Global.AnimPriority.CRITICAL)

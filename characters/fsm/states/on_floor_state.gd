@@ -11,7 +11,8 @@ func _init() -> void:
 func enter(p_character: BaseCharacter, payload = null) -> void:
 	super.enter(p_character, payload)
 	controller.set_permissions(true, true)
-	if payload != null: character.character_animator.play_animation("idle-in") # Case state enter before a trick_fail state
+	if payload != null: 
+		character.character_animator.play_animation("idle-in", Global.AnimPriority.BACKGROUND) # Case state enter before a trick_fail state
 
 
 func update(_delta: float) -> void:

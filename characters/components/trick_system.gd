@@ -17,15 +17,16 @@ var _held_trick_direction: Global.Direction = Global.Direction.NONE
 
 
 func get_is_doing_trick() -> bool:
-	return is_busy and active_trick != null # testing something
+	print("checking trick", active_trick, animator)
+	if active_trick == null or animator == null:
+		print("not doing trick because active_trick or animator is null")
+		return false
 	
-	#if active_trick == null or animator == null:
-		#return false
-	#
-	#var is_looping: bool = animator.is_loop_animation()
-	#
-	#if is_looping: return false
-	#return is_busy
+	print("checking if animator is looping")
+	var is_looping: bool = animator.is_loop_animation()
+	print(is_looping, is_busy)
+	if is_looping: return false
+	return is_busy
 
 
 func setup(
@@ -55,7 +56,7 @@ func process(
 		grind_opportunity: bool,
 		grindable:         GrindableObject = null
 ) -> void:
-	if state_id != _current_state: 
+	if state_id != _current_state:
 		_current_state = state_id
 	if grind_opportunity != _grind_opportunity: 
 		_grind_opportunity = grind_opportunity
@@ -66,6 +67,8 @@ func process(
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	if get_is_doing_trick():           return
 	if character.controller.is_locked: return
+
+	print("executing trick:", trick, "with context:", context)
 
 	is_busy               = true
 	active_trick          = trick

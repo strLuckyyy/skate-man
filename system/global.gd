@@ -20,6 +20,17 @@ enum Direction {
 	NONE,
 }
 
+## Animation priority levels
+## Background: Idle, Mommentum
+## Action: Jump, Push
+## Trick: Manuevers, Grinds
+## Critical: Trick Fail, Defeat
+enum AnimPriority { 
+	BACKGROUND, 
+	ACTION, 
+	TRICK, 
+	CRITICAL 
+}
 
 # --- TRICK ENUMs ---
 enum TrickType {
