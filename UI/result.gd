@@ -5,10 +5,10 @@ extends Control
 
 @onready var menu_scene = preload("res://UI/menu.tscn")
 
-func result(position:int):
-	var r = "GANHOU!" if position == 1 else "PERDEU."
+func result(_position:int):
+	var r = "GANHOU!" if _position == 1 else "PERDEU."
 	%Result.text = str("VOCÊ ", r)
-	$VBoxContainer/Label.text = str("Posição: ", position)
+	$VBoxContainer/Label.text = str("Posição: ", _position)
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false

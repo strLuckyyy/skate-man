@@ -1,9 +1,7 @@
 class_name Menu
 extends Control
 
-
-@onready var level = preload("res://levels/level_01/level_01.tscn")
-
+@onready var level: PackedScene = preload("res://levels/level_01/level_01.tscn")
 
 func _on_button_pressed() -> void:
 	%Label2.text = "AGUARDE..."

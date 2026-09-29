@@ -21,8 +21,6 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://b3pkltpeb0apa"
 EventBus="*uid://dl24x3t2r5j6y"
-Signal_Debugger="*uid://4hsxhnqhs7kd"
-SilentWolf="*uid://cot45apb7xq0b"
 
 [display]
 
@@ -36,7 +34,7 @@ project/assembly_name="SkateMan"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/project_health_scanner/plugin.cfg", "res://addons/project_statistics/plugin.cfg", "res://addons/smart-editor-plugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/codeandweb.texturepacker/plugin.cfg", "res://addons/smart-editor-plugin/plugin.cfg")
 
 [global_group]
 

@@ -3,8 +3,15 @@ class_name LevelManager
 extends Node2D
 
 
+
+@onready var player_scene:      PackedScene   = preload(
+	"res://characters/player/player.tscn")
+@onready var default_equipment: EquipmentData = preload(
+	"res://characters/equipment/hand_truck/hand_truck.tres")
+
 #signal race_started(racers: Array)
-@onready var result: PackedScene = preload("res://UI/result.tscn")
+@onready var result: PackedScene = preload(
+	"res://UI/result.tscn")
 @onready var countdown := Countdown.new()
 @onready var cd_label = %Label
 
@@ -30,8 +37,8 @@ func _ready() -> void:
 		racer = spawner.spawn_character(op)
 		spawner.global_position.x -= 10
 		racers.append(racer)
-	racer = spawner.spawn_character(GameManager.player_scene)
-	racer.equip(GameManager.default_equipment)
+	racer = spawner.spawn_character(player_scene)
+	racer.equip(default_equipment)
 	racers.append(racer)
 	
 	await get_tree().create_timer(1.0).timeout
