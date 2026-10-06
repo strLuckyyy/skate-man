@@ -16,7 +16,7 @@ func _tick(_delta: float) -> Status:
 		return RUNNING
 		
 	# 2. IA já está executando algo (não interromper)
-	if _char.trick_system.is_busy:
+	if _char.trick_system.get_is_doing_trick():
 		return RUNNING
 		
 	# 3. Chegou na distância ideal, hora de pular!

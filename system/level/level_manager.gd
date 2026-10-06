@@ -2,8 +2,6 @@
 class_name LevelManager
 extends Node2D
 
-
-
 @onready var player_scene:      PackedScene   = preload(
 	"res://characters/player/player.tscn")
 @onready var default_equipment: EquipmentData = preload(
@@ -11,35 +9,30 @@ extends Node2D
 
 #signal race_started(racers: Array)
 @onready var result: PackedScene = preload(
-	"res://UI/result.tscn")
+	"res://UI/gameplay/result.tscn")
 @onready var countdown := Countdown.new()
-@onready var cd_label = %Label
+@onready var cd_label = $RaceManager/CountdownLabel
 
-@export var data:         LevelData
 @export var spawner:      Spawner
 @export var race_manager: RaceManager
 @export var canvas:       CanvasLayer
 
-var result_inst:         Control
-var race_running:        bool = false
-var can_start_cd:        bool = false
-var racers:              Array
+var data:         LevelData
+var result_inst:  Control
+var race_running: bool = false
+var can_start_cd: bool = false
+var racers:       Array
 
 
 func _ready() -> void:
-	#GameManager.level_loaded.connect(_on_level_data_received)
-	race_manager.race_finished.connect(finish)
+	if GameManager.level_data == null:
+		push_error("whitout data")
+	data = GameManager.level_data
+	
 	get_tree().paused = false
+	race_manager.race_finished.connect(finish)
 	
-	var racer: BaseCharacter
-	
-	for op in data.opponents:
-		racer = spawner.spawn_character(op)
-		spawner.global_position.x -= 10
-		racers.append(racer)
-	racer = spawner.spawn_character(player_scene)
-	racer.equip(default_equipment)
-	racers.append(racer)
+	_spawn()
 	
 	await get_tree().create_timer(1.0).timeout
 	countdown.begin(3.)
@@ -55,7 +48,7 @@ func _process(delta: float) -> void:
 	
 	if countdown.countdown_ended():
 		cd_label.text = ""
-		race_running = true
+		race_running  = true
 		for i : BaseCharacter in racers: i.start_race()
 
 
@@ -73,3 +66,15 @@ func finish(position: int):
 	result_inst.result(position)
 	result_inst.visible = true
 	get_tree().paused = true
+
+
+func _spawn() -> void:
+	var racer: BaseCharacter
+	if data.opponent != null: 
+		racer = spawner.spawn_character(data.opponent)
+		spawner.global_position.x -= 10
+		racers.append(racer)
+	
+	racer = spawner.spawn_character(player_scene)
+	racer.equip(default_equipment)
+	racers.append(racer)

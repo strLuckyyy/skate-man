@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://c5onctgw4u56m"]
+
+[ext_resource type="FontFile" uid="uid://b8w12njyn3c7c" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_klimt"]
+
+[resource]
+font = ExtResource("1_klimt")
+font_size = 80
+outline_size = 44
+outline_color = Color(0, 0, 0, 1)

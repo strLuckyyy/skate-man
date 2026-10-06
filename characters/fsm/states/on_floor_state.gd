@@ -8,11 +8,13 @@ func _init() -> void:
 
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
-func enter(p_character: BaseCharacter, payload = null) -> void:
-	super.enter(p_character, payload)
+func enter(p_character: BaseCharacter, _payload = null) -> void:
+	super.enter(p_character, _payload)
 	controller.set_permissions(true, true)
-	if payload != null: 
-		character.character_animator.play_animation("idle-in", Global.AnimPriority.BACKGROUND) # Case state enter before a trick_fail state
+	if _payload != null: 
+		character.character_animator.play_animation(
+			character.character_animator.MOMMENTUM
+		)
 
 
 func update(_delta: float) -> void:

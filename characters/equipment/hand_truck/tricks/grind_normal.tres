@@ -5,8 +5,11 @@
 [resource]
 script = ExtResource("1_mcu1a")
 trick_name = "Normal Slide"
+trick_type = 5
 sequence = Array[int]([1])
 state_available = Array[int]([5])
 conditional_state_available = Array[int]([3, 4])
+is_grind_trick = true
+is_compose = true
 animation_name = &"grind-normal"
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

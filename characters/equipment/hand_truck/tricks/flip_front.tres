@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_164o2")
 trick_name = "Front Flip"
+trick_type = 4
 sequence = Array[int]([1, 2])
 state_available = Array[int]([3, 4])
 animation_name = &"flip-front"

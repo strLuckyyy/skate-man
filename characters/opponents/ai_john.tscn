@@ -2,21 +2,24 @@
 
 [ext_resource type="PackedScene" uid="uid://4rv2qcgbaw0i" path="res://characters/base/ai/base_ai.tscn" id="1_n6juw"]
 [ext_resource type="Script" uid="uid://bjs7prebesdpk" path="res://data/ai_profile_data.gd" id="2_gyjpf"]
-[ext_resource type="SpriteFrames" uid="uid://c84lsb7hud2qe" path="res://characters/opponents/ai_john.tres" id="3_e6ymm"]
+[ext_resource type="Texture2D" uid="uid://dnqm5ouiq5a4f" path="res://assets/characters/john/john-heel_flip/spritesheet.sprites/0001.tres" id="3_gyjpf"]
 [ext_resource type="BehaviorTree" uid="uid://cymenedscfq63" path="res://characters/opponents/ai/tree/bt_opponent.tres" id="3_jn72f"]
 [ext_resource type="Resource" uid="uid://dgvcqoj5a02we" path="res://characters/equipment/skate/skate.tres" id="4_meift"]
 [ext_resource type="Script" uid="uid://je56wctexd5b" path="res://characters/opponents/ai/perceptions/set_perception_shape_position.gd" id="5_jn72f"]
+[ext_resource type="AnimationLibrary" uid="uid://ddc00axvyngbk" path="res://characters/opponents/ai_john_lib.tres" id="7_ru431"]
 
 [sub_resource type="Resource" id="Resource_ru431"]
 script = ExtResource("2_gyjpf")
 metadata/_custom_type_script = "uid://bjs7prebesdpk"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ilrn"]
-radius = 46.0
-height = 264.0
+radius = 103.0
+height = 524.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyg4d"]
-size = Vector2(405, 429)
+size = Vector2(793, 818)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q4mpy"]
 
 [node name="AIJohn" unique_id=1969115429 instance=ExtResource("1_n6juw")]
 profile_data = SubResource("Resource_ru431")
@@ -24,11 +27,10 @@ profile_data = SubResource("Resource_ru431")
 [node name="CollisionShape2D" parent="." index="0" unique_id=367863434]
 shape = SubResource("CapsuleShape2D_3ilrn")
 
-[node name="CharacterAnimator" parent="." index="1" unique_id=915211023]
-position = Vector2(0, -75.115)
-scale = Vector2(0.385, 0.385)
-sprite_frames = ExtResource("3_e6ymm")
-animation = &"idle-in"
+[node name="Sprite2D" parent="." index="1" unique_id=1623025330]
+position = Vector2(0, -151)
+scale = Vector2(0.765, 0.765)
+texture = ExtResource("3_gyjpf")
 
 [node name="BTPlayer" parent="." index="2" unique_id=94575947]
 behavior_tree = ExtResource("3_jn72f")
@@ -36,7 +38,7 @@ behavior_tree = ExtResource("3_jn72f")
 [node name="AIAssessor" parent="." index="3" unique_id=1651548237]
 unique_name_in_owner = true
 
-[node name="EquipmentManager" parent="." index="7" unique_id=2011998462]
+[node name="EquipmentManager" parent="." index="8" unique_id=2011998462]
 default_equipment = ExtResource("4_meift")
 
 [node name="AIPerceptionRadar" parent="." index="10" unique_id=718027603]
@@ -45,11 +47,18 @@ collision_layer = 2
 collision_mask = 204
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIPerceptionRadar" index="0" unique_id=321310269 node_paths=PackedStringArray("agent")]
-position = Vector2(322, 0)
+position = Vector2(632.5, -20)
 shape = SubResource("RectangleShape2D_cyg4d")
 debug_color = Color(0.48158604, 0.587405, 0, 0.41960785)
 script = ExtResource("5_jn72f")
 agent = NodePath("../..")
+
+[node name="AnimationPlayer" parent="." index="12" unique_id=213794813]
+libraries/ai_john_lib = ExtResource("7_ru431")
+
+[node name="AnimationTree" parent="." index="13" unique_id=745438659]
+tree_root = SubResource("AnimationNodeStateMachine_q4mpy")
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="body_entered" from="AIPerceptionRadar" to="AIPerceptionRadar" method="_on_body_entered"]
 [connection signal="body_exited" from="AIPerceptionRadar" to="AIPerceptionRadar" method="_on_body_exited"]

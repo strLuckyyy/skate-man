@@ -55,12 +55,12 @@ func _build_tricks() -> Array[BaseTrick]:
 				owner.name
 			)
 			continue
-
+	
 		var trick := BaseTrick.new()
-
+	
 		trick.trick_data = trick_data
 		trick.setup(animated_sprite)
-
+	
 		tricks.append(trick)
 	
 	# order by priority

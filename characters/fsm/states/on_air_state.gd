@@ -13,8 +13,8 @@ func _init() -> void:
 
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable_base_class")
-func enter(p_character: BaseCharacter, payload = null) -> void:
-	super.enter(p_character, payload)
+func enter(p_character: BaseCharacter, _payload = null) -> void:
+	super.enter(p_character, _payload)
 	_fall_elapsed   = 0.0
 	coyote_time.begin(character)
 	controller.set_permissions(false, true)

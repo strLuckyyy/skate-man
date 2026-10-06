@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://ds6d8ot4rhs10"]
+
+[ext_resource type="FontFile" uid="uid://b8w12njyn3c7c" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_174h2"]
+[ext_resource type="Texture2D" uid="uid://c47mcq26xf6o7" path="res://assets/ui/hud_caixa_de_texto.svg" id="2_p6yrd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14uf7"]
+texture = ExtResource("2_p6yrd")
+expand_margin_left = 12.0
+expand_margin_top = 8.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wyc02"]
+texture = ExtResource("2_p6yrd")
+expand_margin_top = 5.0
+
+[node name="MainMenu" type="HBoxContainer" unique_id=2064773964]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=368608077]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(2.795, 0.065)
+offset_transform_scale = Vector2(1.265, 1.265)
+offset_transform_visual_only = false
+accessibility_region = true
+alignment = 1
+
+[node name="NewGame" type="Button" parent="VBoxContainer" unique_id=1498706266]
+layout_mode = 2
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_174h2")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_14uf7")
+text = "  New game  "
+icon_alignment = 1
+expand_icon = true
+
+[node name="Continue" type="Button" parent="VBoxContainer" unique_id=856925215]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.3, 0.285)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_174h2")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_14uf7")
+disabled = true
+text = "  Continue  "
+icon_alignment = 1
+expand_icon = true
+
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=883027568]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.6, 0.58)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_174h2")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_14uf7")
+disabled = true
+text = "  Options  "
+icon_alignment = 1
+expand_icon = true
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=124730830]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.9, 1.35)
+offset_transform_scale = Vector2(1.09, 1.09)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_174h2")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_wyc02")
+text = "  SAIR  "
+icon_alignment = 1
+expand_icon = true

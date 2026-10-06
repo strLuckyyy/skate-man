@@ -17,8 +17,8 @@ func _init() -> void:
 
 
 @warning_ignore("shadowed_variable_base_class")
-func enter(p_character: BaseCharacter, payload = null) -> void:
-	super.enter(p_character, payload)
+func enter(p_character: BaseCharacter, _payload = null) -> void:
+	super.enter(p_character, _payload)
 	controller.is_trick_fail = true
 	controller.set_permissions(false, false)
 	has_crashed              = false
@@ -26,8 +26,8 @@ func enter(p_character: BaseCharacter, payload = null) -> void:
 	
 	coyote_time.begin(character)
 	
-	if payload != null:
-		character.velocity = payload
+	if _payload != null:
+		character.velocity = _payload
 	
 	if character.is_on_floor():
 		_trigger_crash()
@@ -55,7 +55,7 @@ func update(delta: float) -> void:
 		
 		if current_recover_time >= RECOVER_TIMEOUT:
 			emit_signal("transition_requested", Global.StateID.ON_FLOOR, true)
-	character.move_and_slide()
+	#character.move_and_slide()
 
 
 func _trigger_crash() -> void:
@@ -68,4 +68,4 @@ func exit() -> void:
 	controller.is_trick_fail = false
 	current_recover_time     = 0.0
 	controller.set_permissions(true, true)
-	character.character_animator.play_animation("idle-in", Global.AnimPriority.CRITICAL)
+	character.character_animator.play_animation("idle")

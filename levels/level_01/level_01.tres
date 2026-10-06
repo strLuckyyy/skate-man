@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://bh0div42mxwwn"]
+
+[ext_resource type="Texture2D" uid="uid://cqfomxe0trt6g" path="res://assets/ui/menus/perfil/john-skate-perfil.svg" id="1_isqgh"]
+[ext_resource type="Texture2D" uid="uid://dv4wtdl2fe16k" path="res://assets/ui/menus/perfil/john-perfil.svg" id="1_rvu1s"]
+[ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="1_wgjbn"]
+[ext_resource type="PackedScene" uid="uid://d1t274xpem1ox" path="res://levels/level_01/level_01.tscn" id="2_05auh"]
+[ext_resource type="Texture2D" uid="uid://c8tohpo6p83ea" path="res://assets/ui/menus/level_perfil/level_x_perfil.png" id="2_gah0d"]
+[ext_resource type="PackedScene" uid="uid://b8k5ftacnuo4" path="res://characters/opponents/ai_john.tscn" id="2_s6a6q"]
+
+[resource]
+script = ExtResource("1_wgjbn")
+level_scene = ExtResource("2_05auh")
+level_name = &"John - 1/3"
+level_perfil = ExtResource("2_gah0d")
+opponent = ExtResource("2_s6a6q")
+opponent_name = &"John"
+opponent_speed = 25.0
+opponent_boost = 45.0
+opponent_perfil = ExtResource("1_rvu1s")
+equipment_perfil = ExtResource("1_isqgh")
+difficulty = 12.0
+metadata/_custom_type_script = "uid://dpdy24ajsuigx"

@@ -19,7 +19,7 @@ func grind_chain() -> Status:
 		return RUNNING
 	
 	var sequence := ai_assessor.get_random_trick(_trick_pool, true)
-	if _char.can_grind() and not _char.trick_system.is_busy:
+	if _char.can_grind() and not _char.trick_system.get_is_doing_trick():
 		if _char.is_on_floor(): _jump_to_grind(sequence)
 		else: _char.make_trick(sequence)
 	return SUCCESS

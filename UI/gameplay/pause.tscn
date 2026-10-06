@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://dt6aqeno54wyt"]
+
+[ext_resource type="Script" uid="uid://cpd47f4j7tcf4" path="res://UI/gameplay/pause.gd" id="1_c2i8b"]
+[ext_resource type="Texture2D" uid="uid://b1u7bh80s25ei" path="res://assets/ui/ui_background.svg" id="2_ae56k"]
+[ext_resource type="Material" uid="uid://cpmccemrceyrq" path="res://UI/background_material.tres" id="2_dh5oq"]
+[ext_resource type="FontFile" uid="uid://b8w12njyn3c7c" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_h7cot"]
+[ext_resource type="Texture2D" uid="uid://c47mcq26xf6o7" path="res://assets/ui/hud_caixa_de_texto.svg" id="3_ae56k"]
+[ext_resource type="LabelSettings" uid="uid://c5onctgw4u56m" path="res://UI/gameplay/hud/hud_label_settings.tres" id="4_dh5oq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agrac"]
+texture = ExtResource("3_ae56k")
+expand_margin_left = 25.0
+expand_margin_top = 5.0
+expand_margin_right = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g73yl"]
+texture = ExtResource("3_ae56k")
+expand_margin_left = 13.0
+expand_margin_top = 5.0
+expand_margin_right = 13.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdsiw"]
+texture = ExtResource("3_ae56k")
+expand_margin_left = 25.0
+expand_margin_top = 5.0
+expand_margin_right = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3fyh"]
+texture = ExtResource("3_ae56k")
+expand_margin_top = 5.0
+
+[node name="Pause" type="Control" unique_id=1169743778]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c2i8b")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=704532765]
+process_mode = 2
+texture_repeat = 2
+material = ExtResource("2_dh5oq")
+layout_mode = 0
+offset_right = 1271.0
+offset_bottom = 714.9375
+texture = ExtResource("2_ae56k")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="Panel" type="Panel" parent="." unique_id=1020323696]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1450242093]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 124.0
+offset_bottom = 192.0
+grow_horizontal = 2
+text = "PAUSED"
+label_settings = ExtResource("4_dh5oq")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1671123404]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -68.0
+offset_right = 52.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="VBoxContainer" unique_id=48521041]
+process_mode = 2
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_h7cot")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_agrac")
+text = "Continue"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Restart" type="Button" parent="VBoxContainer" unique_id=343891857]
+process_mode = 2
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.25)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_h7cot")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_g73yl")
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer" unique_id=1841928266]
+process_mode = 2
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.5)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_h7cot")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_vdsiw")
+text = "Main Menu"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1755616179]
+process_mode = 2
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.75)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_h7cot")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_j3fyh")
+text = "Exit
+"
+
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

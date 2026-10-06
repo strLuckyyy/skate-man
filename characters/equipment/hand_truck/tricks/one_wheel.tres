@@ -5,7 +5,9 @@
 [resource]
 script = ExtResource("1_hxlge")
 trick_name = "OneWheel"
+trick_type = 3
 sequence = Array[int]([1, 2])
 state_available = Array[int]([2])
+is_compose = true
 animation_name = &"one_wheel"
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

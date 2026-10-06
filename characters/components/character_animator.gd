@@ -1,185 +1,75 @@
-class_name CharacterAnimator
-extends AnimatedSprite2D
+class_name CharacterAnimator 
+extends Node2D
 
-signal trick_animation_finished
+const FINISH_ANIM: StringName = "parameters/conditions/finish_anim"
+const MOMMENTUM: StringName = "mommetum"
+const TRICK_FAIL: StringName = "trick_fail"
+const PUSH: StringName = "push"
+const JUMP: StringName = "jump"
 
-enum TrickPhase { NONE, IN, ING, OUT }
+@export var animation_tree: AnimationTree
+var playback: AnimationNodeStateMachinePlayback
 
-var character:          BaseCharacter
-var is_executing_trick: bool = false
-var current_trick_anim: StringName = ""
+var is_in_composed_anim: bool = false
+var current_composed_anim: StringName = ""
 
-var _trick_phase:      TrickPhase          = TrickPhase.NONE
-var current_priority:  Global.AnimPriority = Global.AnimPriority.BACKGROUND
-
-
-func setup(character_ref: BaseCharacter) -> void:
-	character   = character_ref
-	
-	animation_finished.connect(_on_animation_finished)
-	character.state_machine.state_changed.connect(_on_state_changed)
-	character.grind_component.grind_finished.connect(_on_grind_finished)
+func _ready() -> void:
+	playback = animation_tree.get("parameters/playback")
 
 
-func is_loop_animation(anim_name: StringName = "") -> bool:
-	print("checking loop")
-	if anim_name == "":       anim_name = animation
-	if sprite_frames == null: return false
-	
-	var loop = sprite_frames.get_animation_loop_mode(anim_name)
-	return loop > 0
+func setup(character_ref) -> void:
+	character_ref.state_machine.state_changed.connect(_on_state_changed)
+	character_ref.grind_component.grind_finished.connect(_on_grind_finished)
 
-# ---------------------------------------------------------------------------
-# Core Play Methods
-# ---------------------------------------------------------------------------
 
-func play_trick(anim_path: StringName) -> void:	
-	if anim_path.is_empty():
-		push_warning("A manobra '", anim_path, "' não tem nome de animação válido.")
-		return
-	anim_path = StringName(str(anim_path).strip_edges().to_lower())
-	print(anim_path, current_priority > Global.AnimPriority.TRICK)
-	if current_priority > Global.AnimPriority.TRICK:
-		return
+## Normal execute animations (idle, jump, push, trick_fail)
+func play_animation(anim_path: StringName) -> void:
+	print("anim: ", anim_path)
+	_reset_composed_state()
+	playback.travel(anim_path)
 
-	is_executing_trick = true
-	current_trick_anim = anim_path
-	current_priority   = Global.AnimPriority.TRICK
 
-	var composed := _get_composed_animation(anim_path)
-	if composed["in"] != "":
-		_trick_phase = TrickPhase.IN
-		play(composed["in"])
-	elif composed["ing"] != "":
-		_trick_phase = TrickPhase.ING
-		play(composed["ing"])
+## Trick execute
+func play_trick(anim_path: StringName, is_composed: bool) -> void:
+	print("trick: ", anim_path)
+	if is_composed:
+		is_in_composed_anim = true
+		current_composed_anim = anim_path
+		
+		animation_tree.set(FINISH_ANIM, false)
 	else:
-		_trick_phase = TrickPhase.NONE
-		play(anim_path)
-
-
-func play_animation(
-	anim_path: StringName, priority: Global.AnimPriority = Global.AnimPriority.ACTION) -> void:
-	if priority < current_priority: 
-		return
-	anim_path = StringName(str(anim_path).strip_edges().to_lower())
-	print(anim_path, priority)
-	if is_executing_trick and priority > Global.AnimPriority.TRICK:
-		is_executing_trick = false
-		_trick_phase       = TrickPhase.NONE
-		trick_animation_finished.emit()
-
-	current_trick_anim = anim_path
-	current_priority   = priority
-	play(anim_path)
+		_reset_composed_state()
 	
-# ---------------------------------------------------------------------------
-# Animation resolution
-# ---------------------------------------------------------------------------
-
-func _on_animation_finished() -> void:
-	if is_executing_trick:
-		var composed := _get_composed_animation(current_trick_anim)
-		match _trick_phase:
-			TrickPhase.IN:
-				if composed["ing"] != "":
-					_trick_phase = TrickPhase.ING
-					play(composed["ing"])
-				else:
-					_finish_trick()
-			TrickPhase.ING:
-				if composed["out"] != "":
-					_trick_phase = TrickPhase.OUT
-					play(composed["out"])
-				else:
-					_finish_trick()
-			TrickPhase.OUT, TrickPhase.NONE:
-				_finish_trick()
-	else:
-		if current_priority == Global.AnimPriority.ACTION:
-			current_priority = Global.AnimPriority.BACKGROUND
-			_update_base_animation(character.state_machine.get_current_state_id())
+	playback.travel(anim_path)
 
 
-func finish_trick() -> void:
-	if not is_executing_trick: return
-
-	var composed := _get_composed_animation(current_trick_anim)
-	if composed["out"] != "":
-		_trick_phase = TrickPhase.OUT
-		play(composed["out"])
-	else:
-		_finish_trick()
+func finish_composed_anim() -> void:
+	if is_in_composed_anim:
+		animation_tree.set("parameters/conditions/finish_anim", true)
+		is_in_composed_anim = false
 
 
-func _finish_trick() -> void:
-	is_executing_trick = false
-	current_trick_anim = ""
-	_trick_phase = TrickPhase.NONE
-	current_priority = Global.AnimPriority.BACKGROUND
-	
-	trick_animation_finished.emit()
-	_update_base_animation(character.state_machine.get_current_state_id())
-
-
-func _cancel_trick_animation() -> void:
-	if not is_executing_trick: return
-	
-	is_executing_trick = false
-	current_trick_anim = ""
-	_trick_phase = TrickPhase.NONE
-	current_priority = Global.AnimPriority.BACKGROUND
-	
-	trick_animation_finished.emit()
-
-
-func _get_composed_animation(base_name: StringName) -> Dictionary:
-	var result := { "in": StringName(), "ing": StringName(), "out": StringName() }
-	if sprite_frames == null: return result
-	
-	var in_name  := StringName(str(base_name) + "-in")
-	var out_name := StringName(str(base_name) + "-out")
-	var ing_name : StringName = StringName("mommentum") \
-		if base_name == "idle" else StringName(str(base_name) + "-ing")
-	
-	if sprite_frames.has_animation(in_name): result["in"] = in_name
-	if sprite_frames.has_animation(ing_name): result["ing"] = ing_name
-	if sprite_frames.has_animation(out_name): result["out"] = out_name
-	
-	return result
-
-# ---------------------------------------------------------------------------
-# Gameplay state changes
-# ---------------------------------------------------------------------------
-
-func _on_state_changed(_old_state: Global.StateID, new_state: Global.StateID) -> void:
-	if new_state == Global.StateID.TRICK_FAIL: 
-		_cancel_trick_animation()
-		play_animation("trick_fail", Global.AnimPriority.CRITICAL)
-		return
-	
-	if new_state == Global.StateID.ON_AIR or new_state == Global.StateID.ON_FALLING:
-		if is_executing_trick:
-			_cancel_trick_animation()
-		_update_base_animation(new_state)
-		return
-	
-	_update_base_animation(new_state)
-
-
-func _update_base_animation(state_id: Global.StateID) -> void:
-	if current_priority > Global.AnimPriority.BACKGROUND: return
-	match state_id:
-		Global.StateID.ON_FLOOR:
-			play_animation("mommentum", Global.AnimPriority.BACKGROUND)
+func _reset_composed_state() -> void:
+	is_in_composed_anim = false
+	current_composed_anim = ""
+	animation_tree.set("parameters/conditions/finish_anim", false)
 
 
 func _on_grind_finished(
 	reason: Global.ReasonToExitGrind,
 	_data: Dictionary
 ) -> void:
-	if not is_executing_trick: return
 	if reason == Global.ReasonToExitGrind.JUMPED:
-		_cancel_trick_animation()
+		play_animation(JUMP)
 	elif reason == Global.ReasonToExitGrind.END_OF_RAIL:
-		finish_trick()
+		play_animation(TRICK_FAIL)
+
+
+func _on_state_changed(_old_state: int, new_state: int) -> void:
+	match new_state:
+		Global.StateID.TRICK_FAIL:
+			play_animation(TRICK_FAIL)
+		
+		Global.StateID.ON_FLOOR:
+			finish_composed_anim()
+			play_animation(MOMMENTUM)

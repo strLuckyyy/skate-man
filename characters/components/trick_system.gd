@@ -17,15 +17,10 @@ var _held_trick_direction: Global.Direction = Global.Direction.NONE
 
 
 func get_is_doing_trick() -> bool:
-	print("checking trick", active_trick, animator)
 	if active_trick == null or animator == null:
-		print("not doing trick because active_trick or animator is null")
 		return false
 	
-	print("checking if animator is looping")
-	var is_looping: bool = animator.is_loop_animation()
-	print(is_looping, is_busy)
-	if is_looping: return false
+	if animator.is_loop_animation(): return false
 	return is_busy
 
 
@@ -33,21 +28,18 @@ func setup(
 	char_ref:              BaseCharacter,
 	equipment_manager:     EquipmentManager, 
 	character_animator:    CharacterAnimator,
-	trick_sequence_signal: Signal,
-	input_buffer:          InputBuffer = null
+	trick_sequence_signal: Signal
 ) -> void:
 	if trick_sequence_signal != null:
 		trick_sequence_signal.connect(_on_sequence_resolved)
 
-	if input_buffer != null:
-		input_buffer.direction_released.connect(_on_direction_released)
+	EventBus.direction_released.connect(_on_direction_released)
 
 	character = char_ref
 	animator  = character_animator
 	
-	equipment_manager.equipment_changed.  connect(_on_equipment_changed)
-	animator.trick_animation_finished.    connect(_on_trick_anim_finished)
-	
+	equipment_manager.equipment_changed.connect(_on_equipment_changed)
+	animator.animation_tree.animation_finished.connect(_on_trick_anim_finished)
 	character.state_machine.state_changed.connect(_on_state_changed)
 
 
@@ -65,11 +57,16 @@ func process(
 
 
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
-	if get_is_doing_trick():           return
+	if get_is_doing_trick():           
+		print("is doing a trick?")
+		return
 	if character.controller.is_locked: return
-
-	print("executing trick:", trick, "with context:", context)
-
+	
+	if trick.is_grind_trick and context.get_grind_opportunity():
+		grind_trick_requested.emit(_current_grindable)
+		if character.state_machine.get_current_state_id() != Global.StateID.ON_GRIDING:
+			return
+	
 	is_busy               = true
 	active_trick          = trick
 	_held_trick_direction = trick.trick_data.hold_direction
@@ -77,13 +74,10 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	EventBus.trick_detected.emit(trick)
 	trick_started.emit(trick)
 	
-	if trick.is_grind_trick and context.get_grind_opportunity():
-		grind_trick_requested.emit(_current_grindable)
-	
 	character.boost_component.add_boost(trick.trick_data.boost)
 	trick.execute(context)
 	
-	animator.play_trick(trick.anim_name)
+	animator.play_trick(trick.anim_name, trick.trick_data.is_compose)
 
 # ---------------------------------------------------------------------------
 # Private — sequence resolution
@@ -92,8 +86,9 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 func _on_state_changed(
 	_old_state: Global.StateID, new_state: Global.StateID
 ) -> void:
-	if new_state == Global.StateID.TRICK_FAIL and is_busy:
-		if active_trick != null: EventBus.trick_failed.emit(active_trick)
+	if new_state == Global.StateID.TRICK_FAIL:
+		if is_busy and active_trick != null: 
+			EventBus.trick_failed.emit(active_trick)
 	is_busy      = false
 	active_trick = null
 
@@ -101,6 +96,10 @@ func _on_state_changed(
 func _on_sequence_resolved(
 	candidates: Array[BaseTrick], path: Array[Global.Direction]
 ) -> void:
+	print("seq=", path, " state=", Global.StateID.find_key(_current_state),
+	" busy=", is_busy, " doing a trick=", get_is_doing_trick(), " grind_opp=", _grind_opportunity,
+	" candidatos=", candidates.map(func(t): return t.trick_data.trick_name))
+	
 	var context := TrickContext.new()
 	context.build_context(_current_state, _grind_opportunity, path)
 	

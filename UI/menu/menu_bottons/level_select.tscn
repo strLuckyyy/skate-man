@@ -1,0 +1,365 @@
+[gd_scene format=3 uid="uid://b5phfudpfadcc"]
+
+[ext_resource type="Texture2D" uid="uid://c8tohpo6p83ea" path="res://assets/ui/menus/level_perfil/level_x_perfil.png" id="1_55nqo"]
+[ext_resource type="FontFile" uid="uid://b8w12njyn3c7c" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_gltbx"]
+[ext_resource type="Script" uid="uid://r1qqo0cwll05" path="res://UI/menu/menu_bottons/level_select.gd" id="1_xlec1"]
+[ext_resource type="Texture2D" uid="uid://bux0534sgwc40" path="res://assets/ui/icons/hud_menu_range.svg" id="2_c55xr"]
+[ext_resource type="LabelSettings" uid="uid://b86aatjlgulhf" path="res://UI/menu_label_settings.tres" id="2_x6nhr"]
+[ext_resource type="Texture2D" uid="uid://ueohmljfinnf" path="res://assets/ui/icons/hud_menu_range_fill.svg" id="3_ol73x"]
+[ext_resource type="Texture2D" uid="uid://dv4wtdl2fe16k" path="res://assets/ui/menus/perfil/john-perfil.svg" id="3_xlec1"]
+[ext_resource type="Texture2D" uid="uid://bd65xf48j344q" path="res://assets/ui/icons/hud_arrow_l.svg" id="4_bhjh2"]
+[ext_resource type="Texture2D" uid="uid://cqfomxe0trt6g" path="res://assets/ui/menus/perfil/john-skate-perfil.svg" id="4_yqk4f"]
+[ext_resource type="Texture2D" uid="uid://c47mcq26xf6o7" path="res://assets/ui/hud_caixa_de_texto.svg" id="5_xdavv"]
+[ext_resource type="Texture2D" uid="uid://ow7lpxkmg5u7" path="res://assets/ui/icons/hud_arrow_r.svg" id="6_64whu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pgcxy"]
+texture = ExtResource("5_xdavv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dimhu"]
+texture = ExtResource("5_xdavv")
+expand_margin_left = 50.0
+expand_margin_top = 26.0
+expand_margin_right = 50.0
+expand_margin_bottom = 26.0
+
+[sub_resource type="Theme" id="Theme_owgmd"]
+default_font = ExtResource("1_gltbx")
+
+[node name="LevelSelect" type="VBoxContainer" unique_id=577144340]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_xlec1")
+
+[node name="UpperArea" type="HBoxContainer" parent="." unique_id=355305331]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.5
+alignment = 1
+
+[node name="LeftColumn" type="VBoxContainer" parent="UpperArea" unique_id=147511755]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="TopLeft" type="PanelContainer" parent="UpperArea/LeftColumn" unique_id=976789610]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelSprite" type="TextureRect" parent="UpperArea/LeftColumn/TopLeft" unique_id=744293405]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_55nqo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MidLeft" type="PanelContainer" parent="UpperArea/LeftColumn" unique_id=1079288291]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.83
+
+[node name="MarginContainer" type="MarginContainer" parent="UpperArea/LeftColumn/MidLeft" unique_id=915373969]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpperArea/LeftColumn/MidLeft/MarginContainer" unique_id=1294248175]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(50, 0)
+offset_transform_visual_only = false
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer" unique_id=2040095078]
+layout_mode = 2
+
+[node name="MapLabelConst" type="Label" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1307305401]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map: "
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="MapLabel" type="Label" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1382938808]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+offset_transform_enabled = true
+text = "sasa"
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer" unique_id=2026958518]
+layout_mode = 2
+
+[node name="WeatherLabelConst" type="Label" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1761789694]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.3)
+text = "Weather: "
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="WeatherLabel" type="Label" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1853757278]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.3)
+text = "sasa"
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer" unique_id=1288756080]
+layout_mode = 2
+
+[node name="ScoreLabelConst" type="Label" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=2074478982]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.6)
+text = "Best Score: "
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UpperArea/LeftColumn/MidLeft/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=230657542]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.6)
+text = "100"
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="RightColumn" type="VBoxContainer" parent="UpperArea" unique_id=1477543049]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.23
+
+[node name="TopRight" type="PanelContainer" parent="UpperArea/RightColumn" unique_id=1351461158]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpperArea/RightColumn/TopRight" unique_id=2145200835]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.93, 0.93)
+alignment = 1
+
+[node name="OpponentSprite" type="TextureRect" parent="UpperArea/RightColumn/TopRight/HBoxContainer" unique_id=15292155]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.045, 0)
+texture = ExtResource("3_xlec1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EquipmentSprite" type="TextureRect" parent="UpperArea/RightColumn/TopRight/HBoxContainer" unique_id=1038619060]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0.035, 0)
+texture = ExtResource("4_yqk4f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MidRight" type="PanelContainer" parent="UpperArea/RightColumn" unique_id=1361094955]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UpperArea/RightColumn/MidRight" unique_id=947852051]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(15, -10)
+offset_transform_visual_only = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpperArea/RightColumn/MidRight/MarginContainer" unique_id=1897762652]
+layout_mode = 2
+offset_transform_enabled = true
+alignment = 1
+
+[node name="NameContainer" type="HBoxContainer" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer" unique_id=839118257]
+layout_mode = 2
+offset_transform_visual_only = false
+
+[node name="Label" type="Label" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/NameContainer" unique_id=61177122]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name: "
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="OpponentName" type="Label" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/NameContainer" unique_id=132533658]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+offset_transform_visual_only = false
+text = "John"
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="SpeedContainer" type="HBoxContainer" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer" unique_id=691088133]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.4)
+offset_transform_visual_only = false
+
+[node name="Label" type="Label" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/SpeedContainer" unique_id=968409099]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speed: "
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="OpponentSpeed" type="TextureProgressBar" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/SpeedContainer" unique_id=1188531757]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -0.09)
+offset_transform_visual_only = false
+texture_under = ExtResource("2_c55xr")
+texture_progress = ExtResource("3_ol73x")
+
+[node name="BoostContainer" type="HBoxContainer" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer" unique_id=456118541]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.8)
+offset_transform_visual_only = false
+
+[node name="Label" type="Label" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/BoostContainer" unique_id=1444844938]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Boost: "
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="OpponentBoost" type="TextureProgressBar" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/BoostContainer" unique_id=2122727467]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -0.09)
+texture_under = ExtResource("2_c55xr")
+texture_progress = ExtResource("3_ol73x")
+
+[node name="DifficultyContainer" type="HBoxContainer" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer" unique_id=358386589]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.2)
+offset_transform_visual_only = false
+
+[node name="Label" type="Label" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/DifficultyContainer" unique_id=1565521807]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Difficulty: "
+label_settings = ExtResource("2_x6nhr")
+vertical_alignment = 1
+
+[node name="LevelDifficulty" type="TextureProgressBar" parent="UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/DifficultyContainer" unique_id=1818502886]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -0.09)
+texture_under = ExtResource("2_c55xr")
+texture_progress = ExtResource("3_ol73x")
+
+[node name="BottomArea" type="PanelContainer" parent="." unique_id=1582993158]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomArea" unique_id=1805100047]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomArea/MarginContainer" unique_id=208404791]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="BottomArea/MarginContainer/HBoxContainer" unique_id=144475859]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.47
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.09, 0.085)
+offset_transform_scale = Vector2(0.46, 0.46)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("1_gltbx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_pgcxy")
+text = "BACK MENU"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomArea/MarginContainer/HBoxContainer" unique_id=873693086]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.135, 0)
+offset_transform_visual_only = false
+
+[node name="LeftButton" type="Button" parent="BottomArea/MarginContainer/HBoxContainer/HBoxContainer" unique_id=271569109]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.66, 0.66)
+offset_transform_visual_only = false
+icon = ExtResource("4_bhjh2")
+flat = true
+icon_alignment = 2
+
+[node name="LevelName" type="Label" parent="BottomArea/MarginContainer/HBoxContainer/HBoxContainer" unique_id=927342900]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_dimhu")
+text = "Level1"
+label_settings = ExtResource("2_x6nhr")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="RightButton" type="Button" parent="BottomArea/MarginContainer/HBoxContainer/HBoxContainer" unique_id=529443618]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.66, 0.66)
+offset_transform_visual_only = false
+theme = SubResource("Theme_owgmd")
+icon = ExtResource("6_64whu")
+flat = true
+
+[node name="PlayButton" type="Button" parent="BottomArea/MarginContainer/HBoxContainer" unique_id=634047255]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.41
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.69, 0.69)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("1_gltbx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_pgcxy")
+text = "PLAY"
+
+[connection signal="pressed" from="BottomArea/MarginContainer/HBoxContainer/HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="BottomArea/MarginContainer/HBoxContainer/HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="BottomArea/MarginContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

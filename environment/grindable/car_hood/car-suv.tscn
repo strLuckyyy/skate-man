@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_ft6bc"]
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_qivcv"]
-[ext_resource type="Texture2D" uid="uid://dlahxok1estb" path="res://assets/scenary/Rocky Beach environment/layers/tiles-example.png" id="3_qivcv"]
+[ext_resource type="Texture2D" uid="uid://nwg5cdhh7l3k" path="res://assets/props/cars/suv/car_wheels_suv.svg" id="3_wm73k"]
+[ext_resource type="Texture2D" uid="uid://wys3seun61me" path="res://assets/props/cars/suv/car_color_part_suv.svg" id="4_e888g"]
+[ext_resource type="Texture2D" uid="uid://bafbxlihmuscw" path="res://assets/props/cars/suv/suv_uncolored_parts.svg" id="5_yqdm0"]
 
 [sub_resource type="Resource" id="Resource_ctipn"]
 script = ExtResource("2_qivcv")
@@ -15,13 +17,26 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dimhu"]
+size = Vector2(824, 436)
+
 [node name="GrindableBase" unique_id=1698369429 instance=ExtResource("1_ft6bc")]
 obstacle_data = SubResource("Resource_ctipn")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1022371307]
-position = Vector2(-11, -36.000004)
-scale = Vector2(0.5259376, 0.38977668)
-texture = ExtResource("3_qivcv")
+position = Vector2(0, 108)
+scale = Vector2(0.29, 0.229)
+texture = ExtResource("3_wm73k")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D" index="0" unique_id=1794453302]
+position = Vector2(-0.18314096, -370.04034)
+scale = Vector2(0.99670815, 1)
+texture = ExtResource("4_e888g")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" index="1" unique_id=834583080]
+position = Vector2(0.20860362, -372.6059)
+scale = Vector2(0.99670815, 1)
+texture = ExtResource("5_yqdm0")
 
 [node name="Path2D" parent="." index="1" unique_id=1304231975]
 curve = SubResource("Curve2D_1buxw")
@@ -29,5 +44,9 @@ curve = SubResource("Curve2D_1buxw")
 [node name="PathFollow2D" parent="Path2D" index="0" unique_id=1942762927]
 position = Vector2(-149, -9)
 rotation = 0.29142922
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=990669349]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_dimhu")
 
 [editable path="GrindArea"]

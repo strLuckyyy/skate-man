@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://d01kj1tnk4ord"]
+
+[ext_resource type="FontFile" uid="uid://b8w12njyn3c7c" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_1fk0n"]
+[ext_resource type="Texture2D" uid="uid://c47mcq26xf6o7" path="res://assets/ui/hud_caixa_de_texto.svg" id="2_l865l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wyc02"]
+texture = ExtResource("2_l865l")
+expand_margin_left = 12.0
+expand_margin_top = 8.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hktlk"]
+texture = ExtResource("2_l865l")
+expand_margin_top = 5.0
+
+[node name="NewGameMenu" type="HBoxContainer" unique_id=1894765064]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=326894901]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(2.36, 0.065)
+offset_transform_scale = Vector2(1.265, 1.265)
+offset_transform_visual_only = false
+accessibility_region = true
+alignment = 1
+
+[node name="LevelSelect" type="Button" parent="VBoxContainer" unique_id=62185506]
+layout_mode = 2
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1fk0n")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_wyc02")
+text = "  Level Select  "
+icon_alignment = 1
+expand_icon = true
+
+[node name="Tutorial" type="Button" parent="VBoxContainer" unique_id=1118963723]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.3, 0.45)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1fk0n")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_wyc02")
+text = "  Tutorial  "
+icon_alignment = 1
+expand_icon = true
+
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=1545806825]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.6, 0.57)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1fk0n")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_wyc02")
+disabled = true
+text = "  Options  "
+icon_alignment = 1
+expand_icon = true
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=965222190]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.9, 1.35)
+offset_transform_scale = Vector2(1.09, 1.09)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1fk0n")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxTexture_hktlk")
+text = "  SAIR  "
+icon_alignment = 1
+expand_icon = true

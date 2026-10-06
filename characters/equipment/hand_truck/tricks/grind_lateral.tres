@@ -5,8 +5,12 @@
 [resource]
 script = ExtResource("1_2bvnp")
 trick_name = "Lateral Grind"
-sequence = Array[int]([1, 2])
+trick_type = 5
+sequence = Array[int]([1])
 state_available = Array[int]([5])
 conditional_state_available = Array[int]([3, 4])
+is_grind_trick = true
+is_compose = true
 animation_name = &"grind-lateral"
+hold_direction = 2
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

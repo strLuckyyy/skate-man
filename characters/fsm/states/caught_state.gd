@@ -7,8 +7,8 @@ func _init() -> void:
 
 
 @warning_ignore("shadowed_variable_base_class")
-func enter(p_character: BaseCharacter, payload = null) -> void:
-	super.enter(p_character, payload)
+func enter(p_character: BaseCharacter, _payload = null) -> void:
+	super.enter(p_character, _payload)
 	character.is_caught = true
 	controller.set_permissions(false, false)
 

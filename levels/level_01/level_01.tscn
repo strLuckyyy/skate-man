@@ -1,18 +1,16 @@
 [gd_scene format=3 uid="uid://d1t274xpem1ox"]
 
 [ext_resource type="Script" uid="uid://ckdr6c37wfjcs" path="res://system/level/level_manager.gd" id="1_q182i"]
-[ext_resource type="PackedScene" uid="uid://b8k5ftacnuo4" path="res://characters/opponents/ai_john.tscn" id="2_ghpgl"]
-[ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="3_gfjf5"]
-[ext_resource type="Texture2D" uid="uid://da2v0cu2a85ya" path="res://assets/ui/seta.png" id="4_y1t52"]
-[ext_resource type="PackedScene" uid="uid://dt6aqeno54wyt" path="res://UI/pause.tscn" id="5_8yta4"]
-[ext_resource type="Script" uid="uid://dxv4ls61nk4og" path="res://system/level/race_manager.gd" id="6_emc48"]
+[ext_resource type="Texture2D" uid="uid://da2v0cu2a85ya" path="res://assets/ui/hud/tutorial_elements/seta.png" id="4_y1t52"]
+[ext_resource type="PackedScene" uid="uid://dt6aqeno54wyt" path="res://UI/gameplay/pause.tscn" id="5_8yta4"]
+[ext_resource type="PackedScene" uid="uid://b4viaflakre76" path="res://system/level/race_manager.tscn" id="5_y3njl"]
 [ext_resource type="PackedScene" uid="uid://6w8diicxwk7p" path="res://levels/util/parallax.tscn" id="7_c1ncc"]
 [ext_resource type="PackedScene" uid="uid://dvdwau3dkl8f7" path="res://environment/grindable/billboard/billboard.tscn" id="8_5bl2g"]
 [ext_resource type="PackedScene" uid="uid://x1e0x1m0edtl" path="res://levels/util/building.tscn" id="9_ygeti"]
 [ext_resource type="PackedScene" uid="uid://dywhc7o7xgam3" path="res://levels/util/park.tscn" id="10_bk04q"]
-[ext_resource type="Texture2D" uid="uid://cdmyo8fgx7ds8" path="res://assets/scenary/crane/crane_man.png" id="11_b8hur"]
+[ext_resource type="Texture2D" uid="uid://cdmyo8fgx7ds8" path="res://assets/tiles/crane/crane_man.png" id="11_b8hur"]
 [ext_resource type="PackedScene" uid="uid://dl4ufc70gy33o" path="res://environment/grindable/utility_pole/utility_pole_generator.tscn" id="12_8xxoa"]
-[ext_resource type="PackedScene" uid="uid://ca0x02fo5fi00" path="res://environment/grindable/car_hood/car_yellow_hood.tscn" id="13_0djny"]
+[ext_resource type="PackedScene" uid="uid://ca0x02fo5fi00" path="res://environment/grindable/car_hood/car-suv.tscn" id="13_0djny"]
 [ext_resource type="PackedScene" uid="uid://c1fddkx8byqab" path="res://environment/grindable/utility_pole/utility_pole.tscn" id="14_jmoa1"]
 [ext_resource type="PackedScene" uid="uid://bplpxplaydx35" path="res://environment/platform/scaffolding/scaffolding.tscn" id="15_b8exm"]
 [ext_resource type="Script" uid="uid://bfyijlt1wma2q" path="res://levels/level_01/area_2d.gd" id="16_issf5"]
@@ -21,13 +19,8 @@
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="19_hafri"]
 [ext_resource type="PackedScene" uid="uid://dw8cu6ciqdkmw" path="res://levels/util/tile_map_layer.tscn" id="20_2eeb2"]
 [ext_resource type="PackedScene" uid="uid://cyrvd3ux0qniv" path="res://system/level/spawner.tscn" id="21_u134b"]
-[ext_resource type="Texture2D" uid="uid://4whig1i1apxw" path="res://assets/ui/d_tecla.png" id="22_ltyhb"]
-[ext_resource type="Texture2D" uid="uid://b25hujfk5fnl2" path="res://assets/ui/esapco.png" id="23_yp8mv"]
-
-[sub_resource type="Resource" id="Resource_6amrg"]
-script = ExtResource("3_gfjf5")
-opponents = Array[PackedScene]([ExtResource("2_ghpgl")])
-metadata/_custom_type_script = "uid://dpdy24ajsuigx"
+[ext_resource type="Texture2D" uid="uid://4whig1i1apxw" path="res://assets/ui/hud/tutorial_elements/d_tecla.png" id="22_ltyhb"]
+[ext_resource type="Texture2D" uid="uid://b25hujfk5fnl2" path="res://assets/ui/hud/tutorial_elements/esapco.png" id="23_yp8mv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6amrg"]
 font_size = 121
@@ -36,9 +29,6 @@ font_size = 121
 font_size = 17
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fbnm"]
-size = Vector2(2306, 7188)
 
 [sub_resource type="Curve2D" id="Curve2D_aqpx7"]
 _data = {
@@ -88,7 +78,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node2D" unique_id=296379718 node_paths=PackedStringArray("spawner", "race_manager", "canvas")]
 script = ExtResource("1_q182i")
-data = SubResource("Resource_6amrg")
 spawner = NodePath("Spawner")
 race_manager = NodePath("RaceManager")
 canvas = NodePath("CanvasLayer")
@@ -169,22 +158,8 @@ horizontal_alignment = 1
 
 [node name="Pause" parent="CanvasLayer" unique_id=1169743778 instance=ExtResource("5_8yta4")]
 
-[node name="RaceManager" type="Node2D" parent="." unique_id=729220503]
-script = ExtResource("6_emc48")
-metadata/_custom_type_script = "uid://dxv4ls61nk4og"
-
-[node name="CountdownTimer" type="Timer" parent="RaceManager" unique_id=327848588]
-
-[node name="Area2D" type="Area2D" parent="RaceManager" unique_id=584432522]
-position = Vector2(32301, 702)
-collision_layer = 256
-collision_mask = 255
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RaceManager/Area2D" unique_id=1107330797]
-z_index = 1
-position = Vector2(1992, -3382)
-shape = SubResource("RectangleShape2D_4fbnm")
-debug_color = Color(1.5642494e-06, 0.38492048, 0.19123918, 0.41960785)
+[node name="RaceManager" parent="." unique_id=1629192821 node_paths=PackedStringArray("spawner") instance=ExtResource("5_y3njl")]
+spawner = NodePath("../Spawner")
 
 [node name="Scenary" type="Node2D" parent="." unique_id=114299556]
 position = Vector2(3932, -366)
@@ -395,6 +370,8 @@ position = Vector2(3932, -366)
 [node name="Spawner" parent="." unique_id=1301072490 instance=ExtResource("21_u134b")]
 position = Vector2(343, 236)
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1784716513]
+
 [node name="1_tutorial" type="Control" parent="." unique_id=1322224299]
 layout_mode = 3
 anchors_preset = 0
@@ -603,10 +580,10 @@ offset_bottom = 540.0
 text = "PARA SUBIR NO ANDAIME"
 label_settings = SubResource("LabelSettings_dimhu")
 
-[connection signal="body_entered" from="RaceManager/Area2D" to="RaceManager" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Interactables/Scaffolding/Area2D" to="Interactables/Scaffolding/Area2D" method="_on_body_exited"]
 
 [editable path="CanvasLayer/Pause"]
+[editable path="RaceManager"]
 [editable path="Interactables/UtilityPoleGenerator"]
 [editable path="Interactables/UtilityPoleGenerator/GrindArea"]
 [editable path="Interactables/Scaffolding/Scaffolding"]

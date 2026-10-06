@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://3bge3iv2ovdy"]
+
+[ext_resource type="Script" uid="uid://bxek3c44g5g8v" path="res://UI/gameplay/hud/hud.gd" id="1_iogcl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rpf03"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_x5dtk"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_3t07l"]
+font_size = 32
+
+[node name="HUD" type="CanvasLayer" unique_id=1307610127]
+script = ExtResource("1_iogcl")
+
+[node name="Control" type="Control" parent="." unique_id=967475976]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="speed" type="Label" parent="Control" unique_id=35202628]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -590.0
+offset_top = 225.0
+offset_right = -438.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SPEED:  "
+label_settings = SubResource("LabelSettings_rpf03")
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/speed" unique_id=417386657]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -12.5
+offset_right = 135.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="trick" type="Label" parent="Control" unique_id=520246079]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47900003
+anchor_top = 0.5
+anchor_right = 0.47900003
+anchor_bottom = 0.5
+offset_left = -482.12006
+offset_top = 187.0
+offset_right = -403.12006
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TRICK: "
+label_settings = SubResource("LabelSettings_x5dtk")
+
+[node name="score" type="Label" parent="Control" unique_id=718858522]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 413.0
+offset_top = 38.0
+offset_right = 473.0
+offset_bottom = 61.0
+text = "SCORE: "
+label_settings = SubResource("LabelSettings_3t07l")

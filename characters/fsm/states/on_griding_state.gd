@@ -12,10 +12,10 @@ func _init() -> void:
 
 
 @warning_ignore("shadowed_variable_base_class")
-func enter(p_character: BaseCharacter, payload = null) -> void:
-	super.enter(p_character, payload)
+func enter(p_character: BaseCharacter, _payload = null) -> void:
+	super.enter(p_character, _payload)
 	
-	var rail = payload as GrindableObject
+	var rail = _payload as GrindableObject
 	if rail == null:
 		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 		return
@@ -47,5 +47,6 @@ func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> v
 		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 	
 	elif reason == Global.ReasonToExitGrind.END_OF_RAIL:
-		var velocity := Vector2((speed * direction) * end_of_rail_boost_multiplier, end_of_rail_lift)
+		var velocity := Vector2(
+			(speed * direction) * end_of_rail_boost_multiplier, end_of_rail_lift)
 		emit_signal("transition_requested", Global.StateID.TRICK_FAIL, velocity)

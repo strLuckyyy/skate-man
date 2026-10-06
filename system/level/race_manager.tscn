@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b4viaflakre76"]
+
+[ext_resource type="Script" uid="uid://dxv4ls61nk4og" path="res://system/level/race_manager.gd" id="1_je6qs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fbnm"]
+size = Vector2(2306, 7188)
+
+[node name="RaceManager" type="Node2D" unique_id=1629192821]
+script = ExtResource("1_je6qs")
+metadata/_custom_type_script = "uid://dxv4ls61nk4og"
+
+[node name="CountdownLabel" type="Label" parent="." unique_id=628154309]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CountdownTimer" type="Timer" parent="." unique_id=1341604769]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1592961040]
+position = Vector2(32301, 702)
+collision_layer = 256
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2097010320]
+z_index = 1
+position = Vector2(1992, -3382)
+shape = SubResource("RectangleShape2D_4fbnm")
+debug_color = Color(1.5642494e-06, 0.38492048, 0.19123918, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

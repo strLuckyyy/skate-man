@@ -11,7 +11,7 @@ func _tick(delta: float) -> Status:
 	if _push_cd > 0.0: _push_cd -= delta
 	
 	# 1. Tentar uma manobra aleatória no chão se a IA for agressiva
-	if not _char.trick_system.is_busy and _char.is_on_floor():
+	if not _char.trick_system.get_is_doing_trick() and _char.is_on_floor():
 		# Uma chance bem pequena por frame para não spammar manobras infinitamente
 		if _char.ai_assessor.roll_aggression() and randf() < 0.02: 
 			var pool = _char.equipment.get_trick_pool(_char.state_machine.get_current_state_id())

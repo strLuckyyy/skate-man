@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="SkateMan"
+config/name="StreetTrickers"
 run/main_scene="uid://ptho4uo0voph"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 run/max_fps=60
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="uid://dkthej1pgwlvm"
 
 [autoload]
 

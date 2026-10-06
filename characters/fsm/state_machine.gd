@@ -68,7 +68,7 @@ func transition_to(state_id: Global.StateID, payload = null) -> void:
 	current_state.enter(character, payload)
 	state_changed.emit(old_state_id, state_id)
 	
-	#print(Global.StateID.find_key(current_state.state_id))
+	print("current state: ", Global.StateID.find_key(current_state.state_id))
 
 
 func _on_transition_requested(next_state_id: Global.StateID, payload = null):

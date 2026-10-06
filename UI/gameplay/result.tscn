@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://cui3eelnf74cl"]
+
+[ext_resource type="Script" uid="uid://bjouhkwiluvgj" path="res://UI/gameplay/result.gd" id="1_cajcu"]
+[ext_resource type="LabelSettings" uid="uid://c5onctgw4u56m" path="res://UI/gameplay/hud/hud_label_settings.tres" id="2_3tpnv"]
+[ext_resource type="Material" uid="uid://cpmccemrceyrq" path="res://UI/background_material.tres" id="2_5ptsi"]
+[ext_resource type="LabelSettings" uid="uid://b86aatjlgulhf" path="res://UI/menu_label_settings.tres" id="3_64vxu"]
+[ext_resource type="Texture2D" uid="uid://b1u7bh80s25ei" path="res://assets/ui/ui_background.svg" id="3_cljel"]
+[ext_resource type="FontFile" uid="uid://b8w12njyn3c7c" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="4_k1tok"]
+[ext_resource type="Texture2D" uid="uid://c47mcq26xf6o7" path="res://assets/ui/hud_caixa_de_texto.svg" id="5_5ptsi"]
+[ext_resource type="Texture2D" uid="uid://c71bm58e0kri8" path="res://assets/ui/menus/characters_poses/zane-porter_svg-posel.svg" id="8_h7y36"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dimhu"]
+texture = ExtResource("3_cljel")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qmtrp"]
+texture = ExtResource("5_5ptsi")
+expand_margin_top = 5.0
+
+[node name="Result" type="Control" unique_id=1527243598]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cajcu")
+
+[node name="Panel" type="Panel" parent="." unique_id=334731829]
+texture_repeat = 2
+material = ExtResource("2_5ptsi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_dimhu")
+
+[node name="Result" type="Label" parent="." unique_id=936938446]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -229.02
+offset_right = 201.0
+offset_bottom = -148.02
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU WIN"
+label_settings = ExtResource("2_3tpnv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2100889753]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = 49.355
+offset_right = 73.0
+offset_bottom = 49.35498
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Position" type="Label" parent="VBoxContainer" unique_id=1940476672]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -1.105)
+offset_transform_scale = Vector2(1.25, 1.25)
+offset_transform_visual_only = false
+text = "First Place"
+label_settings = ExtResource("3_64vxu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextLevel" type="Button" parent="VBoxContainer" unique_id=608813985]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.45)
+offset_transform_scale = Vector2(1.185, 1.185)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_k1tok")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxTexture_qmtrp")
+text = "Next Level"
+
+[node name="Restart" type="Button" parent="VBoxContainer" unique_id=14146506]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.9)
+offset_transform_scale = Vector2(1.185, 1.185)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_k1tok")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxTexture_qmtrp")
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer" unique_id=134958812]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.35)
+offset_transform_scale = Vector2(1.185, 1.185)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_k1tok")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxTexture_qmtrp")
+text = "Main Menu
+"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1329003484]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.8)
+offset_transform_scale = Vector2(1.185, 1.185)
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_k1tok")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxTexture_qmtrp")
+text = "Exit"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1083792303]
+position = Vector2(1116, 459)
+scale = Vector2(0.585, 0.555)
+texture = ExtResource("8_h7y36")
+
+[connection signal="pressed" from="VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

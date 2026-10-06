@@ -74,18 +74,21 @@ func _physics_process(delta: float) -> void:
 
 func start_race():
 	controller.is_locked = false
-	character_animator.play_animation("idle-in", Global.AnimPriority.BACKGROUND)
+	character_animator.play_animation("idle")
 
 
 func end_race():
 	controller.is_locked = true
+	character_animator.play_animation(character_animator.MOMMENTUM)
+	character_animator.finish_composed_anim()
 
 # ---------------------------------------------------------------------------
 # Movement
 # ---------------------------------------------------------------------------
 
-func apply_push(_forced := false) -> void: 
-	character_animator.play_animation("push", Global.AnimPriority.ACTION)
+func apply_push(_forced := false) -> void:
+	EventBus.action_detected.emit(Global.RaceLoopConditions.PUSH)
+	character_animator.play_animation(character_animator.PUSH)
 
 
 func apply_momentum(floor_normal: Vector2) -> void:
@@ -119,9 +122,10 @@ func apply_slope_rotation(delta: float) -> void:
 
 
 func apply_jump(mult: float = 1.0) -> void:
+	EventBus.action_detected.emit(Global.RaceLoopConditions.JUMP)
 	var m = mult if mult != 0.0 else 1.0
 	velocity = controller.apply_jump(velocity, equipment.current_equipment) * m
-	character_animator.play_animation("jump", Global.AnimPriority.ACTION)
+	character_animator.play_animation(character_animator.JUMP)
 
 
 func apply_gravity(delta: float) -> void:

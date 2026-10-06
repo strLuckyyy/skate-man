@@ -10,13 +10,11 @@ var _state_available: Array[Global.StateID]
 
 
 var state_available: Array[Global.StateID]:
-	get:
-		return _state_available.duplicate(true)
+	get: return _state_available.duplicate(true)
 
 
 var is_grind_trick: bool:
-	get:
-		return trick_data != null and trick_data.is_grind_trick
+	get: return trick_data != null and trick_data.is_grind_trick
 
 
 func setup(_animated_sprite: CharacterAnimator) -> void:
@@ -74,4 +72,4 @@ func match_input(_buffer: Array[Global.Direction]) -> bool:
 
 
 func _on_cd_timer_timeout() -> void:
-	print("can execute ",  trick_data.trick_name, " again.")
+	pass#print("can execute ",  trick_data.trick_name, " again.")

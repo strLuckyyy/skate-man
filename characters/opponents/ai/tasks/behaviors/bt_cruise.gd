@@ -18,7 +18,9 @@ func _tick(delta: float) -> Status:
 
 
 func apply_cruise() -> Status:
-	if _decision == Global.AIDecision.TRICK and not _char.trick_system.is_busy:
+	if _decision == Global.AIDecision.TRICK and\
+	 not _char.trick_system.get_is_doing_trick() and\
+	  _char.is_on_floor():
 		if force_decision != Global.AIDecision.TRICK:
 			var result = randi() % 10
 			if result < 4: _char.make_trick(ai_assessor.get_random_trick(_trick_pool))

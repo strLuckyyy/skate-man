@@ -33,8 +33,8 @@ func _ready() -> void:
 	add_child(_commit_timer)
 
 
-func setup(input_buffer: InputBuffer, equipment_manager: EquipmentManager) -> void:
-	input_buffer.direction_input.connect(_on_direction_input)
+func setup(equipment_manager: EquipmentManager) -> void:
+	EventBus.direction_input.connect(_on_direction_input)
 	equipment_manager.equipment_changed.connect(_on_equipment_changed)
 
 

@@ -18,6 +18,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if get_tree().paused: visible = !get_tree().paused
 	speed_label.value = character.velocity.length()
 	if sm.current_state.state_id == Global.StateID.TRICK_FAIL:
 		score.text = str(0.0)

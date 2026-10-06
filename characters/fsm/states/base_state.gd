@@ -11,7 +11,7 @@ var state_id:   Global.StateID = Global.StateID.NONE
 
 @warning_ignore("unused_parameter")
 @warning_ignore("shadowed_variable")
-func enter(p_character: BaseCharacter, payload = null) -> void: 
+func enter(p_character: BaseCharacter, _payload = null) -> void: 
 	character  = p_character
 	controller = character.controller
 func exit()                                          -> void: pass

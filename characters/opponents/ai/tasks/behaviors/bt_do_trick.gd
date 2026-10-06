@@ -14,6 +14,6 @@ func _tick(_delta: float) -> Status:
 
 func do_trick() -> Status:
 	var sequence := ai_assessor.get_random_trick(_trick_pool, false)
-	if _decision == Global.AIDecision.TRICK and not _char.trick_system.is_busy:
+	if _decision == Global.AIDecision.TRICK and not _char.trick_system.get_is_doing_trick():
 		_char.make_trick(sequence)
 	return SUCCESS

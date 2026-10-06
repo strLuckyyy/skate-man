@@ -2,7 +2,7 @@ class_name Player
 extends BaseCharacter
 
 @onready var hud: CanvasLayer = $HUD
-var input_buffer:  InputBuffer
+var input_buffer: InputBuffer
 
 # ---------------------------------------------------------------------------
 # Life cycle
@@ -15,8 +15,8 @@ func _ready() -> void:
 	var trie_navigator  = $TrieNavigator
 	var sequence_signal = trie_navigator.sequence_resolved
 	
-	trie_navigator.setup(input_buffer, equipment)
-	trick_system.  setup(self, equipment, character_animator, sequence_signal, input_buffer)
+	trie_navigator.setup(equipment)
+	trick_system.  setup(self, equipment, character_animator, sequence_signal)
 
 
 func _physics_process(delta: float) -> void:

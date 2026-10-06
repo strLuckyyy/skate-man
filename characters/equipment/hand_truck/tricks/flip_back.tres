@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_ofedm")
 trick_name = "Back Flip"
+trick_type = 4
 sequence = Array[int]([1, 3])
 state_available = Array[int]([3, 4])
 animation_name = &"flip-back"

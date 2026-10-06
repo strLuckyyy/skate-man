@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cpmccemrceyrq"]
+
+[ext_resource type="Shader" uid="uid://127o2hpk0ivn" path="res://UI/menu_background.gdshader" id="1_5af56"]
+
+[resource]
+shader = ExtResource("1_5af56")
+shader_parameter/aspect = 1.0
+shader_parameter/velocidade = 0.055
+shader_parameter/direcao = Vector2(1, 0)

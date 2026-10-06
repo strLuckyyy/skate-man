@@ -1,20 +1,12 @@
 extends Control
 
-
-@onready var menu_scene = preload("res://UI/menu.tscn")
-
 var pause_enabled: bool = true
 
 func _ready():
 	pause(false)
 	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
-
-func set_pause_enabled(enabled: bool) -> void:
-	pause_enabled = enabled
-	if not pause_enabled:
-		visible = false
+	$TextureRect.material.set_shader_parameter("aspect", 0.5)
 
 
 func pause(value: bool):
@@ -34,19 +26,19 @@ func _process(_delta: float) -> void:
 			pause(true)
 
 
-func _on_button_pressed() -> void:
+func _on_continue_pressed() -> void:
 	pause(false)
 
 
-func _on_button_2_pressed() -> void:
+func _on_restart_pressed() -> void:
 	pause(false)
 	get_tree().reload_current_scene()
 
 
-func _on_button_3_pressed() -> void:
+func _on_main_menu_pressed() -> void:
 	pause(false)
-	get_tree().change_scene_to_packed(menu_scene)
+	GameManager.load_main_menu()
 
 
-func _on_button_4_pressed() -> void:
+func _on_exit_pressed() -> void:
 	get_tree().quit()

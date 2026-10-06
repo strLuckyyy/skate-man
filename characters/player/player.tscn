@@ -2,122 +2,83 @@
 
 [ext_resource type="PackedScene" uid="uid://cugtsy8diq3wy" path="res://characters/base/character.tscn" id="1_wo8oy"]
 [ext_resource type="Script" uid="uid://btr4pws8cw5t4" path="res://characters/player/player.gd" id="2_dyllp"]
+[ext_resource type="PackedScene" uid="uid://3bge3iv2ovdy" path="res://UI/gameplay/hud/hud.tscn" id="3_dirf7"]
 [ext_resource type="PackedScene" uid="uid://cc4jikaqqcx1d" path="res://characters/components/input_buffer.tscn" id="4_iai5m"]
+[ext_resource type="Texture2D" uid="uid://dpq6e0sya0rht" path="res://assets/characters/porter/porter-jump/spritesheet.sprites/0026.tres" id="4_rpf03"]
 [ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/equipment/hand_truck/hand_truck.tres" id="5_sh2bi"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dke4jj7s2o5aj" path="res://characters/player/porter_state_machine.tres" id="8_idpv6"]
 [ext_resource type="PackedScene" uid="uid://b0p82k5dcrryy" path="res://system/trick/trie/trie_navigator.tscn" id="8_s3qd7"]
-[ext_resource type="Script" uid="uid://bxek3c44g5g8v" path="res://characters/player/hud.gd" id="9_rpf03"]
-[ext_resource type="SpriteFrames" uid="uid://bw4u8sysc7o5p" path="res://characters/player/porter_frames.tres" id="pk_porter_frames"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_rpf03"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_x5dtk"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_3t07l"]
-font_size = 32
+[ext_resource type="AnimationLibrary" uid="uid://2o1qxfgvajgn" path="res://characters/player/porter_frames_lib.tres" id="9_x5dtk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f1u2"]
-radius = 65.0
-height = 272.0
+radius = 128.0
+height = 530.0
+
+[sub_resource type="Animation" id="Animation_x5dtk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_rpf03")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3t07l"]
+_data = {
+&"RESET": SubResource("Animation_x5dtk")
+}
 
 [node name="Player" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
 collision_mask = 20
 script = ExtResource("2_dyllp")
 
-[node name="HUD" type="CanvasLayer" parent="." index="0" unique_id=812955735]
-script = ExtResource("9_rpf03")
-
-[node name="Control" type="Control" parent="HUD" index="0" unique_id=1308068669]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="speed" type="Label" parent="HUD/Control" index="0" unique_id=1828628211]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -590.0
-offset_top = 225.0
-offset_right = -438.0
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "SPEED:  "
-label_settings = SubResource("LabelSettings_rpf03")
-
-[node name="ProgressBar" type="ProgressBar" parent="HUD/Control/speed" index="0" unique_id=564472308]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 135.0
-offset_top = -12.5
-offset_right = 135.0
-offset_bottom = 14.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="trick" type="Label" parent="HUD/Control" index="1" unique_id=1563316638]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.47900003
-anchor_top = 0.5
-anchor_right = 0.47900003
-anchor_bottom = 0.5
-offset_left = -482.12006
-offset_top = 187.0
-offset_right = -403.12006
-offset_bottom = 221.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TRICK: "
-label_settings = SubResource("LabelSettings_x5dtk")
-
-[node name="score" type="Label" parent="HUD/Control" index="2" unique_id=795513722]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 413.0
-offset_top = 38.0
-offset_right = 473.0
-offset_bottom = 61.0
-text = "SCORE: "
-label_settings = SubResource("LabelSettings_3t07l")
+[node name="HUD" parent="." index="0" unique_id=1307610127 instance=ExtResource("3_dirf7")]
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=367863434]
 shape = SubResource("CapsuleShape2D_1f1u2")
 
-[node name="CharacterAnimator" parent="." index="2" unique_id=915211023]
-position = Vector2(-9, -128)
-scale = Vector2(0.49, 0.49)
-sprite_frames = ExtResource("pk_porter_frames")
-animation = &"trick_fail"
+[node name="Sprite2D" parent="." index="2" unique_id=1623025330]
+position = Vector2(0, -271)
+texture = ExtResource("4_rpf03")
 
 [node name="InputBuffer" parent="." index="3" unique_id=69867716 instance=ExtResource("4_iai5m")]
 unique_name_in_owner = true
 
-[node name="EquipmentManager" parent="." index="7" unique_id=2011998462]
+[node name="EquipmentManager" parent="." index="8" unique_id=2011998462]
 default_equipment = ExtResource("5_sh2bi")
 
 [node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
 
 [node name="Camera2D" type="Camera2D" parent="." index="11" unique_id=404592596]
 unique_name_in_owner = true
-position = Vector2(0, -297)
-zoom = Vector2(0.57, 0.57)
+position = Vector2(0, -378)
+zoom = Vector2(0.35, 0.35)
 process_callback = 0
-limit_left = -9999876
-limit_top = -9999720
-limit_right = 10000124
 limit_bottom = 881
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
+
+[node name="AnimationPlayer" parent="." index="13" unique_id=213794813]
+libraries/ = SubResource("AnimationLibrary_3t07l")
+libraries/porter_frames_lib = ExtResource("9_x5dtk")
+autoplay = &"porter_frames_lib/idle-in"
+
+[node name="AnimationTree" parent="." index="14" unique_id=745438659]
+tree_root = ExtResource("8_idpv6")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/jump_request = false
+parameters/conditions/trick_fail = false
+parameters/brake/conditions/finish_anim = false
+parameters/grind-lateral/conditions/finish_anim = false
+parameters/grind-normal/conditions/finish_anim = false
+parameters/grind-point/conditions/finish_anim = false
+parameters/one_wheel/conditions/finish_anim = false
+parameters/surf/conditions/finish_anim = false
+
+[editable path="HUD"]

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_kefpy")
 trick_name = "JumpAndWalk"
+trick_type = 3
 sequence = Array[int]([0, 2, 1])
 state_available = Array[int]([3, 4])
 animation_name = &"jump_and_walk"
