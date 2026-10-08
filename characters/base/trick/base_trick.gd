@@ -48,8 +48,9 @@ func can_execute(_context: TrickContext) -> bool:
 	if not (state_match and input_match):
 		return false
 	
-	if not _context.get_grind_opportunity():
-		return false
+	if is_grind_trick:
+		if not _context.get_grind_opportunity():
+			return false
 	
 	return true
 

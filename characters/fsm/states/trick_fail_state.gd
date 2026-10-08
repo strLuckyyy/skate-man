@@ -68,4 +68,4 @@ func exit() -> void:
 	controller.is_trick_fail = false
 	current_recover_time     = 0.0
 	controller.set_permissions(true, true)
-	character.character_animator.play_animation("idle")
+	character.character_animator.play_animation(character.character_animator.IDLE_IN)

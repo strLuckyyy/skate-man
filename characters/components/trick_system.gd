@@ -11,7 +11,7 @@ var active_trick:          BaseTrick = null
 var is_busy:               bool      = false
 
 var _grind_opportunity:    bool = false
-var _current_state:        Global.StateID
+var _current_state:        Global.StateID = Global.StateID.NONE
 var _current_grindable:    GrindableObject
 var _held_trick_direction: Global.Direction = Global.Direction.NONE
 
@@ -96,6 +96,8 @@ func _on_state_changed(
 func _on_sequence_resolved(
 	candidates: Array[BaseTrick], path: Array[Global.Direction]
 ) -> void:
+	_sync_context_from_character()
+
 	print("seq=", path, " state=", Global.StateID.find_key(_current_state),
 	" busy=", is_busy, " doing a trick=", get_is_doing_trick(), " grind_opp=", _grind_opportunity,
 	" candidatos=", candidates.map(func(t): return t.trick_data.trick_name))
@@ -122,12 +124,21 @@ func _on_direction_released(direction: Global.Direction) -> void:
 	if direction != _held_trick_direction:
 		return
 
-	animator.finish_trick()
+	animator.finish_composed_anim()
 
 
 func _is_airborne() -> bool:
 	return _current_state == Global.StateID.ON_AIR \
 		or _current_state == Global.StateID.ON_FALLING
+
+
+func _sync_context_from_character() -> void:
+	if character == null or character.state_machine == null:
+		return
+
+	_current_state = character.state_machine.get_current_state_id()
+	_grind_opportunity = character.can_grind()
+	_current_grindable = character.available_grindable
 
 
 func _on_equipment_changed(
@@ -136,7 +147,7 @@ func _on_equipment_changed(
 	equipment = new_equipment
 
 
-func _on_trick_anim_finished() -> void:
+func _on_trick_anim_finished(_anim_name: StringName) -> void:
 	is_busy      = false
 	active_trick = null
 	_held_trick_direction = Global.Direction.NONE

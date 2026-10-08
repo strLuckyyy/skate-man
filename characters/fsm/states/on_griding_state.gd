@@ -23,8 +23,12 @@ func enter(p_character: BaseCharacter, _payload = null) -> void:
 	controller.set_permissions(true, true)
 	controller.reset_jumped()
 	
-	character.grind_component.grind_finished.connect(_on_grind_finished)
-	character.grind_component.start_grind(rail, character.velocity)
+	if not character.grind_component.grind_finished.is_connected(_on_grind_finished):
+		character.grind_component.grind_finished.connect(_on_grind_finished)
+
+	if not character.grind_component.start_grind(rail, character.velocity):
+		_disconnect_grind_finished()
+		call_deferred("_request_air_transition")
 
 
 func update(delta: float) -> void:
@@ -32,7 +36,7 @@ func update(delta: float) -> void:
 
 
 func exit() -> void:
-	character.grind_component.grind_finished.disconnect(_on_grind_finished)
+	_disconnect_grind_finished()
 
 
 func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> void:
@@ -50,3 +54,17 @@ func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> v
 		var velocity := Vector2(
 			(speed * direction) * end_of_rail_boost_multiplier, end_of_rail_lift)
 		emit_signal("transition_requested", Global.StateID.TRICK_FAIL, velocity)
+
+
+func _disconnect_grind_finished() -> void:
+	if character == null or character.grind_component == null:
+		return
+	if character.grind_component.grind_finished.is_connected(_on_grind_finished):
+		character.grind_component.grind_finished.disconnect(_on_grind_finished)
+
+
+func _request_air_transition() -> void:
+	if character == null:
+		return
+	if character.state_machine.get_current_state_id() == Global.StateID.ON_GRIDING:
+		emit_signal("transition_requested", Global.StateID.ON_AIR, null)

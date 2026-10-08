@@ -74,13 +74,12 @@ func _physics_process(delta: float) -> void:
 
 func start_race():
 	controller.is_locked = false
-	character_animator.play_animation("idle")
+	character_animator.start_race()
 
 
 func end_race():
 	controller.is_locked = true
-	character_animator.play_animation(character_animator.MOMMENTUM)
-	character_animator.finish_composed_anim()
+	character_animator.end_race()
 
 # ---------------------------------------------------------------------------
 # Movement
@@ -147,6 +146,7 @@ func _on_grind_trick_requested(grindable: GrindableObject) -> void:
 	
 	if controller.jumped == 0: return
 	if grindable == null: return
+	if not grind_component.can_start_grind(grindable, velocity): return
 	if state != Global.StateID.ON_AIR and state != Global.StateID.ON_FALLING: return
 	
 	state_machine.transition_to(Global.StateID.ON_GRIDING, grindable)

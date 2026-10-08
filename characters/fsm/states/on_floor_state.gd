@@ -11,10 +11,6 @@ func _init() -> void:
 func enter(p_character: BaseCharacter, _payload = null) -> void:
 	super.enter(p_character, _payload)
 	controller.set_permissions(true, true)
-	if _payload != null: 
-		character.character_animator.play_animation(
-			character.character_animator.MOMMENTUM
-		)
 
 
 func update(_delta: float) -> void:
