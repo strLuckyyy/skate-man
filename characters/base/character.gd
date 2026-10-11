@@ -1,6 +1,11 @@
 class_name BaseCharacter
 extends CharacterBody2D
 
+
+# --- Signals --- 
+@warning_ignore("unused_signal")
+signal action_detected(action: Global.RaceLoopConditions)
+
 # --- Componentes Base ---
 var state_machine:      StateMachine
 var trick_system:       TrickSystem
@@ -86,7 +91,7 @@ func end_race():
 # ---------------------------------------------------------------------------
 
 func apply_push(_forced := false) -> void:
-	EventBus.action_detected.emit(Global.RaceLoopConditions.PUSH)
+	action_detected.emit(Global.RaceLoopConditions.PUSH)
 	character_animator.play_animation(character_animator.PUSH)
 
 
@@ -121,7 +126,7 @@ func apply_slope_rotation(delta: float) -> void:
 
 
 func apply_jump(mult: float = 1.0) -> void:
-	EventBus.action_detected.emit(Global.RaceLoopConditions.JUMP)
+	action_detected.emit(Global.RaceLoopConditions.JUMP)
 	var m = mult if mult != 0.0 else 1.0
 	velocity = controller.apply_jump(velocity, equipment.current_equipment) * m
 	character_animator.play_animation(character_animator.JUMP)

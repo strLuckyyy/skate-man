@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b4viaflakre76"]
 
 [ext_resource type="Script" uid="uid://dxv4ls61nk4og" path="res://system/level/race_manager.gd" id="1_je6qs"]
+[ext_resource type="LabelSettings" uid="uid://c5onctgw4u56m" path="res://UI/gameplay/hud/hud_label_settings.tres" id="2_hac5c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fbnm"]
 size = Vector2(2306, 7188)
@@ -9,10 +10,38 @@ size = Vector2(2306, 7188)
 script = ExtResource("1_je6qs")
 metadata/_custom_type_script = "uid://dxv4ls61nk4og"
 
-[node name="CountdownLabel" type="Label" parent="." unique_id=628154309]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1650150970]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=965129643]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=760128709]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer" unique_id=944316258]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="CountdownLabel" type="Label" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer" unique_id=628154309]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+label_settings = ExtResource("2_hac5c")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CountdownTimer" type="Timer" parent="." unique_id=1341604769]
 

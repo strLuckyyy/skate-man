@@ -1768,7 +1768,7 @@ states/start_menu/position = Vector2(384, 139)
 states/start_menu_in/node = SubResource("AnimationNodeAnimation_ypmii")
 states/start_menu_in/position = Vector2(223, 139)
 transitions = ["Start", "start_menu_in", SubResource("AnimationNodeStateMachineTransition_66jq7"), "start_menu_in", "start_menu", SubResource("AnimationNodeStateMachineTransition_kh5io"), "start_menu", "main_menu_in", SubResource("AnimationNodeStateMachineTransition_0poe0"), "main_menu_in", "main_menu", SubResource("AnimationNodeStateMachineTransition_5xle5"), "main_menu", "new_game_menu_in", SubResource("AnimationNodeStateMachineTransition_eb5f5"), "new_game_menu_in", "new_game_menu", SubResource("AnimationNodeStateMachineTransition_3sjho"), "new_game_menu", "level_select_in", SubResource("AnimationNodeStateMachineTransition_8tp7p"), "level_select_in", "level_select", SubResource("AnimationNodeStateMachineTransition_3jdw3"), "level_select", "level_select_out", SubResource("AnimationNodeStateMachineTransition_dh0eo"), "level_select_out", "new_game_menu", SubResource("AnimationNodeStateMachineTransition_ra7va")]
-graph_offset = Vector2(-136, 212)
+graph_offset = Vector2(-227, 193)
 
 [node name="Menu" type="Node" unique_id=696511014]
 script = ExtResource("1_qlbuq")

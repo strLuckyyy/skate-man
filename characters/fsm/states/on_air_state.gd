@@ -36,7 +36,6 @@ func update(delta: float) -> void:
 		
 		if is_doing_trick:
 			emit_signal("transition_requested", Global.StateID.TRICK_FAIL, null)
-			print("Transitioning to TRICK_FAIL state from ON_AIR state due to trick execution.")
 		else:
 			emit_signal("transition_requested", Global.StateID.ON_FLOOR,   null)
 

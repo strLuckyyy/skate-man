@@ -16,9 +16,9 @@ func begin(duration: float = 3.0) -> void:
 func update(delta: float) -> void:
 	if _ended:
 		return
-
+	
 	_elapsed += delta
-
+	
 	if _elapsed >= _duration:
 		_ended = true
 

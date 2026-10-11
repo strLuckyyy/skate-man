@@ -4,12 +4,15 @@ extends Resource
 enum Weather { Day, Night, Rain, Fog }
 enum MapType { Urban, Subway, Parking }
 
+@export_category("Level Info")
+@export var id: int
 @export var level_scene: PackedScene
 @export var level_name: StringName
 @export var level_perfil: Texture2D
 @export var map_type: MapType
 @export var weather:  Weather
 
+@export_category("Opponent Info")
 @export var opponent: PackedScene
 @export var opponent_name: StringName
 @export var opponent_speed: float

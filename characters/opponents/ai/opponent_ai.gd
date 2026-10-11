@@ -15,9 +15,13 @@ var _can_push:     bool  = true
 var _push_cd:      float = 1.
 var _push_elapsed: float = 0.0
 
+var _race_started: bool = false
+var _race_ended:   bool = false
+
 var _jumped:     bool
 var _on_air:     bool
 var _air_states: Array[Global.StateID] = [Global.StateID.ON_AIR, Global.StateID.ON_FALLING]
+
 
 func was_jumped() -> bool:  return _jumped
 
@@ -26,6 +30,18 @@ func _ready() -> void:
 	super._ready()
 	trick_system.setup(self, equipment, character_animator, trick_sequence)
 	if ai_assessor: ai_assessor.setup(profile_data)
+
+
+func start_race():
+	super.start_race()
+	_race_started = true
+	_race_ended   = false
+
+
+func end_race():
+	super.end_race()
+	_race_started = false
+	_race_ended   = true
 
 
 func _physics_process(delta: float) -> void:
@@ -79,10 +95,6 @@ func apply_jump(_payload: float = 1.0) -> void:
 	_jumped  = false if pre_vel == velocity.y else true
 
 
-func get_caught() -> void:
-	super.get_caught()
-
-
 func _update_blackboard() -> void:
 	if not blackboard or not is_instance_valid(ai_perception):
 		return
@@ -93,6 +105,7 @@ func _update_blackboard() -> void:
 	if _on_air != is_on_air: _on_air = is_on_air
 	var dist_to_rail = ai_perception.get_distance_to_nearest_type(Global.TargetType.RAIL)
 	
+	blackboard.set_var("race_started", _race_started)
 	blackboard.set_var("rail_distance", dist_to_rail)
 	blackboard.set_var("on_air", _on_air)
 	blackboard.set_var("speed", velocity.x)

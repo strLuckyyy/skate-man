@@ -43,7 +43,6 @@ func _change_menu_cascate(condition_name: String) -> void:
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	print(anim_name)
 	if anim_name == "start_menu_in": 
 		_jump_start()
 		return
@@ -62,7 +61,7 @@ func _on_exit_pressed() -> void:
 
 
 func _on_continue_pressed() -> void:
-	pass # Replace with function body.
+	SaveManager.load_game()
 
 
 func _on_options_pressed() -> void:

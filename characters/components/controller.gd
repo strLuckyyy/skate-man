@@ -50,7 +50,6 @@ func apply_push(
 	var cap = clamp(
 		equipment.max_speed + current_boost, equipment.max_speed, equipment.max_boost_speed)
 	velocity.x = clamp(velocity.x, -cap, cap)
-	print("push ", owner.name)
 	return velocity
 
 
@@ -87,5 +86,4 @@ func apply_jump(velocity: Vector2, equipment_data: EquipmentData) -> Vector2:
 		jumped    += 1
 		is_jumping = true
 		velocity.y = -equipment_data.jump_modifier
-	print("jump ", owner.name)
 	return velocity

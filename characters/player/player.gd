@@ -1,8 +1,9 @@
 class_name Player
 extends BaseCharacter
 
-@onready var hud: CanvasLayer = $HUD
-var input_buffer: InputBuffer
+var hud:           CanvasLayer
+var score_manager: ScoreManager
+var input_buffer:  InputBuffer
 
 # ---------------------------------------------------------------------------
 # Life cycle
@@ -10,11 +11,14 @@ var input_buffer: InputBuffer
 
 func _ready() -> void:
 	super._ready()
-	input_buffer = %InputBuffer
+	hud           = $HUD
+	input_buffer  = %InputBuffer
+	score_manager = %ScoreManager
 	
 	var trie_navigator  = $TrieNavigator
 	var sequence_signal = trie_navigator.sequence_resolved
 	
+	score_manager. setup(self)
 	trie_navigator.setup(equipment)
 	trick_system.  setup(self, equipment, character_animator, sequence_signal)
 
@@ -42,6 +46,8 @@ func end_race():
 	hud.visible = false
 	hud.set_process(false)
 	hud.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	score_manager.end_race()
 
 
 func _calculate_movement() -> void:

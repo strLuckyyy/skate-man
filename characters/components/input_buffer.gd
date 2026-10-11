@@ -88,7 +88,6 @@ func get_input_buffer() -> Array[Global.Direction]:
 
 ## Returns a copy of the input buffer and clears it
 func consume_buffer() -> Array[Global.Direction]:
-	#print("CONSUMIU BUFFER:", _input_buffer)
 	var buffer_copy = get_input_buffer()
 	_input_buffer.clear()
 	return buffer_copy

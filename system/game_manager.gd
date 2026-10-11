@@ -6,6 +6,7 @@ extends Node
 
 var level_data: LevelData
 
+
 func load_main_menu() -> void:
 	get_tree().change_scene_to_packed(main_menu)
 

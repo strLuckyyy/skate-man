@@ -45,14 +45,12 @@ func end_race() -> void:
 
 ## Normal execute animations (idle, jump, push, trick_fail)
 func play_animation(anim_path: StringName) -> void:
-	print("anim: ", anim_path)
 	_reset_composed_state()
 	playback.travel(anim_path)
 
 
 ## Trick execute
 func play_trick(anim_path: StringName, is_composed: bool) -> void:
-	print("trick: ", anim_path)
 	if is_composed:
 		is_in_composed_anim = true
 		current_composed_anim = anim_path

@@ -57,9 +57,7 @@ func process(
 
 
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
-	if get_is_doing_trick():           
-		print("is doing a trick?")
-		return
+	if get_is_doing_trick(): return
 	if character.controller.is_locked: return
 	
 	if trick.is_grind_trick and context.get_grind_opportunity():
@@ -71,7 +69,6 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	active_trick          = trick
 	_held_trick_direction = trick.trick_data.hold_direction
 	
-	EventBus.trick_detected.emit(trick)
 	trick_started.emit(trick)
 	
 	character.boost_component.add_boost(trick.trick_data.boost)
@@ -88,7 +85,7 @@ func _on_state_changed(
 ) -> void:
 	if new_state == Global.StateID.TRICK_FAIL:
 		if is_busy and active_trick != null: 
-			EventBus.trick_failed.emit(active_trick)
+			EventBus.trick_failed.emit(owner, active_trick)
 	is_busy      = false
 	active_trick = null
 
@@ -97,10 +94,6 @@ func _on_sequence_resolved(
 	candidates: Array[BaseTrick], path: Array[Global.Direction]
 ) -> void:
 	_sync_context_from_character()
-
-	print("seq=", path, " state=", Global.StateID.find_key(_current_state),
-	" busy=", is_busy, " doing a trick=", get_is_doing_trick(), " grind_opp=", _grind_opportunity,
-	" candidatos=", candidates.map(func(t): return t.trick_data.trick_name))
 	
 	var context := TrickContext.new()
 	context.build_context(_current_state, _grind_opportunity, path)

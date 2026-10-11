@@ -2,10 +2,15 @@ class_name Result
 extends Control
 
 
+func _ready() -> void:
+	visible = false
+
 
 func result(_position:int):
 	%Result.text = "You Win!" if _position == 1 else "You Lost."
 	$VBoxContainer/Position.text = str("Position: ", _position)
+	
+	SaveManager.save_game()
 
 
 func _on_next_level_pressed() -> void:

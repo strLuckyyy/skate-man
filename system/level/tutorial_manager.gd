@@ -1,12 +1,18 @@
 class_name TutorialManager
 extends RaceManager
 
+
 @export var actions_required_to_end: Dictionary[Global.RaceLoopConditions, bool]
 @export var tricks_required_to_end: Dictionary[TrickData, bool]
 
-func _ready() -> void:
-	EventBus.action_detected.connect(_action_detected)
-	EventBus.trick_detected.connect(_trick_detected)
+
+func setup(character: BaseCharacter):
+	character.action_detected.connect(_action_detected)
+	character.trick_system.trick_started.connect(_trick_detected)
+
+
+func get_countdown_label() -> Label:
+	return %CountdownLabel
 
 
 func check_race_conditions() -> bool:

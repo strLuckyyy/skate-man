@@ -21,6 +21,7 @@ config/icon="uid://dkthej1pgwlvm"
 
 GameManager="*uid://b3pkltpeb0apa"
 EventBus="*uid://dl24x3t2r5j6y"
+SaveManager="*uid://dnqqcmmiferav"
 
 [display]
 
@@ -38,7 +39,8 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 
 [global_group]
 
-player=""
+john=""
+porter=""
 
 [importer_defaults]
 

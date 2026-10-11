@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5cms6bbacen5"]
 
-[ext_resource type="Script" uid="uid://xmf0lv3e0jti" path="res://system/level/score_manager.gd" id="1_fi2sl"]
+[ext_resource type="Script" uid="uid://xmf0lv3e0jti" path="res://characters/components/score_manager.gd" id="1_fi2sl"]
 
 [node name="ScoreManager" type="Node2D" unique_id=1289204274]
 script = ExtResource("1_fi2sl")

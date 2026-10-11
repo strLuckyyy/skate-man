@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/equipment/hand_truck/hand_truck.tres" id="5_sh2bi"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dke4jj7s2o5aj" path="res://characters/player/porter_state_machine.tres" id="8_idpv6"]
 [ext_resource type="PackedScene" uid="uid://b0p82k5dcrryy" path="res://system/trick/trie/trie_navigator.tscn" id="8_s3qd7"]
+[ext_resource type="PackedScene" uid="uid://c5cms6bbacen5" path="res://characters/components/score_manager.tscn" id="8_x5dtk"]
 [ext_resource type="AnimationLibrary" uid="uid://2o1qxfgvajgn" path="res://characters/player/porter_frames_lib.tres" id="9_x5dtk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f1u2"]
@@ -22,7 +23,8 @@ _data = {
 &"RESET": SubResource("Animation_x5dtk")
 }
 
-[node name="Player" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
+[node name="Player" unique_id=1969115429 groups=["porter"] instance=ExtResource("1_wo8oy")]
+process_mode = 1
 collision_mask = 20
 script = ExtResource("2_dyllp")
 
@@ -45,19 +47,22 @@ default_equipment = ExtResource("5_sh2bi")
 
 [node name="Camera2D" type="Camera2D" parent="." index="11" unique_id=404592596]
 unique_name_in_owner = true
-position = Vector2(0, -378)
+position = Vector2(0, -138.485)
 zoom = Vector2(0.35, 0.35)
 process_callback = 0
-limit_bottom = 881
+limit_bottom = 3001
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
-[node name="AnimationPlayer" parent="." index="13" unique_id=213794813]
+[node name="ScoreManager" parent="." index="12" unique_id=1289204274 instance=ExtResource("8_x5dtk")]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" parent="." index="14" unique_id=213794813]
 libraries/ = SubResource("AnimationLibrary_3t07l")
 libraries/porter_frames_lib = ExtResource("9_x5dtk")
 autoplay = &"porter_frames_lib/idle-in"
 
-[node name="AnimationTree" parent="." index="14" unique_id=745438659]
+[node name="AnimationTree" parent="." index="15" unique_id=745438659]
 tree_root = ExtResource("8_idpv6")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/end_race = false

@@ -1,80 +1,572 @@
 [gd_scene format=3 uid="uid://3bge3iv2ovdy"]
 
 [ext_resource type="Script" uid="uid://bxek3c44g5g8v" path="res://UI/gameplay/hud/hud.gd" id="1_iogcl"]
+[ext_resource type="LabelSettings" uid="uid://c5onctgw4u56m" path="res://UI/gameplay/hud/hud_label_settings.tres" id="2_5eehw"]
+[ext_resource type="Texture2D" uid="uid://tqg8qrjenpkt" path="res://assets/ui/hud/hud_elements/hud_pos2.svg" id="2_h3jrj"]
+[ext_resource type="Texture2D" uid="uid://c5535ppiidd2f" path="res://assets/ui/hud/hud_elements/hud_pos1.svg" id="3_4nqqi"]
+[ext_resource type="LabelSettings" uid="uid://b87hs3la6hklq" path="res://UI/gameplay/hud/hud_label_settings_positions.tres" id="3_ewljb"]
+[ext_resource type="Texture2D" uid="uid://b7g7y4ltseydh" path="res://assets/ui/hud/hud_elements/hud_rodasemnada.svg" id="6_177wf"]
+[ext_resource type="Texture2D" uid="uid://dnhae11k8xk2b" path="res://assets/ui/hud/hud_elements/hud_trick_info.svg" id="6_ewljb"]
+[ext_resource type="AnimationLibrary" uid="uid://c0taqo5hw6xdi" path="res://UI/gameplay/hud/positions_hud.res" id="6_vtjxg"]
+[ext_resource type="Texture2D" uid="uid://bk17iuiqujof7" path="res://assets/ui/hud/hud_elements/hud_rodela.svg" id="7_hl1je"]
+[ext_resource type="AnimationLibrary" uid="uid://gcn6fg8p70jf" path="res://UI/gameplay/hud/combo_bar_hud.res" id="9_7pep4"]
+[ext_resource type="AnimationLibrary" uid="uid://ckrkbs77mpj33" path="res://UI/gameplay/hud/score_hud.res" id="11_5u687"]
+[ext_resource type="AnimationLibrary" uid="uid://b1fljfu3wnr8t" path="res://UI/gameplay/hud/trick_name_hud.res" id="12_opdsa"]
+[ext_resource type="AnimationLibrary" uid="uid://cgdr0t32lqpm6" path="res://UI/gameplay/hud/sequence_hud.res" id="13_egufn"]
+[ext_resource type="AnimationLibrary" uid="uid://b6tqrmbca3k0m" path="res://UI/gameplay/hud/combo_counter_hud.res" id="14_7ba83"]
+[ext_resource type="AnimationLibrary" uid="uid://lu02d7obm38v" path="res://UI/gameplay/hud/damage_hud.res" id="15_pmvs8"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_rpf03"]
-font_size = 40
+[sub_resource type="Animation" id="Animation_177wf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%ComboCounter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(636.358, -122.426)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Sequence:offset_transform_position_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sequence:offset_transform_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Sequence:offset_transform_rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%ComboBar:offset_transform_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.835, 0.835)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Score:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1276, 81)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Score:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(206.9181, 36.269127)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%Score:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%Score:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%TrickName:offset_transform_position_ratio")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%TrickName:offset_transform_scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("%TrickName:offset_transform_rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("MainControl/TrickInfoControl/ComboCounter:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MainControl/TrickInfoControl/ComboCounter:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("DamageScreen:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("DamageScreen:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("DamageScreen:self_modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("MainControl/PositionControl/Positions:size")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(105, 111.00052)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("MainControl/PositionControl/Positions:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-37, 32)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("MainControl/PositionControl/Positions:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("MainControl/PositionControl/Positions:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("MainControl/PositionControl/CurrentPosition:size")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(105, 111.00018)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("MainControl/PositionControl/CurrentPosition:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-98, 0)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("MainControl/PositionControl/CurrentPosition:rotation")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("MainControl/PositionControl/CurrentPosition:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("MainControl/PositionControl/Positions:z_index")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-[sub_resource type="LabelSettings" id="LabelSettings_x5dtk"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_3t07l"]
-font_size = 32
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hl1je"]
+_data = {
+&"RESET": SubResource("Animation_177wf")
+}
 
 [node name="HUD" type="CanvasLayer" unique_id=1307610127]
 script = ExtResource("1_iogcl")
 
-[node name="Control" type="Control" parent="." unique_id=967475976]
+[node name="MainControl" type="Control" parent="." unique_id=967475976]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="speed" type="Label" parent="Control" unique_id=35202628]
+[node name="PositionControl" type="Control" parent="MainControl" unique_id=1327805850]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -590.0
-offset_top = 225.0
-offset_right = -438.0
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "SPEED:  "
-label_settings = SubResource("LabelSettings_rpf03")
-
-[node name="ProgressBar" type="ProgressBar" parent="Control/speed" unique_id=417386657]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 135.0
-offset_top = -12.5
-offset_right = 135.0
-offset_bottom = 14.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -133.0
+offset_top = 58.0
+offset_right = -133.0
+offset_bottom = 58.0
+grow_horizontal = 0
+scale = Vector2(0.65, 0.65)
 
-[node name="trick" type="Label" parent="Control" unique_id=520246079]
+[node name="Positions" type="TextureRect" parent="MainControl/PositionControl" unique_id=865776715]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_top = 32.0
+offset_right = 68.0
+offset_bottom = 143.00052
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+texture = ExtResource("2_h3jrj")
+
+[node name="TotalPositions" type="Label" parent="MainControl/PositionControl/Positions" unique_id=1514325079]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.47900003
-anchor_top = 0.5
-anchor_right = 0.47900003
-anchor_bottom = 0.5
-offset_left = -482.12006
-offset_top = 187.0
-offset_right = -403.12006
-offset_bottom = 221.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_right = 104.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "TRICK: "
-label_settings = SubResource("LabelSettings_x5dtk")
+text = "2"
+label_settings = ExtResource("3_ewljb")
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="score" type="Label" parent="Control" unique_id=718858522]
+[node name="CurrentPosition" type="TextureRect" parent="MainControl/PositionControl" unique_id=1812972467]
+layout_mode = 1
+offset_left = -98.0
+offset_right = 7.0
+offset_bottom = 111.00018
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+texture = ExtResource("3_4nqqi")
+
+[node name="CurrentPosition" type="Label" parent="MainControl/PositionControl/CurrentPosition" unique_id=344060765]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_right = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = ExtResource("2_5eehw")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="PositionAnim" type="AnimationPlayer" parent="MainControl/PositionControl" unique_id=1700891263]
+unique_name_in_owner = true
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_hl1je")
+libraries/positions_hud = ExtResource("6_vtjxg")
+
+[node name="TrickInfoControl" type="Control" parent="MainControl" unique_id=470045813]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainControl/TrickInfoControl" unique_id=19370426]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0000005
+offset_top = -257.00003
+offset_right = 1599.0
+offset_bottom = 65.99997
+grow_vertical = 0
+scale = Vector2(0.785, 0.785)
+
+[node name="ComboBar" type="TextureProgressBar" parent="MainControl/TrickInfoControl/HBoxContainer" unique_id=282336124]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 24.03)
+offset_transform_scale = Vector2(0.835, 0.835)
+offset_transform_visual_only = false
+fill_mode = 4
+texture_under = ExtResource("6_177wf")
+texture_progress = ExtResource("7_hl1je")
+texture_progress_offset = Vector2(25, 25)
+
+[node name="ComboBarAnim" type="AnimationPlayer" parent="MainControl/TrickInfoControl/HBoxContainer/ComboBar" unique_id=294629434]
+unique_name_in_owner = true
+root_node = NodePath("../../../../..")
+libraries/ = SubResource("AnimationLibrary_hl1je")
+libraries/combo_bar_hud = ExtResource("9_7pep4")
+
+[node name="TrickInfo" type="TextureRect" parent="MainControl/TrickInfoControl/HBoxContainer" unique_id=494153389]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-414.04, 56.4)
+offset_transform_scale = Vector2(0.56, 0.56)
+offset_transform_visual_only = false
+texture = ExtResource("6_ewljb")
+expand_mode = 3
+
+[node name="Score" type="Label" parent="MainControl/TrickInfoControl/HBoxContainer/TrickInfo" unique_id=66707250]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 206.9181
+offset_top = 36.269127
+offset_right = 206.91809
+offset_bottom = 117.26913
+grow_horizontal = 2
+text = "Score: 0"
+label_settings = ExtResource("2_5eehw")
+vertical_alignment = 1
+
+[node name="ScoreAnim" type="AnimationPlayer" parent="MainControl/TrickInfoControl/HBoxContainer/TrickInfo/Score" unique_id=614814834]
+unique_name_in_owner = true
+root_node = NodePath("../../../../../..")
+libraries/ = SubResource("AnimationLibrary_hl1je")
+libraries/score_hud = ExtResource("11_5u687")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainControl/TrickInfoControl/HBoxContainer/TrickInfo" unique_id=1380535252]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 150.04822
+offset_top = 56.742287
+offset_right = 150.04822
+offset_bottom = 56.74228
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TrickName" type="Label" parent="MainControl/TrickInfoControl/HBoxContainer/TrickInfo/HBoxContainer" unique_id=563382754]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+label_settings = ExtResource("2_5eehw")
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="TrickNameAnim" type="AnimationPlayer" parent="MainControl/TrickInfoControl/HBoxContainer/TrickInfo/HBoxContainer/TrickName" unique_id=391680775]
+unique_name_in_owner = true
+root_node = NodePath("../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_hl1je")
+libraries/trick_name_hud = ExtResource("12_opdsa")
+
+[node name="Sequence" type="Label" parent="MainControl/TrickInfoControl/HBoxContainer/TrickInfo/HBoxContainer" unique_id=1338526114]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.82
+offset_transform_enabled = true
+label_settings = ExtResource("2_5eehw")
+vertical_alignment = 1
+
+[node name="SequenceAnim" type="AnimationPlayer" parent="MainControl/TrickInfoControl/HBoxContainer/TrickInfo/HBoxContainer/Sequence" unique_id=1326174488]
+unique_name_in_owner = true
+root_node = NodePath("../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_hl1je")
+libraries/sequence_hud = ExtResource("13_egufn")
+
+[node name="ComboCounter" type="Label" parent="MainControl/TrickInfoControl" unique_id=1797897880]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 413.0
-offset_top = 38.0
-offset_right = 473.0
-offset_bottom = 61.0
-text = "SCORE: "
-label_settings = SubResource("LabelSettings_3t07l")
+offset_left = 636.358
+offset_top = -122.426
+offset_right = 830.358
+offset_bottom = -41.426003
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+offset_transform_visual_only = false
+label_settings = ExtResource("2_5eehw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComboCounterAnim" type="AnimationPlayer" parent="MainControl/TrickInfoControl/ComboCounter" unique_id=66734154]
+unique_name_in_owner = true
+root_node = NodePath("../../../..")
+libraries/ = SubResource("AnimationLibrary_hl1je")
+libraries/combo_counter_hud = ExtResource("14_7ba83")
+
+[node name="DamageScreen" type="PanelContainer" parent="." unique_id=1044147897]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DamageScreenAnim" type="AnimationPlayer" parent="DamageScreen" unique_id=793456254]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_hl1je")
+libraries/damage_hud = ExtResource("15_pmvs8")

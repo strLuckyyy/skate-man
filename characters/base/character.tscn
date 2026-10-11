@@ -24,10 +24,8 @@ script = ExtResource("1_nvf7k")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1623025330]
 
-[node name="CharacterAnimator" parent="." unique_id=107566681 node_paths=PackedStringArray("sprite", "animation_player", "animation_tree") instance=ExtResource("2_osgrd")]
+[node name="CharacterAnimator" parent="." unique_id=107566681 node_paths=PackedStringArray("animation_tree") instance=ExtResource("2_osgrd")]
 unique_name_in_owner = true
-sprite = NodePath("../Sprite2D")
-animation_player = NodePath("../AnimationPlayer")
 animation_tree = NodePath("../AnimationTree")
 
 [node name="StateMachine" parent="." unique_id=734721836 instance=ExtResource("2_0hoxr")]

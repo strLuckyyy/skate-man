@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+@export var is_level_select_load: int = 0
 @export var level_list: Array[LevelData]
 
 @onready var level_sprite:  TextureRect = %LevelSprite
@@ -20,12 +21,15 @@ extends VBoxContainer
 @onready var btn_right: Button = %RightButton
 
 var _index: int = 0
+var _game_loaded: bool = false
 
 
 func _ready() -> void:
 	btn_left.pressed.connect(_change_level.bind(-1))
 	btn_right.pressed.connect(_change_level.bind(1))
 	_show_level(0)
+	
+	SaveManager.loaded.connect( func(): _game_loaded = true )
 
 
 func _change_level(step: int) -> void:
@@ -39,13 +43,15 @@ func _show_level(index: int) -> void:
 		return
 	
 	_index = clampi(index, 0, level_list.size() - 1)
+	
 	var level: LevelData = level_list[_index]
+	var score: float = SaveManager.get_level_score(str(level.id)) if _game_loaded else 0.0
 	
 	level_name.text      = level.level_name
 	level_sprite.texture = level.level_perfil
 	map_label.text       = str(LevelData.MapType.find_key(level.map_type))
 	weather_label.text   = str(LevelData.Weather.find_key(level.weather))
-	score_label.text     = str(100.00)
+	score_label.text     = str(score)
 	
 	opponent_sprite.texture  = level.opponent_perfil
 	equipment_sprite.texture = level.equipment_perfil
