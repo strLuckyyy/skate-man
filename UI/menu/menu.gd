@@ -1,12 +1,13 @@
 class_name Menu
 extends Node
 
-#const LEVEL_1: PackedScene = preload("res://levels/level_01/level_01.tscn")
-
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var start_jump: Button = $CanvasLayer/Control/StartMenuJump
 @onready var main_menu: HBoxContainer = $CanvasLayer/Control/MainMenu
 @onready var new_game:  HBoxContainer = $CanvasLayer/Control/NewGameMenu
+@onready var level_select: LevelSelect = $CanvasLayer/Control/LevelSelect
+@onready var level_list: LevelListData = preload("res://UI/menu/level_list.tres")
+@onready var tutorial_list: LevelListData = preload("res://UI/menu/tutorial_list.tres")
 
 var can_jump_animation: bool = true
 var _last_condition: String = ""
@@ -21,9 +22,21 @@ func _ready() -> void:
 	
 	main_menu_btn.pressed.connect(_change_menu_cascate.bind("start_press"))
 	new_game_btn.pressed.connect(_change_menu_cascate.bind("new_game"))
-	level_select_btn.pressed.connect(_change_menu_cascate.bind("level_select"))
-	tutorial_bnt.pressed.connect(_change_menu_cascate.bind("level_select"))
-	back_menu.pressed.connect(_change_menu_cascate.bind("ls_back_menu"))
+	level_select_btn.pressed.connect(
+		func():
+			_change_menu_cascate("level_select")
+			level_select.level_select(level_list)
+	)
+	tutorial_bnt.pressed.connect(
+		func():
+			_change_menu_cascate("level_select")
+			level_select.level_select(tutorial_list)
+	)
+	back_menu.pressed.connect(
+		func():
+			_change_menu_cascate("ls_back_menu")
+			level_select.level_select(null)
+	)
 
 
 func _jump_start() -> void:
@@ -66,3 +79,7 @@ func _on_continue_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_new_game_pressed() -> void:
+	SaveManager.load_game()

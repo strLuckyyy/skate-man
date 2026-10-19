@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bxek3c44g5g8v" path="res://UI/gameplay/hud/hud.gd" id="1_iogcl"]
 [ext_resource type="LabelSettings" uid="uid://c5onctgw4u56m" path="res://UI/gameplay/hud/hud_label_settings.tres" id="2_5eehw"]
 [ext_resource type="Texture2D" uid="uid://tqg8qrjenpkt" path="res://assets/ui/hud/hud_elements/hud_pos2.svg" id="2_h3jrj"]
-[ext_resource type="Texture2D" uid="uid://c5535ppiidd2f" path="res://assets/ui/hud/hud_elements/hud_pos1.svg" id="3_4nqqi"]
+[ext_resource type="Texture2D" uid="uid://c7mt7uhs2i6xc" path="res://assets/ui/hud/hud_elements/hud_pos1.svg" id="3_4nqqi"]
 [ext_resource type="LabelSettings" uid="uid://b87hs3la6hklq" path="res://UI/gameplay/hud/hud_label_settings_positions.tres" id="3_ewljb"]
 [ext_resource type="Texture2D" uid="uid://b7g7y4ltseydh" path="res://assets/ui/hud/hud_elements/hud_rodasemnada.svg" id="6_177wf"]
 [ext_resource type="Texture2D" uid="uid://dnhae11k8xk2b" path="res://assets/ui/hud/hud_elements/hud_trick_info.svg" id="6_ewljb"]

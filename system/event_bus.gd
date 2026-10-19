@@ -6,9 +6,13 @@ signal character_caught(character: BaseCharacter)
 
 # --- Race Events ---
 @warning_ignore("unused_signal")
-signal race_started()
+signal characters_spawned(racers: Array[BaseCharacter])
 @warning_ignore("unused_signal")
-signal race_ended(score: float)
+signal race_position_updated(position: int)
+@warning_ignore("unused_signal")
+signal race_ended(base_character: BaseCharacter, score: float)
+@warning_ignore("unused_signal")
+signal race_finished(position: int)
 @warning_ignore("unused_signal")
 signal score_updated(new_score: float)
 

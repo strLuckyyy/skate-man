@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/platform/base_platform.tscn" id="1_ethqj"]
 [ext_resource type="Script" uid="uid://dubaah2j5npvg" path="res://environment/platform/elevator/elevator_platform.gd" id="2_ei1si"]
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="3_rstrf"]
-[ext_resource type="Texture2D" uid="uid://boxesdsnm5xri" path="res://assets/sprites/elevator-open.png" id="4_c1cks"]
-[ext_resource type="Texture2D" uid="uid://c62j7r2aki147" path="res://assets/sprites/elevator.png" id="5_5yffc"]
+[ext_resource type="Texture2D" path="res://assets/props/elevator-open.png" id="4_c1cks"]
+[ext_resource type="Texture2D" path="res://assets/props/elevator.png" id="5_5yffc"]
 
 [sub_resource type="Resource" id="Resource_es3th"]
 script = ExtResource("3_rstrf")

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b4fhqgrdoads3"]
+
+[ext_resource type="Script" uid="uid://ckdr6c37wfjcs" path="res://system/level/level_manager.gd" id="1_wevqg"]
+[ext_resource type="PackedScene" uid="uid://b4viaflakre76" path="res://system/level/race_manager.tscn" id="2_63c5o"]
+[ext_resource type="PackedScene" uid="uid://cyrvd3ux0qniv" path="res://system/level/spawner.tscn" id="3_satuh"]
+
+[sub_resource type="Environment" id="Environment_ixirq"]
+background_mode = 3
+background_color = Color(0.47190505, 0.49436307, 0.46074635, 1)
+tonemap_mode = 1
+tonemap_white = 1.6
+
+[node name="BaseLevel" type="Node2D" unique_id=288399197 node_paths=PackedStringArray("spawner", "race_manager")]
+script = ExtResource("1_wevqg")
+spawner = NodePath("Spawner")
+race_manager = NodePath("RaceManager")
+
+[node name="RaceManager" parent="." unique_id=1629192821 node_paths=PackedStringArray("spawner") instance=ExtResource("2_63c5o")]
+spawner = NodePath("../Spawner")
+
+[node name="Spawner" parent="." unique_id=1301072490 instance=ExtResource("3_satuh")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=135125554]
+environment = SubResource("Environment_ixirq")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1982012601]
+color = Color(0.629, 0.6621501, 0.85, 1)
+
+[editable path="RaceManager"]

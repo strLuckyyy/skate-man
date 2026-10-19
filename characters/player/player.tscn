@@ -3,9 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cugtsy8diq3wy" path="res://characters/base/character.tscn" id="1_wo8oy"]
 [ext_resource type="Script" uid="uid://btr4pws8cw5t4" path="res://characters/player/player.gd" id="2_dyllp"]
 [ext_resource type="PackedScene" uid="uid://3bge3iv2ovdy" path="res://UI/gameplay/hud/hud.tscn" id="3_dirf7"]
+[ext_resource type="PackedScene" uid="uid://dt6aqeno54wyt" path="res://UI/gameplay/pause.tscn" id="4_3t07l"]
 [ext_resource type="PackedScene" uid="uid://cc4jikaqqcx1d" path="res://characters/components/input_buffer.tscn" id="4_iai5m"]
-[ext_resource type="Texture2D" uid="uid://ddbg6bihsx76b" path="res://assets/characters/porter/porter-idle-in/spritesheet.sprites/0024.tres" id="4_rpf03"]
+[ext_resource type="PackedScene" uid="uid://cui3eelnf74cl" path="res://UI/gameplay/result.tscn" id="5_on558"]
 [ext_resource type="Resource" uid="uid://dn0510bauquu0" path="res://characters/equipment/hand_truck/hand_truck.tres" id="5_sh2bi"]
+[ext_resource type="Texture2D" uid="uid://ddbg6bihsx76b" path="res://assets/characters/porter/porter-idle-in/spritesheet.sprites/0024.tres" id="6_on558"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dke4jj7s2o5aj" path="res://characters/player/porter_state_machine.tres" id="8_idpv6"]
 [ext_resource type="PackedScene" uid="uid://b0p82k5dcrryy" path="res://system/trick/trie/trie_navigator.tscn" id="8_s3qd7"]
 [ext_resource type="PackedScene" uid="uid://c5cms6bbacen5" path="res://characters/components/score_manager.tscn" id="8_x5dtk"]
@@ -23,29 +25,43 @@ _data = {
 &"RESET": SubResource("Animation_x5dtk")
 }
 
-[node name="Player" unique_id=1969115429 groups=["porter"] instance=ExtResource("1_wo8oy")]
+[node name="Player" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
 process_mode = 1
 collision_mask = 20
 script = ExtResource("2_dyllp")
 
 [node name="HUD" parent="." index="0" unique_id=1307610127 instance=ExtResource("3_dirf7")]
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=367863434]
+[node name="ComboCounter" parent="HUD/MainControl/TrickInfoControl" parent_id_path=PackedInt32Array(1307610127, 470045813) index="1" unique_id=1797897880]
+offset_bottom = -12.4260025
+
+[node name="PauseLayer" type="CanvasLayer" parent="." index="1" unique_id=180015522]
+process_mode = 3
+visible = false
+
+[node name="Pause" parent="PauseLayer" index="0" unique_id=1169743778 instance=ExtResource("4_3t07l")]
+
+[node name="ResultLayer" type="CanvasLayer" parent="." index="2" unique_id=1535109269]
+process_mode = 3
+
+[node name="Result" parent="ResultLayer" index="0" unique_id=1527243598 instance=ExtResource("5_on558")]
+
+[node name="CollisionShape2D" parent="." index="3" unique_id=367863434]
 shape = SubResource("CapsuleShape2D_1f1u2")
 
-[node name="Sprite2D" parent="." index="2" unique_id=1623025330]
+[node name="Sprite2D" parent="." index="4" unique_id=1623025330]
 position = Vector2(0, -271)
-texture = ExtResource("4_rpf03")
+texture = ExtResource("6_on558")
 
-[node name="InputBuffer" parent="." index="3" unique_id=69867716 instance=ExtResource("4_iai5m")]
+[node name="InputBuffer" parent="." index="5" unique_id=69867716 instance=ExtResource("4_iai5m")]
 unique_name_in_owner = true
 
-[node name="EquipmentManager" parent="." index="8" unique_id=2011998462]
+[node name="EquipmentManager" parent="." index="10" unique_id=2011998462]
 default_equipment = ExtResource("5_sh2bi")
 
-[node name="TrieNavigator" parent="." index="10" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
+[node name="TrieNavigator" parent="." index="12" unique_id=2057733963 instance=ExtResource("8_s3qd7")]
 
-[node name="Camera2D" type="Camera2D" parent="." index="11" unique_id=404592596]
+[node name="Camera2D" type="Camera2D" parent="." index="13" unique_id=404592596]
 unique_name_in_owner = true
 position = Vector2(0, -138.485)
 zoom = Vector2(0.35, 0.35)
@@ -54,15 +70,15 @@ limit_bottom = 3001
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
-[node name="ScoreManager" parent="." index="12" unique_id=1289204274 instance=ExtResource("8_x5dtk")]
+[node name="ScoreManager" parent="." index="14" unique_id=1289204274 instance=ExtResource("8_x5dtk")]
 unique_name_in_owner = true
 
-[node name="AnimationPlayer" parent="." index="14" unique_id=213794813]
+[node name="AnimationPlayer" parent="." index="16" unique_id=213794813]
 libraries/ = SubResource("AnimationLibrary_3t07l")
 libraries/porter_frames_lib = ExtResource("9_x5dtk")
 autoplay = &"porter_frames_lib/idle-in"
 
-[node name="AnimationTree" parent="." index="15" unique_id=745438659]
+[node name="AnimationTree" parent="." index="17" unique_id=745438659]
 tree_root = ExtResource("8_idpv6")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/end_race = false

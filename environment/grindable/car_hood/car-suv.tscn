@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_ft6bc"]
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_qivcv"]
-[ext_resource type="Texture2D" uid="uid://nwg5cdhh7l3k" path="res://assets/props/cars/suv/car_wheels_suv.svg" id="3_wm73k"]
-[ext_resource type="Texture2D" uid="uid://wys3seun61me" path="res://assets/props/cars/suv/car_color_part_suv.svg" id="4_e888g"]
-[ext_resource type="Texture2D" uid="uid://bafbxlihmuscw" path="res://assets/props/cars/suv/suv_uncolored_parts.svg" id="5_yqdm0"]
+[ext_resource type="Texture2D" uid="uid://nwg5cdhh7l3k" path="res://data/assets/props/cars/suv/car_wheels_suv.svg" id="3_wm73k"]
+[ext_resource type="Texture2D" uid="uid://wys3seun61me" path="res://data/assets/props/cars/suv/car_color_part_suv.svg" id="4_e888g"]
+[ext_resource type="Texture2D" uid="uid://bafbxlihmuscw" path="res://data/assets/props/cars/suv/suv_uncolored_parts.svg" id="5_yqdm0"]
 
 [sub_resource type="Resource" id="Resource_ctipn"]
 script = ExtResource("2_qivcv")

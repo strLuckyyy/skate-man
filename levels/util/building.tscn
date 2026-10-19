@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://x1e0x1m0edtl"]
 
 [ext_resource type="PackedScene" uid="uid://nbx5j62h0pvu" path="res://environment/platform/crane/crane_model.tscn" id="1_lucoj"]
-[ext_resource type="Texture2D" uid="uid://y2jrcklrrtgy" path="res://assets/scenary/buildings/building.png" id="2_pt5a5"]
-[ext_resource type="Texture2D" uid="uid://blniow8tlb2p" path="res://assets/scenary/buildings/building2.png" id="3_8tikj"]
-[ext_resource type="Texture2D" uid="uid://bf7lpav1hbrmu" path="res://assets/scenary/brick_wall.png" id="4_84a1x"]
-[ext_resource type="Texture2D" uid="uid://tcdukxsbbwh3" path="res://assets/scenary/background_city.png" id="5_0i6v1"]
-[ext_resource type="Texture2D" uid="uid://oa71tj8av4jv" path="res://assets/scenary/office_building.png" id="6_7vx4g"]
+[ext_resource type="Texture2D" path="res://assets/tiles/buildings/building.png" id="2_pt5a5"]
+[ext_resource type="Texture2D" path="res://assets/tiles/buildings/building2.png" id="3_8tikj"]
+[ext_resource type="Texture2D" path="res://assets/tiles/brick_wall.png" id="4_84a1x"]
+[ext_resource type="Texture2D" path="res://assets/tiles/background_city.png" id="5_0i6v1"]
+[ext_resource type="Texture2D" path="res://assets/tiles/office_building.png" id="6_7vx4g"]
 [ext_resource type="PackedScene" uid="uid://d2jq8ya2vskgm" path="res://environment/platform/elevator/elevator_platform.tscn" id="7_c0mag"]
-[ext_resource type="Texture2D" uid="uid://cb71ahwrsmcgf" path="res://assets/scenary/buildings/building3.png" id="8_lqkt3"]
-[ext_resource type="Texture2D" uid="uid://cs4x7qww6lo0v" path="res://assets/scenary/buildings/building4.png" id="9_um735"]
+[ext_resource type="Texture2D" path="res://assets/tiles/buildings/building3.png" id="8_lqkt3"]
+[ext_resource type="Texture2D" path="res://assets/tiles/buildings/building4.png" id="9_um735"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2x2cs"]
 size = Vector2(44.333435, 218.67596)

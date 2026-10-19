@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://6w8diicxwk7p"]
 
-[ext_resource type="Texture2D" uid="uid://sxdu1jllgwfh" path="res://assets/scenary/cloud.png" id="1_1qmus"]
-[ext_resource type="Texture2D" uid="uid://btsvn35s1knmu" path="res://assets/scenary/Synth City/city skyline/Layers/back.png" id="2_jcr7b"]
-[ext_resource type="Texture2D" uid="uid://k44qxhcb42j5" path="res://assets/scenary/Synth City/Version 1/PNG/layers/back-buildings.png" id="3_kq6vn"]
-[ext_resource type="Texture2D" uid="uid://cdl50led5kk4x" path="res://assets/scenary/Synth City/city skyline/Layers/buildings.png" id="4_3u1fu"]
-[ext_resource type="Texture2D" uid="uid://dh0ashoaoenrj" path="res://assets/scenary/Synth City/city skyline/Layers/front.png" id="5_bwbm7"]
-[ext_resource type="Texture2D" uid="uid://x3oyaw8vx8tu" path="res://assets/scenary/filter.png" id="6_4upfq"]
+[ext_resource type="Texture2D" path="res://assets/tiles/cloud.png" id="1_1qmus"]
+[ext_resource type="Texture2D" path="res://assets/tiles/Synth City/city skyline/Layers/back.png" id="2_jcr7b"]
+[ext_resource type="Texture2D" path="res://assets/tiles/Synth City/Version 1/PNG/layers/back-buildings.png" id="3_kq6vn"]
+[ext_resource type="Texture2D" path="res://assets/tiles/Synth City/city skyline/Layers/buildings.png" id="4_3u1fu"]
+[ext_resource type="Texture2D" path="res://assets/tiles/Synth City/city skyline/Layers/front.png" id="5_bwbm7"]
+[ext_resource type="Texture2D" path="res://assets/tiles/filter.png" id="6_4upfq"]
 
 [node name="Parallax" type="Node2D" unique_id=245099177]
 

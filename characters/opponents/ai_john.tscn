@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4rv2qcgbaw0i" path="res://characters/base/ai/base_ai.tscn" id="1_n6juw"]
 [ext_resource type="Script" uid="uid://bjs7prebesdpk" path="res://data/ai_profile_data.gd" id="2_gyjpf"]
-[ext_resource type="Texture2D" uid="uid://cn63bhb86shdq" path="res://assets/characters/john/john-mommentum/spritesheet.sprites/0022.tres" id="3_gyjpf"]
+[ext_resource type="Texture2D" uid="uid://bj0eeuj63ytxj" path="res://data/assets/characters/john/john-mommentum/spritesheet.sprites/0014.tres" id="3_gyjpf"]
 [ext_resource type="BehaviorTree" uid="uid://cymenedscfq63" path="res://characters/opponents/ai/tree/bt_opponent.tres" id="3_jn72f"]
 [ext_resource type="Resource" uid="uid://dgvcqoj5a02we" path="res://characters/equipment/skate/skate.tres" id="4_meift"]
 [ext_resource type="Script" uid="uid://je56wctexd5b" path="res://characters/opponents/ai/perceptions/set_perception_shape_position.gd" id="5_jn72f"]
@@ -264,10 +264,10 @@ debug_color = Color(0.48158604, 0.587405, 0, 0.41960785)
 script = ExtResource("5_jn72f")
 agent = NodePath("../..")
 
-[node name="AnimationPlayer" parent="." index="13" unique_id=213794813]
+[node name="AnimationPlayer" parent="." index="12" unique_id=213794813]
 libraries/ai_john_lib = ExtResource("7_ru431")
 
-[node name="AnimationTree" parent="." index="14" unique_id=745438659]
+[node name="AnimationTree" parent="." index="13" unique_id=745438659]
 tree_root = SubResource("AnimationNodeStateMachine_q4mpy")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/end_race = false

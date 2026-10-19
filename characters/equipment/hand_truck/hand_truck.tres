@@ -19,4 +19,6 @@
 script = ExtResource("1_mfffr")
 tricks = Array[ExtResource("2_gwm2d")]([ExtResource("3_wv5n3"), ExtResource("4_5bp02"), ExtResource("5_8m3ng"), ExtResource("6_gm8rg"), ExtResource("7_6ynx1"), ExtResource("8_gaprj"), ExtResource("9_u08hy"), ExtResource("10_ejwjc"), ExtResource("11_nr7xg"), ExtResource("12_c3gbs"), ExtResource("13_hrfh7"), ExtResource("14_077ea")])
 acceleration = 0.664
+friction = 0.088
+jump_modifier = 600.0
 metadata/_custom_type_script = "uid://fsgq8yal7w87"

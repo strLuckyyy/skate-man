@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d2jq8ya2vskgm" path="res://environment/platform/elevator/elevator_platform.tscn" id="1_was78"]
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_g7plw"]
-[ext_resource type="Texture2D" uid="uid://b3t26mrxa10qg" path="res://assets/scenary/scaffolding.png" id="2_rutve"]
+[ext_resource type="Texture2D" path="res://assets/tiles/scaffolding.png" id="2_rutve"]
 [ext_resource type="Script" uid="uid://bumwhfcus6ajl" path="res://environment/platform/scaffolding/set_collision.gd" id="2_tgnt5"]
 [ext_resource type="Script" uid="uid://d05e7ejkemyu4" path="res://environment/platform/scaffolding/scaffolding.gd" id="2_yyifu"]
 

@@ -1,7 +1,7 @@
+class_name LevelSelect
 extends VBoxContainer
 
 @export var is_level_select_load: int = 0
-@export var level_list: Array[LevelData]
 
 @onready var level_sprite:  TextureRect = %LevelSprite
 @onready var level_name:    Label       = %LevelName
@@ -20,6 +20,8 @@ extends VBoxContainer
 @onready var btn_left:  Button = %LeftButton
 @onready var btn_right: Button = %RightButton
 
+
+var level_list: Array[LevelData]
 var _index: int = 0
 var _game_loaded: bool = false
 
@@ -30,6 +32,14 @@ func _ready() -> void:
 	_show_level(0)
 	
 	SaveManager.loaded.connect( func(): _game_loaded = true )
+
+
+func level_select(lvl_select: LevelListData):
+	if lvl_select == null:
+		level_list = []
+	else:
+		level_list = lvl_select.level_list
+	_show_level(0)
 
 
 func _change_level(step: int) -> void:
@@ -45,7 +55,7 @@ func _show_level(index: int) -> void:
 	_index = clampi(index, 0, level_list.size() - 1)
 	
 	var level: LevelData = level_list[_index]
-	var score: float = SaveManager.get_level_score(str(level.id)) if _game_loaded else 0.0
+	var score: float = SaveManager.get_level_score(str(_index)) if _game_loaded else 0.0
 	
 	level_name.text      = level.level_name
 	level_sprite.texture = level.level_perfil
@@ -75,4 +85,4 @@ func _update_buttons() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	GameManager.start_level(level_list[_index])
+	GameManager.start_level(level_list[_index], _index)

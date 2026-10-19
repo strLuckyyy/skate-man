@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelListData" format=3 uid="uid://bcofxplt6sqiv"]
+
+[ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="1_is4n5"]
+[ext_resource type="Script" uid="uid://b0qiusq23y3in" path="res://data/level_list.gd" id="2_jlgiv"]
+[ext_resource type="Resource" uid="uid://b2de6k165srs0" path="res://levels/tutorial/tutorial_1/1_push_and_jump_tt.tres" id="2_lrvan"]
+[ext_resource type="Resource" uid="uid://b68iu8loy336g" path="res://levels/tutorial/tutorial_2/2_floor_tricks_tt.tres" id="3_jmwpm"]
+[ext_resource type="Resource" uid="uid://c8k1nwkft6my8" path="res://levels/tutorial/tutorial_3/3_airbound_tricks_tt.tres" id="4_jmwpm"]
+[ext_resource type="Resource" uid="uid://cprr41kqw467b" path="res://levels/tutorial/tutorial_4/4_grind_tricks_tt.tres" id="5_h7unl"]
+
+[resource]
+script = ExtResource("2_jlgiv")
+level_list = Array[ExtResource("1_is4n5")]([ExtResource("2_lrvan"), ExtResource("3_jmwpm"), ExtResource("4_jmwpm"), ExtResource("5_h7unl")])
+metadata/_custom_type_script = "uid://b0qiusq23y3in"

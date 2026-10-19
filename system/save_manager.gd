@@ -13,9 +13,6 @@ var game_data: Dictionary = {
 	"levels": {}
 }
 
-func _ready() -> void:
-	load_game()
-
 
 func save_game() -> void:
 	var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.WRITE, SECRET_KEY)
@@ -47,9 +44,12 @@ func load_game() -> void:
 				loaded.emit()
 		else:
 			print("Error: Cannot load the game.")
+	print(game_data)
 
 
-func update_level_progress(level_id: int, score: float, is_completed: bool, custom_data: Dictionary = {}) -> void:
+func update_level_progress(
+	level_id: int, score: float, is_completed: bool, custom_data: Dictionary = {}
+	) -> void:
 	var lvl_id := str(level_id)
 	if not game_data["levels"].has(lvl_id):
 		game_data["levels"][lvl_id] = {
@@ -80,4 +80,4 @@ func get_level_data(level_id: String) -> Dictionary:
 
 func get_level_score(level_id: String) -> float:
 	var data = get_level_data(level_id)
-	return data.get("best_score")
+	return data.get("best_score", 0.0)

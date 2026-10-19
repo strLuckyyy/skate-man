@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_mtox2"]
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_wrigc"]
-[ext_resource type="Texture2D" uid="uid://bba5pdkiosqck" path="res://assets/scenary/billboard.png" id="3_eh3uk"]
+[ext_resource type="Texture2D" path="res://assets/tiles/billboard.png" id="3_eh3uk"]
 
 [sub_resource type="Resource" id="Resource_eh3uk"]
 script = ExtResource("2_wrigc")

@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://d1t274xpem1ox"]
 
 [ext_resource type="Script" uid="uid://ckdr6c37wfjcs" path="res://system/level/level_manager.gd" id="1_q182i"]
-[ext_resource type="Texture2D" uid="uid://da2v0cu2a85ya" path="res://assets/ui/hud/tutorial_elements/seta.png" id="4_y1t52"]
+[ext_resource type="Texture2D" uid="uid://da2v0cu2a85ya" path="res://data/assets/ui/hud/tutorial_elements/seta.png" id="4_y1t52"]
 [ext_resource type="PackedScene" uid="uid://dt6aqeno54wyt" path="res://UI/gameplay/pause.tscn" id="5_8yta4"]
 [ext_resource type="PackedScene" uid="uid://b4viaflakre76" path="res://system/level/race_manager.tscn" id="5_y3njl"]
 [ext_resource type="PackedScene" uid="uid://6w8diicxwk7p" path="res://levels/util/parallax.tscn" id="7_c1ncc"]
 [ext_resource type="PackedScene" uid="uid://dvdwau3dkl8f7" path="res://environment/grindable/billboard/billboard.tscn" id="8_5bl2g"]
 [ext_resource type="PackedScene" uid="uid://x1e0x1m0edtl" path="res://levels/util/building.tscn" id="9_ygeti"]
 [ext_resource type="PackedScene" uid="uid://dywhc7o7xgam3" path="res://levels/util/park.tscn" id="10_bk04q"]
-[ext_resource type="Texture2D" uid="uid://cdmyo8fgx7ds8" path="res://assets/tiles/crane/crane_man.png" id="11_b8hur"]
+[ext_resource type="Texture2D" uid="uid://cdmyo8fgx7ds8" path="res://data/assets/tiles/crane/crane_man.png" id="11_b8hur"]
 [ext_resource type="PackedScene" uid="uid://dl4ufc70gy33o" path="res://environment/grindable/utility_pole/utility_pole_generator.tscn" id="12_8xxoa"]
 [ext_resource type="PackedScene" uid="uid://ca0x02fo5fi00" path="res://environment/grindable/car_hood/car-suv.tscn" id="13_0djny"]
 [ext_resource type="PackedScene" uid="uid://c1fddkx8byqab" path="res://environment/grindable/utility_pole/utility_pole.tscn" id="14_jmoa1"]
@@ -19,8 +19,8 @@
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="19_hafri"]
 [ext_resource type="PackedScene" uid="uid://dw8cu6ciqdkmw" path="res://levels/util/tile_map_layer.tscn" id="20_2eeb2"]
 [ext_resource type="PackedScene" uid="uid://cyrvd3ux0qniv" path="res://system/level/spawner.tscn" id="21_u134b"]
-[ext_resource type="Texture2D" uid="uid://4whig1i1apxw" path="res://assets/ui/hud/tutorial_elements/d_tecla.png" id="22_ltyhb"]
-[ext_resource type="Texture2D" uid="uid://b25hujfk5fnl2" path="res://assets/ui/hud/tutorial_elements/esapco.png" id="23_yp8mv"]
+[ext_resource type="Texture2D" uid="uid://4whig1i1apxw" path="res://data/assets/ui/hud/tutorial_elements/d_tecla.png" id="22_ltyhb"]
+[ext_resource type="Texture2D" uid="uid://b25hujfk5fnl2" path="res://data/assets/ui/hud/tutorial_elements/esapco.png" id="23_yp8mv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6amrg"]
 font_size = 121

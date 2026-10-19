@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dywhc7o7xgam3"]
 
-[ext_resource type="Texture2D" uid="uid://ck1dyyy8xe3au" path="res://assets/scenary/tree1.png" id="1_077uq"]
-[ext_resource type="Texture2D" uid="uid://574po20sf0cc" path="res://assets/scenary/tree2.png" id="2_hjwak"]
-[ext_resource type="Texture2D" uid="uid://bf7lpav1hbrmu" path="res://assets/scenary/brick_wall.png" id="3_axkqj"]
+[ext_resource type="Texture2D" path="res://assets/tiles/tree1.png" id="1_077uq"]
+[ext_resource type="Texture2D" path="res://assets/tiles/tree2.png" id="2_hjwak"]
+[ext_resource type="Texture2D" path="res://assets/tiles/brick_wall.png" id="3_axkqj"]
 
 [node name="Park" type="Node2D" unique_id=1380093101]
 

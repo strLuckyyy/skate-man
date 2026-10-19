@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://cprr41kqw467b"]
+
+[ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="1_1tkhy"]
+[ext_resource type="Texture2D" uid="uid://ckiacsgwbnsdk" path="res://assets/ui/menus/perfil/zane_porter-hand_truck-perfil.svg" id="1_wikfg"]
+[ext_resource type="PackedScene" uid="uid://6whukin2oq4q" path="res://levels/tutorial/tutorial_4/4_grind_tricks_tt.tscn" id="2_bblie"]
+[ext_resource type="Texture2D" uid="uid://d1nkg8ejxjwen" path="res://assets/ui/menus/perfil/zane_porter-perfil.svg" id="3_yowhw"]
+
+[resource]
+script = ExtResource("1_1tkhy")
+level_scene = ExtResource("2_bblie")
+level_name = &"Tutorial - 4/4"
+map_type = 2
+opponent_name = &"No Opponent"
+opponent_speed = 5.0
+opponent_boost = 5.0
+opponent_perfil = ExtResource("3_yowhw")
+equipment_perfil = ExtResource("1_wikfg")
+difficulty = 5.0
+metadata/_custom_type_script = "uid://dpdy24ajsuigx"

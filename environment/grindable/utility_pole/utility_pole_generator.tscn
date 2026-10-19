@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl4ufc70gy33o"]
 
 [ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_h8v0t"]
-[ext_resource type="Texture2D" uid="uid://cgtvkhq7lhtwx" path="res://assets/scenary/utility_pole/wire.png" id="2_2o3o2"]
+[ext_resource type="Texture2D" path="res://assets/tiles/utility_pole/wire.png" id="2_2o3o2"]
 [ext_resource type="Script" uid="uid://d0s1cn8kcji1h" path="res://environment/grindable/utility_pole/utils/wires.gd" id="2_2yxfe"]
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_e8yg6"]
 [ext_resource type="Script" uid="uid://cqwluirunaqp6" path="res://environment/grindable/utility_pole/utility_line_generator_2d.gd" id="2_fr5r3"]

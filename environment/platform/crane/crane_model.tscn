@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://nbx5j62h0pvu"]
 
-[ext_resource type="Texture2D" uid="uid://cwty6gom6syqy" path="res://assets/scenary/crane/crane_body.png" id="2_1b3k0"]
-[ext_resource type="Texture2D" uid="uid://bsgu4e4umj5ga" path="res://assets/scenary/crane/crane_top_part.png" id="3_gbbym"]
-[ext_resource type="Texture2D" uid="uid://dupqvrpnij4mb" path="res://assets/scenary/crane/crane_top.png" id="4_4n5vy"]
+[ext_resource type="Texture2D" path="res://assets/tiles/crane/crane_body.png" id="2_1b3k0"]
+[ext_resource type="Texture2D" path="res://assets/tiles/crane/crane_top_part.png" id="3_gbbym"]
+[ext_resource type="Texture2D" path="res://assets/tiles/crane/crane_top.png" id="4_4n5vy"]
 
 [node name="CraneModel" type="Node2D" unique_id=1174697002]
 

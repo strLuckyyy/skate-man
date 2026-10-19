@@ -45,10 +45,7 @@ func _trick_detected(trick: BaseTrick) -> void:
 
 @warning_ignore("unused_parameter")
 func _trick_fail(base_character: BaseCharacter, trick: BaseTrick):
-	print(base_character)
-	print(character)
 	if base_character == character:
-		print("trick fail", character.name)
 		score /= 2
 		combo_amount = 0
 		current_time = 0.
@@ -57,4 +54,4 @@ func _trick_fail(base_character: BaseCharacter, trick: BaseTrick):
 
 
 func end_race() -> void:
-	EventBus.race_ended.emit(score)
+	EventBus.race_ended.emit(character, score)

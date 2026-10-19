@@ -5,7 +5,6 @@ enum Weather { Day, Night, Rain, Fog }
 enum MapType { Urban, Subway, Parking }
 
 @export_category("Level Info")
-@export var id: int
 @export var level_scene: PackedScene
 @export var level_name: StringName
 @export var level_perfil: Texture2D

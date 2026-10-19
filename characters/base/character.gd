@@ -2,8 +2,6 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 
-# --- Signals --- 
-@warning_ignore("unused_signal")
 signal action_detected(action: Global.RaceLoopConditions)
 
 # --- Componentes Base ---
@@ -16,6 +14,7 @@ var grind_component:    GrindComponent
 var boost_component:    BoostComponent
 var character_animator: CharacterAnimator
 
+var race_ended:         bool = false
 var _out_equip_data:    EquipmentData
 
 # --- End Game flag ---
@@ -33,6 +32,9 @@ var smoothed_floor_angle: float = 0.0
 # ---------------------------------------------------------------------------
 # Getters
 # ---------------------------------------------------------------------------
+
+func get_x_position() -> float:
+	return global_position.x
 
 func get_caught() -> void:
 	EventBus.character_caught.emit(self)
@@ -84,6 +86,7 @@ func start_race():
 
 func end_race():
 	controller.is_locked = true
+	race_ended = true
 	character_animator.end_race()
 
 # ---------------------------------------------------------------------------

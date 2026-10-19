@@ -11,9 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://c6hccjp1comwb" path="res://UI/menu/menu_bottons/start_menu.tscn" id="8_7jt6j"]
 [ext_resource type="PackedScene" uid="uid://d01kj1tnk4ord" path="res://UI/menu/menu_bottons/new_game_menu.tscn" id="10_5xle5"]
 [ext_resource type="PackedScene" uid="uid://b5phfudpfadcc" path="res://UI/menu/menu_bottons/level_select.tscn" id="11_ypmii"]
-[ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="12_66jq7"]
-[ext_resource type="Resource" uid="uid://b2de6k165srs0" path="res://levels/tutorial/tutorial_1.tres" id="13_kh5io"]
-[ext_resource type="Resource" uid="uid://bh0div42mxwwn" path="res://levels/level_01/level_01.tres" id="14_eb5f5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gbx6r"]
 font = ExtResource("3_oo15n")
@@ -1707,9 +1704,6 @@ animation = &"start_menu"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ypmii"]
 animation = &"start_menu_in"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_66jq7"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kh5io"]
 advance_mode = 2
 advance_condition = &"start_menu_in"
@@ -1746,6 +1740,9 @@ advance_condition = &"ls_back_menu"
 advance_mode = 2
 advance_condition = &"level_select_out"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ypmii"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dimhu"]
 states/End/position = Vector2(1002, 276)
 states/Start/position = Vector2(62, 139)
@@ -1767,8 +1764,8 @@ states/start_menu/node = SubResource("AnimationNodeAnimation_5xle5")
 states/start_menu/position = Vector2(384, 139)
 states/start_menu_in/node = SubResource("AnimationNodeAnimation_ypmii")
 states/start_menu_in/position = Vector2(223, 139)
-transitions = ["Start", "start_menu_in", SubResource("AnimationNodeStateMachineTransition_66jq7"), "start_menu_in", "start_menu", SubResource("AnimationNodeStateMachineTransition_kh5io"), "start_menu", "main_menu_in", SubResource("AnimationNodeStateMachineTransition_0poe0"), "main_menu_in", "main_menu", SubResource("AnimationNodeStateMachineTransition_5xle5"), "main_menu", "new_game_menu_in", SubResource("AnimationNodeStateMachineTransition_eb5f5"), "new_game_menu_in", "new_game_menu", SubResource("AnimationNodeStateMachineTransition_3sjho"), "new_game_menu", "level_select_in", SubResource("AnimationNodeStateMachineTransition_8tp7p"), "level_select_in", "level_select", SubResource("AnimationNodeStateMachineTransition_3jdw3"), "level_select", "level_select_out", SubResource("AnimationNodeStateMachineTransition_dh0eo"), "level_select_out", "new_game_menu", SubResource("AnimationNodeStateMachineTransition_ra7va")]
-graph_offset = Vector2(-227, 193)
+transitions = ["start_menu_in", "start_menu", SubResource("AnimationNodeStateMachineTransition_kh5io"), "start_menu", "main_menu_in", SubResource("AnimationNodeStateMachineTransition_0poe0"), "main_menu_in", "main_menu", SubResource("AnimationNodeStateMachineTransition_5xle5"), "main_menu", "new_game_menu_in", SubResource("AnimationNodeStateMachineTransition_eb5f5"), "new_game_menu_in", "new_game_menu", SubResource("AnimationNodeStateMachineTransition_3sjho"), "new_game_menu", "level_select_in", SubResource("AnimationNodeStateMachineTransition_8tp7p"), "level_select_in", "level_select", SubResource("AnimationNodeStateMachineTransition_3jdw3"), "level_select", "level_select_out", SubResource("AnimationNodeStateMachineTransition_dh0eo"), "level_select_out", "new_game_menu", SubResource("AnimationNodeStateMachineTransition_ra7va"), "Start", "start_menu_in", SubResource("AnimationNodeStateMachineTransition_ypmii")]
+graph_offset = Vector2(-205, 298)
 
 [node name="Menu" type="Node" unique_id=696511014]
 script = ExtResource("1_qlbuq")
@@ -1860,8 +1857,34 @@ offset_right = 1278.0007
 [node name="LevelSelect" parent="CanvasLayer/Control" unique_id=577144340 instance=ExtResource("11_ypmii")]
 layout_mode = 1
 offset_left = 2558.0
-offset_right = 2557.999
-level_list = Array[ExtResource("12_66jq7")]([ExtResource("13_kh5io"), ExtResource("14_eb5f5")])
+offset_right = 2557.9988
+
+[node name="LevelSprite" parent="CanvasLayer/Control/LevelSelect/UpperArea/LeftColumn/TopLeft" parent_id_path=PackedInt32Array(577144340, 976789610) index="0" unique_id=744293405]
+texture = null
+
+[node name="OpponentSprite" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/TopRight/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 2145200835) index="0" unique_id=15292155]
+texture = null
+
+[node name="EquipmentSprite" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/TopRight/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 2145200835) index="1" unique_id=1038619060]
+texture = null
+
+[node name="OpponentSpeed" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/SpeedContainer" parent_id_path=PackedInt32Array(577144340, 691088133) index="1" unique_id=1188531757]
+texture_under = null
+texture_progress = null
+
+[node name="OpponentBoost" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/BoostContainer" parent_id_path=PackedInt32Array(577144340, 456118541) index="1" unique_id=2122727467]
+texture_under = null
+texture_progress = null
+
+[node name="LevelDifficulty" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/DifficultyContainer" parent_id_path=PackedInt32Array(577144340, 358386589) index="1" unique_id=1818502886]
+texture_under = null
+texture_progress = null
+
+[node name="LeftButton" parent="CanvasLayer/Control/LevelSelect/BottomArea/MarginContainer/HBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 873693086) index="0" unique_id=271569109]
+icon = null
+
+[node name="RightButton" parent="CanvasLayer/Control/LevelSelect/BottomArea/MarginContainer/HBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 873693086) index="2" unique_id=529443618]
+icon = null
 
 [node name="StartMenuJump" type="Button" parent="CanvasLayer/Control" unique_id=453746992]
 layout_mode = 1
@@ -1894,6 +1917,7 @@ parameters/conditions/start_menu_in = false
 parameters/conditions/start_press = false
 
 [connection signal="pressed" from="CanvasLayer/Control/StartMenu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MainMenu/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MainMenu/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MainMenu/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MainMenu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

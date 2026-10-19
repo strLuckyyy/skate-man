@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites id="2026-10-19" name="report_1" tests="15" failures="0" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="test_input_buffer" package="test" timestamp="2026-10-19T18:43:44" hostname="localhost" tests="7" failures="0" errors="0" skipped="0" flaky="0" time="0.118">
+		<testcase name="test_push_input_keeps_direction_in_buffer" classname="test_input_buffer" time="0.012">
+		</testcase>
+		<testcase name="test_buffer_drops_oldest_input_when_capacity_is_exceeded" classname="test_input_buffer" time="0.010">
+		</testcase>
+		<testcase name="test_get_input_buffer_returns_copy_not_internal_array" classname="test_input_buffer" time="0.012">
+		</testcase>
+		<testcase name="test_consume_buffer_returns_inputs_and_clears_original" classname="test_input_buffer" time="0.010">
+		</testcase>
+		<testcase name="test_timer_timeout_clears_buffer" classname="test_input_buffer" time="0.007">
+		</testcase>
+		<testcase name="test_unhandled_input_pressed_emits_signal_and_stores_direction" classname="test_input_buffer" time="0.007">
+		</testcase>
+		<testcase name="test_unhandled_input_released_emits_release_signal" classname="test_input_buffer" time="0.008">
+		</testcase>
+	</testsuite>
+	<testsuite id="1" name="test_save_manager" package="test" timestamp="2026-10-19T18:43:44" hostname="localhost" tests="4" failures="0" errors="0" skipped="0" flaky="0" time="0.080">
+		<testcase name="test_update_level_progress_creates_level_and_stores_values" classname="test_save_manager" time="0.009">
+		</testcase>
+		<testcase name="test_update_level_progress_keeps_best_score_and_completed_state" classname="test_save_manager" time="0.020">
+		</testcase>
+		<testcase name="test_get_level_data_returns_default_for_unknown_level" classname="test_save_manager" time="0.009">
+		</testcase>
+		<testcase name="test_save_and_load_restore_saved_game_data_and_emit_signals" classname="test_save_manager" time="0.019">
+		</testcase>
+	</testsuite>
+	<testsuite id="2" name="test_score_manager" package="test" timestamp="2026-10-19T18:43:44" hostname="localhost" tests="4" failures="0" errors="0" skipped="0" flaky="0" time="0.130">
+		<testcase name="test_trick_detected_adds_bonus_increments_combo_resets_timer_and_emits_signal" classname="test_score_manager" time="0.014">
+		</testcase>
+		<testcase name="test_trick_fail_for_current_character_halves_score_and_clears_combo" classname="test_score_manager" time="0.029">
+		</testcase>
+		<testcase name="test_trick_fail_from_another_character_does_not_change_score" classname="test_score_manager" time="0.031">
+		</testcase>
+		<testcase name="test_physics_process_expires_combo_and_emits_updated_score" classname="test_score_manager" time="0.030">
+		</testcase>
+	</testsuite>
+</testsuites>

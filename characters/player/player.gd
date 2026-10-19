@@ -4,6 +4,10 @@ extends BaseCharacter
 var hud:           CanvasLayer
 var score_manager: ScoreManager
 var input_buffer:  InputBuffer
+var race_position: int:
+	set(value):
+		race_position = value
+		EventBus.race_position_updated.emit(value)
 
 # ---------------------------------------------------------------------------
 # Life cycle

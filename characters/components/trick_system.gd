@@ -55,7 +55,6 @@ func process(
 	if grindable != _current_grindable:
 		_current_grindable  = grindable
 
-
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	if get_is_doing_trick(): return
 	if character.controller.is_locked: return

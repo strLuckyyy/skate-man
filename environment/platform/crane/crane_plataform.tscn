@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://83ogmy6xlbvv" path="res://environment/platform/base_platform.tscn" id="1_u37l8"]
 [ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_d08x1"]
 [ext_resource type="Script" uid="uid://c6yny1a4wgtlv" path="res://environment/platform/crane/crane_plataform.gd" id="2_tvyba"]
-[ext_resource type="Texture2D" uid="uid://can0cq0tda87e" path="res://assets/scenary/crane/plataform_crane.png" id="4_tvyba"]
+[ext_resource type="Texture2D" path="res://assets/tiles/crane/plataform_crane.png" id="4_tvyba"]
 
 [sub_resource type="Resource" id="Resource_68o7p"]
 script = ExtResource("2_d08x1")

@@ -6,33 +6,33 @@ extends Node2D
 	"res://characters/player/player.tscn")
 @onready var default_equipment: EquipmentData = preload(
 	"res://characters/equipment/hand_truck/hand_truck.tres")
-@onready var result := $CanvasLayer/Result
 @onready var countdown := Countdown.new()
 
 @export var spawner:      Spawner
 @export var race_manager: RaceManager
-@export var canvas:       CanvasLayer
-
+ 
+var level_id:     int
 var data:         LevelData
 var race_running: bool = false
 var can_start_cd: bool = false
-var racers:       Array
+var racers:       Array[BaseCharacter]
 var cd_label:     Label
 var player_score: float = 0.0
 
 
 func _ready() -> void:
 	if GameManager.level_data == null:
-		push_error("whitout data")
+		GameManager.testing_mode()
 	data = GameManager.level_data
 	
 	get_tree().paused = false
-	race_manager.race_finished.connect(finish)
+	EventBus.race_finished.connect(finish)
 	cd_label = race_manager.get_countdown_label()
 	
-	EventBus.race_ended.connect(
-		func(score):
-			player_score = score
+	EventBus.race_ended.connect( 
+		func(base_character, score): 
+			if base_character == Player:
+				player_score = score 
 	)
 	
 	_spawn()
@@ -57,32 +57,25 @@ func _process(delta: float) -> void:
 
 @warning_ignore("shadowed_variable_base_class")
 func finish(position: int):
-	var pause_menu = canvas.get_node_or_null("Pause")
-	if pause_menu and pause_menu.has_method("set_pause_enabled"):
-		pause_menu.call("set_pause_enabled", false)
-	
-	get_tree().paused = true
-	
 	var is_completed: bool = true if position == 1 else false
 	
 	SaveManager.update_level_progress(
-		data.id, 
+		GameManager.current_level_id, 
 		player_score, 
 		is_completed,
 	)
 	SaveManager.save_game()
 	
-	result.result(position)
-	result.visible = true
+	race_running = false
 
 
 func _spawn() -> void:
 	var racer: BaseCharacter
 	if data.opponent != null: 
-		racer = spawner.spawn_character(data.opponent)
+		racer = spawner.spawn_character(data.opponent, race_manager)
 		spawner.global_position.x -= 10
 		racers.append(racer)
 	
-	racer = spawner.spawn_character(player_scene)
-	racer.equip(default_equipment)
+	racer = spawner.spawn_character(player_scene, race_manager, default_equipment)
 	racers.append(racer)
+	EventBus.characters_spawned.emit(racers)

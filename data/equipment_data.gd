@@ -8,5 +8,4 @@ extends Resource
 @export_range(0.0, 1.0) var friction:     float = 0.1
 @export var recouver_timeout:             float = .8 
 @export var push_modifier:                float = 300.
-@export var jump_modifier:                float = 400.0
-@export var anim_set:                     StringName
+@export var jump_modifier:                float = 400.
