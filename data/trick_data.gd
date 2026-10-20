@@ -19,4 +19,7 @@ extends Resource
 @export var animation_name: StringName
 
 @export_category("Hold")
-@export var hold_direction: Global.Direction
+@export var hold_direction: Global.Direction:
+	get:
+		if hold_direction != Global.Direction.NONE: return hold_direction
+		return sequence.back() if not sequence.is_empty() else Global.Direction.NONE

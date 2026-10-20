@@ -20,7 +20,7 @@ func save_game() -> void:
 		var json_string = JSON.stringify(game_data)
 		file.store_string(json_string)
 		file.close()
-		print("Game saved!")
+		print("Game saved! ", game_data)
 		saved.emit()
 	else:
 		print("Error: Cannot save.")

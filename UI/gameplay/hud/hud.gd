@@ -24,7 +24,7 @@ extends CanvasLayer
 @onready var combo_count_anim   := %ComboCounterAnim
 @onready var damage_screen_anim := %DamageScreenAnim
 
-const DIRECTION = ["↑", "↓", "←", "→"]
+const DIRECTION = ["↑", "↓", "→", "←"]
 
 var current_score: float = 0.0
 var current_combo_amount: int = 0
@@ -53,10 +53,9 @@ func _process(_delta: float) -> void:
 @warning_ignore("unused_parameter")
 func _update_sequece(direction: Global.Direction, pressed: bool) -> void:
 	if not pressed: return
-	if sequence.get_total_character_count() > 6: sequence.text = ""
+	if sequence.get_total_character_count() > 7: sequence.text = ""
 	
 	sequence.text += str(DIRECTION[direction], " ")
-	sequence_anim.play("sequence_hud/direction_detected")
 
 
 func _score_updated(score: float, combo_amount: int) -> void:
@@ -68,6 +67,7 @@ func _score_updated(score: float, combo_amount: int) -> void:
 func _update_trick_label(trick: BaseTrick):
 	trick_label.text = str(trick.trick_data.trick_name)
 	trick_name_anim.play("trick_name_hud/trick_detected")
+	sequence_anim.play("sequence_hud/direction_detected")
 	
 	_score_control()
 
@@ -80,7 +80,7 @@ func _score_control() -> void:
 		combo_counter_text = ""
 		combo_bar_value    = 0.
 	
-	score_label.text   = str("SCORE: ", current_score)
+	score_label.text   = str("SCORE: ", current_score).pad_decimals(2)
 	combo_bar.value    = combo_bar_value
 	combo_counter.text = str(combo_counter_text)
 	

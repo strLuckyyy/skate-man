@@ -6,9 +6,9 @@
 script = ExtResource("1_gn4e3")
 trick_name = "Brake"
 trick_type = 3
-sequence = Array[int]([1])
+sequence = Array[int]([1, 3])
 state_available = Array[int]([2])
 is_compose = true
 animation_name = &"brake"
-hold_direction = 3
+hold_direction = 4
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

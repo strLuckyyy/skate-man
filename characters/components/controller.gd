@@ -31,6 +31,14 @@ func update_moving_state(velocity: Vector2) -> void:
 	is_moving = abs(velocity.x) > 5.0 
 
 
+func apply_impulse(velocity: Vector2, impulse_force: Vector2) -> Vector2:
+	if is_locked: return velocity
+	
+	velocity += impulse_force
+	
+	return velocity
+
+
 func apply_push(
 	velocity: Vector2, equipment: EquipmentData, current_boost: float = 0.0, forced := false
 	) -> Vector2:

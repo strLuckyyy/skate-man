@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="1_6gmoo"]
 [ext_resource type="Texture2D" uid="uid://ckiacsgwbnsdk" path="res://assets/ui/menus/perfil/zane_porter-hand_truck-perfil.svg" id="1_i1b0w"]
 [ext_resource type="PackedScene" uid="uid://bmtmiwxxcd8b6" path="res://levels/tutorial/tutorial_2/2_floor_tricks_tt.tscn" id="2_0slv2"]
-[ext_resource type="Texture2D" uid="uid://d4drdv11pc2uc" path="res://assets/ui/menus/level_perfil/tutorial-pefil2.svg" id="2_tqr3u"]
+[ext_resource type="Texture2D" uid="uid://wqgrvtvm4dfm" path="res://assets/ui/menus/level_perfil/tutorial-perfil2.svg" id="2_tqr3u"]
 [ext_resource type="Texture2D" uid="uid://d1nkg8ejxjwen" path="res://assets/ui/menus/perfil/zane_porter-perfil.svg" id="3_0slv2"]
 
 [resource]

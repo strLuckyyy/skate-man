@@ -3,12 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://ckiacsgwbnsdk" path="res://assets/ui/menus/perfil/zane_porter-hand_truck-perfil.svg" id="1_hw8ho"]
 [ext_resource type="PackedScene" uid="uid://bte7jr7c0m36e" path="res://levels/tutorial/tutorial_3/3_airbound_tricks_tt.tscn" id="1_ssmph"]
 [ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="1_xfanw"]
+[ext_resource type="Texture2D" uid="uid://yxadp210nqpw" path="res://assets/ui/menus/level_perfil/tutorial-pefil3.svg" id="2_fn6p6"]
 [ext_resource type="Texture2D" uid="uid://d1nkg8ejxjwen" path="res://assets/ui/menus/perfil/zane_porter-perfil.svg" id="3_fn6p6"]
 
 [resource]
 script = ExtResource("1_xfanw")
 level_scene = ExtResource("1_ssmph")
 level_name = &"Tutorial - 3/4"
+level_perfil = ExtResource("2_fn6p6")
 map_type = 2
 opponent_name = &"No Opponent"
 opponent_speed = 5.0

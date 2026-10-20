@@ -4,6 +4,11 @@ extends Node
 signal trick_started(trick: BaseTrick)
 signal grind_trick_requested(grindable: GrindableObject)
 
+const _ACTION_BY_DIR := {
+	Global.Direction.UP: &"up",     Global.Direction.DOWN: &"down",
+	Global.Direction.LEFT: &"left", Global.Direction.RIGHT: &"right",
+}
+
 var character:             BaseCharacter
 var equipment:             EquipmentData
 var animator:              CharacterAnimator
@@ -32,9 +37,10 @@ func setup(
 ) -> void:
 	if trick_sequence_signal != null:
 		trick_sequence_signal.connect(_on_sequence_resolved)
-
-	EventBus.direction_released.connect(_on_direction_released)
-
+	
+	if char_ref is Player:
+		EventBus.direction_released.connect(_on_direction_released)
+	
 	character = char_ref
 	animator  = character_animator
 	
@@ -55,9 +61,12 @@ func process(
 	if grindable != _current_grindable:
 		_current_grindable  = grindable
 
+
 func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	if get_is_doing_trick(): return
 	if character.controller.is_locked: return
+	
+	print(context.get_input_buffer(), trick.name)
 	
 	if trick.is_grind_trick and context.get_grind_opportunity():
 		grind_trick_requested.emit(_current_grindable)
@@ -66,7 +75,8 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	
 	is_busy               = true
 	active_trick          = trick
-	_held_trick_direction = trick.trick_data.hold_direction
+	_held_trick_direction = trick.trick_data.hold_direction \
+		if trick.trick_data.is_compose else Global.Direction.NONE
 	
 	trick_started.emit(trick)
 	
@@ -74,6 +84,10 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	trick.execute(context)
 	
 	animator.play_trick(trick.anim_name, trick.trick_data.is_compose)
+	
+	var held: bool = _held_trick_direction != Global.Direction.NONE and character is Player
+	if held and not Input.is_action_pressed(_ACTION_BY_DIR[_held_trick_direction]):
+		animator.finish_composed_anim()
 
 # ---------------------------------------------------------------------------
 # Private — sequence resolution
@@ -140,6 +154,8 @@ func _on_equipment_changed(
 
 
 func _on_trick_anim_finished(_anim_name: StringName) -> void:
-	is_busy      = false
+	if animator.is_in_composed_anim: return
+	print(_anim_name)
+	is_busy = false
 	active_trick = null
 	_held_trick_direction = Global.Direction.NONE

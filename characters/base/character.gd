@@ -93,6 +93,15 @@ func end_race():
 # Movement
 # ---------------------------------------------------------------------------
 
+func teleport_to(to: Vector2) -> void:
+	velocity = Vector2.ZERO
+	set_deferred("global_position", to)
+
+
+func apply_external_impulse(force: Vector2) -> void:
+	velocity = controller.apply_impulse(velocity, force)
+
+
 func apply_push(_forced := false) -> void:
 	action_detected.emit(Global.RaceLoopConditions.PUSH)
 	character_animator.play_animation(character_animator.PUSH)

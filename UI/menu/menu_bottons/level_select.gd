@@ -20,7 +20,7 @@ extends VBoxContainer
 @onready var btn_left:  Button = %LeftButton
 @onready var btn_right: Button = %RightButton
 
-
+var level_route: LevelListData
 var level_list: Array[LevelData]
 var _index: int = 0
 var _game_loaded: bool = false
@@ -38,8 +38,9 @@ func level_select(lvl_select: LevelListData):
 	if lvl_select == null:
 		level_list = []
 	else:
+		level_route = lvl_select
 		level_list = lvl_select.level_list
-	_show_level(0)
+	_show_level(_index)
 
 
 func _change_level(step: int) -> void:
@@ -85,4 +86,4 @@ func _update_buttons() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	GameManager.start_level(level_list[_index], _index)
+	GameManager.start_level(level_list[_index], _index, level_route)

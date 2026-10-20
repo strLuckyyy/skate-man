@@ -1859,33 +1859,6 @@ layout_mode = 1
 offset_left = 2558.0
 offset_right = 2557.9988
 
-[node name="LevelSprite" parent="CanvasLayer/Control/LevelSelect/UpperArea/LeftColumn/TopLeft" parent_id_path=PackedInt32Array(577144340, 976789610) index="0" unique_id=744293405]
-texture = null
-
-[node name="OpponentSprite" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/TopRight/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 2145200835) index="0" unique_id=15292155]
-texture = null
-
-[node name="EquipmentSprite" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/TopRight/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 2145200835) index="1" unique_id=1038619060]
-texture = null
-
-[node name="OpponentSpeed" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/SpeedContainer" parent_id_path=PackedInt32Array(577144340, 691088133) index="1" unique_id=1188531757]
-texture_under = null
-texture_progress = null
-
-[node name="OpponentBoost" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/BoostContainer" parent_id_path=PackedInt32Array(577144340, 456118541) index="1" unique_id=2122727467]
-texture_under = null
-texture_progress = null
-
-[node name="LevelDifficulty" parent="CanvasLayer/Control/LevelSelect/UpperArea/RightColumn/MidRight/MarginContainer/VBoxContainer/DifficultyContainer" parent_id_path=PackedInt32Array(577144340, 358386589) index="1" unique_id=1818502886]
-texture_under = null
-texture_progress = null
-
-[node name="LeftButton" parent="CanvasLayer/Control/LevelSelect/BottomArea/MarginContainer/HBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 873693086) index="0" unique_id=271569109]
-icon = null
-
-[node name="RightButton" parent="CanvasLayer/Control/LevelSelect/BottomArea/MarginContainer/HBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(577144340, 873693086) index="2" unique_id=529443618]
-icon = null
-
 [node name="StartMenuJump" type="Button" parent="CanvasLayer/Control" unique_id=453746992]
 layout_mode = 1
 anchors_preset = 15

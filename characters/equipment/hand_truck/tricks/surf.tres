@@ -6,8 +6,9 @@
 script = ExtResource("1_bcp06")
 trick_name = "Surf"
 trick_type = 4
+sequence = Array[int]([2])
 state_available = Array[int]([3, 4])
 is_compose = true
 animation_name = &"surf"
-hold_direction = 2
+hold_direction = 4
 metadata/_custom_type_script = "uid://dpgg0shxlo7xl"

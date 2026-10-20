@@ -36,6 +36,8 @@ func _ready() -> void:
 func setup(equipment_manager: EquipmentManager) -> void:
 	EventBus.direction_input.connect(_on_direction_input)
 	equipment_manager.equipment_changed.connect(_on_equipment_changed)
+	if equipment_manager.current_equipment != null:
+		rebuild(equipment_manager.get_tricks())
 
 
 func rebuild(tricks: Array[BaseTrick]) -> void:

@@ -18,6 +18,10 @@ var is_in_composed_anim: bool = false
 var current_composed_anim: StringName = ""
 
 
+func _finish_param(anim: StringName) -> StringName:
+	return StringName("parameters/%s/conditions/finish_anim" % anim)
+
+
 func _ready() -> void:
 	playback = animation_tree.get("parameters/playback")
 
@@ -54,21 +58,23 @@ func play_trick(anim_path: StringName, is_composed: bool) -> void:
 	if is_composed:
 		is_in_composed_anim = true
 		current_composed_anim = anim_path
-		
 		animation_tree.set(FINISH_ANIM, false)
-	else:
 		_reset_composed_state()
 	
 	playback.travel(anim_path)
 
 
 func finish_composed_anim() -> void:
-	if is_in_composed_anim:
-		animation_tree.set(FINISH_ANIM, true)
-		is_in_composed_anim = false
+	if not is_in_composed_anim: return
+	is_in_composed_anim = false
+	animation_tree.set(_finish_param(current_composed_anim), true)
+	animation_tree.set(FINISH_ANIM, true)
 
 
 func _reset_composed_state() -> void:
+	if current_composed_anim != "":
+		animation_tree.set(_finish_param(current_composed_anim), false)
+	
 	is_in_composed_anim = false
 	current_composed_anim = ""
 	animation_tree.set(FINISH_ANIM, false)

@@ -30,8 +30,8 @@ func _ready() -> void:
 	cd_label = race_manager.get_countdown_label()
 	
 	EventBus.race_ended.connect( 
-		func(base_character, score): 
-			if base_character == Player:
+		func(base_character, score):
+			if base_character is Player:
 				player_score = score 
 	)
 	
@@ -78,4 +78,4 @@ func _spawn() -> void:
 	
 	racer = spawner.spawn_character(player_scene, race_manager, default_equipment)
 	racers.append(racer)
-	EventBus.characters_spawned.emit(racers)
+	EventBus.characters_spawned.emit(racers.duplicate())

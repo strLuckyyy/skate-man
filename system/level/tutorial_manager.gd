@@ -50,9 +50,9 @@ func _detected(required: Dictionary, value) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is not BaseCharacter: return
+	var b := body as BaseCharacter
 	if not check_race_conditions():
-		body.velocity = Vector2.ZERO
-		body.set_deferred("global_position", marker_to_tele.global_position)
+		b.teleport_to(marker_to_tele.global_position)
 		tutorial_restart.emit()
 		return
 	super._on_area_2d_body_entered(body)

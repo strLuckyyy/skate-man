@@ -2,6 +2,7 @@ class_name Player
 extends BaseCharacter
 
 var hud:           CanvasLayer
+var race_result:   Result
 var score_manager: ScoreManager
 var input_buffer:  InputBuffer
 var race_position: int:
@@ -16,6 +17,7 @@ var race_position: int:
 func _ready() -> void:
 	super._ready()
 	hud           = $HUD
+	race_result   = $ResultLayer/Result
 	input_buffer  = %InputBuffer
 	score_manager = %ScoreManager
 	
@@ -47,9 +49,18 @@ func _physics_process(delta: float) -> void:
 
 func end_race():
 	super.end_race()
+	
+	var cam = %Camera2D
+	cam.reparent(get_tree().current_scene)
+	
 	hud.visible = false
 	hud.set_process(false)
 	hud.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	race_result.visible = true
+	race_result.set_process(true)
+	race_result.process_mode = Node.PROCESS_MODE_ALWAYS
+	race_result.result(race_position)
 	
 	score_manager.end_race()
 

@@ -27,7 +27,7 @@ _data = {
 
 [node name="Player" unique_id=1969115429 instance=ExtResource("1_wo8oy")]
 process_mode = 1
-collision_mask = 20
+collision_mask = 148
 script = ExtResource("2_dyllp")
 
 [node name="HUD" parent="." index="0" unique_id=1307610127 instance=ExtResource("3_dirf7")]
@@ -35,16 +35,26 @@ script = ExtResource("2_dyllp")
 [node name="ComboCounter" parent="HUD/MainControl/TrickInfoControl" parent_id_path=PackedInt32Array(1307610127, 470045813) index="1" unique_id=1797897880]
 offset_bottom = -12.4260025
 
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" index="2" unique_id=561614676]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 392.0
+offset_right = 392.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="PauseLayer" type="CanvasLayer" parent="." index="1" unique_id=180015522]
 process_mode = 3
-visible = false
 
 [node name="Pause" parent="PauseLayer" index="0" unique_id=1169743778 instance=ExtResource("4_3t07l")]
+visible = false
 
 [node name="ResultLayer" type="CanvasLayer" parent="." index="2" unique_id=1535109269]
 process_mode = 3
 
 [node name="Result" parent="ResultLayer" index="0" unique_id=1527243598 instance=ExtResource("5_on558")]
+visible = false
 
 [node name="CollisionShape2D" parent="." index="3" unique_id=367863434]
 shape = SubResource("CapsuleShape2D_1f1u2")

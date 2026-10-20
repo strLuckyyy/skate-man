@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://rg6hwrj6red0"]
+
+[ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_7qrgt"]
+[ext_resource type="Texture2D" uid="uid://bn20yilyn7of4" path="res://assets/props/scenary/tutorial/road_barrier_front.svg" id="2_eywbm"]
+
+[sub_resource type="Curve2D" id="Curve2D_a7347"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -222.515, -95, 0, 0, 0, 0, 5307.225, -95)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7347"]
+size = Vector2(5661, 422)
+
+[node name="RoadBlock" unique_id=1698369429 instance=ExtResource("1_7qrgt")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1022371307]
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1" unique_id=371023927]
+position = Vector2(389, 0)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." index="2" unique_id=718821489]
+position = Vector2(778, 0)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="3" unique_id=696392923]
+position = Vector2(1167, 0)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." index="4" unique_id=1047609592]
+position = Vector2(1557, 0)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." index="5" unique_id=812608996]
+position = Vector2(1949, 0)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D7" type="Sprite2D" parent="." index="6" unique_id=546844683]
+position = Vector2(2343, 0)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D8" type="Sprite2D" parent="." index="7" unique_id=329135003]
+position = Vector2(2735, 0)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D9" type="Sprite2D" parent="." index="8" unique_id=1015759337]
+position = Vector2(3126, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D10" type="Sprite2D" parent="." index="9" unique_id=382052438]
+position = Vector2(3515, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D11" type="Sprite2D" parent="." index="10" unique_id=441376907]
+position = Vector2(3905, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D12" type="Sprite2D" parent="." index="11" unique_id=1996917862]
+position = Vector2(4297, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D13" type="Sprite2D" parent="." index="12" unique_id=637942430]
+position = Vector2(4691, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D14" type="Sprite2D" parent="." index="13" unique_id=1052387424]
+position = Vector2(5083, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Path2D" parent="." index="14" unique_id=1304231975]
+curve = SubResource("Curve2D_a7347")
+
+[node name="PathFollow2D" parent="Path2D" index="0" unique_id=1942762927]
+position = Vector2(-222.515, -95)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=1674397916]
+position = Vector2(2433.5, -182)
+shape = SubResource("RectangleShape2D_a7347")
+
+[editable path="GrindArea"]
