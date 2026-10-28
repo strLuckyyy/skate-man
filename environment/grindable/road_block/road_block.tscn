@@ -1,82 +1,358 @@
 [gd_scene format=3 uid="uid://rg6hwrj6red0"]
 
-[ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://environment/grindable/grindable_base.tscn" id="1_7qrgt"]
+[ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://system/generator/gridable/core/grindable_base.tscn" id="1_7qrgt"]
 [ext_resource type="Texture2D" uid="uid://bn20yilyn7of4" path="res://assets/props/scenary/tutorial/road_barrier_front.svg" id="2_eywbm"]
+
+[sub_resource type="Gradient" id="Gradient_eywbm"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_eywbm")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve2D" id="Curve2D_a7347"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -222.515, -95, 0, 0, 0, 0, 5307.225, -95)
+"points": PackedVector2Array(0, 0, 0, 0, -222.515, -95, 0, 0, 0, 0, 7636, -95)
 }
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7347"]
-size = Vector2(5661, 422)
+size = Vector2(8014, 694)
 
 [node name="RoadBlock" unique_id=1698369429 instance=ExtResource("1_7qrgt")]
 
 [node name="Sprite2D" parent="." index="0" unique_id=1022371307]
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." index="1" unique_id=371023927]
+[node name="lights" type="Node2D" parent="Sprite2D" index="0" unique_id=1921194680]
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D/lights" index="0" unique_id=987055097]
+position = Vector2(-116, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Sprite2D/lights" index="1" unique_id=2101561791]
+position = Vector2(114, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Sprite2D/lights" index="2" unique_id=1361905478]
+position = Vector2(273, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Sprite2D/lights" index="3" unique_id=197963026]
+position = Vector2(505, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Sprite2D/lights" index="4" unique_id=1325883651]
+position = Vector2(659, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Sprite2D/lights" index="5" unique_id=1852269873]
+position = Vector2(891, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D7" type="PointLight2D" parent="Sprite2D/lights" index="6" unique_id=742032564]
+position = Vector2(1049, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D8" type="PointLight2D" parent="Sprite2D/lights" index="7" unique_id=296879242]
+position = Vector2(1281, -134)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D9" type="PointLight2D" parent="Sprite2D/lights" index="8" unique_id=1362879011]
+position = Vector2(1441, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D10" type="PointLight2D" parent="Sprite2D/lights" index="9" unique_id=292120200]
+position = Vector2(1673, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D11" type="PointLight2D" parent="Sprite2D/lights" index="10" unique_id=851016763]
+position = Vector2(1835, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D12" type="PointLight2D" parent="Sprite2D/lights" index="11" unique_id=421684464]
+position = Vector2(2067, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D13" type="PointLight2D" parent="Sprite2D/lights" index="12" unique_id=789858600]
+position = Vector2(2227, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D14" type="PointLight2D" parent="Sprite2D/lights" index="13" unique_id=1475729642]
+position = Vector2(2459, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D15" type="PointLight2D" parent="Sprite2D/lights" index="14" unique_id=1239587325]
+position = Vector2(2619, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D16" type="PointLight2D" parent="Sprite2D/lights" index="15" unique_id=2100283737]
+position = Vector2(2851, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D17" type="PointLight2D" parent="Sprite2D/lights" index="16" unique_id=1738876279]
+position = Vector2(3011, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D18" type="PointLight2D" parent="Sprite2D/lights" index="17" unique_id=298880151]
+position = Vector2(3243, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D19" type="PointLight2D" parent="Sprite2D/lights" index="18" unique_id=374630526]
+position = Vector2(3397, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D20" type="PointLight2D" parent="Sprite2D/lights" index="19" unique_id=509393883]
+position = Vector2(3629, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D21" type="PointLight2D" parent="Sprite2D/lights" index="20" unique_id=1641033127]
+position = Vector2(3785, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D22" type="PointLight2D" parent="Sprite2D/lights" index="21" unique_id=2138239175]
+position = Vector2(4017, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D23" type="PointLight2D" parent="Sprite2D/lights" index="22" unique_id=1588901535]
+position = Vector2(4182, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D24" type="PointLight2D" parent="Sprite2D/lights" index="23" unique_id=1744232558]
+position = Vector2(4414, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D25" type="PointLight2D" parent="Sprite2D/lights" index="24" unique_id=99410908]
+position = Vector2(4572, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D26" type="PointLight2D" parent="Sprite2D/lights" index="25" unique_id=660499988]
+position = Vector2(4804, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D27" type="PointLight2D" parent="Sprite2D/lights" index="26" unique_id=149080798]
+position = Vector2(4964, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D28" type="PointLight2D" parent="Sprite2D/lights" index="27" unique_id=2131579780]
+position = Vector2(5196, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D29" type="PointLight2D" parent="Sprite2D/lights" index="28" unique_id=157508465]
+position = Vector2(5363, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D30" type="PointLight2D" parent="Sprite2D/lights" index="29" unique_id=528636836]
+position = Vector2(5595, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D31" type="PointLight2D" parent="Sprite2D/lights" index="30" unique_id=1934624793]
+position = Vector2(5749, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D32" type="PointLight2D" parent="Sprite2D/lights" index="31" unique_id=341379855]
+position = Vector2(5981, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D33" type="PointLight2D" parent="Sprite2D/lights" index="32" unique_id=1568606978]
+position = Vector2(6137, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D34" type="PointLight2D" parent="Sprite2D/lights" index="33" unique_id=75374311]
+position = Vector2(6369, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D35" type="PointLight2D" parent="Sprite2D/lights" index="34" unique_id=1683116177]
+position = Vector2(6527, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D36" type="PointLight2D" parent="Sprite2D/lights" index="35" unique_id=1186819428]
+position = Vector2(6759, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D37" type="PointLight2D" parent="Sprite2D/lights" index="36" unique_id=1009064359]
+position = Vector2(6924, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D38" type="PointLight2D" parent="Sprite2D/lights" index="37" unique_id=188620613]
+position = Vector2(7156, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D39" type="PointLight2D" parent="Sprite2D/lights" index="38" unique_id=808800630]
+position = Vector2(7316, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D40" type="PointLight2D" parent="Sprite2D/lights" index="39" unique_id=126955191]
+position = Vector2(7548, -136)
+color = Color(1, 0.95686275, 0.3019608, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" index="1" unique_id=371023927]
 position = Vector2(389, 0)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D3" type="Sprite2D" parent="." index="2" unique_id=718821489]
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D" index="2" unique_id=718821489]
 position = Vector2(778, 0)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D4" type="Sprite2D" parent="." index="3" unique_id=696392923]
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite2D" index="3" unique_id=696392923]
 position = Vector2(1167, 0)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D5" type="Sprite2D" parent="." index="4" unique_id=1047609592]
+[node name="Sprite2D5" type="Sprite2D" parent="Sprite2D" index="4" unique_id=1047609592]
 position = Vector2(1557, 0)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D6" type="Sprite2D" parent="." index="5" unique_id=812608996]
+[node name="Sprite2D6" type="Sprite2D" parent="Sprite2D" index="5" unique_id=812608996]
 position = Vector2(1949, 0)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D7" type="Sprite2D" parent="." index="6" unique_id=546844683]
+[node name="Sprite2D7" type="Sprite2D" parent="Sprite2D" index="6" unique_id=546844683]
 position = Vector2(2343, 0)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D8" type="Sprite2D" parent="." index="7" unique_id=329135003]
+[node name="Sprite2D8" type="Sprite2D" parent="Sprite2D" index="7" unique_id=329135003]
 position = Vector2(2735, 0)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D9" type="Sprite2D" parent="." index="8" unique_id=1015759337]
+[node name="Sprite2D9" type="Sprite2D" parent="Sprite2D" index="8" unique_id=1015759337]
 position = Vector2(3126, 0.5)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D10" type="Sprite2D" parent="." index="9" unique_id=382052438]
+[node name="Sprite2D10" type="Sprite2D" parent="Sprite2D" index="9" unique_id=382052438]
 position = Vector2(3515, 0.5)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D11" type="Sprite2D" parent="." index="10" unique_id=441376907]
+[node name="Sprite2D11" type="Sprite2D" parent="Sprite2D" index="10" unique_id=441376907]
 position = Vector2(3905, 0.5)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D12" type="Sprite2D" parent="." index="11" unique_id=1996917862]
+[node name="Sprite2D12" type="Sprite2D" parent="Sprite2D" index="11" unique_id=1996917862]
 position = Vector2(4297, 0.5)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D13" type="Sprite2D" parent="." index="12" unique_id=637942430]
+[node name="Sprite2D13" type="Sprite2D" parent="Sprite2D" index="12" unique_id=637942430]
 position = Vector2(4691, 0.5)
 texture = ExtResource("2_eywbm")
 
-[node name="Sprite2D14" type="Sprite2D" parent="." index="13" unique_id=1052387424]
+[node name="Sprite2D14" type="Sprite2D" parent="Sprite2D" index="13" unique_id=1052387424]
 position = Vector2(5083, 0.5)
 texture = ExtResource("2_eywbm")
 
-[node name="Path2D" parent="." index="14" unique_id=1304231975]
+[node name="Sprite2D15" type="Sprite2D" parent="Sprite2D" index="14" unique_id=1325744310]
+position = Vector2(5475, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Sprite2D" index="15" unique_id=173931831]
+position = Vector2(5864, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Sprite2D" index="16" unique_id=606305857]
+position = Vector2(6254, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Sprite2D" index="17" unique_id=775976500]
+position = Vector2(6646, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D19" type="Sprite2D" parent="Sprite2D" index="18" unique_id=468985025]
+position = Vector2(7040, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Sprite2D20" type="Sprite2D" parent="Sprite2D" index="19" unique_id=1829561630]
+position = Vector2(7432, 0.5)
+texture = ExtResource("2_eywbm")
+
+[node name="Path2D" parent="." index="1" unique_id=1304231975]
+position = Vector2(0, -88)
 curve = SubResource("Curve2D_a7347")
 
 [node name="PathFollow2D" parent="Path2D" index="0" unique_id=1942762927]
 position = Vector2(-222.515, -95)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrindArea" parent_id_path=PackedInt32Array(787362715) index="0" unique_id=1674397916]
-position = Vector2(2433.5, -182)
+position = Vector2(3633, 170)
 shape = SubResource("RectangleShape2D_a7347")
 
 [editable path="GrindArea"]
