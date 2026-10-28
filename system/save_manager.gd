@@ -3,7 +3,7 @@ extends Node
 signal saved
 signal loaded
 
-const SAVE_PATH := "user://game_data.save"
+const SAVE_PATH  := "user://game_data.save"
 const SECRET_KEY := "skategame"
 
 var game_data: Dictionary = {
@@ -14,16 +14,21 @@ var game_data: Dictionary = {
 }
 
 
+func get_game_data() -> Dictionary:
+	return game_data.duplicate()
+
+
 func save_game() -> void:
 	var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.WRITE, SECRET_KEY)
 	if file:
 		var json_string = JSON.stringify(game_data)
 		file.store_string(json_string)
 		file.close()
-		print("Game saved! ", game_data)
+		print("Game saved!")
 		saved.emit()
 	else:
 		print("Error: Cannot save.")
+
 
 func load_game() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
@@ -44,17 +49,18 @@ func load_game() -> void:
 				loaded.emit()
 		else:
 			print("Error: Cannot load the game.")
-	print(game_data)
+	#print(game_data)
 
 
 func update_level_progress(
-	level_id: int, score: float, is_completed: bool, custom_data: Dictionary = {}
+	level_id: int, score: float, is_completed: bool, level_locked: bool, custom_data: Dictionary = {}
 	) -> void:
 	var lvl_id := str(level_id)
 	if not game_data["levels"].has(lvl_id):
 		game_data["levels"][lvl_id] = {
 			"best_score": 0.0,
 			"completed": false,
+			"is_locked": false,
 			"data": {}
 		}
 	
@@ -66,6 +72,9 @@ func update_level_progress(
 	if is_completed or level_ref["completed"]:
 		level_ref["completed"] = true
 	
+	if level_locked:
+		level_ref["is_locked"] = level_locked
+	
 	if not custom_data.is_empty():
 		level_ref["data"].merge(custom_data, true)
 	
@@ -76,6 +85,11 @@ func get_level_data(level_id: String) -> Dictionary:
 	if game_data["levels"].has(level_id):
 		return game_data["levels"][level_id]
 	return {"best_score": 0.0, "completed": false, "data": {}}
+
+
+func get_level_is_completed(level_id: String) -> bool:
+	var data = get_level_data(level_id)
+	return data.get("completed", false)
 
 
 func get_level_score(level_id: String) -> float:

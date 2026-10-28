@@ -22,11 +22,13 @@ func testing_mode() -> void:
 
 
 func load_main_menu() -> void:
+	SaveManager.save_game()
 	get_tree().change_scene_to_packed(main_menu)
 
 
 func load_next_level() -> void:
 	if get_has_next_level():
+		SaveManager.save_game()
 		var next_id    := current_level_id + 1
 		var next_level := current_level_route.level_list[next_id]
 		start_level(next_level, next_id, current_level_route)

@@ -63,6 +63,7 @@ func finish(position: int):
 		GameManager.current_level_id, 
 		player_score, 
 		is_completed,
+		false
 	)
 	SaveManager.save_game()
 	

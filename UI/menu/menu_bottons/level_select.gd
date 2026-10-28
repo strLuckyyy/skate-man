@@ -19,11 +19,14 @@ extends VBoxContainer
 
 @onready var btn_left:  Button = %LeftButton
 @onready var btn_right: Button = %RightButton
+@onready var btn_play:  Button = %PlayButton
 
 var level_route: LevelListData
 var level_list: Array[LevelData]
 var _index: int = 0
 var _game_loaded: bool = false
+var _current_level_completed: bool = false
+var _level_locked: LevelData = preload("res://levels/level_locked.tres")
 
 
 func _ready() -> void:
@@ -56,29 +59,41 @@ func _show_level(index: int) -> void:
 	_index = clampi(index, 0, level_list.size() - 1)
 	
 	var level: LevelData = level_list[_index]
-	var score: float = SaveManager.get_level_score(str(_index)) if _game_loaded else 0.0
+	var score: float = 0.0
 	
-	level_name.text      = level.level_name
-	level_sprite.texture = level.level_perfil
-	map_label.text       = str(LevelData.MapType.find_key(level.map_type))
-	weather_label.text   = str(LevelData.Weather.find_key(level.weather))
-	score_label.text     = str(score)
+	if _game_loaded:
+		score = SaveManager.get_level_score(str(_index))
+		_current_level_completed = SaveManager.get_level_is_completed(str(_index))
 	
-	opponent_sprite.texture  = level.opponent_perfil
-	equipment_sprite.texture = level.equipment_perfil
+	_show_info(level, score)
+	if level.level_locked:
+		_show_info(_level_locked, 0.0)
 	
-	opponent_name.text     = level.opponent_name
-	opponent_speed.value   = level.opponent_speed
-	opponent_boost.value   = level.opponent_boost
-	level_difficulty.value = level.difficulty
+	btn_play.disabled = level.level_locked
 	
 	_update_buttons()
+
+
+func _show_info(level_data: LevelData, score: float) -> void:
+	level_name.text      = level_data.level_name
+	level_sprite.texture = level_data.level_perfil
+	map_label.text       = str(LevelData.MapType.find_key(level_data.map_type))
+	weather_label.text   = str(LevelData.Weather.find_key(level_data.weather))
+	score_label.text     = str(score)
+
+	opponent_sprite.texture  = level_data.opponent_perfil
+	equipment_sprite.texture = level_data.equipment_perfil
+
+	opponent_name.text     = level_data.opponent_name
+	opponent_speed.value   = level_data.opponent_speed
+	opponent_boost.value   = level_data.opponent_boost
+	level_difficulty.value = level_data.difficulty
 
 
 func _update_buttons() -> void:
 	btn_left.disabled  = _index <= 0
 	btn_right.disabled = _index >= level_list.size() - 1
-
+	
 	if btn_left.disabled and btn_left.has_focus():
 		btn_right.grab_focus()
 	elif btn_right.disabled and btn_right.has_focus():

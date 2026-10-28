@@ -1838,6 +1838,9 @@ layout_mode = 1
 offset_top = 741.0
 offset_bottom = 741.0
 
+[node name="Exit" parent="CanvasLayer/Control/StartMenu/VBoxContainer" parent_id_path=PackedInt32Array(1893716671, 1967471346) index="1" unique_id=2050492433]
+text = "  EXIT  "
+
 [node name="MainMenu" parent="CanvasLayer/Control" unique_id=2064773964 instance=ExtResource("8_0poe0")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -1849,10 +1852,16 @@ offset_bottom = 6.0
 [node name="NewGame" parent="CanvasLayer/Control/MainMenu/VBoxContainer" parent_id_path=PackedInt32Array(2064773964, 368608077) index="0" unique_id=1498706266]
 offset_transform_enabled = true
 
+[node name="Exit" parent="CanvasLayer/Control/MainMenu/VBoxContainer" parent_id_path=PackedInt32Array(2064773964, 368608077) index="3" unique_id=124730830]
+text = "  EXIT  "
+
 [node name="NewGameMenu" parent="CanvasLayer/Control" unique_id=1894765064 instance=ExtResource("10_5xle5")]
 layout_mode = 1
 offset_left = 1278.0
 offset_right = 1278.0007
+
+[node name="Exit" parent="CanvasLayer/Control/NewGameMenu/VBoxContainer" parent_id_path=PackedInt32Array(1894765064, 326894901) index="3" unique_id=965222190]
+text = "  EXIT  "
 
 [node name="LevelSelect" parent="CanvasLayer/Control" unique_id=577144340 instance=ExtResource("11_ypmii")]
 layout_mode = 1

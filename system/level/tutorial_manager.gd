@@ -33,12 +33,12 @@ func _check_race_conditions(required: Dictionary) -> bool:
 
 
 func _action_detected(action: Global.RaceLoopConditions) -> void:
-	print("action detected")
+	#print("action detected")
 	_detected(actions_required_to_end, action)
 
 
 func _trick_detected(trick: BaseTrick) -> void:
-	print("trick detected")
+	#print("trick detected")
 	var data: TrickData = trick.trick_data
 	_detected(tricks_required_to_end, data)
 

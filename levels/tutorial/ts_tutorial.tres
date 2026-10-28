@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dotb41yq4dccx" path="res://assets/tiles/street_tile/scenary_street_tile.svg" id="1_qst2d"]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x52wp"]
-polygon = PackedVector2Array(-32, 25.965797, 32, 25.965797, 32, 32, -32, 32)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qst2d"]
+polygon = PackedVector2Array(-32, 32, 32, 32, 32, 32, -32, 32)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ko15s"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -14,11 +14,11 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rmo86"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rmghv"]
-polygon = PackedVector2Array(-32, 25.965797, 32, 25.965797, 32, 32, -32, 32)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x52wp"]
+polygon = PackedVector2Array(-32, 32, 32, 32, 32, 32, -32, 32)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jryto"]
-polygon = PackedVector2Array(-32, 25.965797, 7.0559235, 27.094742, 7.6203995, 32, -32, 32)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rmghv"]
+polygon = PackedVector2Array(-32, 32, 32, 32, 32, 32, -32, 32)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p1fcj"]
 polygon = PackedVector2Array(-32, -32, 9.878296, -32, 12.700661, -26.530273, 32, -26.530273, 32, 32, -32, 32)
@@ -30,13 +30,13 @@ polygon = PackedVector2Array(-32, -26.530273, 32, -26.530273, 32, 32, -32, 32)
 texture = ExtResource("1_qst2d")
 texture_region_size = Vector2i(64, 64)
 0:1/0 = 0
-0:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_x52wp")
+0:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_qst2d")
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 23.143425, 32, 23.143425, 32, 32, -32, 32)
 1:1/0 = 0
-1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_rmghv")
+1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_x52wp")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 23.143425, 32, 23.143425, 32, 32, -32, 32)
 2:1/0 = 0
-2:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_jryto")
+2:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_rmghv")
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 23.143425, 9.878296, 24.272377, 10.442764, 32, -32, 32)
 3:1/0 = 0
 0:2/0 = 0
