@@ -25,7 +25,7 @@ func get_is_doing_trick() -> bool:
 	if active_trick == null or animator == null:
 		return false
 	
-	if animator.is_loop_animation(): return false
+	#if animator.is_loop_animation(): return false
 	return is_busy
 
 
@@ -47,6 +47,7 @@ func setup(
 	equipment_manager.equipment_changed.connect(_on_equipment_changed)
 	animator.animation_tree.animation_finished.connect(_on_trick_anim_finished)
 	character.state_machine.state_changed.connect(_on_state_changed)
+	character.grind_component.grind_finished.connect(_on_grind_finished)
 
 
 func process(
@@ -66,7 +67,7 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	if get_is_doing_trick(): return
 	if character.controller.is_locked: return
 	
-	print(context.get_input_buffer(), trick.name)
+	#print(context.get_input_buffer(), trick.name)
 	
 	if trick.is_grind_trick and context.get_grind_opportunity():
 		grind_trick_requested.emit(_current_grindable)
@@ -85,9 +86,9 @@ func try_execute(context: TrickContext, trick: BaseTrick) -> void:
 	
 	animator.play_trick(trick.anim_name, trick.trick_data.is_compose)
 	
-	var held: bool = _held_trick_direction != Global.Direction.NONE and character is Player
-	if held and not Input.is_action_pressed(_ACTION_BY_DIR[_held_trick_direction]):
-		animator.finish_composed_anim()
+	#var held: bool = _held_trick_direction != Global.Direction.NONE and character is Player
+	#if held and not Input.is_action_pressed(_ACTION_BY_DIR[_held_trick_direction]):
+	#	animator.finish_composed_anim()
 
 # ---------------------------------------------------------------------------
 # Private — sequence resolution
@@ -97,10 +98,10 @@ func _on_state_changed(
 	_old_state: Global.StateID, new_state: Global.StateID
 ) -> void:
 	if new_state == Global.StateID.TRICK_FAIL:
-		if is_busy and active_trick != null: 
+		if is_busy and active_trick != null:
 			EventBus.trick_failed.emit(owner, active_trick)
-	is_busy      = false
-	active_trick = null
+	#is_busy      = false
+	#active_trick = null
 
 
 func _on_sequence_resolved(
@@ -155,7 +156,15 @@ func _on_equipment_changed(
 
 func _on_trick_anim_finished(_anim_name: StringName) -> void:
 	if animator.is_in_composed_anim: return
-	print(_anim_name)
+	#print(_anim_name)
+	is_busy = false
+	active_trick = null
+	_held_trick_direction = Global.Direction.NONE
+
+
+func _on_grind_finished(reason: Global.ReasonToExitGrind, _data: Dictionary) -> void:
+	if reason != Global.ReasonToExitGrind.JUMPED:
+		return
 	is_busy = false
 	active_trick = null
 	_held_trick_direction = Global.Direction.NONE

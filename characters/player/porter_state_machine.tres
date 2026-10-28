@@ -60,7 +60,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jomg3"]
 advance_mode = 2
-advance_condition = &"finish_anim"
+advance_condition = &"finish_grind"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wd50f"]
 switch_mode = 2
@@ -94,7 +94,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8n7ah"]
 advance_mode = 2
-advance_condition = &"finish_anim"
+advance_condition = &"finish_grind"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gpexv"]
 switch_mode = 2
@@ -128,7 +128,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n6e8l"]
 advance_mode = 2
-advance_condition = &"finish_anim"
+advance_condition = &"finish_grind"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lh7p2"]
 switch_mode = 2
@@ -290,18 +290,21 @@ advance_condition = &"trick_fail"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jge0"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5pwhe"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yic06"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wid8t"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxbxl"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bkq1a"]
@@ -440,6 +443,15 @@ advance_condition = &"trick_fail"
 advance_mode = 2
 advance_condition = &"trick_fail"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hvocb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5vihd"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1hct6"]
+advance_mode = 2
+
 [resource]
 states/End/position = Vector2(-144, -4)
 states/Start/position = Vector2(-144, 110)
@@ -476,8 +488,8 @@ states/spin-floor/position = Vector2(-212, 335)
 states/spin-front/node = SubResource("AnimationNodeAnimation_yybc7")
 states/spin-front/position = Vector2(471, -262)
 states/surf/node = SubResource("AnimationNodeStateMachine_gpexv")
-states/surf/position = Vector2(787, -25)
+states/surf/position = Vector2(700, -4)
 states/trick_fail/node = SubResource("AnimationNodeAnimation_lv4bx")
 states/trick_fail/position = Vector2(1008, -296)
-transitions = ["jump", "flip-front", SubResource("AnimationNodeStateMachineTransition_6pj1p"), "jump", "flip-back", SubResource("AnimationNodeStateMachineTransition_3a7m8"), "jump", "spin-back", SubResource("AnimationNodeStateMachineTransition_y3et5"), "jump", "spin-front", SubResource("AnimationNodeStateMachineTransition_0mbv2"), "push", "jump", SubResource("AnimationNodeStateMachineTransition_8v65i"), "flip-front", "trick_fail", SubResource("AnimationNodeStateMachineTransition_jepfe"), "flip-back", "trick_fail", SubResource("AnimationNodeStateMachineTransition_iopkm"), "spin-back", "trick_fail", SubResource("AnimationNodeStateMachineTransition_pagxt"), "spin-front", "trick_fail", SubResource("AnimationNodeStateMachineTransition_2qgir"), "push", "jump_and_walk", SubResource("AnimationNodeStateMachineTransition_o3aog"), "push", "spin-floor", SubResource("AnimationNodeStateMachineTransition_5rrwf"), "jump", "surf", SubResource("AnimationNodeStateMachineTransition_gcxia"), "surf", "trick_fail", SubResource("AnimationNodeStateMachineTransition_wbcu0"), "jump", "grind-point", SubResource("AnimationNodeStateMachineTransition_winc8"), "grind-point", "jump", SubResource("AnimationNodeStateMachineTransition_1jge0"), "jump", "grind-lateral", SubResource("AnimationNodeStateMachineTransition_5pwhe"), "grind-lateral", "jump", SubResource("AnimationNodeStateMachineTransition_yic06"), "jump", "grind-normal", SubResource("AnimationNodeStateMachineTransition_wid8t"), "grind-normal", "jump", SubResource("AnimationNodeStateMachineTransition_yxbxl"), "grind-normal", "trick_fail", SubResource("AnimationNodeStateMachineTransition_bkq1a"), "grind-lateral", "trick_fail", SubResource("AnimationNodeStateMachineTransition_lm3vg"), "grind-point", "trick_fail", SubResource("AnimationNodeStateMachineTransition_8khhp"), "one_wheel", "jump", SubResource("AnimationNodeStateMachineTransition_87opd"), "push", "one_wheel", SubResource("AnimationNodeStateMachineTransition_5hk7v"), "push", "brake", SubResource("AnimationNodeStateMachineTransition_1oxx1"), "brake", "jump", SubResource("AnimationNodeStateMachineTransition_uw7a5"), "brake", "trick_fail", SubResource("AnimationNodeStateMachineTransition_pcued"), "one_wheel", "trick_fail", SubResource("AnimationNodeStateMachineTransition_yhvsa"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_3rkou"), "idle-out", "End", SubResource("AnimationNodeStateMachineTransition_qaxbn"), "flip-front", "mommentum", SubResource("AnimationNodeStateMachineTransition_7m40j"), "spin-back", "mommentum", SubResource("AnimationNodeStateMachineTransition_kreqk"), "flip-back", "mommentum", SubResource("AnimationNodeStateMachineTransition_fna2a"), "spin-front", "mommentum", SubResource("AnimationNodeStateMachineTransition_stq7i"), "jump", "mommentum", SubResource("AnimationNodeStateMachineTransition_66b3n"), "spin-floor", "mommentum", SubResource("AnimationNodeStateMachineTransition_ndut6"), "jump_and_walk", "mommentum", SubResource("AnimationNodeStateMachineTransition_trgpc"), "push", "mommentum", SubResource("AnimationNodeStateMachineTransition_xmtfe"), "one_wheel", "mommentum", SubResource("AnimationNodeStateMachineTransition_ia1wa"), "brake", "mommentum", SubResource("AnimationNodeStateMachineTransition_ec7xt"), "trick_fail", "mommentum", SubResource("AnimationNodeStateMachineTransition_lip4n"), "mommentum", "jump", SubResource("AnimationNodeStateMachineTransition_clrex"), "mommentum", "jump_and_walk", SubResource("AnimationNodeStateMachineTransition_7nn6x"), "mommentum", "push", SubResource("AnimationNodeStateMachineTransition_ir73y"), "mommentum", "spin-floor", SubResource("AnimationNodeStateMachineTransition_aa777"), "mommentum", "one_wheel", SubResource("AnimationNodeStateMachineTransition_7vfpl"), "mommentum", "brake", SubResource("AnimationNodeStateMachineTransition_7ti7c"), "mommentum", "idle-out", SubResource("AnimationNodeStateMachineTransition_sg7mu"), "idle", "mommentum", SubResource("AnimationNodeStateMachineTransition_u138m"), "surf", "mommentum", SubResource("AnimationNodeStateMachineTransition_8w232"), "mommentum", "trick_fail", SubResource("AnimationNodeStateMachineTransition_guys3"), "push", "trick_fail", SubResource("AnimationNodeStateMachineTransition_0adeb"), "jump", "trick_fail", SubResource("AnimationNodeStateMachineTransition_01ley")]
-graph_offset = Vector2(-139.81384, 210)
+transitions = ["jump", "flip-front", SubResource("AnimationNodeStateMachineTransition_6pj1p"), "jump", "flip-back", SubResource("AnimationNodeStateMachineTransition_3a7m8"), "jump", "spin-back", SubResource("AnimationNodeStateMachineTransition_y3et5"), "jump", "spin-front", SubResource("AnimationNodeStateMachineTransition_0mbv2"), "push", "jump", SubResource("AnimationNodeStateMachineTransition_8v65i"), "flip-front", "trick_fail", SubResource("AnimationNodeStateMachineTransition_jepfe"), "flip-back", "trick_fail", SubResource("AnimationNodeStateMachineTransition_iopkm"), "spin-back", "trick_fail", SubResource("AnimationNodeStateMachineTransition_pagxt"), "spin-front", "trick_fail", SubResource("AnimationNodeStateMachineTransition_2qgir"), "push", "jump_and_walk", SubResource("AnimationNodeStateMachineTransition_o3aog"), "push", "spin-floor", SubResource("AnimationNodeStateMachineTransition_5rrwf"), "jump", "surf", SubResource("AnimationNodeStateMachineTransition_gcxia"), "surf", "trick_fail", SubResource("AnimationNodeStateMachineTransition_wbcu0"), "jump", "grind-point", SubResource("AnimationNodeStateMachineTransition_winc8"), "grind-point", "jump", SubResource("AnimationNodeStateMachineTransition_1jge0"), "jump", "grind-lateral", SubResource("AnimationNodeStateMachineTransition_5pwhe"), "grind-lateral", "jump", SubResource("AnimationNodeStateMachineTransition_yic06"), "jump", "grind-normal", SubResource("AnimationNodeStateMachineTransition_wid8t"), "grind-normal", "jump", SubResource("AnimationNodeStateMachineTransition_yxbxl"), "grind-normal", "trick_fail", SubResource("AnimationNodeStateMachineTransition_bkq1a"), "grind-lateral", "trick_fail", SubResource("AnimationNodeStateMachineTransition_lm3vg"), "grind-point", "trick_fail", SubResource("AnimationNodeStateMachineTransition_8khhp"), "one_wheel", "jump", SubResource("AnimationNodeStateMachineTransition_87opd"), "push", "one_wheel", SubResource("AnimationNodeStateMachineTransition_5hk7v"), "push", "brake", SubResource("AnimationNodeStateMachineTransition_1oxx1"), "brake", "jump", SubResource("AnimationNodeStateMachineTransition_uw7a5"), "brake", "trick_fail", SubResource("AnimationNodeStateMachineTransition_pcued"), "one_wheel", "trick_fail", SubResource("AnimationNodeStateMachineTransition_yhvsa"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_3rkou"), "idle-out", "End", SubResource("AnimationNodeStateMachineTransition_qaxbn"), "flip-front", "mommentum", SubResource("AnimationNodeStateMachineTransition_7m40j"), "spin-back", "mommentum", SubResource("AnimationNodeStateMachineTransition_kreqk"), "flip-back", "mommentum", SubResource("AnimationNodeStateMachineTransition_fna2a"), "spin-front", "mommentum", SubResource("AnimationNodeStateMachineTransition_stq7i"), "jump", "mommentum", SubResource("AnimationNodeStateMachineTransition_66b3n"), "spin-floor", "mommentum", SubResource("AnimationNodeStateMachineTransition_ndut6"), "jump_and_walk", "mommentum", SubResource("AnimationNodeStateMachineTransition_trgpc"), "push", "mommentum", SubResource("AnimationNodeStateMachineTransition_xmtfe"), "one_wheel", "mommentum", SubResource("AnimationNodeStateMachineTransition_ia1wa"), "brake", "mommentum", SubResource("AnimationNodeStateMachineTransition_ec7xt"), "trick_fail", "mommentum", SubResource("AnimationNodeStateMachineTransition_lip4n"), "mommentum", "jump", SubResource("AnimationNodeStateMachineTransition_clrex"), "mommentum", "jump_and_walk", SubResource("AnimationNodeStateMachineTransition_7nn6x"), "mommentum", "push", SubResource("AnimationNodeStateMachineTransition_ir73y"), "mommentum", "spin-floor", SubResource("AnimationNodeStateMachineTransition_aa777"), "mommentum", "one_wheel", SubResource("AnimationNodeStateMachineTransition_7vfpl"), "mommentum", "brake", SubResource("AnimationNodeStateMachineTransition_7ti7c"), "mommentum", "idle-out", SubResource("AnimationNodeStateMachineTransition_sg7mu"), "idle", "mommentum", SubResource("AnimationNodeStateMachineTransition_u138m"), "surf", "mommentum", SubResource("AnimationNodeStateMachineTransition_8w232"), "mommentum", "trick_fail", SubResource("AnimationNodeStateMachineTransition_guys3"), "push", "trick_fail", SubResource("AnimationNodeStateMachineTransition_0adeb"), "jump", "trick_fail", SubResource("AnimationNodeStateMachineTransition_01ley"), "surf", "grind-normal", SubResource("AnimationNodeStateMachineTransition_hvocb"), "surf", "grind-lateral", SubResource("AnimationNodeStateMachineTransition_5vihd"), "surf", "grind-point", SubResource("AnimationNodeStateMachineTransition_1hct6")]
+graph_offset = Vector2(26.186157, -185)

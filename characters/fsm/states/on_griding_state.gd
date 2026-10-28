@@ -46,7 +46,6 @@ func _on_grind_finished(reason: Global.ReasonToExitGrind, data: Dictionary) -> v
 	if reason == Global.ReasonToExitGrind.JUMPED:
 		character.apply_jump(1.1)
 		character.velocity.x  = speed * direction
-		controller.is_jumping = true
 		
 		emit_signal("transition_requested", Global.StateID.ON_AIR, null)
 	

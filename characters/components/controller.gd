@@ -1,11 +1,12 @@
 class_name Controller
 extends Node
 
+signal jump_request
+
 var is_locked:     bool  = false
 var is_trick_fail: bool  = false
 var can_jump:      bool  = true
 var can_move:      bool  = true
-var is_jumping:    bool  = false
 var is_moving:     bool  = false:
 	get: return abs(direction) > 0.0
 var jumped:        int   = 0
@@ -92,6 +93,6 @@ func apply_jump(velocity: Vector2, equipment_data: EquipmentData) -> Vector2:
 	if is_locked: return velocity
 	if can_jump and jumped == 0:
 		jumped    += 1
-		is_jumping = true
+		jump_request.emit()
 		velocity.y = -equipment_data.jump_modifier
 	return velocity

@@ -97,9 +97,9 @@ parameters/conditions/jump_request = false
 parameters/conditions/start_race = false
 parameters/conditions/trick_fail = false
 parameters/brake/conditions/finish_anim = false
-parameters/grind-lateral/conditions/finish_anim = false
-parameters/grind-normal/conditions/finish_anim = false
-parameters/grind-point/conditions/finish_anim = false
+parameters/grind-lateral/conditions/finish_grind = false
+parameters/grind-normal/conditions/finish_grind = false
+parameters/grind-point/conditions/finish_grind = false
 parameters/one_wheel/conditions/finish_anim = false
 parameters/surf/conditions/finish_anim = false
 

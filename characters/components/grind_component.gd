@@ -14,11 +14,18 @@ var current_offset:  float = 0.0
 var grind_direction: float = 1.0
 var current_speed:   float = 0.0
 
-var is_grinding: bool = false
+var is_grinding:                 bool = false
+var jump_requested_during_grind: bool = false
+
 
 func setup(p_character: CharacterBody2D) -> void:
 	character  = p_character
 	controller = character.controller
+	character.controller.jump_request.connect(
+		func():
+			if is_grinding:
+				jump_requested_during_grind = true
+	)
 
 
 func can_start_grind(rail: GrindableObject, entry_velocity: Vector2) -> bool:
@@ -53,15 +60,17 @@ func start_grind(rail: GrindableObject, entry_velocity: Vector2) -> bool:
 func process_grind(delta: float) -> void:
 	if not is_grinding or current_rail == null or current_curve == null:
 		return
-
+	print("is grinding: ", is_grinding, " jump request: ", jump_requested_during_grind)
+	
 	current_offset += (current_speed * grind_direction) * delta
 	var total_length = current_curve.get_baked_length()
-
+	
 	if current_offset > total_length or current_offset < 0:
 		exit_grind(Global.ReasonToExitGrind.END_OF_RAIL)
 		return
-
-	if controller.is_jumped():
+	
+	if jump_requested_during_grind:
+		jump_requested_during_grind = false
 		exit_grind(Global.ReasonToExitGrind.JUMPED)
 		return
 

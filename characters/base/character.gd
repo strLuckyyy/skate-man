@@ -89,6 +89,11 @@ func end_race():
 	race_ended = true
 	character_animator.end_race()
 
+
+func trick_fail() -> void:
+	state_machine.current_state.transition_requested.emit(Global.StateID.TRICK_FAIL)
+
+
 # ---------------------------------------------------------------------------
 # Movement
 # ---------------------------------------------------------------------------
@@ -141,13 +146,13 @@ func apply_jump(mult: float = 1.0) -> void:
 	action_detected.emit(Global.RaceLoopConditions.JUMP)
 	var m = mult if mult != 0.0 else 1.0
 	velocity = controller.apply_jump(velocity, equipment.current_equipment) * m
-	character_animator.play_animation(character_animator.JUMP)
+	if not is_grinding():
+		character_animator.play_animation(character_animator.JUMP)
 
 
 func apply_gravity(delta: float) -> void:
 	if is_grinding():     return
 	if not is_on_floor(): velocity += get_gravity() * delta; return
-	controller.is_jumping = false
 	controller.reset_jumped()
 
 # ---------------------------------------------------------------------------
@@ -159,6 +164,13 @@ func add_available_grindable(grindable: GrindableObject) -> void:
 
 
 func _on_grind_trick_requested(grindable: GrindableObject) -> void:
+	print(
+		"[GRIND REQUEST] state=",
+		state_machine.get_current_state_id(),
+		" jumped=", controller.jumped,
+		" rail=", grindable,
+		" velocity=", velocity
+	)
 	var state := state_machine.get_current_state_id()
 	
 	if controller.jumped == 0: return

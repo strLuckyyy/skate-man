@@ -3,7 +3,7 @@ extends Node2D
 
 signal score_updated(score: float, combo_amount: int)
 
-const TIME    := 6.
+const TIME       := 6.
 var current_time := 6.
 
 var combo_amount := 0
