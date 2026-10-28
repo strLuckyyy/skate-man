@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://boftro66wdh84"]
+
+[ext_resource type="PackedScene" uid="uid://dno53wrq15u4w" path="res://system/generator/gridable/core/grindable_base.tscn" id="1_oql8y"]
+[ext_resource type="Resource" uid="uid://co2l323ov1h26" path="res://system/generator/gridable/profiles/metro_wire.tres" id="2_w36pb"]
+
+[node name="EnergyMetroPole" unique_id=1698369429 instance=ExtResource("1_oql8y")]
+rail_profile = ExtResource("2_w36pb")
+rail_path_path = NodePath("Path2D")
+rail_area_path = NodePath("GrindArea")
+
+[editable path="GrindArea"]

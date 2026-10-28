@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RailProfile2D" format=3 uid="uid://co2l323ov1h26"]
+
+[ext_resource type="Texture2D" uid="uid://b881wym03nbuu" path="res://assets/props/scenary/john_level/level_1/wire_metro.svg" id="1_8g0hc"]
+[ext_resource type="Script" uid="uid://d2cyxephqn5no" path="res://data/rail_profile.gd" id="1_lh0r6"]
+[ext_resource type="PackedScene" uid="uid://6opmy8cfum5d" path="res://environment/grindable/energy_metro_pole/energy_metro_prop.tscn" id="2_yyfv5"]
+
+[resource]
+script = ExtResource("1_lh0r6")
+line_texture = ExtResource("1_8g0hc")
+visual_width = 10.0
+visual_offsets = PackedFloat32Array()
+spawn_props = true
+prop_scene = ExtResource("2_yyfv5")
+prop_spacing = 584.0
+metadata/_custom_type_script = "uid://d2cyxephqn5no"

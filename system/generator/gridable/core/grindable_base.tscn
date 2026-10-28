@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dno53wrq15u4w"]
+
+[ext_resource type="Script" uid="uid://bf3bao85x4mt4" path="res://system/generator/gridable/core/grindable_base.gd" id="1_ucrri"]
+[ext_resource type="PackedScene" uid="uid://dkje7f8xayr4l" path="res://system/generator/gridable/core/grind_area/grind_area.tscn" id="2_b0s4n"]
+[ext_resource type="Script" uid="uid://isu3ifo2t6m2" path="res://data/obstacle_data.gd" id="2_ydp6g"]
+
+[sub_resource type="Resource" id="Resource_a7347"]
+script = ExtResource("2_ydp6g")
+type = 3
+metadata/_custom_type_script = "uid://isu3ifo2t6m2"
+
+[node name="GrindableBase" type="Node2D" unique_id=1698369429]
+script = ExtResource("1_ucrri")
+rail_start_path = NodePath("RailStart")
+rail_end_path = NodePath("RailEnd")
+obstacle_data = SubResource("Resource_a7347")
+
+[node name="RailStart" type="Marker2D" parent="." unique_id=556088401]
+
+[node name="RailEnd" type="Marker2D" parent="." unique_id=368005804]
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1304231975]
+unique_name_in_owner = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1942762927]
+
+[node name="GrindArea" parent="." unique_id=787362715 instance=ExtResource("2_b0s4n")]
+unique_name_in_owner = true
+
+[editable path="GrindArea"]

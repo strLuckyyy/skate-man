@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://6opmy8cfum5d"]
+
+[ext_resource type="Texture2D" uid="uid://dr52x40ladvtk" path="res://assets/props/scenary/john_level/level_1/back_energy_post_metro.svg" id="1_rtggb"]
+[ext_resource type="Texture2D" uid="uid://beppcd3f543xx" path="res://assets/props/scenary/john_level/level_1/front_energy_post_metro.svg" id="2_y84xs"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a7347"]
+diffuse_texture = ExtResource("1_rtggb")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d373b"]
+diffuse_texture = ExtResource("2_y84xs")
+
+[node name="EnergyMetroProp" type="Node2D" unique_id=723840843]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=438188362]
+offset = Vector2(-61, -427)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=969784379]
+z_index = -10
+position = Vector2(27, -193)
+scale = Vector2(2.7, 2.7)
+texture = SubResource("CanvasTexture_a7347")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=149902623]
+z_index = 1
+position = Vector2(71, 427)
+scale = Vector2(2.7, 2.7)
+texture = SubResource("CanvasTexture_d373b")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RailProfile2D" format=3 uid="uid://ys4hkwh6yphu"]
+
+[ext_resource type="Script" uid="uid://d2cyxephqn5no" path="res://data/rail_profile.gd" id="1_tuvnb"]
+
+[resource]
+script = ExtResource("1_tuvnb")
+visual_offsets = null
+metadata/_custom_type_script = "uid://d2cyxephqn5no"
