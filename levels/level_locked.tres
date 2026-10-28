@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://80pbbvjynf8t"]
+
+[ext_resource type="Script" uid="uid://dpdy24ajsuigx" path="res://data/level_data.gd" id="1_ywler"]
+
+[resource]
+script = ExtResource("1_ywler")
+level_locked = true
+level_name = &"LOCKED"
+opponent_name = &"John"
+metadata/_custom_type_script = "uid://dpdy24ajsuigx"

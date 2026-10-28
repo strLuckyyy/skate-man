@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://ca1i7k1wxuweg"]
+
+[ext_resource type="Texture2D" uid="uid://brs4fig7stvty" path="res://assets/props/scenary/john_level/level_1/metro_stairs_steps.svg" id="1_cjj05"]
+[ext_resource type="Script" uid="uid://cgs5k83nt1esh" path="res://environment/jumpable/stairs/jumpable_area.gd" id="1_i1nnu"]
+
+[sub_resource type="Gradient" id="Gradient_i1nnu"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dimhu"]
+gradient = SubResource("Gradient_i1nnu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dimhu"]
+size = Vector2(365.16394, 36.481995)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgcxy"]
+size = Vector2(391.8019, 24.255157)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dimhu"]
+polygon = PackedVector2Array(-30, -30, 908, 541, 900, 567, -25, 2)
+
+[node name="MetroStairs" type="Node2D" unique_id=1356349048]
+script = ExtResource("1_i1nnu")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=438792183]
+position = Vector2(15.175673, 851.0919)
+rotation = 0.52222145
+scale = Vector2(13.467422, 1.8305639)
+texture = SubResource("GradientTexture2D_dimhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=547270709]
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("1_cjj05")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=587226592]
+position = Vector2(-27, 846)
+scale = Vector2(2.7, 2.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=191477492]
+position = Vector2(15.1851845, -0.74073184)
+rotation = 0.54058194
+shape = SubResource("RectangleShape2D_dimhu")
+debug_color = Color(0.9423964, 7.893444e-06, 0.60854083, 0.41960785)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1010120600]
+scale = Vector2(2.7, 2.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=538706833]
+position = Vector2(0.3703694, 344.07404)
+rotation = 0.5357063
+shape = SubResource("RectangleShape2D_pgcxy")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1746046549]
+position = Vector2(-431, -722)
+occluder = SubResource("OccluderPolygon2D_dimhu")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

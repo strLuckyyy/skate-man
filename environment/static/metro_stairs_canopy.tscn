@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cwhv341gtgqbl"]
+
+[ext_resource type="PackedScene" uid="uid://8bpf00wsme1j" path="res://environment/static_object.tscn" id="1_txqy8"]
+[ext_resource type="Texture2D" uid="uid://c56gjo1mev2q2" path="res://assets/props/scenary/john_level/level_1/metro_stairs_canopy.svg" id="2_0vjo2"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a7347"]
+polygon = PackedVector2Array(-203.70369, -167.03703, -202.59259, -181.1111, 202.96295, -180, 204.44444, -165.92592)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dimhu"]
+size = Vector2(1098, 70)
+
+[node name="StaticObject" unique_id=970081589 instance=ExtResource("1_txqy8")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=543816621]
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("2_0vjo2")
+
+[node name="LightOccluder2D" parent="Sprite2D" index="0" unique_id=354560767]
+occluder = SubResource("OccluderPolygon2D_a7347")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1" unique_id=1738512057]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0" unique_id=1562605962]
+position = Vector2(2, 929)
+shape = SubResource("RectangleShape2D_dimhu")
